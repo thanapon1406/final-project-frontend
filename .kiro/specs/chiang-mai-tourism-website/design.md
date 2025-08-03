@@ -2,7 +2,7 @@
 
 ## Overview
 
-The Chiang Mai Tourism Website will be a comprehensive tourism platform built using the same foundation as huaytuengthao.com but expanded to showcase multiple tourist attractions across Chiang Mai. The design maintains the successful visual and structural elements of the reference site while adding advanced functionality for managing and displaying diverse tourism content. The system uses Bootstrap 5.1.3, jQuery, Font Awesome icons, and Itim font to maintain consistency with the reference site's proven approach.
+The Huay Tueng Thao Website Redesign project aims to create a modern, visually enhanced version of the existing tourism website (https://huaytuengthao.com/) while maintaining its successful content structure and functionality. The redesign will extract all existing content into organized JSON files and implement an administrative system for content management. The project uses the same technical foundation (Bootstrap 5.1.3, jQuery, Font Awesome, Itim font) while significantly improving the visual design and user experience.
 
 ## Architecture
 
@@ -10,11 +10,11 @@ The Chiang Mai Tourism Website will be a comprehensive tourism platform built us
 
 ```mermaid
 graph TB
-    A[Frontend - Tourist Interface] --> B[API Module]
+    A[Frontend - Redesigned Website] --> B[API Module]
     C[Admin Panel] --> B
-    B --> D[JSON Data Store]
-    A --> E[Map API Integration]
-    F[Bootstrap Framework] --> A
+    B --> D[JSON Data Files]
+    A --> E[Same External Services]
+    F[Bootstrap 5.1.3] --> A
     G[jQuery Library] --> A
     
     subgraph "Frontend Layer"
@@ -31,365 +31,215 @@ graph TB
     end
     
     subgraph "External Services"
-        E
+        E[Google Maps, Social Media]
     end
 ```
 
-### Technology Stack
+### Technology Stack (Same as Original)
 
-- **Frontend Framework**: Bootstrap 5.x for responsive design
-- **JavaScript Library**: jQuery 3.x for DOM manipulation and AJAX
-- **Data Storage**: JSON files for attraction data
-- **Map Integration**: Google Maps API or OpenStreetMap
-- **Server**: Static file server or lightweight Node.js server for API endpoints
+- **Frontend Framework**: Bootstrap 5.1.3 (exact same version)
+- **JavaScript Library**: jQuery for DOM manipulation and AJAX
+- **Icons**: Font Awesome 5.10.0 (same version)
+- **Typography**: Itim font for Thai language support
+- **Data Storage**: JSON files organized by page and content section
+- **Map Integration**: Google Maps iframe embed (same implementation)
 
 ## Components and Interfaces
 
-### 1. Frontend Components (Based on huaytuengthao.com Structure)
+### 1. Frontend Components (Enhanced Versions of Original)
 
-#### Homepage Component
-- **Navigation Bar**: Dark Bootstrap navbar with logo and Thai text (same structure as reference site)
-- **Carousel Slider**: 4-slide carousel with overlay text and navigation controls (exact same implementation)
-- **News Marquee**: Scrolling announcement bar with red "ประกาศ" label (same styling)
-- **Service Section**: 3-column layout with Font Awesome icons and descriptions (expanded for categories)
-- **Featured Content Grid**: 4-column layout with images and links (adapted for multiple attractions)
-- **News/Updates Table**: Structured content table with dates and links
-- **Gallery Section**: Image grid layout for showcasing attractions
-- **Footer**: Simple footer with copyright and visitor counter
+#### Homepage Component (Enhanced index.html)
+- **Navigation Bar**: Same structure with improved styling and animations
+- **Carousel Slider**: Same 4-slide carousel with enhanced visual effects and smoother transitions
+- **News Marquee**: Same scrolling announcement with improved typography and colors
+- **Service Section**: Same 3-column layout with enhanced card design and hover effects
+- **Featured Content**: Same 4-column grid with improved image handling and layout
+- **News Table**: Same table structure with better typography and responsive design
+- **Gallery Section**: Same image grid with lightbox functionality and improved loading
+- **Footer**: Same footer with enhanced styling and better mobile responsiveness
 
-#### Attractions Listing Component
-- **Category Filter Cards**: Expand the 3-column service section to show attraction categories
-- **Attraction Grid**: Use the reference site's 4-column image grid layout
-- **Search Integration**: Add search functionality to the existing navigation structure
-- **Pagination**: Bootstrap pagination component for large attraction lists
+#### History Page Component (Enhanced page-history.html)
+- **Content Layout**: Same container-based structure with improved typography and spacing
+- **Historical Images**: Enhanced image display with better positioning and captions
+- **Text Content**: Improved readability with better font sizing and line spacing
+- **Timeline Display**: Visual enhancements to historical timeline presentation
 
-#### Attraction Detail Component
-- **Content Layout**: Use the reference site's container-based content structure
-- **Image Display**: Implement gallery similar to the reference site's image sections
-- **Information Panel**: Follow the reference site's text content formatting
-- **Map Integration**: Embed Google Maps similar to the contact page implementation
-- **Navigation**: Maintain the same navbar structure across all pages
+#### Services Page Component (Enhanced page-services.html)
+- **Service Information**: Same content structure with improved visual presentation
+- **Activity Descriptions**: Enhanced layout for better content organization
+- **Service Images**: Improved image galleries and positioning
 
-### 2. Admin Components (New Addition to Reference Site)
+#### Contact Page Component (Enhanced page-contact.html)
+- **Contact Information**: Same information with improved typography and layout
+- **Google Maps**: Same iframe implementation with enhanced responsive design
+- **Social Media Integration**: Same Facebook integration with improved styling
+
+### 2. Admin Components (New Addition)
+
+#### Admin Authentication System
+- **Login Interface**: Simple, secure login form using Bootstrap styling
+- **Session Management**: Basic session handling for admin access
+- **Security Features**: Password protection and session timeout
 
 #### Admin Dashboard
-- **Same Visual Style**: Use the reference site's Bootstrap dark navbar and container styling
-- **Statistics Cards**: 3-column layout similar to the service section for displaying attraction counts
-- **Management Table**: Use the reference site's news table structure for listing attractions
-- **Quick Actions**: Bootstrap buttons with Font Awesome icons matching the reference site's style
+- **Content Overview**: Statistics showing content status across all JSON files
+- **Quick Edit Actions**: Direct access to commonly edited content sections
+- **File Status Monitor**: Display current status of all JSON files
+- **Recent Changes Log**: Track recent content modifications
 
-#### Attraction Management Form
-- **Form Layout**: Use Bootstrap form components with the same styling as the reference site
-- **Thai Language Support**: Implement Itim font for Thai text input
-- **Image Upload**: File upload interface with preview functionality
-- **Validation**: Bootstrap validation classes with custom error messages
-- **Save Actions**: Bootstrap buttons matching the reference site's color scheme
+#### Content Management Interface
+- **Homepage Content Editor**: Forms for editing carousel, services, featured content, and news
+- **Page Content Editors**: Dedicated editors for history, services, news, about, and contact pages
+- **Image Management**: Upload, organize, and manage images for all content sections
+- **JSON File Editor**: Direct editing interface for JSON files with validation
 
-### 3. API Module Design
+### 3. API Module Design (New Addition)
 
 #### Endpoints Structure
 ```javascript
-// GET endpoints
-GET /api/attractions - Retrieve all attractions
-GET /api/attractions/:id - Get specific attraction
-GET /api/attractions/category/:category - Filter by category
+// GET endpoints for content retrieval
+GET /api/content/homepage - Retrieve homepage content
+GET /api/content/history - Get history page content
+GET /api/content/services - Get services information
+GET /api/content/contact - Get contact information
 
-// POST endpoints (Admin only)
-POST /api/attractions - Create new attraction
-PUT /api/attractions/:id - Update existing attraction
-DELETE /api/attractions/:id - Remove attraction
+// POST endpoints for admin content updates
+POST /api/admin/update/homepage - Update homepage content
+POST /api/admin/update/history - Update history content
+POST /api/admin/update/contact - Update contact information
+POST /api/admin/upload/image - Upload new images
 ```
 
-#### Data Validation Layer
-- Input sanitization for all form data
-- Required field validation
-- Image file type and size validation
-- Coordinate validation for map integration
+#### Data Management Layer
+- **JSON File Operations**: Read/write operations for all content files
+- **Data Validation**: Ensure content integrity and proper formatting
+- **Backup System**: Automatic backup of JSON files before updates
+- **Error Handling**: Comprehensive error handling for file operations
 
 ## Data Models
 
-### Attraction Data Model
+### JSON File Structure
+
+#### Homepage Content (data/homepage-carousel.json)
 ```json
 {
-  "id": "string (unique identifier)",
-  "name": "string (attraction name)",
-  "description": "string (detailed description)",
-  "category": "string (cultural|natural|wellness|festival|other)",
-  "location": {
-    "address": "string",
-    "coordinates": {
-      "lat": "number",
-      "lng": "number"
-    }
-  },
-  "images": [
+  "slides": [
     {
-      "url": "string",
-      "alt": "string",
-      "isPrimary": "boolean"
+      "id": 1,
+      "title": "พ่อ แม่ ลูก",
+      "description": "พ่อตึงเฒ่า แม่ขวัญข้าว น้องแรมเพจ ครบทีม พ่อแม่ลูกแห่งห้วยตึงเฒ่า",
+      "backgroundImage": "carousel-image-1.jpg",
+      "active": true
     }
-  ],
-  "contact": {
-    "phone": "string (optional)",
-    "website": "string (optional)",
-    "email": "string (optional)"
-  },
-  "openingHours": "string (optional)",
-  "entryFee": "string (optional)",
-  "tags": ["array of strings"],
-  "createdAt": "timestamp",
-  "updatedAt": "timestamp"
+  ]
 }
 ```
 
-### Category Configuration
+#### Services Content (data/homepage-services.json)
 ```json
 {
-  "categories": [
+  "services": [
     {
-      "id": "cultural",
-      "name": "Cultural Sites",
-      "description": "Temples, museums, historical sites",
-      "icon": "fas fa-temple"
-    },
-    {
-      "id": "natural",
-      "name": "Natural Attractions",
-      "description": "Parks, waterfalls, mountains",
-      "icon": "fas fa-mountain"
-    },
-    {
-      "id": "wellness",
-      "name": "Wellness",
-      "description": "Spas, meditation centers",
-      "icon": "fas fa-spa"
-    },
-    {
-      "id": "festival",
-      "name": "Festivals & Events",
-      "description": "Cultural events and celebrations",
-      "icon": "fas fa-calendar-alt"
+      "id": 1,
+      "icon": "fas fa-bullhorn",
+      "title": "ประกาศ",
+      "description": "ห้วยตึงเฒ่าของเรา เปิดให้บริการทุกวันไม่มีวันหยุด ตั้งแต่เวลา 06:30 - 18:00 น."
     }
   ]
+}
+```
+
+#### Contact Information (data/contact-content.json)
+```json
+{
+  "organization": "สำนักงานโครงการจัดหมู่บ้านตัวอย่างห้วยตึงเฒ่า อันเนื่องมาจากพระราชดำริ",
+  "address": "283 ม.3 ต.ดอนแก้ว อ.แม่ริม จ.เชียงใหม่ 50180",
+  "phone": "053-121119",
+  "email": "hueytuengtao@hotmail.com",
+  "socialMedia": {
+    "facebook": "https://www.facebook.com/huaytuengthao/",
+    "fanpage": "https://www.facebook.com/huaytuengthaocm"
+  },
+  "mapEmbed": "https://www.google.com/maps/embed?pb=..."
 }
 ```
 
 ## Error Handling
 
 ### Frontend Error Handling
-- **Network Errors**: Display user-friendly messages for connection issues
-- **Validation Errors**: Real-time form validation with clear error messages
-- **404 Errors**: Custom page for non-existent attractions
-- **Loading States**: Skeleton screens and loading indicators
+- **Content Loading**: Graceful handling of JSON loading failures with fallback content
+- **Image Loading**: Progressive image loading with placeholder images
+- **Navigation**: Smooth error handling for broken links or missing pages
+- **Responsive Design**: Fallback layouts for unsupported screen sizes
 
 ### Backend Error Handling
-- **Data Validation**: Comprehensive input validation with detailed error responses
-- **File Operations**: Error handling for JSON file read/write operations
+- **File Operations**: Comprehensive error handling for JSON file read/write operations
+- **Data Validation**: Input validation with user-friendly error messages
+- **Admin Authentication**: Secure error handling for login attempts
 - **API Responses**: Standardized error response format
-```json
-{
-  "success": false,
-  "error": {
-    "code": "VALIDATION_ERROR",
-    "message": "User-friendly error message",
-    "details": ["Specific validation errors"]
-  }
-}
-```
 
 ## Testing Strategy
 
-### Unit Testing
-- **API Module**: Test all CRUD operations and data validation
-- **Data Models**: Validate JSON schema compliance
-- **Utility Functions**: Test helper functions for data manipulation
+### Visual Regression Testing
+- **Design Comparison**: Compare redesigned pages with original site functionality
+- **Cross-Browser Testing**: Ensure consistent appearance across major browsers
+- **Responsive Testing**: Verify improved mobile experience across device sizes
+- **Performance Testing**: Ensure redesign doesn't impact loading performance
 
-### Integration Testing
-- **API Endpoints**: Test complete request-response cycles
-- **File Operations**: Test JSON file read/write operations
-- **Map Integration**: Test coordinate validation and map display
-
-### User Acceptance Testing
-- **Navigation Flow**: Test user journey from homepage to attraction details
-- **Admin Workflow**: Test complete attraction management process
-- **Responsive Design**: Test across different device sizes
-- **Cross-browser Compatibility**: Test on major browsers
-
-### Performance Testing
-- **Page Load Times**: Ensure fast loading of attraction listings
-- **Image Optimization**: Test image loading and display performance
-- **API Response Times**: Monitor API endpoint performance
+### Content Management Testing
+- **Admin Workflow**: Test complete content editing and publishing workflow
+- **JSON File Integrity**: Validate JSON file structure after admin updates
+- **Real-time Updates**: Verify frontend immediately reflects admin changes
+- **Backup and Restore**: Test backup system functionality
 
 ## UX/UI Design Improvements
 
-### Analysis of Reference Website (huaytuengthao.com)
+### Visual Hierarchy Enhancement
+- **Typography Scale**: Implement consistent typography hierarchy with improved font sizes and spacing
+- **Color Contrast**: Enhance color contrast ratios for better accessibility
+- **Content Sectioning**: Use cards, borders, and spacing to create clear content sections
+- **Visual Flow**: Guide user attention through improved layout and visual cues
 
-After analyzing the Huay Tueng Thao tourism website, I can see it's a well-structured Bootstrap-based site for a single tourist attraction. Here are the key observations:
+### Color Scheme Development
+- **Nature-Inspired Palette**: Develop colors that reflect Huay Tueng Thao's natural beauty
+- **Brand Consistency**: Create cohesive color scheme across all pages
+- **Accessibility Compliance**: Ensure all color combinations meet WCAG guidelines
+- **Emotional Connection**: Use colors that evoke feelings of nature and tranquility
 
-**Positive Aspects of Reference Website:**
-- Clean Bootstrap 5 implementation with responsive design
-- Effective use of carousel slider for showcasing different activities
-- Good visual hierarchy with clear sections (services, news, gallery)
-- Thai language support with appropriate fonts (Itim font)
-- Interactive elements like video content and image galleries
-- News/announcement system with marquee scrolling
-- Contact information and social media integration
+### Mobile-First Responsive Design
+- **Touch Optimization**: Larger touch targets and improved mobile navigation
+- **Content Prioritization**: Show most important content first on mobile devices
+- **Image Optimization**: Responsive images that load efficiently on mobile networks
+- **Navigation Simplification**: Streamlined mobile menu with easy access to key sections
 
-### Identified Areas for Enhancement
-1. **Single Location Focus**: The site showcases only one attraction (Huay Tueng Thao) rather than multiple Chiang Mai destinations
-2. **Limited Categorization**: No filtering system for different types of activities or attractions
-3. **Basic Content Management**: Static content without dynamic admin system for updates
-4. **No Advanced Search**: Missing search functionality across content
-5. **Limited Map Integration**: No interactive mapping for location discovery
+### Interactive Elements Enhancement
+- **Smooth Animations**: CSS transitions and jQuery animations for better user engagement
+- **Hover Effects**: Subtle hover effects on interactive elements
+- **Loading States**: Improved loading indicators and skeleton screens
+- **Feedback Systems**: Visual feedback for user interactions and form submissions
 
-### Design Solutions
+## Implementation Strategy
 
-#### 1. Enhanced Visual Design (Building on huaytuengthao.com)
-- **Bootstrap 5 Foundation**: Use the same Bootstrap 5 framework as the reference site for consistency
-- **Carousel Implementation**: Adopt the effective carousel slider approach for showcasing multiple attractions
-- **Thai Typography**: Implement similar Thai font support (Itim or similar) for local content
-- **Color Scheme**: Expand the natural, tourism-friendly color palette to accommodate diverse attraction categories
-- **Card-Based Layout**: Use the reference site's card approach but extend it for multiple attractions
-- **Visual Hierarchy**: Maintain the clean section-based layout (hero, services, gallery, news)
+### Phase 1: Content Extraction and JSON Structure
+- Extract all content from original website
+- Organize content into logical JSON file structure
+- Create data models for each content type
+- Implement basic API for content retrieval
 
-#### 2. Comprehensive Information Architecture
-```
-Homepage
-├── Hero Section (Welcome + Search)
-├── Featured Attractions
-├── Browse by Category
-└── About Chiang Mai
+### Phase 2: Frontend Redesign
+- Recreate all pages with enhanced visual design
+- Implement responsive improvements
+- Add interactive elements and animations
+- Integrate with JSON data sources
 
-Attractions
-├── Filter Sidebar
-│   ├── By Category
-│   ├── By Location
-│   └── By Rating
-├── Search Results
-└── Attraction Cards
+### Phase 3: Admin System Development
+- Build admin authentication system
+- Create content management interfaces
+- Implement JSON file editing capabilities
+- Add image management functionality
 
-Attraction Detail
-├── Image Gallery
-├── Description & Info
-├── Location Map
-├── Contact Details
-└── Related Attractions
-
-Admin Panel
-├── Dashboard
-├── Manage Attractions
-│   ├── Add New
-│   ├── Edit Existing
-│   └── Delete
-└── Settings
-```
-
-#### 3. Enhanced Interactive Elements (Building on Reference Site)
-- **Multi-Attraction Carousel**: Extend the single carousel to showcase multiple attractions
-- **Category-Based Services**: Expand the 3-column service section to show different attraction categories
-- **Enhanced Gallery**: Build upon the image gallery concept with lightbox and filtering capabilities
-- **News System**: Adopt the scrolling news/announcement system for tourism updates
-- **Video Integration**: Extend the video content approach for multiple attractions
-- **Interactive Navigation**: Improve upon the navbar with search and filtering capabilities
-- **Admin Panel**: Add backend functionality that the reference site lacks
-
-#### 4. Responsive Design Strategy (Improving on Reference Site)
-- **Mobile-First Approach**: Enhanced mobile experience building on reference site's foundation
-- **Breakpoint Strategy**: 
-  - Mobile: 320px - 768px (optimized for attraction browsing)
-  - Tablet: 768px - 1024px (enhanced filtering and map view)
-  - Desktop: 1024px+ (full-featured admin panel and detailed views)
-- **Touch-Friendly**: Large tap targets optimized for attraction selection and filtering
-- **Progressive Enhancement**: Core functionality works without JavaScript, enhanced features with it
-
-#### 5. Content Strategy Improvements
-- **Multi-Attraction Platform**: Scale the single-location approach to showcase all Chiang Mai attractions
-- **Category Services**: Expand the reference site's service icons to represent attraction categories
-- **Dynamic News System**: Build upon the announcement system for tourism updates across all attractions
-- **Enhanced Gallery Structure**: Organize images by attraction and category, not just single location
-- **Comprehensive Information**: Provide detailed attraction data similar to the reference site's depth
-- **Admin Content Management**: Add the missing backend functionality for dynamic content updates
-
-#### 6. Technical Implementation Strategy (Exact Reference Site Foundation)
-
-**Core Technologies (Same as Reference Site):**
-- **Bootstrap 5.1.3**: Exact same CDN links and version
-- **Font Awesome 5.10.0**: Same icon library and version
-- **Itim Font**: Google Fonts integration for Thai language support
-- **jQuery/Popper**: Same JavaScript libraries for interactivity
-
-**Page Structure Template (Based on Reference Site):**
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <!-- Same meta tags and CDN links as reference site -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
-    <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">
-</head>
-<body>
-    <!-- Same navbar structure -->
-    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-        <!-- Logo and navigation items -->
-    </nav>
-    
-    <!-- Same carousel structure for hero section -->
-    <section id="slider">
-        <div class="carousel slide" data-bs-ride="carousel">
-            <!-- Carousel content -->
-        </div>
-    </section>
-    
-    <!-- Same news marquee -->
-    <div class="d-flex justify-content-between align-items-center breaking-news navbar-expand-sm navbar-dark bg-dark">
-        <!-- Scrolling news content -->
-    </div>
-    
-    <!-- Same service section structure -->
-    <section id="service" class="py-0">
-        <div class="container">
-            <div class="row">
-                <!-- 3-column layout with icons -->
-            </div>
-        </div>
-    </section>
-    
-    <!-- Same footer -->
-    <footer class="text-center p-4">
-        <!-- Copyright and counter -->
-    </footer>
-</body>
-</html>
-```
-
-**CSS Styling Approach:**
-- Use the reference site's custom CSS classes and styling
-- Maintain the same color scheme and visual hierarchy
-- Extend existing styles for new functionality rather than replacing them
-
-## Map Integration Design (Following Reference Site Pattern)
-
-### Google Maps Integration (Same as Contact Page)
-- **Embed Implementation**: Use the same iframe embed approach as the reference site's contact page
-- **Responsive Design**: Same responsive map sizing and Bootstrap grid integration
-- **Multiple Locations**: Extend the single location approach to show multiple attractions
-- **Custom Markers**: Add markers for different attraction categories while maintaining the same visual style
-
-### Map Features (Enhanced from Reference Site)
-- **Individual Attraction Maps**: Each attraction detail page has its own embedded map (like contact page)
-- **Main Map Page**: Overview map showing all attractions with category-based markers
-- **Consistent Styling**: Use the same iframe styling and container structure as the reference site
-- **Mobile Responsive**: Follow the reference site's responsive map implementation
-
-**Map Implementation Example (Based on Reference Site):**
-```html
-<div class="col-md-8 text-center mb-4">
-    <iframe src="https://www.google.com/maps/embed?pb=..." 
-            width="800" height="500" 
-            style="border:0;" 
-            allowfullscreen="" 
-            loading="lazy">
-    </iframe>
-</div>
-```
+### Phase 4: Integration and Testing
+- Connect admin system with frontend updates
+- Implement real-time content synchronization
+- Conduct comprehensive testing
+- Performance optimization and final polish

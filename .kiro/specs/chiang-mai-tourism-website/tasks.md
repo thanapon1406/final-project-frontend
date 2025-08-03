@@ -1,164 +1,179 @@
 # Implementation Plan
 
-- [ ] 1. Set up project structure and development environment
-  - Create directory structure following the reference site organization
-  - Set up HTML template with Bootstrap 5.1.3, Font Awesome 5.10.0, and Itim font CDN links
-  - Initialize CSS and JavaScript files with reference site's base styling
-  - _Requirements: 1.4, 7.1, 7.2_
+- [ ] 1. Extract content from original website and create JSON structure
+  - Analyze all pages of huaytuengthao.com to identify content sections
+  - Extract text content, images, and structural information from each page
+  - Create organized JSON file structure based on pages and content sections
+  - Set up data directory with appropriate JSON files for each content type
+  - _Requirements: 5.1, 5.2, 6.4_
 
-- [ ] 2. Implement core page template and navigation
-- [ ] 2.1 Create base HTML template with reference site structure
-  - Build navbar component with logo, Thai branding text, and navigation menu
-  - Implement responsive Bootstrap navbar with collapse functionality
-  - Add consistent header and footer structure across all pages
-  - _Requirements: 1.1, 1.2, 7.1_
+- [ ] 2. Set up project structure and development environment
+- [ ] 2.1 Create project directory structure
+  - Set up HTML files for all pages (index.html, page-history.html, page-contact.html, etc.)
+  - Create data directory with JSON files for content storage
+  - Set up admin directory for backend administration
+  - Initialize CSS and JavaScript directories with reference site's assets
+  - _Requirements: 1.2, 7.1_
 
-- [ ] 2.2 Develop homepage carousel slider
-  - Create 4-slide carousel with navigation controls and indicators
-  - Implement carousel captions with overlay text styling
-  - Add responsive image handling and smooth transitions
-  - _Requirements: 1.1, 1.3, 7.3_
+- [ ] 2.2 Implement base HTML template with enhanced styling
+  - Create base template using Bootstrap 5.1.3 CDN (same as original)
+  - Add Font Awesome 5.10.0 and Itim font integration
+  - Implement enhanced CSS for improved visual hierarchy and colors
+  - Set up jQuery integration for interactive elements
+  - _Requirements: 1.1, 1.2, 7.2, 8.3_
 
-- [ ] 2.3 Build news marquee and announcement system
-  - Create scrolling news bar with red "ประกาศ" label styling
-  - Implement marquee functionality with hover pause/resume
-  - Add responsive design for mobile devices
-  - _Requirements: 1.1, 1.3_
+- [ ] 3. Create JSON data files with extracted content
+- [ ] 3.1 Build homepage content JSON files
+  - Create homepage-carousel.json with 4 carousel slides content
+  - Build homepage-services.json with 3-column service section data
+  - Create homepage-featured.json with 4-column featured content
+  - Build homepage-news.json for news marquee and updates table
+  - _Requirements: 1.4, 5.1, 5.3_
 
-- [ ] 3. Create attraction data structure and JSON storage
-- [ ] 3.1 Design JSON data schema for attractions
-  - Define attraction data model with all required fields (name, description, category, location, images)
-  - Create category configuration JSON with icons and descriptions
-  - Implement data validation structure for form inputs
-  - _Requirements: 5.1, 5.4, 6.4_
+- [ ] 3.2 Create page-specific content JSON files
+  - Build history-content.json with historical background and timeline
+  - Create services-content.json with activities and facilities information
+  - Build contact-content.json with address, phone, email, and social media
+  - Create navigation.json and footer.json for shared components
+  - _Requirements: 3.1, 3.3, 5.1, 5.2_
 
-- [ ] 3.2 Build sample attraction data files
-  - Create JSON files with sample Chiang Mai attractions for each category
-  - Include proper Thai language content and image references
-  - Implement coordinate data for map integration
-  - _Requirements: 5.1, 5.2, 5.3_
-
-- [ ] 4. Develop API module for data management
-- [ ] 4.1 Create API endpoints for attraction data
-  - Build GET endpoints for retrieving all attractions and filtering by category
-  - Implement GET endpoint for individual attraction details
-  - Add error handling and consistent response format
+- [ ] 4. Develop API module for JSON file management
+- [ ] 4.1 Create content retrieval API endpoints
+  - Build GET endpoints for all content types (homepage, history, services, contact)
+  - Implement JSON file reading functionality with error handling
+  - Add data validation and formatting for consistent output
+  - Create API documentation for frontend integration
   - _Requirements: 6.1, 6.2, 6.4_
 
-- [ ] 4.2 Implement admin API endpoints
-  - Create POST endpoint for adding new attractions
-  - Build PUT endpoint for updating existing attractions
-  - Add DELETE endpoint for removing attractions
-  - Implement data validation and JSON file operations
-  - _Requirements: 4.3, 5.1, 5.2, 6.3_
+- [ ] 4.2 Implement admin API endpoints for content updates
+  - Create POST endpoints for updating content in JSON files
+  - Build file write operations with backup functionality
+  - Add data validation for admin input and JSON structure integrity
+  - Implement image upload handling for content management
+  - _Requirements: 4.4, 5.2, 6.3_
 
-- [ ] 5. Build homepage service section and featured content
-- [ ] 5.1 Create category service cards
-  - Implement 3-column layout with Font Awesome icons
-  - Build category cards for Cultural, Natural, Wellness, and Festivals
-  - Add hover effects and click navigation to category pages
-  - _Requirements: 1.1, 1.2, 2.2, 7.3_
+- [ ] 5. Redesign homepage with enhanced visual appeal
+- [ ] 5.1 Build enhanced navigation and carousel
+  - Recreate navbar with improved styling and animations
+  - Implement carousel with enhanced visual effects and smoother transitions
+  - Add news marquee with improved typography and responsive design
+  - Connect all elements to load content from JSON files
+  - _Requirements: 1.1, 1.3, 2.2, 8.3_
 
-- [ ] 5.2 Develop featured attractions grid
-  - Create 4-column responsive grid layout for featured attractions
-  - Implement dynamic content loading from JSON data
-  - Add image optimization and lazy loading
-  - _Requirements: 1.1, 2.1, 2.4, 5.3_
+- [ ] 5.2 Create enhanced service section and featured content
+  - Build 3-column service section with improved card design and hover effects
+  - Implement 4-column featured content grid with better image handling
+  - Add news and updates table with enhanced typography
+  - Create image gallery section with lightbox functionality
+  - _Requirements: 1.1, 2.1, 7.3, 8.3_
 
-- [ ] 6. Implement attractions listing page
-- [ ] 6.1 Build attraction cards grid layout
-  - Create responsive card components displaying attraction information
-  - Implement category filtering with jQuery functionality
-  - Add search functionality across attraction names and descriptions
-  - _Requirements: 2.1, 2.2, 2.3, 2.4_
+- [ ] 6. Redesign all content pages with improved UX/UI
+- [ ] 6.1 Enhance history page design
+  - Recreate history page with improved typography and spacing
+  - Enhance historical image display with better positioning and captions
+  - Improve content layout for better readability
+  - Connect content to load from history-content.json
+  - _Requirements: 3.1, 8.2, 8.3_
 
-- [ ] 6.2 Add filtering and search functionality
-  - Implement category filter buttons with active state styling
-  - Build real-time search with jQuery keyup events
-  - Add "Show All" option and result count display
-  - _Requirements: 2.2, 2.3, 7.2_
+- [ ] 6.2 Redesign contact page with enhanced features
+  - Improve contact information layout and typography
+  - Enhance Google Maps integration with responsive design
+  - Improve social media integration styling
+  - Connect all content to load from contact-content.json
+  - _Requirements: 3.3, 8.2, 8.3_
 
-- [ ] 7. Create attraction detail pages
-- [ ] 7.1 Build attraction detail page template
-  - Create detailed information layout following reference site content structure
-  - Implement image gallery with lightbox functionality
-  - Add comprehensive attraction information display
-  - _Requirements: 3.1, 3.4, 7.3_
+- [ ] 7. Implement responsive design improvements
+- [ ] 7.1 Enhance mobile-first responsive design
+  - Optimize touch targets and mobile navigation across all pages
+  - Implement content prioritization for mobile devices
+  - Add responsive image handling and mobile-specific styling
+  - Test and refine responsive behavior across different screen sizes
+  - _Requirements: 7.1, 7.4, 8.3_
 
-- [ ] 7.2 Integrate Google Maps for location display
-  - Implement iframe-based map embedding similar to reference site's contact page
-  - Add custom markers for attraction locations
-  - Create responsive map layout with proper sizing
-  - _Requirements: 3.2, 3.3_
-
-- [ ] 8. Develop admin panel interface
-- [ ] 8.1 Create admin dashboard
-  - Build admin login interface with Bootstrap styling
-  - Implement dashboard with attraction statistics and quick actions
-  - Add navigation menu for admin functions
-  - _Requirements: 4.1, 7.1_
-
-- [ ] 8.2 Build attraction management forms
-  - Create add/edit attraction forms with all required fields
-  - Implement image upload functionality with preview
-  - Add form validation with Bootstrap validation classes
-  - _Requirements: 4.2, 4.3, 4.4_
-
-- [ ] 8.3 Implement admin CRUD operations
-  - Connect forms to API endpoints for data operations
-  - Add success/error messaging for admin actions
-  - Implement attraction list management with edit/delete options
-  - _Requirements: 4.2, 4.3, 4.4, 5.1, 5.2_
-
-- [ ] 9. Add interactive features and enhancements
-- [ ] 9.1 Implement jQuery interactive elements
-  - Add smooth scrolling navigation and hover effects
-  - Implement modal dialogs for image galleries
-  - Create animated transitions for page elements
+- [ ] 7.2 Add interactive elements and animations
+  - Implement smooth CSS transitions and jQuery animations
+  - Add hover effects and visual feedback for interactive elements
+  - Create loading states and skeleton screens for better UX
+  - Add smooth scrolling and navigation enhancements
   - _Requirements: 1.3, 7.2, 7.3_
 
-- [ ] 9.2 Build responsive design optimizations
-  - Test and optimize mobile responsiveness across all pages
-  - Implement touch-friendly navigation for mobile devices
-  - Add responsive image handling and mobile-specific styling
-  - _Requirements: 7.1, 7.4_
+- [ ] 8. Develop comprehensive admin system
+- [ ] 8.1 Create admin authentication system
+  - Build simple login page with Bootstrap styling
+  - Implement basic session management for admin access
+  - Add logout functionality and session timeout handling
+  - Create password protection mechanism
+  - _Requirements: 4.1, 4.2_
 
-- [ ] 10. Integrate map functionality across the site
-- [ ] 10.1 Create main attractions map page
-  - Build comprehensive map showing all attraction locations
-  - Implement category-based marker styling and clustering
-  - Add map controls and attraction popup information
-  - _Requirements: 3.2, 3.3_
+- [ ] 8.2 Build admin dashboard and content overview
+  - Create dashboard showing content statistics and JSON file status
+  - Add quick edit actions for commonly modified content
+  - Implement recent changes log and activity tracking
+  - Build navigation system for different content management sections
+  - _Requirements: 4.1, 5.4_
 
-- [ ] 10.2 Add map integration to listing pages
-  - Include map toggle view option on attractions listing page
-  - Implement map filtering synchronized with category filters
-  - Add click-to-detail functionality from map markers
-  - _Requirements: 2.1, 3.2, 3.3_
+- [ ] 8.3 Implement homepage content management
+  - Create forms for editing carousel slides with image upload
+  - Build service section editor with icon and text management
+  - Implement featured content editor with image and link management
+  - Add news and updates management interface
+  - _Requirements: 4.2, 4.3, 5.1, 5.2_
 
-- [ ] 11. Implement content management and data persistence
-- [ ] 11.1 Build JSON file management system
-  - Create file read/write operations for attraction data
-  - Implement backup and data integrity checks
-  - Add error handling for file operations
-  - _Requirements: 5.1, 5.2, 5.4, 6.3_
+- [ ] 8.4 Build page-specific content editors
+  - Create history content editor for text and image management
+  - Build contact information editor for address, phone, email updates
+  - Implement social media links management
+  - Add Google Maps embed URL editor
+  - _Requirements: 4.2, 4.3, 5.1, 5.2_
 
-- [ ] 11.2 Test admin panel data operations
-  - Verify all CRUD operations work correctly with JSON storage
-  - Test form validation and error handling
-  - Ensure frontend updates reflect admin changes immediately
-  - _Requirements: 4.3, 4.4, 5.2, 5.3_
+- [ ] 8.5 Develop JSON file management interface
+  - Create JSON file viewer with syntax highlighting
+  - Implement direct JSON editing with validation
+  - Build backup and restore functionality for all JSON files
+  - Add import/export capabilities for content management
+  - _Requirements: 5.1, 5.2, 5.4_
 
-- [ ] 12. Final testing and optimization
-- [ ] 12.1 Cross-browser compatibility testing
-  - Test website functionality across major browsers
-  - Verify responsive design on different screen sizes
-  - Fix any browser-specific styling or functionality issues
-  - _Requirements: 7.1, 7.4_
+- [ ] 9. Integrate admin system with real-time frontend updates
+- [ ] 9.1 Connect admin operations to immediate frontend updates
+  - Ensure all admin content changes immediately update JSON files
+  - Implement real-time synchronization between admin and frontend
+  - Add cache invalidation to show updates immediately
+  - Create data integrity checks and validation
+  - _Requirements: 4.4, 5.2, 5.3_
 
-- [ ] 12.2 Performance optimization and final polish
-  - Optimize image loading and file sizes
-  - Minify CSS and JavaScript files
-  - Test all interactive features and fix any bugs
-  - Verify all requirements are met and functioning properly
+- [ ] 9.2 Test complete admin-to-frontend workflow
+  - Verify homepage content updates appear immediately on frontend
+  - Test history and contact page updates reflect in real-time
+  - Confirm image uploads display correctly across all pages
+  - Validate JSON file integrity after all admin operations
+  - _Requirements: 4.3, 4.4, 5.3_
+
+- [ ] 10. Implement enhanced visual design elements
+- [ ] 10.1 Apply improved color scheme and typography
+  - Implement nature-inspired color palette throughout the site
+  - Apply consistent typography hierarchy with improved font sizing
+  - Enhance color contrast ratios for better accessibility
+  - Create cohesive visual identity across all pages
+  - _Requirements: 8.2, 8.3_
+
+- [ ] 10.2 Add advanced interactive features
+  - Implement smooth page transitions and loading animations
+  - Add image lightbox functionality for galleries
+  - Create enhanced form interactions and validation feedback
+  - Implement scroll-based animations and visual effects
+  - _Requirements: 1.3, 7.2, 7.3_
+
+- [ ] 11. Comprehensive testing and optimization
+- [ ] 11.1 Conduct visual regression and functionality testing
+  - Compare redesigned pages with original site functionality
+  - Test all interactive elements and animations across browsers
+  - Verify responsive design improvements on various devices
+  - Validate admin system functionality and content updates
+  - _Requirements: 7.1, 7.4, 8.4_
+
+- [ ] 11.2 Performance optimization and final polish
+  - Optimize image loading and file sizes for better performance
+  - Minify CSS and JavaScript files for production
+  - Test loading speeds and optimize where necessary
+  - Conduct final review of all design improvements and functionality
   - _Requirements: 1.3, 7.3, 8.4_
