@@ -400,6 +400,24 @@ h1, h2, h3, h4, h5, h6 {
 .text-left { text-align: left; }
 .text-right { text-align: right; }
 
+/* Image Fallback Styles */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.img-fluid {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Image Error Fallback */
+img[src*="data:image/svg+xml"] {
+    background: #f0f0f0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
 .mb-0 { margin-bottom: 0; }
 .mb-1 { margin-bottom: 0.25rem; }
 .mb-2 { margin-bottom: 0.5rem; }
