@@ -91,7 +91,491 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Minimal Main JS - No Errors -->
-    <script src="js/main-minimal.js"></script>
+    
+    <!-- Embedded JavaScript - Homepage -->
+    <script>
+        // Homepage JavaScript - Embedded Version
+        console.log('🚀 Loading homepage...');
+
+        // Global error prevention
+        window.safeGet = function(obj, path, defaultValue = null) {
+            try {
+                return path.split('.').reduce((current, key) => current?.[key], obj) ?? defaultValue;
+            } catch {
+                return defaultValue;
+            }
+        };
+
+        // Generate placeholder SVG
+        function generatePlaceholderSVG(text) {
+            const svg = `
+                <svg width="1200" height="500" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="100%" height="100%" fill="#4a90e2"/>
+                    <text x="50%" y="50%" text-anchor="middle" dy=".3em" fill="white" font-family="Arial" font-size="48">
+                        ${text}
+                    </text>
+                </svg>
+            `;
+            return 'data:image/svg+xml;base64,' + btoa(unescape(encodeURIComponent(svg)));
+        }
+
+        // Load navigation
+        function loadNavigation() {
+            console.log('🧭 Loading navigation...');
+            
+            $.getJSON('data/navigation.json')
+                .done(function(data) {
+                    console.log('✅ Navigation data loaded');
+                    renderNavigation(data);
+                })
+                .fail(function(xhr, status, error) {
+                    console.warn('⚠️ Navigation load failed:', status, error);
+                    renderFallbackNavigation();
+                });
+        }
+
+        function renderNavigation(data) {
+            try {
+                const brandName = safeGet(data, 'brandName', 'ห้วยตึงเฒ่า');
+                const menuItems = safeGet(data, 'menuItems', []);
+                
+                let menuHTML = '';
+                if (Array.isArray(menuItems)) {
+                    menuHTML = menuItems.map(item => {
+                        const isActive = item.id === 'home';
+                        return `
+                            <li class="nav-item">
+                                <a class="nav-link ${isActive ? 'active' : ''}" href="${item.url || '#'}">
+                                    ${item.title || 'Menu'}
+                                </a>
+                            </li>
+                        `;
+                    }).join('');
+                }
+                
+                const navHTML = `
+                    <nav class="navbar navbar-expand-lg navbar-dark" style="background: linear-gradient(135deg, #2c3e50, #34495e); box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                        <div class="container-fluid">
+                            <a class="navbar-brand" href="index.html" style="font-weight: 600; color: white;">
+                                <i class="fas fa-leaf"></i> ${brandName}
+                            </a>
+                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                            <div class="collapse navbar-collapse" id="navbarNav">
+                                <ul class="navbar-nav ms-auto">
+                                    ${menuHTML}
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+                    <style>
+                        .navbar-nav .nav-link {
+                            color: rgba(255, 255, 255, 0.9) !important;
+                            font-weight: 500;
+                            padding: 0.5rem 1rem !important;
+                            transition: all 0.3s ease;
+                        }
+                        .navbar-nav .nav-link:hover,
+                        .navbar-nav .nav-link.active {
+                            color: #3498db !important;
+                            background-color: rgba(255, 255, 255, 0.1);
+                            border-radius: 4px;
+                        }
+                    </style>
+                `;
+                
+                $('#navigation').html(navHTML);
+                console.log('✅ Navigation rendered successfully');
+                
+            } catch (error) {
+                console.error('❌ Navigation render error:', error);
+                renderFallbackNavigation();
+            }
+        }
+
+        function renderFallbackNavigation() {
+            console.log('🔄 Rendering fallback navigation...');
+            
+            const fallbackHTML = `
+                <nav class="navbar navbar-expand-lg navbar-dark" style="background: linear-gradient(135deg, #2c3e50, #34495e);">
+                    <div class="container-fluid">
+                        <a class="navbar-brand" href="index.html" style="color: white;">
+                            <i class="fas fa-leaf"></i> ห้วยตึงเฒ่า
+                        </a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                            <ul class="navbar-nav ms-auto">
+                                <li class="nav-item"><a class="nav-link active" href="index.html" style="color: #3498db;">หน้าหลัก</a></li>
+                                <li class="nav-item"><a class="nav-link" href="page-history.html" style="color: rgba(255,255,255,0.9);">ประวัติ</a></li>
+                                <li class="nav-item"><a class="nav-link" href="page-services.html" style="color: rgba(255,255,255,0.9);">บริการ</a></li>
+                                <li class="nav-item"><a class="nav-link" href="page-news.html" style="color: rgba(255,255,255,0.9);">ข่าวสาร</a></li>
+                                <li class="nav-item"><a class="nav-link" href="page-contact.html" style="color: rgba(255,255,255,0.9);">ติดต่อเรา</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            `;
+            
+            $('#navigation').html(fallbackHTML);
+        }
+
+        // Load carousel
+        function loadCarousel() {
+            console.log('🎠 Loading carousel...');
+            
+            $.getJSON('data/homepage-carousel.json')
+                .done(function(data) {
+                    console.log('✅ Carousel data loaded');
+                    renderCarousel(data);
+                })
+                .fail(function(xhr, status, error) {
+                    console.warn('⚠️ Carousel load failed:', status, error);
+                    renderEmptyCarousel();
+                });
+        }
+
+        function renderCarousel(data) {
+            try {
+                const slides = safeGet(data, 'slides', []);
+                const controls = safeGet(data, 'controls', {});
+                
+                if (!Array.isArray(slides) || slides.length === 0) {
+                    renderEmptyCarousel();
+                    return;
+                }
+                
+                let slidesHTML = '';
+                let indicatorsHTML = '';
+                
+                slides.forEach((slide, index) => {
+                    const title = slide.title || `สไลด์ที่ ${index + 1}`;
+                    const description = slide.description || '';
+                    const imageSrc = slide.image || slide.backgroundImage || generatePlaceholderSVG(title);
+                    
+                    indicatorsHTML += `
+                        <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="${index}" 
+                                ${index === 0 ? 'class="active"' : ''} aria-label="Slide ${index + 1}"></button>
+                    `;
+                    
+                    slidesHTML += `
+                        <div class="carousel-item ${index === 0 ? 'active' : ''}">
+                            <img src="${imageSrc}" 
+                                 class="d-block w-100" 
+                                 alt="${title}" 
+                                 style="height: 500px; object-fit: cover;"
+                                 onerror="this.src='${generatePlaceholderSVG(title)}';">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>${title}</h5>
+                                <p>${description}</p>
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                const carouselHTML = `
+                    <div class="container-fluid px-0">
+                        <div id="mainCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="${controls.interval || 5000}">
+                            <div class="carousel-indicators">
+                                ${indicatorsHTML}
+                            </div>
+                            <div class="carousel-inner">
+                                ${slidesHTML}
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#mainCarousel" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#mainCarousel" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
+                    </div>
+                `;
+                
+                $('#carousel-container').html(carouselHTML);
+                console.log('✅ Carousel rendered successfully');
+                
+            } catch (error) {
+                console.error('❌ Carousel render error:', error);
+                renderEmptyCarousel();
+            }
+        }
+
+        function renderEmptyCarousel() {
+            console.log('🔄 Rendering empty carousel...');
+            
+            const emptyHTML = `
+                <div class="container-fluid px-0">
+                    <div style="height: 400px; background: linear-gradient(135deg, #f8f9fa, #e9ecef); display: flex; align-items: center; justify-content: center;">
+                        <div class="text-center text-muted">
+                            <i class="fas fa-images fa-4x mb-3"></i>
+                            <h4>ไม่มีสไลด์แสดง</h4>
+                            <p>กรุณาเพิ่มสไลด์ผ่านระบบจัดการเนื้อหา</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            $('#carousel-container').html(emptyHTML);
+        }
+
+        // Load news marquee
+        function loadNewsMarquee() {
+            console.log('📢 Loading news marquee...');
+            
+            $.getJSON('data/homepage-news.json')
+                .done(function(data) {
+                    console.log('✅ News marquee data loaded');
+                    renderNewsMarquee(data);
+                })
+                .fail(function(xhr, status, error) {
+                    console.warn('⚠️ News marquee load failed:', status, error);
+                    // Skip marquee if failed
+                });
+        }
+
+        function renderNewsMarquee(data) {
+            try {
+                const announcements = safeGet(data, 'announcements', []);
+                
+                if (!Array.isArray(announcements) || announcements.length === 0) {
+                    return;
+                }
+                
+                const activeAnnouncements = announcements.filter(item => item.active);
+                if (activeAnnouncements.length === 0) {
+                    return;
+                }
+                
+                const marqueeText = activeAnnouncements.map(item => item.text || '').join(' • ');
+                
+                const marqueeHTML = `
+                    <div style="background: linear-gradient(135deg, #e74c3c, #c0392b); color: white; padding: 10px 0; overflow: hidden;">
+                        <div class="container-fluid">
+                            <div style="white-space: nowrap; animation: marquee 30s linear infinite;">
+                                <i class="fas fa-bullhorn"></i> ${marqueeText}
+                            </div>
+                        </div>
+                    </div>
+                    <style>
+                        @keyframes marquee {
+                            0% { transform: translateX(100%); }
+                            100% { transform: translateX(-100%); }
+                        }
+                    </style>
+                `;
+                
+                $('#news-marquee').html(marqueeHTML);
+                console.log('✅ News marquee rendered successfully');
+                
+            } catch (error) {
+                console.error('❌ News marquee render error:', error);
+            }
+        }
+
+        // Load footer
+        function loadFooter() {
+            console.log('🦶 Loading footer...');
+            
+            $.getJSON('data/footer.json')
+                .done(function(data) {
+                    console.log('✅ Footer data loaded');
+                    renderFooter(data);
+                })
+                .fail(function(xhr, status, error) {
+                    console.warn('⚠️ Footer load failed:', status, error);
+                    renderFallbackFooter();
+                });
+        }
+
+        function renderFooter(data) {
+            try {
+                const copyright = safeGet(data, 'copyright', 'ห้วยตึงเฒ่า');
+                const visitorCount = safeGet(data, 'visitorCount', '0');
+                
+                const footerHTML = `
+                    <div style="background: #2c3e50; color: white; padding: 2rem 0; margin-top: 3rem;">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p>&copy; ${new Date().getFullYear()} ${copyright}</p>
+                                </div>
+                                <div class="col-md-6 text-end">
+                                    <p>ผู้เข้าชม: ${visitorCount} คน</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                $('#footer').html(footerHTML);
+                console.log('✅ Footer rendered successfully');
+                
+            } catch (error) {
+                console.error('❌ Footer render error:', error);
+                renderFallbackFooter();
+            }
+        }
+
+        function renderFallbackFooter() {
+            console.log('🔄 Rendering fallback footer...');
+            
+            const fallbackHTML = `
+                <div style="background: #2c3e50; color: white; padding: 2rem 0; margin-top: 3rem;">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p>&copy; ${new Date().getFullYear()} ห้วยตึงเฒ่า</p>
+                            </div>
+                            <div class="col-md-6 text-end">
+                                <p>ผู้เข้าชม: 0 คน</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            $('#footer').html(fallbackHTML);
+        }
+
+        // Load homepage services
+        function loadHomepageServices() {
+            console.log('🛠️ Loading homepage services...');
+            
+            $.getJSON('data/homepage-services.json')
+                .done(function(data) {
+                    console.log('✅ Homepage services data loaded');
+                    renderHomepageServices(data);
+                })
+                .fail(function(xhr, status, error) {
+                    console.warn('⚠️ Homepage services load failed:', status, error);
+                    renderFallbackServices();
+                });
+        }
+
+        function renderHomepageServices(data) {
+            try {
+                const section = safeGet(data, 'section', {});
+                const services = safeGet(data, 'services', []);
+                
+                const sectionTitle = safeGet(section, 'title', 'บริการของเรา');
+                const sectionSubtitle = safeGet(section, 'subtitle', 'บริการและสิ่งอำนวยความสะดวกที่ห้วยตึงเฒ่า');
+                
+                let servicesHTML = '';
+                if (Array.isArray(services)) {
+                    servicesHTML = services.slice(0, 6).map(service => `
+                        <div class="col-lg-4 col-md-6 mb-4">
+                            <div class="service-card h-100" style="background: white; border-radius: 12px; padding: 2rem; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border: none; transition: all 0.3s ease;">
+                                <div class="service-icon" style="width: 80px; height: 80px; background: linear-gradient(135deg, #4a90e2, #357abd); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; color: white; font-size: 2rem;">
+                                    <i class="${service.icon || 'fas fa-cog'}"></i>
+                                </div>
+                                <h4>${service.title || 'บริการ'}</h4>
+                                <p>${service.description || 'คำอธิบายบริการ'}</p>
+                            </div>
+                        </div>
+                    `).join('');
+                }
+                
+                const fullHTML = `
+                    <section class="services-section py-5">
+                        <div class="container">
+                            <div class="row text-center mb-5">
+                                <div class="col-12">
+                                    <h2 style="color: #2c3e50; font-weight: 600; margin-bottom: 1rem;">${sectionTitle}</h2>
+                                    <p style="color: #7f8c8d; margin-bottom: 2rem;">${sectionSubtitle}</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                ${servicesHTML}
+                            </div>
+                        </div>
+                    </section>
+                    <style>
+                        .service-card:hover {
+                            transform: translateY(-8px);
+                            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+                        }
+                    </style>
+                `;
+                
+                $('#services-section').html(fullHTML);
+                console.log('✅ Homepage services rendered successfully');
+                
+            } catch (error) {
+                console.error('❌ Homepage services render error:', error);
+                renderFallbackServices();
+            }
+        }
+
+        function renderFallbackServices() {
+            console.log('🔄 Rendering fallback services...');
+            
+            const fallbackHTML = `
+                <section class="services-section py-5">
+                    <div class="container">
+                        <div class="row text-center mb-5">
+                            <div class="col-12">
+                                <h2 style="color: #2c3e50; font-weight: 600;">บริการของเรา</h2>
+                                <p style="color: #7f8c8d;">บริการและสิ่งอำนวยความสะดวกที่ห้วยตึงเฒ่า</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-6 mb-4">
+                                <div class="service-card h-100" style="background: white; border-radius: 12px; padding: 2rem; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                                    <div style="width: 80px; height: 80px; background: linear-gradient(135deg, #4a90e2, #357abd); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; color: white; font-size: 2rem;">
+                                        <i class="fas fa-swimming-pool"></i>
+                                    </div>
+                                    <h4>กิจกรรมน้ำ</h4>
+                                    <p>เล่นน้ำและกิจกรรมริมอ่างเก็บน้ำ</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 mb-4">
+                                <div class="service-card h-100" style="background: white; border-radius: 12px; padding: 2rem; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                                    <div style="width: 80px; height: 80px; background: linear-gradient(135deg, #4a90e2, #357abd); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; color: white; font-size: 2rem;">
+                                        <i class="fas fa-campground"></i>
+                                    </div>
+                                    <h4>แคมป์ปิ้ง</h4>
+                                    <p>พื้นที่กางเต็นท์และพักค้างคืน</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 mb-4">
+                                <div class="service-card h-100" style="background: white; border-radius: 12px; padding: 2rem; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                                    <div style="width: 80px; height: 80px; background: linear-gradient(135deg, #4a90e2, #357abd); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; color: white; font-size: 2rem;">
+                                        <i class="fas fa-utensils"></i>
+                                    </div>
+                                    <h4>ร้านอาหาร</h4>
+                                    <p>อาหารท้องถิ่นและเครื่องดื่ม</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            `;
+            
+            $('#services-section').html(fallbackHTML);
+        }
+
+        // Initialize homepage
+        $(document).ready(function() {
+            console.log('✅ Homepage ready - initializing...');
+            
+            try {
+                loadNavigation();
+                loadCarousel();
+                loadNewsMarquee();
+                loadFooter();
+                loadHomepageServices();
+                console.log('✅ Homepage initialized successfully');
+            } catch (error) {
+                console.error('❌ Homepage initialization failed:', error);
+            }
+        });
+
+        console.log('✅ Homepage JavaScript loaded successfully');
+    </script>
 </body>
 </html>
