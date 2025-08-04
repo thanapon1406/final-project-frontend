@@ -3,97 +3,176 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ติดต่อเรา - ห้วยตึงเฒ่า | สถานที่ท่องเที่ยวเชิงนิเวศ</title>
-    <meta name="description" content="ติดต่อห้วยตึงเฒ่า สอบถามข้อมูลการท่องเที่ยว จองที่พัก และบริการต่างๆ">
+    <title>ติดต่อเรา - ห้วยตึงเฒ่า</title>
     
-    <!-- Bootstrap 5.3.0 CDN (Latest) -->
+    <!-- Bootstrap 5.3.0 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome 6.4.0 (Latest) -->
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Itim:wght@400;500;600&family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- AOS Animation Library -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Thai Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Itim:wght@400;500;600&display=swap" rel="stylesheet">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
     
-    <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
 </head>
 <body>
-    <!-- Skip to content link for accessibility -->
+    <!-- Skip to content -->
     <a href="#main-content" class="skip-to-content">ข้ามไปยังเนื้อหาหลัก</a>
-    
-    <!-- Navigation will be loaded here -->
-    <nav id="navigation"></nav>
-    
-    <!-- Carousel will be loaded here -->
-    <div id="carousel-container"></div>
-    
-    <!-- News marquee will be loaded here -->
-    <div id="news-marquee"></div>
-    
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-leaf me-2"></i>ห้วยตึงเฒ่า
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">หน้าหลัก</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="page-history.html">ประวัติ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="page-services.html">บริการ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="page-news.html">ข่าวสาร</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#about">เกี่ยวกับเรา</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="page-contact.html">ติดต่อเรา</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="admin/login.html">เข้าสู่ระบบ</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
     <!-- Main content -->
-    <main id="main-content" class="container-fluid px-0">
+    <main id="main-content">
         <!-- Hero Section -->
-        <section class="hero-section" data-aos="fade-up">
+        <section class="hero-section">
             <div class="container">
                 <div class="row justify-content-center text-center">
                     <div class="col-lg-8">
                         <h1>ติดต่อเรา</h1>
-                        <p>พร้อมให้บริการและตอบคำถามทุกข้อสงสัย<br>
-                        ยินดีต้อนรับทุกการสอบถาม</p>
+                        <p>พร้อมให้บริการและตอบคำถามทุกข้อสงสัย ยินดีต้อนรับทุกการสอบถาม</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Contact content -->
-        <div id="contact-content"></div>
-        
-        <!-- Contact Form Section -->
-        <section class="contact-form-section section-bg-gray py-5" data-aos="fade-up">
+        <!-- Contact Information -->
+        <section class="py-5">
             <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-lg-8">
-                        <div class="beautiful-card">
-                            <h3 class="text-center mb-4">ส่งข้อความถึงเรา</h3>
-                            <form id="contactForm">
-                                <div class="row">
-                                    <div class="col-md-6 mb-3">
-                                        <label for="name" class="form-label">ชื่อ-นามสกุล *</label>
+                <div class="row g-4">
+                    <div class="col-lg-6">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h3 class="card-title">
+                                    <i class="fas fa-map-marker-alt text-primary me-2"></i>ที่อยู่
+                                </h3>
+                                <p class="card-text">
+                                    สำนักงานโครงการจัดหมู่บ้านตัวอย่างห้วยตึงเฒ่า<br>
+                                    อันเนื่องมาจากพระราชดำริ<br>
+                                    ตำบลดอนแก้ว อำเภอแม่ริม<br>
+                                    จังหวัดเชียงใหม่ 50180
+                                </p>
+                                
+                                <h5 class="mt-4">
+                                    <i class="fas fa-phone text-primary me-2"></i>โทรศัพท์
+                                </h5>
+                                <p>053-298-034, 053-298-035</p>
+                                
+                                <h5 class="mt-4">
+                                    <i class="fas fa-clock text-primary me-2"></i>เวลาทำการ
+                                </h5>
+                                <p>เปิดให้บริการทุกวัน<br>06:30 - 18:00 น.</p>
+                                
+                                <h5 class="mt-4">
+                                    <i class="fas fa-envelope text-primary me-2"></i>ติดตามเรา
+                                </h5>
+                                <div class="social-links">
+                                    <a href="#" class="btn btn-outline-primary btn-sm me-2">
+                                        <i class="fab fa-facebook-f"></i> Facebook
+                                    </a>
+                                    <a href="#" class="btn btn-outline-success btn-sm">
+                                        <i class="fab fa-line"></i> Line
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-6">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h3 class="card-title">
+                                    <i class="fas fa-envelope text-primary me-2"></i>ส่งข้อความถึงเรา
+                                </h3>
+                                <form>
+                                    <div class="mb-3">
+                                        <label for="name" class="form-label">ชื่อ-นามสกุล</label>
                                         <input type="text" class="form-control" id="name" required>
                                     </div>
-                                    <div class="col-md-6 mb-3">
-                                        <label for="phone" class="form-label">เบอร์โทรศัพท์ *</label>
+                                    <div class="mb-3">
+                                        <label for="phone" class="form-label">เบอร์โทรศัพท์</label>
                                         <input type="tel" class="form-control" id="phone" required>
                                     </div>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="email" class="form-label">อีเมล</label>
-                                    <input type="email" class="form-control" id="email">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="subject" class="form-label">หัวข้อ *</label>
-                                    <select class="form-select" id="subject" required>
-                                        <option value="">เลือกหัวข้อ</option>
-                                        <option value="booking">จองที่พัก/บริการ</option>
-                                        <option value="info">สอบถามข้อมูล</option>
-                                        <option value="complaint">ร้องเรียน/แจ้งปัญหา</option>
-                                        <option value="suggestion">ข้อเสนอแนะ</option>
-                                        <option value="other">อื่นๆ</option>
-                                    </select>
-                                </div>
-                                <div class="mb-4">
-                                    <label for="message" class="form-label">ข้อความ *</label>
-                                    <textarea class="form-control" id="message" rows="5" required></textarea>
-                                </div>
-                                <div class="text-center">
-                                    <button type="submit" class="btn btn-primary btn-lg">
+                                    <div class="mb-3">
+                                        <label for="email" class="form-label">อีเมล</label>
+                                        <input type="email" class="form-control" id="email">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="subject" class="form-label">หัวข้อ</label>
+                                        <select class="form-select" id="subject" required>
+                                            <option value="">เลือกหัวข้อ</option>
+                                            <option value="booking">จองที่พัก/บริการ</option>
+                                            <option value="info">สอบถามข้อมูล</option>
+                                            <option value="other">อื่นๆ</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="message" class="form-label">ข้อความ</label>
+                                        <textarea class="form-control" id="message" rows="4" required></textarea>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">
                                         <i class="fas fa-paper-plane me-2"></i>ส่งข้อความ
                                     </button>
-                                </div>
-                            </form>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Map Section -->
+        <section class="section-bg-gray py-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h3 class="text-center mb-4">แผนที่ตำแหน่ง</h3>
+                        <div class="card">
+                            <div class="card-body p-0">
+                                <iframe 
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3774.7234567890123!2d98.87654321!3d18.82345678!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTjCsDQ5JzI0LjQiTiA5OMKwNTInMzUuNiJF!5e0!3m2!1sth!2sth!4v1634567890123!5m2!1sth!2sth" 
+                                    width="100%" 
+                                    height="400" 
+                                    style="border:0;" 
+                                    allowfullscreen="" 
+                                    loading="lazy">
+                                </iframe>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -101,386 +180,26 @@
         </section>
     </main>
     
-    <!-- Footer will be loaded here -->
-    <footer id="footer"></footer>
-    
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <h5>สำนักงานโครงการจัดหมู่บ้านตัวอย่างห้วยตึงเฒ่า อันเนื่องมาจากพระราชดำริ</h5>
+                    <p>Copyright © 2021 by ห้วยตึงเฒ่า All rights reserved.</p>
+                </div>
+                <div class="col-lg-4 text-end">
+                    <p>จำนวนผู้เข้าชม: <strong>123,456</strong> คน</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-line"></i></a>
+                    </div>
+                </div>
+            </div>
+    </footer>
+
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- AOS Animation -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    
-    <!-- Embedded JavaScript - Contact Page -->
-    <script>
-        // Contact Page JavaScript - Embedded Version
-        console.log('🚀 Loading contact page...');
-
-        // Global error prevention
-        window.safeGet = function(obj, path, defaultValue = null) {
-            try {
-                return path.split('.').reduce((current, key) => current?.[key], obj) ?? defaultValue;
-            } catch {
-                return defaultValue;
-            }
-        };
-
-        // Load navigation
-        function loadNavigation() {
-            console.log('🧭 Loading navigation...');
-            
-            $.getJSON('data/navigation.json')
-                .done(function(data) {
-                    console.log('✅ Navigation data loaded');
-                    renderNavigation(data);
-                })
-                .fail(function(xhr, status, error) {
-                    console.warn('⚠️ Navigation load failed:', status, error);
-                    renderFallbackNavigation();
-                });
-        }
-
-        function renderNavigation(data) {
-            try {
-                const brandName = safeGet(data, 'brandName', 'ห้วยตึงเฒ่า');
-                const menuItems = safeGet(data, 'menuItems', []);
-                
-                let menuHTML = '';
-                if (Array.isArray(menuItems)) {
-                    menuHTML = menuItems.map(item => {
-                        const isActive = item.id === 'contact';
-                        return `
-                            <li class="nav-item">
-                                <a class="nav-link ${isActive ? 'active' : ''}" href="${item.url || '#'}">
-                                    ${item.title || 'Menu'}
-                                </a>
-                            </li>
-                        `;
-                    }).join('');
-                }
-                
-                const navHTML = `
-                    <nav class="navbar navbar-expand-lg navbar-dark" style="background: linear-gradient(135deg, #2c3e50, #34495e); box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-                        <div class="container-fluid">
-                            <a class="navbar-brand" href="index.html" style="font-weight: 600; color: white;">
-                                <i class="fas fa-leaf"></i> ${brandName}
-                            </a>
-                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                                <span class="navbar-toggler-icon"></span>
-                            </button>
-                            <div class="collapse navbar-collapse" id="navbarNav">
-                                <ul class="navbar-nav ms-auto">
-                                    ${menuHTML}
-                                </ul>
-                            </div>
-                        </div>
-                    </nav>
-                    <style>
-                        .navbar-nav .nav-link {
-                            color: rgba(255, 255, 255, 0.9) !important;
-                            font-weight: 500;
-                            padding: 0.5rem 1rem !important;
-                            transition: all 0.3s ease;
-                        }
-                        .navbar-nav .nav-link:hover,
-                        .navbar-nav .nav-link.active {
-                            color: #3498db !important;
-                            background-color: rgba(255, 255, 255, 0.1);
-                            border-radius: 4px;
-                        }
-                    </style>
-                `;
-                
-                $('#navigation').html(navHTML);
-                console.log('✅ Navigation rendered successfully');
-                
-            } catch (error) {
-                console.error('❌ Navigation render error:', error);
-                renderFallbackNavigation();
-            }
-        }
-
-        function renderFallbackNavigation() {
-            console.log('🔄 Rendering fallback navigation...');
-            
-            const fallbackHTML = `
-                <nav class="navbar navbar-expand-lg navbar-dark" style="background: linear-gradient(135deg, #2c3e50, #34495e);">
-                    <div class="container-fluid">
-                        <a class="navbar-brand" href="index.html" style="color: white;">
-                            <i class="fas fa-leaf"></i> ห้วยตึงเฒ่า
-                        </a>
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="collapse navbar-collapse" id="navbarNav">
-                            <ul class="navbar-nav ms-auto">
-                                <li class="nav-item"><a class="nav-link" href="index.html" style="color: rgba(255,255,255,0.9);">หน้าหลัก</a></li>
-                                <li class="nav-item"><a class="nav-link" href="page-history.html" style="color: rgba(255,255,255,0.9);">ประวัติ</a></li>
-                                <li class="nav-item"><a class="nav-link" href="page-services.html" style="color: rgba(255,255,255,0.9);">บริการ</a></li>
-                                <li class="nav-item"><a class="nav-link" href="page-news.html" style="color: rgba(255,255,255,0.9);">ข่าวสาร</a></li>
-                                <li class="nav-item"><a class="nav-link active" href="page-contact.html" style="color: #3498db;">ติดต่อเรา</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </nav>
-            `;
-            
-            $('#navigation').html(fallbackHTML);
-        }
-
-        // Load footer
-        function loadFooter() {
-            console.log('🦶 Loading footer...');
-            
-            $.getJSON('data/footer.json')
-                .done(function(data) {
-                    console.log('✅ Footer data loaded');
-                    renderFooter(data);
-                })
-                .fail(function(xhr, status, error) {
-                    console.warn('⚠️ Footer load failed:', status, error);
-                    renderFallbackFooter();
-                });
-        }
-
-        function renderFooter(data) {
-            try {
-                const copyright = safeGet(data, 'copyright', 'ห้วยตึงเฒ่า');
-                const visitorCount = safeGet(data, 'visitorCount', '0');
-                
-                const footerHTML = `
-                    <div style="background: #2c3e50; color: white; padding: 2rem 0; margin-top: 3rem;">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <p>&copy; ${new Date().getFullYear()} ${copyright}</p>
-                                </div>
-                                <div class="col-md-6 text-end">
-                                    <p>ผู้เข้าชม: ${visitorCount} คน</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                `;
-                
-                $('#footer').html(footerHTML);
-                console.log('✅ Footer rendered successfully');
-                
-            } catch (error) {
-                console.error('❌ Footer render error:', error);
-                renderFallbackFooter();
-            }
-        }
-
-        function renderFallbackFooter() {
-            console.log('🔄 Rendering fallback footer...');
-            
-            const fallbackHTML = `
-                <div style="background: #2c3e50; color: white; padding: 2rem 0; margin-top: 3rem;">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <p>&copy; ${new Date().getFullYear()} ห้วยตึงเฒ่า</p>
-                            </div>
-                            <div class="col-md-6 text-end">
-                                <p>ผู้เข้าชม: 0 คน</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `;
-            
-            $('#footer').html(fallbackHTML);
-        }
-
-        // Load contact content
-        function loadContactContent() {
-            console.log('📞 Loading contact content...');
-            
-            $.getJSON('data/contact-content.json')
-                .done(function(data) {
-                    console.log('✅ Contact data loaded');
-                    renderContactContent(data);
-                })
-                .fail(function(xhr, status, error) {
-                    console.warn('⚠️ Contact load failed:', status, error);
-                    renderFallbackContactContent();
-                });
-        }
-
-        function renderContactContent(data) {
-            try {
-                const contact = safeGet(data, 'contact', {});
-                const organization = safeGet(contact, 'organization', 'สำนักงานโครงการจัดหมู่บ้านตัวอย่างห้วยตึงเฒ่า อันเนื่องมาจากพระราชดำริ');
-                const phone = safeGet(contact, 'phone', '053-121119');
-                const email = safeGet(contact, 'email', 'hueytuengtao@hotmail.com');
-                const address = safeGet(contact, 'address.fullAddress', '283 ม.3 ต.ดอนแก้ว อ.แม่ริม จ.เชียงใหม่ 50180');
-                const hours = safeGet(contact, 'hours', 'จันทร์-ศุกร์ 08:30-16:30 น.');
-                
-                const contactHTML = `
-                    <section class="contact-info-section py-5">
-                        <div class="container">
-                            <div class="row g-4">
-                                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
-                                    <div class="contact-info-card text-center">
-                                        <div class="contact-icon">
-                                            <i class="fas fa-phone"></i>
-                                        </div>
-                                        <h5>โทรศัพท์</h5>
-                                        <p><a href="tel:${phone.replace(/-/g, '')}" class="contact-link">${phone}</a></p>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
-                                    <div class="contact-info-card text-center">
-                                        <div class="contact-icon">
-                                            <i class="fas fa-envelope"></i>
-                                        </div>
-                                        <h5>อีเมล</h5>
-                                        <p><a href="mailto:${email}" class="contact-link">${email}</a></p>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
-                                    <div class="contact-info-card text-center">
-                                        <div class="contact-icon">
-                                            <i class="fas fa-clock"></i>
-                                        </div>
-                                        <h5>เวลาทำการ</h5>
-                                        <p>${hours}</p>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="400">
-                                    <div class="contact-info-card text-center">
-                                        <div class="contact-icon">
-                                            <i class="fas fa-map-marker-alt"></i>
-                                        </div>
-                                        <h5>ที่อยู่</h5>
-                                        <p>${address}</p>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="row mt-5" data-aos="fade-up">
-                                <div class="col-12">
-                                    <div class="organization-card">
-                                        <div class="row align-items-center">
-                                            <div class="col-lg-2 text-center mb-3 mb-lg-0">
-                                                <div class="org-icon">
-                                                    <i class="fas fa-building"></i>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-10">
-                                                <h4 class="mb-2">หน่วยงาน</h4>
-                                                <p class="mb-0">${organization}</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                `;
-                
-                $('#contact-content').html(contactHTML);
-                console.log('✅ Contact content rendered successfully');
-                
-            } catch (error) {
-                console.error('❌ Contact render error:', error);
-                renderFallbackContactContent();
-            }
-        }
-
-        function renderFallbackContactContent() {
-            const fallbackHTML = `
-                <div class="container py-5">
-                    <div class="row text-center mb-5">
-                        <div class="col-12">
-                            <h1>ติดต่อเรา</h1>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4 mb-4">
-                            <div class="card h-100">
-                                <div class="card-body text-center">
-                                    <i class="fas fa-phone fa-3x text-success mb-3"></i>
-                                    <h5>โทรศัพท์</h5>
-                                    <p><a href="tel:053121119">053-121119</a></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 mb-4">
-                            <div class="card h-100">
-                                <div class="card-body text-center">
-                                    <i class="fas fa-envelope fa-3x text-info mb-3"></i>
-                                    <h5>อีเมล</h5>
-                                    <p><a href="mailto:hueytuengtao@hotmail.com">hueytuengtao@hotmail.com</a></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 mb-4">
-                            <div class="card h-100">
-                                <div class="card-body text-center">
-                                    <i class="fas fa-map-marker-alt fa-3x text-danger mb-3"></i>
-                                    <h5>ที่อยู่</h5>
-                                    <p>283 ม.3 ต.ดอนแก้ว อ.แม่ริม จ.เชียงใหม่ 50180</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `;
-            $('#contact-content').html(fallbackHTML);
-        }
-
-        // Initialize page
-        $(document).ready(function() {
-            console.log('✅ Contact page ready - initializing...');
-            
-            try {
-                // Initialize AOS animations
-                AOS.init({
-                    duration: 800,
-                    easing: 'ease-in-out',
-                    once: true,
-                    offset: 100
-                });
-                
-                loadNavigation();
-                loadFooter();
-                loadContactContent();
-                
-                // Contact form handling
-                $('#contactForm').on('submit', function(e) {
-                    e.preventDefault();
-                    
-                    // Get form data
-                    const formData = {
-                        name: $('#name').val(),
-                        phone: $('#phone').val(),
-                        email: $('#email').val(),
-                        subject: $('#subject').val(),
-                        message: $('#message').val()
-                    };
-                    
-                    // Simple validation
-                    if (!formData.name || !formData.phone || !formData.subject || !formData.message) {
-                        alert('กรุณากรอกข้อมูลที่จำเป็นให้ครบถ้วน');
-                        return;
-                    }
-                    
-                    // Show success message (in real app, this would send to server)
-                    alert('ขอบคุณสำหรับข้อความของคุณ เราจะติดต่อกลับโดยเร็วที่สุด');
-                    
-                    // Reset form
-                    this.reset();
-                });
-                
-                console.log('✅ Contact page initialized successfully');
-            } catch (error) {
-                console.error('❌ Contact page initialization failed:', error);
-            }
-        });
-
-        console.log('✅ Contact page JavaScript loaded successfully');
-    </script>
 </body>
 </html>

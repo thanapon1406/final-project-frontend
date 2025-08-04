@@ -1,937 +1,409 @@
 <!DOCTYPE html>
 <html lang="th">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>หน้าหลัก - ห้วยตึงเฒ่า | สถานที่ท่องเที่ยวเชิงนิเวศ</title>
-    <meta
-      name="description"
-      content="ห้วยตึงเฒ่า สถานที่ท่องเที่ยวเชิงนิเวศที่สวยงามในจังหวัดเชียงใหม่ พร้อมกิจกรรมหลากหลาย แคมป์ปิ้ง และอาหารท้องถิ่น"
-    />
-    <meta
-      name="keywords"
-      content="ห้วยตึงเฒ่า, เชียงใหม่, ท่องเที่ยว, แคมป์ปิ้ง, ธรรมชาติ"
-    />
-
-    <!-- Open Graph Meta Tags -->
-    <meta
-      property="og:title"
-      content="ห้วยตึงเฒ่า - สถานที่ท่องเที่ยวเชิงนิเวศ"
-    />
-    <meta
-      property="og:description"
-      content="สัมผัสธรรมชาติและอากาศบริสุทธิ์ท่ามกลางภูเขาและป่าไผ่"
-    />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://huaytuengthao.com" />
-
-    <!-- Bootstrap 5.3.0 CDN (Latest) -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <!-- Font Awesome 6.4.0 (Latest) -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
-    <!-- Google Fonts - Improved Thai fonts -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Itim:wght@400;500;600&family=Kanit:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <!-- AOS Animation Library -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ห้วยตึงเฒ่า - สำนักงานโครงการจัดหมู่บ้านตัวอย่างห้วยตึงเฒ่า อันเนื่องมาจากพระราชดำริ</title>
+    
+    <!-- Bootstrap 5.3.0 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Thai Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Itim:wght@400;500;600&display=swap" rel="stylesheet">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/style.css" />
-
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-  </head>
-  <body>
-    <!-- Skip to content link for accessibility -->
+    <link rel="stylesheet" href="css/style-new.css">
+    
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+</head>
+<body>
+    <!-- Skip to content -->
     <a href="#main-content" class="skip-to-content">ข้ามไปยังเนื้อหาหลัก</a>
 
-    <!-- Navigation will be loaded here -->
-    <nav id="navigation">
-      <div class="text-center py-3" style="background: #2c3e50; color: white">
-        <div class="spinner-border text-light" role="status">
-          <span class="visually-hidden">กำลังโหลด...</span>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-leaf me-2"></i>ห้วยตึงเฒ่า
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">หน้าหลัก</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="page-history.html">ประวัติ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="page-services.html">บริการ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="page-news.html">ข่าวสาร</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">เกี่ยวกับเรา</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="page-contact.html">ติดต่อเรา</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="admin/login.html">เข้าสู่ระบบ</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-        <p class="mt-2 mb-0">กำลังโหลดเมนู...</p>
-      </div>
     </nav>
 
-    <!-- Carousel will be loaded here -->
-    <div id="carousel-container">
-      <div class="text-center py-5" style="background: #f8f9fa">
-        <div class="spinner-border text-primary" role="status">
-          <span class="visually-hidden">กำลังโหลด...</span>
+    <!-- Carousel -->
+    <div id="carouselMain" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselMain" data-bs-slide-to="0" class="active"></button>
+            <button type="button" data-bs-target="#carouselMain" data-bs-slide-to="1"></button>
+            <button type="button" data-bs-target="#carouselMain" data-bs-slide-to="2"></button>
+            <button type="button" data-bs-target="#carouselMain" data-bs-slide-to="3"></button>
         </div>
-        <p class="mt-2 mb-0">กำลังโหลดสไลด์...</p>
-      </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" class="d-block w-100" alt="ห้วยตึงเฒ่า">
+                <div class="carousel-caption">
+                    <h3>ยินดีต้อนรับสู่ห้วยตึงเฒ่า</h3>
+                    <p>สถานที่ท่องเที่ยวเชิงนิเวศที่สวยงามในจังหวัดเชียงใหม่</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" class="d-block w-100" alt="ธรรมชาติ">
+                <div class="carousel-caption">
+                    <h3>ธรรมชาติบริสุทธิ์</h3>
+                    <p>สัมผัสอากาศบริสุทธิ์และความเงียบสงบท่ามกลางธรรมชาติ</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="https://images.unsplash.com/photo-1520637836862-4d197d17c93a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" class="d-block w-100" alt="กิจกรรม">
+                <div class="carousel-caption">
+                    <h3>กิจกรรมหลากหลาย</h3>
+                    <p>เรือแคนู ป้อนอาหารแกะ ซิปไลน์ และกิจกรรมสนุกสนานอีกมากมาย</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="https://images.unsplash.com/photo-1547036967-23d11aacaee0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" class="d-block w-100" alt="ครอบครัว">
+                <div class="carousel-caption">
+                    <h3>เหมาะสำหรับครอบครัว</h3>
+                    <p>สถานที่พักผ่อนที่เหมาะสำหรับทุกเพศทุกวัย</p>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselMain" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselMain" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </button>
     </div>
 
-    <!-- News marquee will be loaded here -->
-    <div id="news-marquee"></div>
+    <!-- News Marquee -->
+    <div class="news-marquee">
+        <div class="container-fluid">
+            <marquee direction="left" scrollamount="3">
+                <strong>ประกาศ:</strong> ห้วยตึงเฒ่าของเรา เปิดให้บริการทุกวันไม่มีวันหยุดตั้งแต่เวลา 06:30 - 18:00 น. &nbsp;&nbsp;&nbsp;&nbsp;
+                <strong>ข่าวดี:</strong> ขณะนี้มีกิจกรรมใหม่ ถ่ายภาพกับครอบครัวคิงคอง พ่อตึงเฒ่า แม่ขวัญข้าว และน้องแรมเพจ
+            </marquee>
+        </div>
+    </div>
 
-    <!-- Main content -->
-    <main id="main-content" class="container-fluid px-0">
-      <!-- Hero Section -->
-      <section class="hero-section" data-aos="fade-up">
-        <div class="container">
-          <div class="row align-items-center">
-            <div class="col-lg-6" data-aos="fade-right">
-              <div class="hero-content">
-                <h1>
-                  ห้วยตึงเฒ่า
-                  <br><small style="color: var(--text-secondary);">สวรรค์แห่งธรรมชาติ</small>
-                </h1>
-                <p>
-                  สัมผัสความงามของธรรมชาติ ท่ามกลางภูเขาและป่าไผ่ที่เชียงใหม่
-                  พร้อมกิจกรรมสนุกสนานสำหรับทุกวัย
-                </p>
-                <div class="hero-buttons">
-                  <a href="#services-section" class="btn btn-primary me-3">
-                    <i class="fas fa-compass me-2"></i>สำรวจบริการ
-                  </a>
-                  <a href="#gallery-section" class="btn btn-outline-primary">
-                    <i class="fas fa-images me-2"></i>ชมภาพ
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-6" data-aos="fade-left">
-              <div class="hero-image">
-                <div class="image-container">
-                  <img
-                    src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                    alt="ห้วยตึงเฒ่า"
-                    class="img-fluid"
-                  />
-                  <div class="image-overlay">
-                    <div class="image-overlay-text">
-                      <i class="fas fa-leaf"></i><br />
-                      ธรรมชาติบริสุทธิ์
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <div class="hero-content">
+                            <h1>พ่อ แม่ ลูก<br><small class="text-muted">ครอบครัวคิงคองแห่งห้วยตึงเฒ่า</small></h1>
+                            <p>พ่อตึงเฒ่า แม่ขวัญข้าว น้องแรมเพจ ครบทีม พ่อแม่ลูกแห่งห้วยตึงเฒ่า</p>
+                            <div class="hero-buttons">
+                                <a href="#services" class="btn btn-primary me-3">
+                                    <i class="fas fa-camera me-2"></i>ถ่ายภาพวิวสวยๆ
+                                </a>
+                                <a href="#gallery" class="btn btn-outline-primary">
+                                    <i class="fas fa-images me-2"></i>ประมวลภาพ
+                                </a>
+                            </div>
+                        </div>
                     </div>
-                  </div>
+                    <div class="col-lg-6">
+                        <div class="hero-image">
+                            <div class="image-container position-relative">
+                                <img src="https://images.unsplash.com/photo-1463491544371-2e8e8b8e07c7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="พ่อแม่ลูกคิงคอง" class="img-fluid">
+                                <div class="image-overlay">
+                                    <div class="image-overlay-text">
+                                        <i class="fas fa-users fa-3x mb-3"></i>
+                                        <h5>ครอบครัวคิงคอง</h5>
+                                        <p>พ่อตึงเฒ่า แม่ขวัญข้าว น้องแรมเพจ</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
-        </div>
-      </section>
+        </section>
 
-      <!-- Services section -->
-      <div id="services-section">
-        <div class="text-center py-5">
-          <div class="spinner-border text-primary" role="status">
-            <span class="visually-hidden">กำลังโหลด...</span>
-          </div>
-          <p class="mt-2 mb-0">กำลังโหลดบริการ...</p>
-        </div>
-      </div>
+        <!-- Services Section -->
+        <section id="services" class="py-5">
+            <div class="container">
+                <div class="row text-center mb-5">
+                    <div class="col-12">
+                        <h2 class="section-title">บริการต่างๆ</h2>
+                        <p class="section-subtitle">เรามีบริการต่างๆมากมาย อาทิเช่น ป้อนอาหารแกะ เรือแคนูขึ้นไปถ่ายรูปกับคิงคอง ให้อาหารปลา ซิปไลน์ รถเอทีวี จักรยานน้ำ เดินทางไกล นั่งแพ และอื่นๆอีกมากมาย</p>
+                    </div>
+                </div>
+                <div class="row g-4">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-camera"></i>
+                            </div>
+                            <h4>หุ่นฟางใหม่พฤศจิกายน 2565</h4>
+                            <p>ถ่ายภาพกับครอบครัวคิงคองในรูปแบบใหม่ที่ไฉไลกว่าเดิม</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-campground"></i>
+                            </div>
+                            <h4>สถานที่กางเต็นท์</h4>
+                            <p>บริเวณกางเต็นท์ท่ามกลางธรรมชาติที่สวยงาม</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-home"></i>
+                            </div>
+                            <h4>บ้านพัก</h4>
+                            <p>บ้านพักสำหรับนักท่องเที่ยวที่ต้องการพักผ่อน</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-      <!-- Features Section -->
-      <section class="features-section py-5" data-aos="fade-up">
-        <div class="container">
-          <div class="row text-center mb-5">
-            <div class="col-12">
-              <h2 class="section-title">ทำไมต้องเลือกห้วยตึงเฒ่า</h2>
-              <p class="section-subtitle">จุดเด่นที่ทำให้เราพิเศษ</p>
-            </div>
-          </div>
-          <div class="row g-4">
-            <div
-              class="col-lg-4 col-md-6"
-              data-aos="fade-up"
-              data-aos-delay="100"
-            >
-              <div class="feature-card text-center">
-                <div class="feature-icon">
-                  <i class="fas fa-leaf"></i>
+        <!-- Activity Icons Section -->
+        <section class="section-bg-gray py-5">
+            <div class="container">
+                <div class="row text-center">
+                    <div class="col-lg-3 col-md-6 mb-4">
+                        <div class="feature-card">
+                            <img src="https://images.unsplash.com/photo-1530587191325-3db32d826c18?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="พักผ่อน" class="img-fluid mb-3" style="height: 80px; width: 80px; object-fit: cover; border-radius: 50%;">
+                            <h6>พักผ่อนผ่อนคลาย</h6>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 mb-4">
+                        <div class="feature-card">
+                            <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="เอทีวี" class="img-fluid mb-3" style="height: 80px; width: 80px; object-fit: cover; border-radius: 50%;">
+                            <h6>รถเอทีวี</h6>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 mb-4">
+                        <div class="feature-card">
+                            <img src="https://images.unsplash.com/photo-1551698618-1dfe5d97d256?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="ซิปไลน์" class="img-fluid mb-3" style="height: 80px; width: 80px; object-fit: cover; border-radius: 50%;">
+                            <h6>ซิปไลน์</h6>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 mb-4">
+                        <div class="feature-card">
+                            <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="เรือแคนู" class="img-fluid mb-3" style="height: 80px; width: 80px; object-fit: cover; border-radius: 50%;">
+                            <h6>เรือแคนู</h6>
+                        </div>
+                    </div>
                 </div>
-                <h4>ธรรมชาติบริสุทธิ์</h4>
-                <p>อากาศบริสุทธิ์และสภาพแวดล้อมที่ยังคงความเป็นธรรมชาติ</p>
-              </div>
             </div>
-            <div
-              class="col-lg-4 col-md-6"
-              data-aos="fade-up"
-              data-aos-delay="200"
-            >
-              <div class="feature-card text-center">
-                <div class="feature-icon">
-                  <i class="fas fa-users"></i>
-                </div>
-                <h4>เหมาะสำหรับครอบครัว</h4>
-                <p>กิจกรรมและสิ่งอำนวยความสะดวกสำหรับทุกวัย</p>
-              </div>
-            </div>
-            <div
-              class="col-lg-4 col-md-6"
-              data-aos="fade-up"
-              data-aos-delay="300"
-            >
-              <div class="feature-card text-center">
-                <div class="feature-icon">
-                  <i class="fas fa-heart"></i>
-                </div>
-                <h4>บริการใส่ใจ</h4>
-                <p>ทีมงานที่พร้อมให้บริการด้วยใจและความเป็นมิตร</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+        </section>
 
-      <!-- Gallery Preview Section -->
-      <section
-        id="gallery-section"
-        class="section-bg-gray py-5"
-        data-aos="fade-up"
-      >
-        <div class="container">
-          <div class="row text-center mb-5">
-            <div class="col-12">
-              <h2 class="section-title">ประมวลภาพ</h2>
-              <p class="section-subtitle">
-                ชมภาพบรรยากาศและกิจกรรมต่างๆ ที่ห้วยตึงเฒ่า
-              </p>
-            </div>
-          </div>
-          <div class="gallery-grid">
-            <div class="gallery-item-enhanced" data-aos="zoom-in" data-aos-delay="100"></div>
-              <img
-                src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
-                alt="ธรรมชาติ"
-              />
-              <div class="gallery-overlay-enhanced">
-                <h5>ธรรมชาติสวยงาม</h5>
-                <p>สัมผัสความงามของธรรมชาติอันบริสุทธิ์</p>
-              </div>
-            </div>
-            <div class="gallery-item-enhanced" data-aos="zoom-in" data-aos-delay="200">
-              <img
-                src="https://images.unsplash.com/photo-1500595046743-cd271d694d30?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
-                alt="กิจกรรม"
-              />
-              <div class="gallery-overlay-enhanced">
-                <h5>กิจกรรมสนุกสนาน</h5>
-                <p>กิจกรรมหลากหลายสำหรับทุกวัย</p>
-              </div>
-            </div>
-            <div
-              class="gallery-item-enhanced float-element"
-              data-aos="zoom-in"
-              data-aos-delay="300"
-            >
-              <img
-                src="https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
-                alt="แคมป์ปิ้ง"
-              />
-              <div class="gallery-overlay-enhanced">
-                <h5>แคมป์ปิ้ง</h5>
-                <p>พื้นที่แคมป์ปิ้งท่ามกลางธรรมชาติ</p>
-              </div>
-            </div>
-            <div
-              class="gallery-item-enhanced"
-              data-aos="zoom-in"
-              data-aos-delay="400"
-            >
-              <div class="default-image style-1">
-                <div class="default-image-text">
-                  <i class="fas fa-utensils"></i>
-                  ร้านอาหารท้องถิ่น
-                  <small>รสชาติอร่อย ราคาเป็นมิตร</small>
+        <!-- News Section -->
+        <section id="news" class="py-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h2 class="section-title">ประชาสัมพันธ์</h2>
+                        <p class="section-subtitle">ข่าวสาร</p>
+                    </div>
                 </div>
-              </div>
-            </div>
-            <div
-              class="gallery-item-enhanced"
-              data-aos="zoom-in"
-              data-aos-delay="500"
-            >
-              <div class="default-image style-2">
-                <div class="default-image-text">
-                  <i class="fas fa-bicycle"></i>
-                  ปั่นจักรยาน
-                  <small>เส้นทางชมธรรมชาติ</small>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th width="20%">วันที่</th>
+                                        <th width="80%">รายละเอียด</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>13 มิถุนายน 2566</td>
+                                        <td>เมื่อวันที่ ๑๓ มิ.ย.๖๖ เวลา ๐๙๑๙ พล.ต.สันติ สุขป้อม ผบ.มทบ.๓๓ มอบหมายให้ พ.อ.วรเทพ บุญญะ รอง ผบ.มทบ.๓๓ เป็นประธานในพิธีสรงน้ำ พระพุทธรัตนชัยสุรพลารักษ์พิทักษ์กาวิละสยามเทศ ประจำปี ๖๖</td>
+                                    </tr>
+                                    <tr>
+                                        <td>27 ธันวาคม 2565</td>
+                                        <td>ไปเที่ยวกัน! ทุ่งคอสมอสห้วยตึงเฒ่าบานสะพรั่งอวดโฉมงาม ต้อนรับนักท่องเที่ยว แถมกลางอากาศเย็นสบายตลอดทั้งวัน</td>
+                                    </tr>
+                                    <tr>
+                                        <td>11 พฤศจิกายน 2565</td>
+                                        <td>เปิดรับต้อนรับนักท่องเที่ยวเข้าถ่ายภาพกับครอบครัวคิงคอง พ่อตึงเฒ่า, แม่ขวัญข้าว และน้องแรมเพจ ครบทีม</td>
+                                    </tr>
+                                    <tr>
+                                        <td>10 กุมภาพันธ์ 2565</td>
+                                        <td>ประกาศจ้า ขณะนี้ห้วยตึงเฒ่ากำลังดำเนินการปรับปรุงหุ่นฟางคิงคองยักษ์ พ่อแม่ลูกอยู่น้า</td>
+                                    </tr>
+                                    <tr>
+                                        <td>22 พฤศจิกายน 2565</td>
+                                        <td>กิจกรรมตกปลา ทางห้วยตึงเฒ่าเปิดกิจกรรมให้ตกปลา</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
-            <div
-              class="gallery-item-enhanced"
-              data-aos="zoom-in"
-              data-aos-delay="600"
-            >
-              <div class="default-image style-3">
-                <div class="default-image-text">
-                  <i class="fas fa-camera"></i>
-                  จุดถ่ายภาพ
-                  <small>มุมสวยงามมากมาย</small>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+        </section>
 
-      <!-- News and updates -->
-      <section id="news-updates" class="news-section py-5" data-aos="fade-up">
-        <div class="container">
-          <div class="row text-center mb-5">
-            <div class="col-12">
-              <h2 class="section-title">ข่าวสารและอัปเดต</h2>
-              <p class="section-subtitle">ติดตามข่าวสารและกิจกรรมใหม่ๆ</p>
-            </div>
-          </div>
-          <div class="row g-4">
-            <div
-              class="col-lg-4 col-md-6"
-              data-aos="fade-up"
-              data-aos-delay="100"
-            >
-              <div class="news-card">
-                <div class="news-date">
-                  <span class="day">15</span>
-                  <span class="month">ม.ค.</span>
+        <!-- About Section -->
+        <section id="about" class="section-bg-gray py-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h2 class="section-title">เกี่ยวกับเรา</h2>
+                    </div>
                 </div>
-                <h5>เปิดให้บริการแล้ว!</h5>
-                <p>
-                  ห้วยตึงเฒ่าเปิดให้บริการอย่างเป็นทางการแล้ว
-                  พร้อมกิจกรรมและสิ่งอำนวยความสะดวกครบครัน
-                </p>
-                <a href="#" class="btn btn-sm btn-outline-primary">อ่านต่อ</a>
-              </div>
-            </div>
-            <div
-              class="col-lg-4 col-md-6"
-              data-aos="fade-up"
-              data-aos-delay="200"
-            >
-              <div class="news-card">
-                <div class="news-date">
-                  <span class="day">20</span>
-                  <span class="month">ม.ค.</span>
+                <div class="row">
+                    <div class="col-lg-8 mx-auto">
+                        <div class="card">
+                            <div class="card-body">
+                                <p>พระบาทสมเด็จพระเจ้าอยู่หัวรัชกาลที่ ๙ ได้ทรงเยี่ยมศูนย์เกษตรกรรมทหาร จังหวัดทหารบกเชียงใหม่ เมื่อวันที่ 13 กุมภาพันธ์ พุทธศักราช 2523 และได้ทรงทราบถึงปัญหาการขาดแคลนน้ำที่ใช้ในการเกษตร จึงมีพระราชดำริให้สร้างอ่างเก็บน้ำขนาดความจุ 1.4 ล้านลูกบาศก์เมตร ที่ตำบลดอนแก้ว อำเภอแม่ริม จังหวัดเชียงใหม่</p>
+                                
+                                <p>และต่อมาได้ทรงทราบว่าในบริเวณที่สร้างอ่างเก็บน้ำนั้นมีราษฎรบุกรุกพื้นที่เข้ามาอาศัย และทำกิน ซึ่งเป็นพื้นที่ของราชการทหาร จึงได้มีพระราชดำริให้รวบรวมราษฎร ที่บุกรุกพื้นที่ดังกล่าวมาจัดตั้งเป็นหมู่บ้านตัวอย่าง โดยกองทัพภาคที่ 3 จึงได้จัดตั้งเป็น "โครงการจัดหมู่บ้านตัวอย่างห้วยตึงเฒ่า"</p>
+                                
+                                <p>เมื่อวันที่ 8 มีนาคม 2530 ให้ มณฑลทหารบกที่ 33 เป็นหน่วยดำเนินการ ต่อมา กองทัพบกได้มีนโยบายให้จัดการท่องเที่ยวในหน่วยทหารขึ้น มณฑลทหารบกที่ 33 จึงได้พัฒนาอ่างเก็บน้ำห้วยตึงเฒ่า ให้เกิดประโยชน์สูงสุด ทั้งด้านเกษตรกรรม ทางด้านการท่องเที่ยว รวมทั้งการพักผ่อนหย่อนใจ</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <h5>กิจกรรมพิเศษ</h5>
-                <p>จัดกิจกรรมพิเศษสำหรับครอบครัว พร้อมโปรโมชั่นสุดพิเศษ</p>
-                <a href="#" class="btn btn-sm btn-outline-primary">อ่านต่อ</a>
-              </div>
             </div>
-            <div
-              class="col-lg-4 col-md-6"
-              data-aos="fade-up"
-              data-aos-delay="300"
-            >
-              <div class="news-card">
-                <div class="news-date">
-                  <span class="day">25</span>
-                  <span class="month">ม.ค.</span>
-                </div>
-                <h5>ขยายพื้นที่บริการ</h5>
-                <p>
-                  เพิ่มพื้นที่แคมป์ปิ้งและจุดถ่ายภาพใหม่
-                  เพื่อรองรับนักท่องเที่ยวมากขึ้น
-                </p>
-                <a href="#" class="btn btn-sm btn-outline-primary">อ่านต่อ</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+        </section>
 
-      <!-- CTA Section -->
-      <section class="cta-section py-5" data-aos="fade-up">
-        <div class="container">
-          <div class="row justify-content-center text-center">
-            <div class="col-lg-8">
-              <div class="cta-content">
-                <h2 class="text-white mb-4">
-                  พร้อมสำหรับการผจญภัยแล้วหรือยัง?
-                </h2>
-                <p class="text-white-50 mb-4">
-                  มาสัมผัสประสบการณ์ที่ไม่เหมือนใครที่ห้วยตึงเฒ่า
-                </p>
-                <a href="page-contact.html" class="btn btn-light btn-lg">
-                  <i class="fas fa-phone me-2"></i>ติดต่อเรา
-                </a>
-              </div>
+        <!-- Gallery Section -->
+        <section id="gallery" class="py-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h2 class="section-title">ประมวลภาพ</h2>
+                        <p class="section-subtitle">ภาพบรรยากาศและกิจกรรมต่างๆ ที่ห้วยตึงเฒ่า</p>
+                    </div>
+                </div>
+                <div class="row g-3">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="gallery-item">
+                            <img src="https://images.unsplash.com/photo-1554979819-6e1d56783d8a?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="แกะ 1" class="img-fluid">
+                            <div class="gallery-overlay">
+                                <i class="fas fa-search-plus fa-2x"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="gallery-item">
+                            <img src="https://images.unsplash.com/photo-1594736797933-d0cc2ba9a4fd?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="แกะ 2" class="img-fluid">
+                            <div class="gallery-overlay">
+                                <i class="fas fa-search-plus fa-2x"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="gallery-item">
+                            <img src="https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="แกะ 3" class="img-fluid">
+                            <div class="gallery-overlay">
+                                <i class="fas fa-search-plus fa-2x"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="gallery-item">
+                            <img src="https://images.unsplash.com/photo-1580652690918-b95fb8e82b21?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="ธรรมชาติ 1" class="img-fluid">
+                            <div class="gallery-overlay">
+                                <i class="fas fa-search-plus fa-2x"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="gallery-item">
+                            <img src="https://images.unsplash.com/photo-1542324356-47e5dde3f45c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="ธรรมชาติ 2" class="img-fluid">
+                            <div class="gallery-overlay">
+                                <i class="fas fa-search-plus fa-2x"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="gallery-item">
+                            <img src="https://images.unsplash.com/photo-1565098772267-60af42b81ef2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="ธรรมชาติ 3" class="img-fluid">
+                            <div class="gallery-overlay">
+                                <i class="fas fa-search-plus fa-2x"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-      </section>
+        </section>
     </main>
 
-    <!-- Footer will be loaded here -->
-    <footer id="footer">
-      <div class="text-center py-3" style="background: #2c3e50; color: white">
-        <div class="spinner-border text-light" role="status">
-          <span class="visually-hidden">กำลังโหลด...</span>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <h5>สำนักงานโครงการจัดหมู่บ้านตัวอย่างห้วยตึงเฒ่า อันเนื่องมาจากพระราชดำริ</h5>
+                    <p>Copyright © 2021 by ห้วยตึงเฒ่า All rights reserved.</p>
+                </div>
+                <div class="col-lg-4 text-end">
+                    <p>จำนวนผู้เข้าชม: <strong>123,456</strong> คน</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-line"></i></a>
+                    </div>
+                </div>
+            </div>
         </div>
-        <p class="mt-2 mb-0">กำลังโหลดส่วนท้าย...</p>
-      </div>
     </footer>
 
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- AOS Animation -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
-    <!-- Embedded JavaScript - Homepage -->
+    
+    <!-- Custom JS -->
     <script>
-      // Homepage JavaScript - Embedded Version
-      console.log("🚀 Loading homepage...");
-
-      // Global error prevention
-      window.safeGet = function (obj, path, defaultValue = null) {
-        try {
-          return (
-            path.split(".").reduce((current, key) => current?.[key], obj) ??
-            defaultValue
-          );
-        } catch {
-          return defaultValue;
-        }
-      };
-
-      // Generate placeholder SVG
-      function generatePlaceholderSVG(text) {
-        const svg = `
-                <svg width="1200" height="500" xmlns="http://www.w3.org/2000/svg">
-                    <rect width="100%" height="100%" fill="#4a90e2"/>
-                    <text x="50%" y="50%" text-anchor="middle" dy=".3em" fill="white" font-family="Arial" font-size="48">
-                        ${text}
-                    </text>
-                </svg>
-            `;
-        return (
-          "data:image/svg+xml;base64," + btoa(unescape(encodeURIComponent(svg)))
-        );
-      }
-
-      // Load navigation
-      function loadNavigation() {
-        console.log("🧭 Loading navigation...");
-
-        $.getJSON("data/navigation.json")
-          .done(function (data) {
-            console.log("✅ Navigation data loaded");
-            renderNavigation(data);
-          })
-          .fail(function (xhr, status, error) {
-            console.warn("⚠️ Navigation load failed:", status, error);
-            renderFallbackNavigation();
-          });
-      }
-
-      function renderNavigation(data) {
-        try {
-          const brandName = safeGet(data, "brandName", "ห้วยตึงเฒ่า");
-          const menuItems = safeGet(data, "menuItems", []);
-
-          let menuHTML = "";
-          if (Array.isArray(menuItems)) {
-            menuHTML = menuItems
-              .map((item) => {
-                const isActive = item.id === "home";
-                return `
-                            <li class="nav-item">
-                                <a class="nav-link ${
-                                  isActive ? "active" : ""
-                                }" href="${item.url || "#"}">
-                                    ${item.title || "Menu"}
-                                </a>
-                            </li>
-                        `;
-              })
-              .join("");
-          }
-
-          const navHTML = `
-                    <nav class="navbar navbar-expand-lg navbar-dark" style="background: linear-gradient(135deg, #2c3e50, #34495e); box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-                        <div class="container-fluid">
-                            <a class="navbar-brand" href="index.html" style="font-weight: 600; color: white;">
-                                <i class="fas fa-leaf"></i> ${brandName}
-                            </a>
-                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                                <span class="navbar-toggler-icon"></span>
-                            </button>
-                            <div class="collapse navbar-collapse" id="navbarNav">
-                                <ul class="navbar-nav ms-auto">
-                                    ${menuHTML}
-                                </ul>
-                            </div>
-                        </div>
-                    </nav>
-                    <style>
-                        .navbar-nav .nav-link {
-                            color: rgba(255, 255, 255, 0.9) !important;
-                            font-weight: 500;
-                            padding: 0.5rem 1rem !important;
-                            transition: all 0.3s ease;
-                        }
-                        .navbar-nav .nav-link:hover,
-                        .navbar-nav .nav-link.active {
-                            color: #3498db !important;
-                            background-color: rgba(255, 255, 255, 0.1);
-                            border-radius: 4px;
-                        }
-                    </style>
-                `;
-
-          $("#navigation").html(navHTML);
-          console.log("✅ Navigation rendered successfully");
-        } catch (error) {
-          console.error("❌ Navigation render error:", error);
-          renderFallbackNavigation();
-        }
-      }
-
-      function renderFallbackNavigation() {
-        console.log("🔄 Rendering fallback navigation...");
-
-        const fallbackHTML = `
-                <nav class="navbar navbar-expand-lg navbar-dark" style="background: linear-gradient(135deg, #2c3e50, #34495e);">
-                    <div class="container-fluid">
-                        <a class="navbar-brand" href="index.html" style="color: white;">
-                            <i class="fas fa-leaf"></i> ห้วยตึงเฒ่า
-                        </a>
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="collapse navbar-collapse" id="navbarNav">
-                            <ul class="navbar-nav ms-auto">
-                                <li class="nav-item"><a class="nav-link active" href="index.html" style="color: #3498db;">หน้าหลัก</a></li>
-                                <li class="nav-item"><a class="nav-link" href="page-history.html" style="color: rgba(255,255,255,0.9);">ประวัติ</a></li>
-                                <li class="nav-item"><a class="nav-link" href="page-services.html" style="color: rgba(255,255,255,0.9);">บริการ</a></li>
-                                <li class="nav-item"><a class="nav-link" href="page-news.html" style="color: rgba(255,255,255,0.9);">ข่าวสาร</a></li>
-                                <li class="nav-item"><a class="nav-link" href="page-contact.html" style="color: rgba(255,255,255,0.9);">ติดต่อเรา</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </nav>
-            `;
-
-        $("#navigation").html(fallbackHTML);
-      }
-
-      // Load carousel
-      function loadCarousel() {
-        console.log("🎠 Loading carousel...");
-
-        $.getJSON("data/homepage-carousel.json")
-          .done(function (data) {
-            console.log("✅ Carousel data loaded");
-            renderCarousel(data);
-          })
-          .fail(function (xhr, status, error) {
-            console.warn("⚠️ Carousel load failed:", status, error);
-            renderEmptyCarousel();
-          });
-      }
-
-      function renderCarousel(data) {
-        try {
-          const slides = safeGet(data, "slides", []);
-          const controls = safeGet(data, "controls", {});
-
-          if (!Array.isArray(slides) || slides.length === 0) {
-            renderEmptyCarousel();
-            return;
-          }
-
-          let slidesHTML = "";
-          let indicatorsHTML = "";
-
-          slides.forEach((slide, index) => {
-            const title = slide.title || `สไลด์ที่ ${index + 1}`;
-            const description = slide.description || "";
-            const imageSrc =
-              slide.image ||
-              slide.backgroundImage ||
-              generatePlaceholderSVG(title);
-
-            indicatorsHTML += `
-                        <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="${index}" 
-                                ${
-                                  index === 0 ? 'class="active"' : ""
-                                } aria-label="Slide ${index + 1}"></button>
-                    `;
-
-            slidesHTML += `
-                        <div class="carousel-item ${
-                          index === 0 ? "active" : ""
-                        }">
-                            <img src="${imageSrc}" 
-                                 class="d-block w-100" 
-                                 alt="${title}" 
-                                 style="height: 500px; object-fit: cover;"
-                                 onerror="this.src='${generatePlaceholderSVG(
-                                   title
-                                 )}';">
-                            <div class="carousel-caption d-none d-md-block">
-                                <h5>${title}</h5>
-                                <p>${description}</p>
-                            </div>
-                        </div>
-                    `;
-          });
-
-          const carouselHTML = `
-                    <div class="container-fluid px-0">
-                        <div id="mainCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="${
-                          controls.interval || 5000
-                        }">
-                            <div class="carousel-indicators">
-                                ${indicatorsHTML}
-                            </div>
-                            <div class="carousel-inner">
-                                ${slidesHTML}
-                            </div>
-                            <button class="carousel-control-prev" type="button" data-bs-target="#mainCarousel" data-bs-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Previous</span>
-                            </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#mainCarousel" data-bs-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Next</span>
-                            </button>
-                        </div>
-                    </div>
-                `;
-
-          $("#carousel-container").html(carouselHTML);
-          console.log("✅ Carousel rendered successfully");
-        } catch (error) {
-          console.error("❌ Carousel render error:", error);
-          renderEmptyCarousel();
-        }
-      }
-
-      function renderEmptyCarousel() {
-        console.log("🔄 Rendering empty carousel...");
-
-        const emptyHTML = `
-                <div class="container-fluid px-0">
-                    <div style="height: 400px; background: linear-gradient(135deg, #f8f9fa, #e9ecef); display: flex; align-items: center; justify-content: center;">
-                        <div class="text-center text-muted">
-                            <i class="fas fa-images fa-4x mb-3"></i>
-                            <h4>ไม่มีสไลด์แสดง</h4>
-                            <p>กรุณาเพิ่มสไลด์ผ่านระบบจัดการเนื้อหา</p>
-                        </div>
-                    </div>
-                </div>
-            `;
-
-        $("#carousel-container").html(emptyHTML);
-      }
-
-      // Load news marquee
-      function loadNewsMarquee() {
-        console.log("📢 Loading news marquee...");
-
-        $.getJSON("data/homepage-news.json")
-          .done(function (data) {
-            console.log("✅ News marquee data loaded");
-            renderNewsMarquee(data);
-          })
-          .fail(function (xhr, status, error) {
-            console.warn("⚠️ News marquee load failed:", status, error);
-            // Skip marquee if failed
-          });
-      }
-
-      function renderNewsMarquee(data) {
-        try {
-          const announcements = safeGet(data, "announcements", []);
-
-          if (!Array.isArray(announcements) || announcements.length === 0) {
-            return;
-          }
-
-          const activeAnnouncements = announcements.filter(
-            (item) => item.active
-          );
-          if (activeAnnouncements.length === 0) {
-            return;
-          }
-
-          const marqueeText = activeAnnouncements
-            .map((item) => item.text || "")
-            .join(" • ");
-
-          const marqueeHTML = `
-                    <div style="background: linear-gradient(135deg, #e74c3c, #c0392b); color: white; padding: 10px 0; overflow: hidden;">
-                        <div class="container-fluid">
-                            <div style="white-space: nowrap; animation: marquee 30s linear infinite;">
-                                <i class="fas fa-bullhorn"></i> ${marqueeText}
-                            </div>
-                        </div>
-                    </div>
-                    <style>
-                        @keyframes marquee {
-                            0% { transform: translateX(100%); }
-                            100% { transform: translateX(-100%); }
-                        }
-                    </style>
-                `;
-
-          $("#news-marquee").html(marqueeHTML);
-          console.log("✅ News marquee rendered successfully");
-        } catch (error) {
-          console.error("❌ News marquee render error:", error);
-        }
-      }
-
-      // Load footer
-      function loadFooter() {
-        console.log("🦶 Loading footer...");
-
-        $.getJSON("data/footer.json")
-          .done(function (data) {
-            console.log("✅ Footer data loaded");
-            renderFooter(data);
-          })
-          .fail(function (xhr, status, error) {
-            console.warn("⚠️ Footer load failed:", status, error);
-            renderFallbackFooter();
-          });
-      }
-
-      function renderFooter(data) {
-        try {
-          const copyright = safeGet(data, "copyright", "ห้วยตึงเฒ่า");
-          const visitorCount = safeGet(data, "visitorCount", "0");
-
-          const footerHTML = `
-                    <div style="background: #2c3e50; color: white; padding: 2rem 0; margin-top: 3rem;">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <p>&copy; ${new Date().getFullYear()} ${copyright}</p>
-                                </div>
-                                <div class="col-md-6 text-end">
-                                    <p>ผู้เข้าชม: ${visitorCount} คน</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                `;
-
-          $("#footer").html(footerHTML);
-          console.log("✅ Footer rendered successfully");
-        } catch (error) {
-          console.error("❌ Footer render error:", error);
-          renderFallbackFooter();
-        }
-      }
-
-      function renderFallbackFooter() {
-        console.log("🔄 Rendering fallback footer...");
-
-        const fallbackHTML = `
-                <div style="background: #2c3e50; color: white; padding: 2rem 0; margin-top: 3rem;">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <p>&copy; ${new Date().getFullYear()} ห้วยตึงเฒ่า</p>
-                            </div>
-                            <div class="col-md-6 text-end">
-                                <p>ผู้เข้าชม: 0 คน</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `;
-
-        $("#footer").html(fallbackHTML);
-      }
-
-      // Load homepage services
-      function loadHomepageServices() {
-        console.log("🛠️ Loading homepage services...");
-
-        $.getJSON("data/homepage-services.json")
-          .done(function (data) {
-            console.log("✅ Homepage services data loaded");
-            renderHomepageServices(data);
-          })
-          .fail(function (xhr, status, error) {
-            console.warn("⚠️ Homepage services load failed:", status, error);
-            renderFallbackServices();
-          });
-      }
-
-      function renderHomepageServices(data) {
-        try {
-          const section = safeGet(data, "section", {});
-          const services = safeGet(data, "services", []);
-
-          const sectionTitle = safeGet(section, "title", "บริการของเรา");
-          const sectionSubtitle = safeGet(
-            section,
-            "subtitle",
-            "บริการและสิ่งอำนวยความสะดวกที่ห้วยตึงเฒ่า"
-          );
-
-          let servicesHTML = "";
-          if (Array.isArray(services)) {
-            servicesHTML = services
-              .slice(0, 6)
-              .map(
-                (service) => `
-                        <div class="col-lg-4 col-md-6 mb-4">
-                            <div class="service-card h-100" style="background: white; border-radius: 12px; padding: 2rem; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border: none; transition: all 0.3s ease;">
-                                <div class="service-icon" style="width: 80px; height: 80px; background: linear-gradient(135deg, #4a90e2, #357abd); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; color: white; font-size: 2rem;">
-                                    <i class="${
-                                      service.icon || "fas fa-cog"
-                                    }"></i>
-                                </div>
-                                <h4>${service.title || "บริการ"}</h4>
-                                <p>${
-                                  service.description || "คำอธิบายบริการ"
-                                }</p>
-                            </div>
-                        </div>
-                    `
-              )
-              .join("");
-          }
-
-          const fullHTML = `
-                    <section class="services-section py-5">
-                        <div class="container">
-                            <div class="row text-center mb-5">
-                                <div class="col-12">
-                                    <h2 style="color: #2c3e50; font-weight: 600; margin-bottom: 1rem;">${sectionTitle}</h2>
-                                    <p style="color: #7f8c8d; margin-bottom: 2rem;">${sectionSubtitle}</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                ${servicesHTML}
-                            </div>
-                        </div>
-                    </section>
-                    <style>
-                        .service-card:hover {
-                            transform: translateY(-8px);
-                            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-                        }
-                    </style>
-                `;
-
-          $("#services-section").html(fullHTML);
-          console.log("✅ Homepage services rendered successfully");
-        } catch (error) {
-          console.error("❌ Homepage services render error:", error);
-          renderFallbackServices();
-        }
-      }
-
-      function renderFallbackServices() {
-        console.log("🔄 Rendering fallback services...");
-
-        const fallbackHTML = `
-                <section class="services-section py-5">
-                    <div class="container">
-                        <div class="row text-center mb-5">
-                            <div class="col-12">
-                                <h2 style="color: #2c3e50; font-weight: 600;">บริการของเรา</h2>
-                                <p style="color: #7f8c8d;">บริการและสิ่งอำนวยความสะดวกที่ห้วยตึงเฒ่า</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-4 col-md-6 mb-4">
-                                <div class="service-card h-100" style="background: white; border-radius: 12px; padding: 2rem; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-                                    <div style="width: 80px; height: 80px; background: linear-gradient(135deg, #4a90e2, #357abd); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; color: white; font-size: 2rem;">
-                                        <i class="fas fa-swimming-pool"></i>
-                                    </div>
-                                    <h4>กิจกรรมน้ำ</h4>
-                                    <p>เล่นน้ำและกิจกรรมริมอ่างเก็บน้ำ</p>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6 mb-4">
-                                <div class="service-card h-100" style="background: white; border-radius: 12px; padding: 2rem; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-                                    <div style="width: 80px; height: 80px; background: linear-gradient(135deg, #4a90e2, #357abd); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; color: white; font-size: 2rem;">
-                                        <i class="fas fa-campground"></i>
-                                    </div>
-                                    <h4>แคมป์ปิ้ง</h4>
-                                    <p>พื้นที่กางเต็นท์และพักค้างคืน</p>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6 mb-4">
-                                <div class="service-card h-100" style="background: white; border-radius: 12px; padding: 2rem; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-                                    <div style="width: 80px; height: 80px; background: linear-gradient(135deg, #4a90e2, #357abd); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; color: white; font-size: 2rem;">
-                                        <i class="fas fa-utensils"></i>
-                                    </div>
-                                    <h4>ร้านอาหาร</h4>
-                                    <p>อาหารท้องถิ่นและเครื่องดื่ม</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            `;
-
-        $("#services-section").html(fallbackHTML);
-      }
-
-      // Initialize homepage
-      $(document).ready(function () {
-        console.log("✅ Homepage ready - initializing...");
-
-        try {
-          // Initialize AOS animations
-          AOS.init({
-            duration: 800,
-            easing: "ease-in-out",
-            once: true,
-            offset: 100,
-          });
-
-          loadNavigation();
-          loadCarousel();
-          loadNewsMarquee();
-          loadFooter();
-          loadHomepageServices();
-
-          // Smooth scrolling for anchor links
-          $('a[href^="#"]').on("click", function (event) {
-            var target = $(this.getAttribute("href"));
-            if (target.length) {
-              event.preventDefault();
-              $("html, body")
-                .stop()
-                .animate(
-                  {
-                    scrollTop: target.offset().top - 80,
-                  },
-                  1000
-                );
-            }
-          });
-
-          // Navbar scroll effect
-          $(window).scroll(function () {
-            if ($(this).scrollTop() > 50) {
-              $(".navbar").addClass("scrolled");
-            } else {
-              $(".navbar").removeClass("scrolled");
-            }
-          });
-
-          console.log("✅ Homepage initialized successfully");
-        } catch (error) {
-          console.error("❌ Homepage initialization failed:", error);
-        }
-      });
-
-      console.log("✅ Homepage JavaScript loaded successfully");
+        // Simple fade-in animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const elements = document.querySelectorAll('.feature-card, .card, .gallery-item');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            });
+            
+            elements.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'all 0.6s ease';
+                observer.observe(el);
+            });
+        });
     </script>
-  </body>
+</body>
 </html>
