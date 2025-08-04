@@ -1,158 +1,65 @@
 {
-  "services": {
-    "title": "บริการ",
-    "subtitle": "กิจกรรมและสิ่งอำนวยความสะดวกที่ห้วยตึงเฒ่า",
-    "description": "ห้วยตึงเฒ่าเปิดให้บริการทุกวันไม่มีวันหยุด ตั้งแต่เวลา 06:30 - 18:00 น. มีกิจกรรมและสิ่งอำนวยความสะดวกมากมายสำหรับนักท่องเที่ยว",
-    "operatingHours": {
-      "title": "เวลาเปิด-ปิด",
-      "hours": "06:30 - 18:00 น.",
-      "days": "ทุกวันไม่มีวันหยุด"
+  "title": "บริการของเรา",
+  "description": "บริการและสิ่งอำนวยความสะดวกที่ห้วยตึงเฒ่า",
+  "services": [
+    {
+      "id": 1,
+      "icon": "fas fa-swimming-pool",
+      "title": "กิจกรรมน้ำ",
+      "description": "เล่นน้ำและกิจกรรมริมอ่างเก็บน้ำ สนุกสนานปลอดภัย พร้อมอุปกรณ์ความปลอดภัยครบครัน"
     },
-    "activities": [
-      {
-        "id": 1,
-        "name": "ป้อนอาหารแกะ",
-        "description": "กิจกรรมป้อนอาหารแกะที่เป็นที่นิยมของนักท่องเที่ยว มีเจ้าหน้าที่คอยให้บริการและดูแลความเรียบร้อย",
-        "icon": "fas fa-seedling",
-        "image": "image/services/sheep-feeding.jpg",
-        "price": "ตามราคาที่กำหนด",
-        "duration": "ไม่จำกัดเวลา"
-      },
-      {
-        "id": 2,
-        "name": "เรือแคนู",
-        "description": "บริการเรือแคนูสำหรับพายเรือชมวิวรอบอ่างเก็บน้ำห้วยตึงเฒ่า ท่ามกลางธรรมชาติที่สวยงาม",
-        "icon": "fas fa-ship",
-        "image": "image/services/canoe.jpg",
-        "price": "ตามราคาที่กำหนด",
-        "duration": "30-60 นาที"
-      },
-      {
-        "id": 3,
-        "name": "ถ่ายรูปกับคิงคอง",
-        "description": "จุดถ่ายรูปกับหุ่นฟางคิงคองยักษ์ พ่อตึงเฒ่า แม่ขวัญข้าว น้องแรมเพจ ครบทีม พ่อแม่ลูกแห่งห้วยตึงเฒ่า",
-        "icon": "fas fa-camera",
-        "image": "image/services/kingkong.jpg",
-        "price": "ฟรี",
-        "duration": "ไม่จำกัดเวลา"
-      },
-      {
-        "id": 4,
-        "name": "ให้อาหารปลา",
-        "description": "กิจกรรมให้อาหารปลาในอ่างเก็บน้ำ เหมาะสำหรับครอบครัวและเด็กๆ",
-        "icon": "fas fa-fish",
-        "image": "image/services/fish-feeding.jpg",
-        "price": "ตามราคาที่กำหนด",
-        "duration": "ไม่จำกัดเวลา"
-      },
-      {
-        "id": 5,
-        "name": "ซิปไลน์",
-        "description": "กิจกรรมซิปไลน์ที่ท้าทายและสนุกสนาน ชมวิวจากมุมสูง",
-        "icon": "fas fa-mountain",
-        "image": "image/services/zipline.jpg",
-        "price": "ตามราคาที่กำหนด",
-        "duration": "15-30 นาที"
-      },
-      {
-        "id": 6,
-        "name": "รถเอทีวี",
-        "description": "บริการรถเอทีวีสำหรับขับขี่ชมวิวรอบๆ พื้นที่ห้วยตึงเฒ่า",
-        "icon": "fas fa-motorcycle",
-        "image": "image/services/atv.jpg",
-        "price": "ตามราคาที่กำหนด",
-        "duration": "30-60 นาที"
-      },
-      {
-        "id": 7,
-        "name": "จักรยานน้ำ",
-        "description": "บริการจักรยานน้ำสำหรับออกกำลังกายและชมวิวในอ่างเก็บน้ำ",
-        "icon": "fas fa-bicycle",
-        "image": "image/services/water-bike.jpg",
-        "price": "ตามราคาที่กำหนด",
-        "duration": "30-60 นาที"
-      },
-      {
-        "id": 8,
-        "name": "นั่งแพ",
-        "description": "บริการนั่งแพชมวิวและพักผ่อนท่ามกลางธรรมชาติ",
-        "icon": "fas fa-water",
-        "image": "image/services/raft.jpg",
-        "price": "ตามราคาที่กำหนด",
-        "duration": "ไม่จำกัดเวลา"
-      }
-    ],
-    "facilities": [
-      {
-        "id": 1,
-        "name": "ร้านอาหาร",
-        "description": "ร้านอาหารหลากหลายรสชาติ เสิร์ฟอาหารไทยและอาหารท้องถิ่น",
-        "icon": "fas fa-utensils",
-        "image": "image/facilities/restaurant.jpg"
-      },
-      {
-        "id": 2,
-        "name": "ที่จอดรถ",
-        "description": "ที่จอดรถกว้างขวาง รองรับรถยนต์และรถโดยสารขนาดใหญ่",
-        "icon": "fas fa-parking",
-        "image": "image/facilities/parking.jpg"
-      },
-      {
-        "id": 3,
-        "name": "ห้องน้ำ",
-        "description": "ห้องน้ำสะอาด มีทั้งห้องน้ำชายและหญิง รวมถึงห้องน้ำสำหรับผู้พิการ",
-        "icon": "fas fa-restroom",
-        "image": "image/facilities/restroom.jpg"
-      },
-      {
-        "id": 4,
-        "name": "จุดพักผ่อน",
-        "description": "จุดพักผ่อนหลายจุดรอบอ่างเก็บน้ำ มีโต๊ะและเก้าอี้สำหรับนั่งพักผ่อน",
-        "icon": "fas fa-chair",
-        "image": "image/facilities/rest-area.jpg"
-      },
-      {
-        "id": 5,
-        "name": "สถานที่กางเต็นท์",
-        "description": "พื้นที่สำหรับกางเต็นท์และพักค้างคืน ท่ามกลางธรรมชาติ",
-        "icon": "fas fa-campground",
-        "image": "image/facilities/camping.jpg"
-      },
-      {
-        "id": 6,
-        "name": "บ้านพัก",
-        "description": "บ้านพักสำหรับนักท่องเที่ยวที่ต้องการพักค้างคืน",
-        "icon": "fas fa-home",
-        "image": "image/facilities/accommodation.jpg"
-      }
-    ],
-    "pricing": {
-      "title": "ค่าบริการ",
-      "note": "ราคาอาจมีการเปลี่ยนแปลงตามความเหมาะสม กรุณาสอบถามเจ้าหน้าที่ก่อนใช้บริการ",
-      "contact": "โทร 053-121119 สำหรับสอบถามราคาและจองล่วงหน้า"
+    {
+      "id": 2,
+      "icon": "fas fa-campground",
+      "title": "แคมป์ปิ้ง",
+      "description": "พื้นที่กางเต็นท์และพักค้างคืน ท่ามกลางธรรมชาติ มีห้องน้ำและสิ่งอำนวยความสะดวก"
     },
-    "rules": {
-      "title": "ข้อปฏิบัติสำหรับนักท่องเที่ยว",
-      "items": [
-        "รักษาความสะอาดและอนุรักษ์สิ่งแวดล้อม",
-        "ไม่ทิ้งขยะลงในอ่างเก็บน้ำ",
-        "ปฏิบัติตามคำแนะนำของเจ้าหน้าที่",
-        "ดูแลความปลอดภัยของตนเองและผู้อื่น",
-        "ไม่นำสัตว์เลี้ยงเข้ามาในบริเวณ",
-        "ห้ามสูบบุหรี่ในบริเวณที่กำหนด"
-      ]
+    {
+      "id": 3,
+      "icon": "fas fa-utensils",
+      "title": "ร้านอาหาร",
+      "description": "อาหารท้องถิ่นและเครื่องดื่ม รสชาติอร่อย ราคาเป็นกันเอง บรรยากาศดี"
     },
-    "contact": {
-      "title": "ติดต่อสอบถาม",
-      "phone": "053-121119",
-      "email": "hueytuengtao@hotmail.com",
-      "address": "283 ม.3 ต.ดอนแก้ว อ.แม่ริม จ.เชียงใหม่ 50180"
+    {
+      "id": 4,
+      "icon": "fas fa-camera",
+      "title": "จุดถ่ายภาพ",
+      "description": "มุมถ่ายภาพสวยงาม เก็บความทรงจำดีๆ วิวธรรมชาติที่สวยงาม"
     },
-    "styling": {
-      "headerClass": "navbar-dark bg-dark text-white text-center",
-      "containerClass": "container py-4",
-      "cardClass": "card h-100 shadow-sm",
-      "iconClass": "text-primary mb-3"
+    {
+      "id": 5,
+      "icon": "fas fa-leaf",
+      "title": "ธรรมชาติ",
+      "description": "สัมผัสธรรมชาติและอากาศบริสุทธิ์ ป่าไผ่และภูเขาที่สวยงาม"
+    },
+    {
+      "id": 6,
+      "icon": "fas fa-bicycle",
+      "title": "ปั่นจักรยาน",
+      "description": "เส้นทางปั่นจักรยานชมธรรมชาติ ระยะทางเหมาะสำหรับทุกวัย"
+    },
+    {
+      "id": 7,
+      "icon": "fas fa-hiking",
+      "title": "เดินป่า",
+      "description": "เส้นทางเดินป่าศึกษาธรรมชาติ เรียนรู้เกี่ยวกับพืชพันธุ์ท้องถิ่น"
+    },
+    {
+      "id": 8,
+      "icon": "fas fa-fish",
+      "title": "ตกปลา",
+      "description": "กิจกรรมตกปลาในอ่างเก็บน้ำ เหมาะสำหรับครอบครัว"
+    },
+    {
+      "id": 9,
+      "icon": "fas fa-home",
+      "title": "บ้านพัก",
+      "description": "บ้านพักสำหรับกลุ่มใหญ่ สิ่งอำนวยความสะดวกครบครัน"
     }
+  ],
+  "operatingHours": "เปิดให้บริการทุกวัน 06:30 - 18:00 น.",
+  "contact": {
+    "phone": "053-121119",
+    "email": "hueytuengtao@hotmail.com"
   }
 }

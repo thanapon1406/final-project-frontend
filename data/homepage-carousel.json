@@ -1,11 +1,43 @@
 {
   "slides": [
     {
-      "id": 999,
-      "title": "API Test Slide",
-      "description": "This slide was created by the API test",
-      "backgroundClass": "bg-test-api",
-      "active": true
+      "id": 1,
+      "title": "ยินดีต้อนรับสู่ห้วยตึงเฒ่า",
+      "description": "สถานที่ท่องเที่ยวเชิงนิเวศที่สวยงามในจังหวัดเชียงใหม่",
+      "image": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+      "active": true,
+      "link": {
+        "url": "#about",
+        "target": "_self"
+      }
+    },
+    {
+      "id": 2,
+      "title": "ธรรมชาติสวยงาม",
+      "description": "สัมผัสธรรมชาติและอากาศบริสุทธิ์ท่ามกลางภูเขาและป่าไผ่",
+      "image": "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+      "active": true,
+      "link": {
+        "url": "#gallery",
+        "target": "_self"
+      }
+    },
+    {
+      "id": 3,
+      "title": "กิจกรรมหลากหลาย",
+      "description": "เพลิดเพลินกับกิจกรรมสนุกสนานสำหรับทุกวัย",
+      "image": "https://images.unsplash.com/photo-1500595046743-cd271d694d30?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+      "active": true,
+      "link": {
+        "url": "page-services.html",
+        "target": "_self"
+      }
     }
-  ]
+  ],
+  "controls": {
+    "interval": 5000,
+    "prevButton": true,
+    "nextButton": true,
+    "indicators": true
+  }
 }
