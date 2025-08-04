@@ -1,62 +1,89 @@
 {
   "gallery": {
     "title": "ประมวลภาพ",
-    "subtitle": "ชมภาพบรรยากาศและกิจกรรมต่างๆ ที่ห้วยตึงเฒ่า",
+    "subtitle": "ภาพบรรยากاศและกิจกรรมต่างๆ ที่ห้วยตึงเฒ่า",
     "description": "คลังภาพความทรงจำจากนักท่องเที่ยวและกิจกรรมต่างๆ ที่จัดขึ้นที่ห้วยตึงเฒ่า",
     "viewAllLink": "#gallery",
     "images": [
       {
         "id": 1,
-        "src": "https://images.unsplash.com/photo-1500595046743-cd271d694d30?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-        "thumbnail": "https://images.unsplash.com/photo-1500595046743-cd271d694d30?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
-        "alt": "ป้อนอาหารแกะ - กิจกรรมยอดนิยม",
+        "src": "https://huaytuengthao.com/image/sheep/1.jpg",
+        "thumbnail": "https://huaytuengthao.com/image/sheep/1.jpg",
+        "alt": "แกะ 1",
         "title": "ป้อนอาหารแกะ",
         "description": "กิจกรรมป้อนอาหารแกะที่เด็กๆ และผู้ใหญ่ชื่นชอบ",
         "category": "กิจกรรม"
       },
       {
         "id": 2,
-        "src": "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-        "thumbnail": "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
-        "alt": "ธรรมชาติสวยงาม - วิวภูเขาและป่าไผ่",
-        "title": "ธรรมชาติสวยงาม",
-        "description": "วิวภูเขาและป่าไผ่ที่สวยงามของห้วยตึงเฒ่า",
-        "category": "ธรรมชาติ"
+        "src": "https://huaytuengthao.com/image/sheep/2.jpg",
+        "thumbnail": "https://huaytuengthao.com/image/sheep/2.jpg",
+        "alt": "แกะ 2",
+        "title": "แกะน่ารัก",
+        "description": "แกะน่ารักที่ห้วยตึงเฒ่า",
+        "category": "กิจกรรม"
       },
       {
         "id": 3,
-        "src": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-        "thumbnail": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
-        "alt": "อ่างเก็บน้ำ - จุดพักผ่อนริมน้ำ",
+        "src": "https://huaytuengthao.com/image/sheep/3.jpg",
+        "thumbnail": "https://huaytuengthao.com/image/sheep/3.jpg",
+        "alt": "แกะ 3",
+        "title": "สัตว์เลี้ยง",
+        "description": "สัตว์เลี้ยงที่เป็นมิตรกับนักท่องเที่ยว",
+        "category": "กิจกรรม"
+      },
+      {
+        "id": 4,
+        "src": "https://huaytuengthao.com/image/sheep/4.jpg",
+        "thumbnail": "https://huaytuengthao.com/image/sheep/4.jpg",
+        "alt": "ธรรมชาติ 1",
+        "title": "ธรรมชาติสวยงาม",
+        "description": "วิวธรรมชาติที่สวยงามของห้วยตึงเฒ่า",
+        "category": "ธรรมชาติ"
+      },
+      {
+        "id": 5,
+        "src": "https://huaytuengthao.com/image/sheep/5.jpg",
+        "thumbnail": "https://huaytuengthao.com/image/sheep/5.jpg",
+        "alt": "ธรรมชาติ 2",
         "title": "อ่างเก็บน้ำ",
         "description": "อ่างเก็บน้ำห้วยตึงเฒ่าที่สวยงามและเงียบสงบ",
         "category": "ธรรมชาติ"
       },
       {
-        "id": 4,
-        "src": "https://images.unsplash.com/photo-1504851149312-7a075b496cc7?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-        "thumbnail": "https://images.unsplash.com/photo-1504851149312-7a075b496cc7?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
-        "alt": "แคมป์ปิ้ง - พักค้างคืนท่ามกลางธรรมชาติ",
-        "title": "แคมป์ปิ้ง",
-        "description": "พื้นที่กางเต็นท์สำหรับพักค้างคืน",
-        "category": "ที่พัก"
-      },
-      {
-        "id": 5,
-        "src": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-        "thumbnail": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
-        "alt": "รถเอทีวี - ผจญภัยในธรรมชาติ",
-        "title": "รถเอทีวี",
-        "description": "ขับรถเอทีวีสำรวจเส้นทางธรรมชาติ",
-        "category": "กิจกรรม"
-      },
-      {
         "id": 6,
-        "src": "https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-        "thumbnail": "https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
-        "alt": "ทุ่งดอกไม้ - ความงามของธรรมชาติ",
-        "title": "ทุ่งดอกไม้",
-        "description": "ทุ่งดอกไม้สีสันสวยงามตามฤดูกาล",
+        "src": "https://huaytuengthao.com/image/sheep/6.jpg",
+        "thumbnail": "https://huaytuengthao.com/image/sheep/6.jpg",
+        "alt": "ธรรมชาติ 3",
+        "title": "ป่าไผ่",
+        "description": "ป่าไผ่และธรรมชาติรอบอ่างเก็บน้ำ",
+        "category": "ธรรมชาติ"
+      },
+      {
+        "id": 7,
+        "src": "https://huaytuengthao.com/image/sheep/7.jpg",
+        "thumbnail": "https://huaytuengthao.com/image/sheep/7.jpg",
+        "alt": "ธรรมชาติ 4",
+        "title": "ทิวทัศน์",
+        "description": "ทิวทัศน์สวยงามของห้วยตึงเฒ่า",
+        "category": "ธรรมชาติ"
+      },
+      {
+        "id": 8,
+        "src": "https://huaytuengthao.com/image/sheep/8.jpg",
+        "thumbnail": "https://huaytuengthao.com/image/sheep/8.jpg",
+        "alt": "ธรรมชาติ 5",
+        "title": "บรรยากาศ",
+        "description": "บรรยากาศเงียบสงบท่ามกลางธรรมชาติ",
+        "category": "ธรรมชาติ"
+      },
+      {
+        "id": 9,
+        "src": "https://huaytuengthao.com/image/sheep/9.jpg",
+        "thumbnail": "https://huaytuengthao.com/image/sheep/9.jpg",
+        "alt": "ธรรมชาติ 6",
+        "title": "ความสงบ",
+        "description": "ความสงบและความสวยงามของธรรมชาติ",
         "category": "ธรรมชาติ"
       }
     ]

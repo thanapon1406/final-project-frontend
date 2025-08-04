@@ -1,10 +1,11 @@
 {
   "brand": {
-    "logo": "image/LOGO_.png",
+    "logo": "https://huaytuengthao.com/image/LOGO_.png",
     "logoAlt": "logo",
-    "logoWidth": 50,
-    "logoHeight": 50,
+    "logoWidth": 40,
+    "logoHeight": 40,
     "text": "สำนักงานโครงการจัดหมู่บ้านตัวอย่างห้วยตึงเฒ่า อันเนื่องมาจากพระราชดำริ",
+    "shortText": "ห้วยตึงเฒ่า",
     "href": "index.html"
   },
   "brandName": "ห้วยตึงเฒ่า",
@@ -16,6 +17,18 @@
       "active": true
     },
     {
+      "id": "about",
+      "title": "เกี่ยวกับเรา",
+      "url": "index.html#about",
+      "active": false
+    },
+    {
+      "id": "news",
+      "title": "ข่าวสาร",
+      "url": "index.html#news",
+      "active": false
+    },
+    {
       "id": "history",
       "title": "ประวัติ",
       "url": "page-history.html",
@@ -25,18 +38,6 @@
       "id": "service",
       "title": "บริการ",
       "url": "page-services.html",
-      "active": false
-    },
-    {
-      "id": "news",
-      "title": "ข่าวสาร",
-      "url": "page-news.html",
-      "active": false
-    },
-    {
-      "id": "about",
-      "title": "เกี่ยวกับเรา",
-      "url": "#about",
       "active": false
     },
     {

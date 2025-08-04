@@ -1,13 +1,13 @@
 {
-  "copyright": "ห้วยตึงเฒ่า - สำนักงานโครงการจัดหมู่บ้านตัวอย่างห้วยตึงเฒ่า อันเนื่องมาจากพระราชดำริ",
-  "visitorCount": "12,345",
+  "title": "สำนักงานโครงการจัดหมู่บ้านตัวอย่างห้วยตึงเฒ่า อันเนื่องมาจากพระราชดำริ",
+  "copyright": "Copyright © 2021 by ห้วยตึงเฒ่า All rights reserved.",
+  "visitorCount": "123,456",
   "socialMedia": {
-    "facebook": "https://www.facebook.com/huaytuengthao",
-    "fanpage": "https://www.facebook.com/huaytuengthaocm"
+    "facebook": "https://www.facebook.com/huaytuengthao/"
   },
   "contact": {
-    "address": "283 ม.3 ต.ดอนแก้ว อ.แม่ริม จ.เชียงใหม่ 50180",
-    "phone": "053-121119",
+    "address": "ตำบลดอนแก้ว อำเภอแม่ริม จังหวัดเชียงใหม่ 50180",
+    "phone": "053-298-034, 053-298-035",
     "email": "hueytuengtao@hotmail.com"
   },
   "operatingHours": "เปิดให้บริการทุกวัน 06:30 - 18:00 น."

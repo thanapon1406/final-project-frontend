@@ -1,4 +1,23 @@
 {
+  "heroSection": {
+    "title": "พ่อ แม่ ลูก",
+    "subtitle": "ครอบครัวคิงคองแห่งห้วยตึงเฒ่า",
+    "description": "พ่อตึงเฒ่า แม่ขวัญข้าว น้องแรมเพจ ครบทีม พ่อแม่ลูกแห่งห้วยตึงเฒ่า",
+    "image": "https://roijang.com/wp-content/uploads/2023/11/%E0%B8%AB%E0%B9%89%E0%B8%A7%E0%B8%A2%E0%B8%95%E0%B8%B6%E0%B8%87%E0%B9%80%E0%B8%92%E0%B9%88%E0%B8%B2.jpg",
+    "buttons": [
+      {
+        "text": "ประมวลภาพ",
+        "icon": "fas fa-images",
+        "link": "#gallery",
+        "class": "btn btn-outline-primary"
+      }
+    ],
+    "overlay": {
+      "icon": "fas fa-users fa-3x",
+      "title": "ครอบครัวคิงคอง",
+      "description": "พ่อตึงเฒ่า แม่ขวัญข้าว น้องแรมเพจ"
+    }
+  },
   "section": {
     "title": "สิ่งที่น่าสนใจ",
     "subtitle": "ค้นพบสิ่งใหม่ๆ และกิจกรรมที่น่าตื่นเต้นที่ห้วยตึงเฒ่า"
@@ -8,7 +27,7 @@
       "id": 1,
       "title": "หุ่นฟางคิงคอง",
       "description": "ครอบครัวคิงคองยักษ์ พ่อตึงเฒ่า แม่ขวัญข้าว น้องแรมเพจ จุดถ่ายภาพยอดนิยม",
-      "image": "https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+      "image": "https://roijang.com/wp-content/uploads/2023/11/%E0%B8%AB%E0%B9%89%E0%B8%A7%E0%B8%A2%E0%B8%95%E0%B8%B6%E0%B8%87%E0%B9%80%E0%B8%92%E0%B9%88%E0%B8%B2.jpg",
       "link": "#",
       "category": "สถานที่ท่องเที่ยว",
       "featured": true,
@@ -18,7 +37,7 @@
       "id": 2,
       "title": "สถานที่กางเต็นท์",
       "description": "พื้นที่กางเต็นท์ท่ามกลางธรรมชาติ สำหรับผู้ที่ต้องการพักค้างคืนและสัมผัสบรรยากาศยามค่ำคืน",
-      "image": "https://images.unsplash.com/photo-1504851149312-7a075b496cc7?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+      "image": "https://huaytuengthao.com/image/new1.jpg",
       "link": "#",
       "category": "ที่พัก",
       "featured": true,
@@ -58,14 +77,14 @@
       "id": 6,
       "title": "รถเอทีวี",
       "icon": "fas fa-motorcycle",
-      "image": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+      "image": "https://huaytuengthao.com/image/icon-atv.jpg",
       "description": "ขับรถเอทีวีสำรวจธรรมชาติ"
     },
     {
       "id": 7,
       "title": "ซิปไลน์",
       "icon": "fas fa-mountain",
-      "image": "https://images.unsplash.com/photo-1551698618-1dfe5d97d256?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+      "image": "https://huaytuengthao.com/image/icon-zip.jpg",
       "description": "ซิปไลน์ข้ามผืนน้ำ"
     }
   ]
