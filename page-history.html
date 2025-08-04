@@ -1,194 +1,264 @@
 <!DOCTYPE html>
 <html lang="th">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ประวัติ - ห้วยตึงเฒ่า</title>
-    
+
     <!-- Bootstrap 5.3.0 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
     <!-- Thai Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Itim:wght@400;500;600&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Itim:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/style.css">
-    
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-</head>
-<body>
+    <link rel="stylesheet" href="css/style.css" />
+
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  </head>
+  <body>
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark">
-        <div class="container">
-            <a class="navbar-brand" href="index.html">
-                <i class="fas fa-leaf me-2"></i>ห้วยตึงเฒ่า
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html">หน้าหลัก</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="page-history.html">ประวัติ</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="page-services.html">บริการ</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="page-news.html">ข่าวสาร</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html#about">เกี่ยวกับเรา</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="page-contact.html">ติดต่อเรา</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="admin/login.html">เข้าสู่ระบบ</a>
-                    </li>
-                </ul>
-            </div>
+      <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="index.html">
+          <img
+            src="https://huaytuengthao.com/image/LOGO_.png"
+            alt="logo"
+            width="40"
+            height="40"
+            class="me-2"
+            onerror="this.onerror=null;this.src='data:image/svg+xml;charset=UTF-8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2240%22 height=%2240%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%232c3e50%22 rx=%225%22/><text x=%2250%25%22 y=%2250%25%22 font-size=%2214%22 text-anchor=%22middle%22 fill=%22white%22 dy=%22.3em%22>LOGO</text></svg>'"
+          />
+          <span class="d-none d-lg-inline"
+            >สำนักงานโครงการจัดหมู่บ้านตัวอย่างห้วยตึงเฒ่า
+            อันเนื่องมาจากพระราชดำริ</span
+          >
+          <span class="d-lg-none">ห้วยตึงเฒ่า</span>
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">หน้าหลัก</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="index.html#about">เกี่ยวกับเรา</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="page-history.html">ประวัติ</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="page-services.html">บริการ</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="page-news.html">ข่าวสาร</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="page-contact.html">ติดต่อเรา</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="admin/login.html">เข้าสู่ระบบ</a>
+            </li>
+          </ul>
         </div>
+      </div>
     </nav>
 
     <!-- Main content -->
     <main id="main-content">
-        <!-- Hero Section -->
-        <section class="hero-section">
-            <div class="container">
-                <div class="row justify-content-center text-center">
-                    <div class="col-lg-8">
-                        <h1>ประวัติความเป็นมา</h1>
-                        <p>ห้วยตึงเฒ่า อันเนื่องมาจากพระราชดำริ</p>
-                    </div>
-                </div>
+      <!-- Hero Section -->
+      <section class="hero-section">
+        <div class="container">
+          <div class="row justify-content-center text-center">
+            <div class="col-lg-8">
+              <h1>ประวัติความเป็นมา</h1>
+              <p>ห้วยตึงเฒ่า อันเนื่องมาจากพระราชดำริ</p>
             </div>
-        </section>
+          </div>
+        </div>
+      </section>
 
-        <!-- History Content -->
-        <section class="py-5">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 mx-auto">
-                        <div class="card">
-                            <div class="card-body">
-                                <h3 class="text-center mb-4">ประวัติความเป็นมาของห้วยตึงเฒ่า</h3>
-                                
-                                <p><strong>พระราชดำริในการก่อตั้ง</strong></p>
-                                <p>พระบาทสมเด็จพระเจ้าอยู่หัวรัชกาลที่ ๙ ได้ทรงเยี่ยมศูนย์เกษตรกรรมทหาร จังหวัดทหารบกเชียงใหม่ เมื่อวันที่ <strong>13 กุมภาพันธ์ พุทธศักราช 2523</strong> และได้ทรงทราบถึงปัญหาการขาดแคลนน้ำที่ใช้ในการเกษตร</p>
-                                
-                                <p>จึงมีพระราชดำริให้สร้างอ่างเก็บน้ำขนาดความจุ <strong>1.4 ล้านลูกบาศก์เมตร</strong> ที่ตำบลดอนแก้ว อำเภอแม่ริม จังหวัดเชียงใหม่</p>
-                                
-                                <hr class="my-4">
-                                
-                                <p><strong>การแก้ไขปัญหาการบุกรุก</strong></p>
-                                <p>และต่อมาได้ทรงทราบว่าในบริเวณที่สร้างอ่างเก็บน้ำนั้นมีราษฎรบุกรุกพื้นที่เข้ามาอาศัย และทำกิน ซึ่งเป็นพื้นที่ของราชการทหาร จึงได้มีพระราชดำริให้รวบรวมราษฎร ที่บุกรุกพื้นที่ดังกล่าวมาจัดตั้งเป็นหมู่บ้านตัวอย่าง</p>
-                                
-                                <p>โดยกองทัพภาคที่ 3 จึงได้จัดตั้งเป็น <strong>"โครงการจัดหมู่บ้านตัวอย่างห้วยตึงเฒ่า"</strong></p>
-                                
-                                <hr class="my-4">
-                                
-                                <p><strong>การดำเนินการและพัฒนา</strong></p>
-                                <p>เมื่อวันที่ <strong>8 มีนาคม 2530</strong> ให้ มณฑลทหารบกที่ 33 เป็นหน่วยดำเนินการ</p>
-                                
-                                <p>ต่อมา กองทัพบกได้มีนโยบายให้จัดการท่องเที่ยวในหน่วยทหารขึ้น มณฑลทหารบกที่ 33 จึงได้พัฒนาอ่างเก็บน้ำห้วยตึงเฒ่า ให้เกิดประโยชน์สูงสุด ทั้งด้านเกษตรกรรม ทางด้านการท่องเที่ยว รวมทั้งการพักผ่อนหย่อนใจ</p>
-                                
-                                <hr class="my-4">
-                                
-                                <p><strong>การพัฒนาเป็นแหล่งท่องเที่ยว</strong></p>
-                                <p>โดยในปี <strong>2540</strong> อ่างเก็บน้ำห้วยตึงเฒ่า ได้รับงบประมาณจากการท่องเที่ยวแห่งประเทศไทย มาพัฒนาพื้นที่ให้เป็นสถานที่ท่องเทียวที่สมบูรณ์แบบ มีภูมิทัศน์ที่สวยงาม</p>
-                                
-                                <p>มีสิ่งอำนวยความสะดวกครบครัน ท่ามกลางบรรยากาศ ที่เป็นธรรมชาติ ทำให้ได้รับความนิยมจากนักท่องเที่ยว ที่เข้ามาใช้บริการเป็นจำนวนมาก</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+      <!-- History Content -->
+      <section class="py-5">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 mx-auto">
+              <div class="card">
+                <div class="card-body">
+                  <h3 class="text-center mb-4">
+                    ประวัติความเป็นมาของห้วยตึงเฒ่า
+                  </h3>
 
-        <!-- Timeline Section -->
-        <section class="section-bg-gray py-5">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <h3 class="text-center mb-5">เส้นทางประวัติศาสตร์</h3>
-                    </div>
+                  <p><strong>พระราชดำริในการก่อตั้ง</strong></p>
+                  <p>
+                    พระบาทสมเด็จพระเจ้าอยู่หัวรัชกาลที่ ๙
+                    ได้ทรงเยี่ยมศูนย์เกษตรกรรมทหาร จังหวัดทหารบกเชียงใหม่
+                    เมื่อวันที่
+                    <strong>13 กุมภาพันธ์ พุทธศักราช 2523</strong>
+                    และได้ทรงทราบถึงปัญหาการขาดแคลนน้ำที่ใช้ในการเกษตร
+                  </p>
+
+                  <p>
+                    จึงมีพระราชดำริให้สร้างอ่างเก็บน้ำขนาดความจุ
+                    <strong>1.4 ล้านลูกบาศก์เมตร</strong> ที่ตำบลดอนแก้ว
+                    อำเภอแม่ริม จังหวัดเชียงใหม่
+                  </p>
+
+                  <hr class="my-4" />
+
+                  <p><strong>การแก้ไขปัญหาการบุกรุก</strong></p>
+                  <p>
+                    และต่อมาได้ทรงทราบว่าในบริเวณที่สร้างอ่างเก็บน้ำนั้นมีราษฎรบุกรุกพื้นที่เข้ามาอาศัย
+                    และทำกิน ซึ่งเป็นพื้นที่ของราชการทหาร
+                    จึงได้มีพระราชดำริให้รวบรวมราษฎร
+                    ที่บุกรุกพื้นที่ดังกล่าวมาจัดตั้งเป็นหมู่บ้านตัวอย่าง
+                  </p>
+
+                  <p>
+                    โดยกองทัพภาคที่ 3 จึงได้จัดตั้งเป็น
+                    <strong>"โครงการจัดหมู่บ้านตัวอย่างห้วยตึงเฒ่า"</strong>
+                  </p>
+
+                  <hr class="my-4" />
+
+                  <p><strong>การดำเนินการและพัฒนา</strong></p>
+                  <p>
+                    เมื่อวันที่ <strong>8 มีนาคม 2530</strong> ให้ มณฑลทหารบกที่
+                    33 เป็นหน่วยดำเนินการ
+                  </p>
+
+                  <p>
+                    ต่อมา กองทัพบกได้มีนโยบายให้จัดการท่องเที่ยวในหน่วยทหารขึ้น
+                    มณฑลทหารบกที่ 33 จึงได้พัฒนาอ่างเก็บน้ำห้วยตึงเฒ่า
+                    ให้เกิดประโยชน์สูงสุด ทั้งด้านเกษตรกรรม ทางด้านการท่องเที่ยว
+                    รวมทั้งการพักผ่อนหย่อนใจ
+                  </p>
+
+                  <hr class="my-4" />
+
+                  <p><strong>การพัฒนาเป็นแหล่งท่องเที่ยว</strong></p>
+                  <p>
+                    โดยในปี <strong>2540</strong> อ่างเก็บน้ำห้วยตึงเฒ่า
+                    ได้รับงบประมาณจากการท่องเที่ยวแห่งประเทศไทย
+                    มาพัฒนาพื้นที่ให้เป็นสถานที่ท่องเทียวที่สมบูรณ์แบบ
+                    มีภูมิทัศน์ที่สวยงาม
+                  </p>
+
+                  <p>
+                    มีสิ่งอำนวยความสะดวกครบครัน ท่ามกลางบรรยากาศ ที่เป็นธรรมชาติ
+                    ทำให้ได้รับความนิยมจากนักท่องเที่ยว
+                    ที่เข้ามาใช้บริการเป็นจำนวนมาก
+                  </p>
                 </div>
-                <div class="row">
-                    <div class="col-lg-8 mx-auto">
-                        <div class="timeline">
-                            <div class="card mb-4">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <h5 class="text-primary">2523</h5>
-                                        </div>
-                                        <div class="col-md-9">
-                                            <h6>พระราชดำริในการสร้างอ่างเก็บน้ำ</h6>
-                                            <p>พระบาทสมเด็จพระเจ้าอยู่หัวรัชกาลที่ ๙ ทรงเยี่ยมและมีพระราชดำริ</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="card mb-4">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <h5 class="text-primary">2530</h5>
-                                        </div>
-                                        <div class="col-md-9">
-                                            <h6>การจัดตั้งโครงการ</h6>
-                                            <p>มณฑลทหารบกที่ 33 เป็นหน่วยดำเนินการโครงการ</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="card mb-4">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <h5 class="text-primary">2540</h5>
-                                        </div>
-                                        <div class="col-md-9">
-                                            <h6>พัฒนาเป็นแหล่งท่องเที่ยว</h6>
-                                            <p>ได้รับงบประมาณจากการท่องเที่ยวแห่งประเทศไทย</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+              </div>
             </div>
-        </section>
+          </div>
+        </div>
+      </section>
+
+      <!-- Timeline Section -->
+      <section class="section-bg-gray py-5">
+        <div class="container">
+          <div class="row">
+            <div class="col-12">
+              <h3 class="text-center mb-5">เส้นทางประวัติศาสตร์</h3>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-8 mx-auto">
+              <div class="timeline">
+                <div class="card mb-4">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-md-3">
+                        <h5 class="text-primary">2523</h5>
+                      </div>
+                      <div class="col-md-9">
+                        <h6>พระราชดำริในการสร้างอ่างเก็บน้ำ</h6>
+                        <p>
+                          พระบาทสมเด็จพระเจ้าอยู่หัวรัชกาลที่ ๙
+                          ทรงเยี่ยมและมีพระราชดำริ
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="card mb-4">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-md-3">
+                        <h5 class="text-primary">2530</h5>
+                      </div>
+                      <div class="col-md-9">
+                        <h6>การจัดตั้งโครงการ</h6>
+                        <p>มณฑลทหารบกที่ 33 เป็นหน่วยดำเนินการโครงการ</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="card mb-4">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-md-3">
+                        <h5 class="text-primary">2540</h5>
+                      </div>
+                      <div class="col-md-9">
+                        <h6>พัฒนาเป็นแหล่งท่องเที่ยว</h6>
+                        <p>ได้รับงบประมาณจากการท่องเที่ยวแห่งประเทศไทย</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
-    
+
     <!-- Footer -->
     <footer class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8">
-                    <h5>สำนักงานโครงการจัดหมู่บ้านตัวอย่างห้วยตึงเฒ่า อันเนื่องมาจากพระราชดำริ</h5>
-                    <p>Copyright © 2021 by ห้วยตึงเฒ่า All rights reserved.</p>
-                </div>
-                <div class="col-lg-4 text-end">
-                    <p>จำนวนผู้เข้าชม: <strong>123,456</strong> คน</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-line"></i></a>
-                    </div>
-                </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8">
+            <h5>
+              สำนักงานโครงการจัดหมู่บ้านตัวอย่างห้วยตึงเฒ่า
+              อันเนื่องมาจากพระราชดำริ
+            </h5>
+            <p>Copyright © 2021 by ห้วยตึงเฒ่า All rights reserved.</p>
+          </div>
+          <div class="col-lg-4 text-end">
+            <p>จำนวนผู้เข้าชม: <strong>123,456</strong> คน</p>
+            <div class="social-links">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-line"></i></a>
             </div>
+          </div>
         </div>
+      </div>
     </footer>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+  </body>
 </html>
