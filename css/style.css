@@ -145,7 +145,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Carousel */
 .carousel-item img {
-    height: 400px;
+    height: 600px;
     object-fit: cover;
 }
 
@@ -157,7 +157,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* News Marquee */
 .news-marquee {
-    background: var(--accent-color);
+    background: var(--secondary-color);
     color: white;
     padding: 0.5rem 0;
 }
@@ -265,7 +265,7 @@ h1, h2, h3, h4, h5, h6 {
 .feature-icon {
     width: 80px;
     height: 80px;
-    background: var(--accent-color);
+    background: var(--secondary-color);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -294,7 +294,7 @@ h1, h2, h3, h4, h5, h6 {
     transform: scale(1.05);
 }
 
-.gallery-overlay {
+/* .gallery-overlay {
     position: absolute;
     top: 0;
     left: 0;
@@ -307,7 +307,7 @@ h1, h2, h3, h4, h5, h6 {
     justify-content: center;
     opacity: 0;
     transition: opacity 0.3s ease;
-}
+} */
 
 .gallery-item:hover .gallery-overlay {
     opacity: 1;
