@@ -1,114 +1,407 @@
 <!DOCTYPE html>
 <html lang="th">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>หน้าหลัก - ห้วยตึงเฒ่า</title>
-    <!-- Bootstrap 5.1.3 CDN -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome 5.10.0 -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css">
-    <!-- Itim Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>หน้าหลัก - ห้วยตึงเฒ่า | สถานที่ท่องเที่ยวเชิงนิเวศ</title>
+    <meta
+      name="description"
+      content="ห้วยตึงเฒ่า สถานที่ท่องเที่ยวเชิงนิเวศที่สวยงามในจังหวัดเชียงใหม่ พร้อมกิจกรรมหลากหลาย แคมป์ปิ้ง และอาหารท้องถิ่น"
+    />
+    <meta
+      name="keywords"
+      content="ห้วยตึงเฒ่า, เชียงใหม่, ท่องเที่ยว, แคมป์ปิ้ง, ธรรมชาติ"
+    />
+
+    <!-- Open Graph Meta Tags -->
+    <meta
+      property="og:title"
+      content="ห้วยตึงเฒ่า - สถานที่ท่องเที่ยวเชิงนิเวศ"
+    />
+    <meta
+      property="og:description"
+      content="สัมผัสธรรมชาติและอากาศบริสุทธิ์ท่ามกลางภูเขาและป่าไผ่"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://huaytuengthao.com" />
+
+    <!-- Bootstrap 5.3.0 CDN (Latest) -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome 6.4.0 (Latest) -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <!-- Google Fonts - Improved Thai fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Itim:wght@400;500;600&family=Kanit:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="css/style.css" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  </head>
+  <body>
     <!-- Skip to content link for accessibility -->
     <a href="#main-content" class="skip-to-content">ข้ามไปยังเนื้อหาหลัก</a>
-    
+
     <!-- Navigation will be loaded here -->
     <nav id="navigation">
-        <div class="text-center py-3" style="background: #2c3e50; color: white;">
-            <div class="spinner-border text-light" role="status">
-                <span class="visually-hidden">กำลังโหลด...</span>
-            </div>
-            <p class="mt-2 mb-0">กำลังโหลดเมนู...</p>
+      <div class="text-center py-3" style="background: #2c3e50; color: white">
+        <div class="spinner-border text-light" role="status">
+          <span class="visually-hidden">กำลังโหลด...</span>
         </div>
+        <p class="mt-2 mb-0">กำลังโหลดเมนู...</p>
+      </div>
     </nav>
-    
+
     <!-- Carousel will be loaded here -->
     <div id="carousel-container">
-        <div class="text-center py-5" style="background: #f8f9fa;">
-            <div class="spinner-border text-primary" role="status">
-                <span class="visually-hidden">กำลังโหลด...</span>
-            </div>
-            <p class="mt-2 mb-0">กำลังโหลดสไลด์...</p>
+      <div class="text-center py-5" style="background: #f8f9fa">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">กำลังโหลด...</span>
         </div>
+        <p class="mt-2 mb-0">กำลังโหลดสไลด์...</p>
+      </div>
     </div>
-    
+
     <!-- News marquee will be loaded here -->
     <div id="news-marquee"></div>
-    
+
     <!-- Main content -->
-    <main id="main-content" class="container-fluid">
-        <!-- Services section -->
-        <div id="services-section">
-            <div class="text-center py-5">
-                <div class="spinner-border text-primary" role="status">
-                    <span class="visually-hidden">กำลังโหลด...</span>
+    <main id="main-content" class="container-fluid px-0">
+      <!-- Hero Section -->
+      <section class="hero-section" data-aos="fade-up">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-lg-6" data-aos="fade-right">
+              <div class="hero-content">
+                <h1>
+                  ห้วยตึงเฒ่า
+                  <br><small style="color: var(--text-secondary);">สวรรค์แห่งธรรมชาติ</small>
+                </h1>
+                <p>
+                  สัมผัสความงามของธรรมชาติ ท่ามกลางภูเขาและป่าไผ่ที่เชียงใหม่
+                  พร้อมกิจกรรมสนุกสนานสำหรับทุกวัย
+                </p>
+                <div class="hero-buttons">
+                  <a href="#services-section" class="btn btn-primary me-3">
+                    <i class="fas fa-compass me-2"></i>สำรวจบริการ
+                  </a>
+                  <a href="#gallery-section" class="btn btn-outline-primary">
+                    <i class="fas fa-images me-2"></i>ชมภาพ
+                  </a>
                 </div>
-                <p class="mt-2 mb-0">กำลังโหลดบริการ...</p>
+              </div>
             </div>
-        </div>
-        
-        <!-- Featured content -->
-        <div id="featured-content">
-            <div class="text-center py-5 bg-light">
-                <h3>เนื้อหาเด่น</h3>
-                <p>ค้นพบสิ่งใหม่ๆ และกิจกรรมที่น่าตื่นเต้นที่ห้วยตึงเฒ่า</p>
+            <div class="col-lg-6" data-aos="fade-left">
+              <div class="hero-image">
+                <div class="image-container">
+                  <img
+                    src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                    alt="ห้วยตึงเฒ่า"
+                    class="img-fluid"
+                  />
+                  <div class="image-overlay">
+                    <div class="image-overlay-text">
+                      <i class="fas fa-leaf"></i><br />
+                      ธรรมชาติบริสุทธิ์
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
+          </div>
         </div>
-        
-        <!-- News and updates -->
-        <div id="news-updates">
-            <div class="text-center py-5">
-                <h3>ข่าวสารและอัปเดต</h3>
-                <p>ติดตามข่าวสารและกิจกรรมใหม่ๆ</p>
+      </section>
+
+      <!-- Services section -->
+      <div id="services-section">
+        <div class="text-center py-5">
+          <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">กำลังโหลด...</span>
+          </div>
+          <p class="mt-2 mb-0">กำลังโหลดบริการ...</p>
+        </div>
+      </div>
+
+      <!-- Features Section -->
+      <section class="features-section py-5" data-aos="fade-up">
+        <div class="container">
+          <div class="row text-center mb-5">
+            <div class="col-12">
+              <h2 class="section-title">ทำไมต้องเลือกห้วยตึงเฒ่า</h2>
+              <p class="section-subtitle">จุดเด่นที่ทำให้เราพิเศษ</p>
             </div>
-        </div>
-        
-        <!-- Gallery section -->
-        <div id="gallery-section">
-            <div class="text-center py-5 bg-light">
-                <h3>ประมวลภาพ</h3>
-                <p>ชมภาพบรรยากาศและกิจกรรมต่างๆ ที่ห้วยตึงเฒ่า</p>
+          </div>
+          <div class="row g-4">
+            <div
+              class="col-lg-4 col-md-6"
+              data-aos="fade-up"
+              data-aos-delay="100"
+            >
+              <div class="feature-card text-center">
+                <div class="feature-icon">
+                  <i class="fas fa-leaf"></i>
+                </div>
+                <h4>ธรรมชาติบริสุทธิ์</h4>
+                <p>อากาศบริสุทธิ์และสภาพแวดล้อมที่ยังคงความเป็นธรรมชาติ</p>
+              </div>
             </div>
+            <div
+              class="col-lg-4 col-md-6"
+              data-aos="fade-up"
+              data-aos-delay="200"
+            >
+              <div class="feature-card text-center">
+                <div class="feature-icon">
+                  <i class="fas fa-users"></i>
+                </div>
+                <h4>เหมาะสำหรับครอบครัว</h4>
+                <p>กิจกรรมและสิ่งอำนวยความสะดวกสำหรับทุกวัย</p>
+              </div>
+            </div>
+            <div
+              class="col-lg-4 col-md-6"
+              data-aos="fade-up"
+              data-aos-delay="300"
+            >
+              <div class="feature-card text-center">
+                <div class="feature-icon">
+                  <i class="fas fa-heart"></i>
+                </div>
+                <h4>บริการใส่ใจ</h4>
+                <p>ทีมงานที่พร้อมให้บริการด้วยใจและความเป็นมิตร</p>
+              </div>
+            </div>
+          </div>
         </div>
+      </section>
+
+      <!-- Gallery Preview Section -->
+      <section
+        id="gallery-section"
+        class="section-bg-gray py-5"
+        data-aos="fade-up"
+      >
+        <div class="container">
+          <div class="row text-center mb-5">
+            <div class="col-12">
+              <h2 class="section-title">ประมวลภาพ</h2>
+              <p class="section-subtitle">
+                ชมภาพบรรยากาศและกิจกรรมต่างๆ ที่ห้วยตึงเฒ่า
+              </p>
+            </div>
+          </div>
+          <div class="gallery-grid">
+            <div class="gallery-item-enhanced" data-aos="zoom-in" data-aos-delay="100"></div>
+              <img
+                src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                alt="ธรรมชาติ"
+              />
+              <div class="gallery-overlay-enhanced">
+                <h5>ธรรมชาติสวยงาม</h5>
+                <p>สัมผัสความงามของธรรมชาติอันบริสุทธิ์</p>
+              </div>
+            </div>
+            <div class="gallery-item-enhanced" data-aos="zoom-in" data-aos-delay="200">
+              <img
+                src="https://images.unsplash.com/photo-1500595046743-cd271d694d30?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                alt="กิจกรรม"
+              />
+              <div class="gallery-overlay-enhanced">
+                <h5>กิจกรรมสนุกสนาน</h5>
+                <p>กิจกรรมหลากหลายสำหรับทุกวัย</p>
+              </div>
+            </div>
+            <div
+              class="gallery-item-enhanced float-element"
+              data-aos="zoom-in"
+              data-aos-delay="300"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                alt="แคมป์ปิ้ง"
+              />
+              <div class="gallery-overlay-enhanced">
+                <h5>แคมป์ปิ้ง</h5>
+                <p>พื้นที่แคมป์ปิ้งท่ามกลางธรรมชาติ</p>
+              </div>
+            </div>
+            <div
+              class="gallery-item-enhanced"
+              data-aos="zoom-in"
+              data-aos-delay="400"
+            >
+              <div class="default-image style-1">
+                <div class="default-image-text">
+                  <i class="fas fa-utensils"></i>
+                  ร้านอาหารท้องถิ่น
+                  <small>รสชาติอร่อย ราคาเป็นมิตร</small>
+                </div>
+              </div>
+            </div>
+            <div
+              class="gallery-item-enhanced"
+              data-aos="zoom-in"
+              data-aos-delay="500"
+            >
+              <div class="default-image style-2">
+                <div class="default-image-text">
+                  <i class="fas fa-bicycle"></i>
+                  ปั่นจักรยาน
+                  <small>เส้นทางชมธรรมชาติ</small>
+                </div>
+              </div>
+            </div>
+            <div
+              class="gallery-item-enhanced"
+              data-aos="zoom-in"
+              data-aos-delay="600"
+            >
+              <div class="default-image style-3">
+                <div class="default-image-text">
+                  <i class="fas fa-camera"></i>
+                  จุดถ่ายภาพ
+                  <small>มุมสวยงามมากมาย</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- News and updates -->
+      <section id="news-updates" class="news-section py-5" data-aos="fade-up">
+        <div class="container">
+          <div class="row text-center mb-5">
+            <div class="col-12">
+              <h2 class="section-title">ข่าวสารและอัปเดต</h2>
+              <p class="section-subtitle">ติดตามข่าวสารและกิจกรรมใหม่ๆ</p>
+            </div>
+          </div>
+          <div class="row g-4">
+            <div
+              class="col-lg-4 col-md-6"
+              data-aos="fade-up"
+              data-aos-delay="100"
+            >
+              <div class="news-card">
+                <div class="news-date">
+                  <span class="day">15</span>
+                  <span class="month">ม.ค.</span>
+                </div>
+                <h5>เปิดให้บริการแล้ว!</h5>
+                <p>
+                  ห้วยตึงเฒ่าเปิดให้บริการอย่างเป็นทางการแล้ว
+                  พร้อมกิจกรรมและสิ่งอำนวยความสะดวกครบครัน
+                </p>
+                <a href="#" class="btn btn-sm btn-outline-primary">อ่านต่อ</a>
+              </div>
+            </div>
+            <div
+              class="col-lg-4 col-md-6"
+              data-aos="fade-up"
+              data-aos-delay="200"
+            >
+              <div class="news-card">
+                <div class="news-date">
+                  <span class="day">20</span>
+                  <span class="month">ม.ค.</span>
+                </div>
+                <h5>กิจกรรมพิเศษ</h5>
+                <p>จัดกิจกรรมพิเศษสำหรับครอบครัว พร้อมโปรโมชั่นสุดพิเศษ</p>
+                <a href="#" class="btn btn-sm btn-outline-primary">อ่านต่อ</a>
+              </div>
+            </div>
+            <div
+              class="col-lg-4 col-md-6"
+              data-aos="fade-up"
+              data-aos-delay="300"
+            >
+              <div class="news-card">
+                <div class="news-date">
+                  <span class="day">25</span>
+                  <span class="month">ม.ค.</span>
+                </div>
+                <h5>ขยายพื้นที่บริการ</h5>
+                <p>
+                  เพิ่มพื้นที่แคมป์ปิ้งและจุดถ่ายภาพใหม่
+                  เพื่อรองรับนักท่องเที่ยวมากขึ้น
+                </p>
+                <a href="#" class="btn btn-sm btn-outline-primary">อ่านต่อ</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA Section -->
+      <section class="cta-section py-5" data-aos="fade-up">
+        <div class="container">
+          <div class="row justify-content-center text-center">
+            <div class="col-lg-8">
+              <div class="cta-content">
+                <h2 class="text-white mb-4">
+                  พร้อมสำหรับการผจญภัยแล้วหรือยัง?
+                </h2>
+                <p class="text-white-50 mb-4">
+                  มาสัมผัสประสบการณ์ที่ไม่เหมือนใครที่ห้วยตึงเฒ่า
+                </p>
+                <a href="page-contact.html" class="btn btn-light btn-lg">
+                  <i class="fas fa-phone me-2"></i>ติดต่อเรา
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
-    
+
     <!-- Footer will be loaded here -->
     <footer id="footer">
-        <div class="text-center py-3" style="background: #2c3e50; color: white;">
-            <div class="spinner-border text-light" role="status">
-                <span class="visually-hidden">กำลังโหลด...</span>
-            </div>
-            <p class="mt-2 mb-0">กำลังโหลดส่วนท้าย...</p>
+      <div class="text-center py-3" style="background: #2c3e50; color: white">
+        <div class="spinner-border text-light" role="status">
+          <span class="visually-hidden">กำลังโหลด...</span>
         </div>
+        <p class="mt-2 mb-0">กำลังโหลดส่วนท้าย...</p>
+      </div>
     </footer>
-    
+
     <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
     <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- AOS Animation -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
     <!-- Embedded JavaScript - Homepage -->
     <script>
-        // Homepage JavaScript - Embedded Version
-        console.log('🚀 Loading homepage...');
+      // Homepage JavaScript - Embedded Version
+      console.log("🚀 Loading homepage...");
 
-        // Global error prevention
-        window.safeGet = function(obj, path, defaultValue = null) {
-            try {
-                return path.split('.').reduce((current, key) => current?.[key], obj) ?? defaultValue;
-            } catch {
-                return defaultValue;
-            }
-        };
+      // Global error prevention
+      window.safeGet = function (obj, path, defaultValue = null) {
+        try {
+          return (
+            path.split(".").reduce((current, key) => current?.[key], obj) ??
+            defaultValue
+          );
+        } catch {
+          return defaultValue;
+        }
+      };
 
-        // Generate placeholder SVG
-        function generatePlaceholderSVG(text) {
-            const svg = `
+      // Generate placeholder SVG
+      function generatePlaceholderSVG(text) {
+        const svg = `
                 <svg width="1200" height="500" xmlns="http://www.w3.org/2000/svg">
                     <rect width="100%" height="100%" fill="#4a90e2"/>
                     <text x="50%" y="50%" text-anchor="middle" dy=".3em" fill="white" font-family="Arial" font-size="48">
@@ -116,44 +409,50 @@
                     </text>
                 </svg>
             `;
-            return 'data:image/svg+xml;base64,' + btoa(unescape(encodeURIComponent(svg)));
-        }
+        return (
+          "data:image/svg+xml;base64," + btoa(unescape(encodeURIComponent(svg)))
+        );
+      }
 
-        // Load navigation
-        function loadNavigation() {
-            console.log('🧭 Loading navigation...');
-            
-            $.getJSON('data/navigation.json')
-                .done(function(data) {
-                    console.log('✅ Navigation data loaded');
-                    renderNavigation(data);
-                })
-                .fail(function(xhr, status, error) {
-                    console.warn('⚠️ Navigation load failed:', status, error);
-                    renderFallbackNavigation();
-                });
-        }
+      // Load navigation
+      function loadNavigation() {
+        console.log("🧭 Loading navigation...");
 
-        function renderNavigation(data) {
-            try {
-                const brandName = safeGet(data, 'brandName', 'ห้วยตึงเฒ่า');
-                const menuItems = safeGet(data, 'menuItems', []);
-                
-                let menuHTML = '';
-                if (Array.isArray(menuItems)) {
-                    menuHTML = menuItems.map(item => {
-                        const isActive = item.id === 'home';
-                        return `
+        $.getJSON("data/navigation.json")
+          .done(function (data) {
+            console.log("✅ Navigation data loaded");
+            renderNavigation(data);
+          })
+          .fail(function (xhr, status, error) {
+            console.warn("⚠️ Navigation load failed:", status, error);
+            renderFallbackNavigation();
+          });
+      }
+
+      function renderNavigation(data) {
+        try {
+          const brandName = safeGet(data, "brandName", "ห้วยตึงเฒ่า");
+          const menuItems = safeGet(data, "menuItems", []);
+
+          let menuHTML = "";
+          if (Array.isArray(menuItems)) {
+            menuHTML = menuItems
+              .map((item) => {
+                const isActive = item.id === "home";
+                return `
                             <li class="nav-item">
-                                <a class="nav-link ${isActive ? 'active' : ''}" href="${item.url || '#'}">
-                                    ${item.title || 'Menu'}
+                                <a class="nav-link ${
+                                  isActive ? "active" : ""
+                                }" href="${item.url || "#"}">
+                                    ${item.title || "Menu"}
                                 </a>
                             </li>
                         `;
-                    }).join('');
-                }
-                
-                const navHTML = `
+              })
+              .join("");
+          }
+
+          const navHTML = `
                     <nav class="navbar navbar-expand-lg navbar-dark" style="background: linear-gradient(135deg, #2c3e50, #34495e); box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
                         <div class="container-fluid">
                             <a class="navbar-brand" href="index.html" style="font-weight: 600; color: white;">
@@ -184,20 +483,19 @@
                         }
                     </style>
                 `;
-                
-                $('#navigation').html(navHTML);
-                console.log('✅ Navigation rendered successfully');
-                
-            } catch (error) {
-                console.error('❌ Navigation render error:', error);
-                renderFallbackNavigation();
-            }
-        }
 
-        function renderFallbackNavigation() {
-            console.log('🔄 Rendering fallback navigation...');
-            
-            const fallbackHTML = `
+          $("#navigation").html(navHTML);
+          console.log("✅ Navigation rendered successfully");
+        } catch (error) {
+          console.error("❌ Navigation render error:", error);
+          renderFallbackNavigation();
+        }
+      }
+
+      function renderFallbackNavigation() {
+        console.log("🔄 Rendering fallback navigation...");
+
+        const fallbackHTML = `
                 <nav class="navbar navbar-expand-lg navbar-dark" style="background: linear-gradient(135deg, #2c3e50, #34495e);">
                     <div class="container-fluid">
                         <a class="navbar-brand" href="index.html" style="color: white;">
@@ -218,66 +516,77 @@
                     </div>
                 </nav>
             `;
-            
-            $('#navigation').html(fallbackHTML);
-        }
 
-        // Load carousel
-        function loadCarousel() {
-            console.log('🎠 Loading carousel...');
-            
-            $.getJSON('data/homepage-carousel.json')
-                .done(function(data) {
-                    console.log('✅ Carousel data loaded');
-                    renderCarousel(data);
-                })
-                .fail(function(xhr, status, error) {
-                    console.warn('⚠️ Carousel load failed:', status, error);
-                    renderEmptyCarousel();
-                });
-        }
+        $("#navigation").html(fallbackHTML);
+      }
 
-        function renderCarousel(data) {
-            try {
-                const slides = safeGet(data, 'slides', []);
-                const controls = safeGet(data, 'controls', {});
-                
-                if (!Array.isArray(slides) || slides.length === 0) {
-                    renderEmptyCarousel();
-                    return;
-                }
-                
-                let slidesHTML = '';
-                let indicatorsHTML = '';
-                
-                slides.forEach((slide, index) => {
-                    const title = slide.title || `สไลด์ที่ ${index + 1}`;
-                    const description = slide.description || '';
-                    const imageSrc = slide.image || slide.backgroundImage || generatePlaceholderSVG(title);
-                    
-                    indicatorsHTML += `
+      // Load carousel
+      function loadCarousel() {
+        console.log("🎠 Loading carousel...");
+
+        $.getJSON("data/homepage-carousel.json")
+          .done(function (data) {
+            console.log("✅ Carousel data loaded");
+            renderCarousel(data);
+          })
+          .fail(function (xhr, status, error) {
+            console.warn("⚠️ Carousel load failed:", status, error);
+            renderEmptyCarousel();
+          });
+      }
+
+      function renderCarousel(data) {
+        try {
+          const slides = safeGet(data, "slides", []);
+          const controls = safeGet(data, "controls", {});
+
+          if (!Array.isArray(slides) || slides.length === 0) {
+            renderEmptyCarousel();
+            return;
+          }
+
+          let slidesHTML = "";
+          let indicatorsHTML = "";
+
+          slides.forEach((slide, index) => {
+            const title = slide.title || `สไลด์ที่ ${index + 1}`;
+            const description = slide.description || "";
+            const imageSrc =
+              slide.image ||
+              slide.backgroundImage ||
+              generatePlaceholderSVG(title);
+
+            indicatorsHTML += `
                         <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="${index}" 
-                                ${index === 0 ? 'class="active"' : ''} aria-label="Slide ${index + 1}"></button>
+                                ${
+                                  index === 0 ? 'class="active"' : ""
+                                } aria-label="Slide ${index + 1}"></button>
                     `;
-                    
-                    slidesHTML += `
-                        <div class="carousel-item ${index === 0 ? 'active' : ''}">
+
+            slidesHTML += `
+                        <div class="carousel-item ${
+                          index === 0 ? "active" : ""
+                        }">
                             <img src="${imageSrc}" 
                                  class="d-block w-100" 
                                  alt="${title}" 
                                  style="height: 500px; object-fit: cover;"
-                                 onerror="this.src='${generatePlaceholderSVG(title)}';">
+                                 onerror="this.src='${generatePlaceholderSVG(
+                                   title
+                                 )}';">
                             <div class="carousel-caption d-none d-md-block">
                                 <h5>${title}</h5>
                                 <p>${description}</p>
                             </div>
                         </div>
                     `;
-                });
-                
-                const carouselHTML = `
+          });
+
+          const carouselHTML = `
                     <div class="container-fluid px-0">
-                        <div id="mainCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="${controls.interval || 5000}">
+                        <div id="mainCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="${
+                          controls.interval || 5000
+                        }">
                             <div class="carousel-indicators">
                                 ${indicatorsHTML}
                             </div>
@@ -295,20 +604,19 @@
                         </div>
                     </div>
                 `;
-                
-                $('#carousel-container').html(carouselHTML);
-                console.log('✅ Carousel rendered successfully');
-                
-            } catch (error) {
-                console.error('❌ Carousel render error:', error);
-                renderEmptyCarousel();
-            }
-        }
 
-        function renderEmptyCarousel() {
-            console.log('🔄 Rendering empty carousel...');
-            
-            const emptyHTML = `
+          $("#carousel-container").html(carouselHTML);
+          console.log("✅ Carousel rendered successfully");
+        } catch (error) {
+          console.error("❌ Carousel render error:", error);
+          renderEmptyCarousel();
+        }
+      }
+
+      function renderEmptyCarousel() {
+        console.log("🔄 Rendering empty carousel...");
+
+        const emptyHTML = `
                 <div class="container-fluid px-0">
                     <div style="height: 400px; background: linear-gradient(135deg, #f8f9fa, #e9ecef); display: flex; align-items: center; justify-content: center;">
                         <div class="text-center text-muted">
@@ -319,41 +627,45 @@
                     </div>
                 </div>
             `;
-            
-            $('#carousel-container').html(emptyHTML);
-        }
 
-        // Load news marquee
-        function loadNewsMarquee() {
-            console.log('📢 Loading news marquee...');
-            
-            $.getJSON('data/homepage-news.json')
-                .done(function(data) {
-                    console.log('✅ News marquee data loaded');
-                    renderNewsMarquee(data);
-                })
-                .fail(function(xhr, status, error) {
-                    console.warn('⚠️ News marquee load failed:', status, error);
-                    // Skip marquee if failed
-                });
-        }
+        $("#carousel-container").html(emptyHTML);
+      }
 
-        function renderNewsMarquee(data) {
-            try {
-                const announcements = safeGet(data, 'announcements', []);
-                
-                if (!Array.isArray(announcements) || announcements.length === 0) {
-                    return;
-                }
-                
-                const activeAnnouncements = announcements.filter(item => item.active);
-                if (activeAnnouncements.length === 0) {
-                    return;
-                }
-                
-                const marqueeText = activeAnnouncements.map(item => item.text || '').join(' • ');
-                
-                const marqueeHTML = `
+      // Load news marquee
+      function loadNewsMarquee() {
+        console.log("📢 Loading news marquee...");
+
+        $.getJSON("data/homepage-news.json")
+          .done(function (data) {
+            console.log("✅ News marquee data loaded");
+            renderNewsMarquee(data);
+          })
+          .fail(function (xhr, status, error) {
+            console.warn("⚠️ News marquee load failed:", status, error);
+            // Skip marquee if failed
+          });
+      }
+
+      function renderNewsMarquee(data) {
+        try {
+          const announcements = safeGet(data, "announcements", []);
+
+          if (!Array.isArray(announcements) || announcements.length === 0) {
+            return;
+          }
+
+          const activeAnnouncements = announcements.filter(
+            (item) => item.active
+          );
+          if (activeAnnouncements.length === 0) {
+            return;
+          }
+
+          const marqueeText = activeAnnouncements
+            .map((item) => item.text || "")
+            .join(" • ");
+
+          const marqueeHTML = `
                     <div style="background: linear-gradient(135deg, #e74c3c, #c0392b); color: white; padding: 10px 0; overflow: hidden;">
                         <div class="container-fluid">
                             <div style="white-space: nowrap; animation: marquee 30s linear infinite;">
@@ -368,36 +680,35 @@
                         }
                     </style>
                 `;
-                
-                $('#news-marquee').html(marqueeHTML);
-                console.log('✅ News marquee rendered successfully');
-                
-            } catch (error) {
-                console.error('❌ News marquee render error:', error);
-            }
-        }
 
-        // Load footer
-        function loadFooter() {
-            console.log('🦶 Loading footer...');
-            
-            $.getJSON('data/footer.json')
-                .done(function(data) {
-                    console.log('✅ Footer data loaded');
-                    renderFooter(data);
-                })
-                .fail(function(xhr, status, error) {
-                    console.warn('⚠️ Footer load failed:', status, error);
-                    renderFallbackFooter();
-                });
+          $("#news-marquee").html(marqueeHTML);
+          console.log("✅ News marquee rendered successfully");
+        } catch (error) {
+          console.error("❌ News marquee render error:", error);
         }
+      }
 
-        function renderFooter(data) {
-            try {
-                const copyright = safeGet(data, 'copyright', 'ห้วยตึงเฒ่า');
-                const visitorCount = safeGet(data, 'visitorCount', '0');
-                
-                const footerHTML = `
+      // Load footer
+      function loadFooter() {
+        console.log("🦶 Loading footer...");
+
+        $.getJSON("data/footer.json")
+          .done(function (data) {
+            console.log("✅ Footer data loaded");
+            renderFooter(data);
+          })
+          .fail(function (xhr, status, error) {
+            console.warn("⚠️ Footer load failed:", status, error);
+            renderFallbackFooter();
+          });
+      }
+
+      function renderFooter(data) {
+        try {
+          const copyright = safeGet(data, "copyright", "ห้วยตึงเฒ่า");
+          const visitorCount = safeGet(data, "visitorCount", "0");
+
+          const footerHTML = `
                     <div style="background: #2c3e50; color: white; padding: 2rem 0; margin-top: 3rem;">
                         <div class="container">
                             <div class="row">
@@ -411,20 +722,19 @@
                         </div>
                     </div>
                 `;
-                
-                $('#footer').html(footerHTML);
-                console.log('✅ Footer rendered successfully');
-                
-            } catch (error) {
-                console.error('❌ Footer render error:', error);
-                renderFallbackFooter();
-            }
-        }
 
-        function renderFallbackFooter() {
-            console.log('🔄 Rendering fallback footer...');
-            
-            const fallbackHTML = `
+          $("#footer").html(footerHTML);
+          console.log("✅ Footer rendered successfully");
+        } catch (error) {
+          console.error("❌ Footer render error:", error);
+          renderFallbackFooter();
+        }
+      }
+
+      function renderFallbackFooter() {
+        console.log("🔄 Rendering fallback footer...");
+
+        const fallbackHTML = `
                 <div style="background: #2c3e50; color: white; padding: 2rem 0; margin-top: 3rem;">
                     <div class="container">
                         <div class="row">
@@ -438,49 +748,62 @@
                     </div>
                 </div>
             `;
-            
-            $('#footer').html(fallbackHTML);
-        }
 
-        // Load homepage services
-        function loadHomepageServices() {
-            console.log('🛠️ Loading homepage services...');
-            
-            $.getJSON('data/homepage-services.json')
-                .done(function(data) {
-                    console.log('✅ Homepage services data loaded');
-                    renderHomepageServices(data);
-                })
-                .fail(function(xhr, status, error) {
-                    console.warn('⚠️ Homepage services load failed:', status, error);
-                    renderFallbackServices();
-                });
-        }
+        $("#footer").html(fallbackHTML);
+      }
 
-        function renderHomepageServices(data) {
-            try {
-                const section = safeGet(data, 'section', {});
-                const services = safeGet(data, 'services', []);
-                
-                const sectionTitle = safeGet(section, 'title', 'บริการของเรา');
-                const sectionSubtitle = safeGet(section, 'subtitle', 'บริการและสิ่งอำนวยความสะดวกที่ห้วยตึงเฒ่า');
-                
-                let servicesHTML = '';
-                if (Array.isArray(services)) {
-                    servicesHTML = services.slice(0, 6).map(service => `
+      // Load homepage services
+      function loadHomepageServices() {
+        console.log("🛠️ Loading homepage services...");
+
+        $.getJSON("data/homepage-services.json")
+          .done(function (data) {
+            console.log("✅ Homepage services data loaded");
+            renderHomepageServices(data);
+          })
+          .fail(function (xhr, status, error) {
+            console.warn("⚠️ Homepage services load failed:", status, error);
+            renderFallbackServices();
+          });
+      }
+
+      function renderHomepageServices(data) {
+        try {
+          const section = safeGet(data, "section", {});
+          const services = safeGet(data, "services", []);
+
+          const sectionTitle = safeGet(section, "title", "บริการของเรา");
+          const sectionSubtitle = safeGet(
+            section,
+            "subtitle",
+            "บริการและสิ่งอำนวยความสะดวกที่ห้วยตึงเฒ่า"
+          );
+
+          let servicesHTML = "";
+          if (Array.isArray(services)) {
+            servicesHTML = services
+              .slice(0, 6)
+              .map(
+                (service) => `
                         <div class="col-lg-4 col-md-6 mb-4">
                             <div class="service-card h-100" style="background: white; border-radius: 12px; padding: 2rem; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border: none; transition: all 0.3s ease;">
                                 <div class="service-icon" style="width: 80px; height: 80px; background: linear-gradient(135deg, #4a90e2, #357abd); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; color: white; font-size: 2rem;">
-                                    <i class="${service.icon || 'fas fa-cog'}"></i>
+                                    <i class="${
+                                      service.icon || "fas fa-cog"
+                                    }"></i>
                                 </div>
-                                <h4>${service.title || 'บริการ'}</h4>
-                                <p>${service.description || 'คำอธิบายบริการ'}</p>
+                                <h4>${service.title || "บริการ"}</h4>
+                                <p>${
+                                  service.description || "คำอธิบายบริการ"
+                                }</p>
                             </div>
                         </div>
-                    `).join('');
-                }
-                
-                const fullHTML = `
+                    `
+              )
+              .join("");
+          }
+
+          const fullHTML = `
                     <section class="services-section py-5">
                         <div class="container">
                             <div class="row text-center mb-5">
@@ -501,20 +824,19 @@
                         }
                     </style>
                 `;
-                
-                $('#services-section').html(fullHTML);
-                console.log('✅ Homepage services rendered successfully');
-                
-            } catch (error) {
-                console.error('❌ Homepage services render error:', error);
-                renderFallbackServices();
-            }
-        }
 
-        function renderFallbackServices() {
-            console.log('🔄 Rendering fallback services...');
-            
-            const fallbackHTML = `
+          $("#services-section").html(fullHTML);
+          console.log("✅ Homepage services rendered successfully");
+        } catch (error) {
+          console.error("❌ Homepage services render error:", error);
+          renderFallbackServices();
+        }
+      }
+
+      function renderFallbackServices() {
+        console.log("🔄 Rendering fallback services...");
+
+        const fallbackHTML = `
                 <section class="services-section py-5">
                     <div class="container">
                         <div class="row text-center mb-5">
@@ -555,27 +877,61 @@
                     </div>
                 </section>
             `;
-            
-            $('#services-section').html(fallbackHTML);
-        }
 
-        // Initialize homepage
-        $(document).ready(function() {
-            console.log('✅ Homepage ready - initializing...');
-            
-            try {
-                loadNavigation();
-                loadCarousel();
-                loadNewsMarquee();
-                loadFooter();
-                loadHomepageServices();
-                console.log('✅ Homepage initialized successfully');
-            } catch (error) {
-                console.error('❌ Homepage initialization failed:', error);
+        $("#services-section").html(fallbackHTML);
+      }
+
+      // Initialize homepage
+      $(document).ready(function () {
+        console.log("✅ Homepage ready - initializing...");
+
+        try {
+          // Initialize AOS animations
+          AOS.init({
+            duration: 800,
+            easing: "ease-in-out",
+            once: true,
+            offset: 100,
+          });
+
+          loadNavigation();
+          loadCarousel();
+          loadNewsMarquee();
+          loadFooter();
+          loadHomepageServices();
+
+          // Smooth scrolling for anchor links
+          $('a[href^="#"]').on("click", function (event) {
+            var target = $(this.getAttribute("href"));
+            if (target.length) {
+              event.preventDefault();
+              $("html, body")
+                .stop()
+                .animate(
+                  {
+                    scrollTop: target.offset().top - 80,
+                  },
+                  1000
+                );
             }
-        });
+          });
 
-        console.log('✅ Homepage JavaScript loaded successfully');
+          // Navbar scroll effect
+          $(window).scroll(function () {
+            if ($(this).scrollTop() > 50) {
+              $(".navbar").addClass("scrolled");
+            } else {
+              $(".navbar").removeClass("scrolled");
+            }
+          });
+
+          console.log("✅ Homepage initialized successfully");
+        } catch (error) {
+          console.error("❌ Homepage initialization failed:", error);
+        }
+      });
+
+      console.log("✅ Homepage JavaScript loaded successfully");
     </script>
-</body>
+  </body>
 </html>

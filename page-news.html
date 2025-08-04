@@ -3,15 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ข่าวสาร - ห้วยตึงเฒ่า</title>
-    <!-- Bootstrap 5.1.3 CDN -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome 5.10.0 -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css">
-    <!-- Itim Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">
+    <title>ข่าวสาร - ห้วยตึงเฒ่า | สถานที่ท่องเที่ยวเชิงนิเวศ</title>
+    <meta name="description" content="ข่าวสารและกิจกรรมใหม่ๆ ของห้วยตึงเฒ่า ติดตามข้อมูลการท่องเที่ยวและโปรโมชั่นพิเศษ">
+    
+    <!-- Bootstrap 5.3.0 CDN (Latest) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome 6.4.0 (Latest) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Itim:wght@400;500;600&family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
 </head>
 <body>
     <!-- Skip to content link for accessibility -->
@@ -27,18 +34,81 @@
     <div id="news-marquee"></div>
     
     <!-- Main content -->
-    <main id="main-content" class="container-fluid">
+    <main id="main-content" class="container-fluid px-0">
+        <!-- Hero Section -->
+        <section class="hero-section" data-aos="fade-up">
+            <div class="container">
+                <div class="row justify-content-center text-center">
+                    <div class="col-lg-8">
+                        <h1>ข่าวสาร</h1>
+                        <p>ข่าวสารและกิจกรรมใหม่ๆ ของห้วยตึงเฒ่า<br>
+                        ติดตามความเคลื่อนไหวและกิจกรรมพิเศษ</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- News content -->
         <div id="news-content"></div>
+        
+        <!-- Featured News Section -->
+        <section class="featured-news-section section-bg-gray py-5" data-aos="fade-up">
+            <div class="container">
+                <div class="row text-center mb-5">
+                    <div class="col-12">
+                        <h2 class="section-title">ข่าวเด่น</h2>
+                        <p class="section-subtitle">ข่าวสารที่น่าสนใจและกิจกรรมพิเศษ</p>
+                    </div>
+                </div>
+                <div class="row g-4">
+                    <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+                        <div class="news-card">
+                            <div class="news-image mb-3">
+                                <img src="https://images.unsplash.com/photo-1500595046743-cd271d694d30?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                                     alt="กิจกรรมพิเศษ" class="img-fluid">
+                            </div>
+                            <div class="news-content">
+                                <div class="news-meta">
+                                    <span class="news-date"><i class="fas fa-calendar"></i> 25 มกราคม 2025</span>
+                                    <span class="news-category">กิจกรรม</span>
+                                </div>
+                                <h4>เปิดกิจกรรมพิเศษสำหรับครอบครัว</h4>
+                                <p>จัดกิจกรรมพิเศษสำหรับครอบครัวในช่วงวันหยุดยาว พร้อมโปรโมชั่นสุดพิเศษ</p>
+                                <a href="#" class="btn btn-outline-primary btn-sm">อ่านต่อ</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+                        <div class="news-card">
+                            <div class="news-image mb-3">
+                                <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                                     alt="ขยายพื้นที่" class="img-fluid">
+                            </div>
+                            <div class="news-content">
+                                <div class="news-meta">
+                                    <span class="news-date"><i class="fas fa-calendar"></i> 20 มกราคม 2025</span>
+                                    <span class="news-category">พัฒนา</span>
+                                </div>
+                                <h4>ขยายพื้นที่บริการและจุดถ่ายภาพใหม่</h4>
+                                <p>เพิ่มพื้นที่แคมป์ปิ้งและจุดถ่ายภาพใหม่ เพื่อรองรับนักท่องเที่ยวมากขึ้น</p>
+                                <a href="#" class="btn btn-outline-primary btn-sm">อ่านต่อ</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
     
     <!-- Footer will be loaded here -->
     <footer id="footer"></footer>
     
     <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
     <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- AOS Animation -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     
     <!-- Embedded JavaScript - News Page -->
     <script>
@@ -243,33 +313,35 @@
                 
                 let newsHTML = '';
                 if (Array.isArray(news)) {
-                    newsHTML = news.map(item => `
-                        <div class="col-lg-6 mb-4">
-                            <div class="card h-100">
-                                <div class="card-body">
-                                    <div class="d-flex justify-content-between align-items-start mb-2">
-                                        <h5 class="card-title">${item.title || 'ข่าวสาร'}</h5>
-                                        <small class="text-muted">${item.date || 'ไม่ระบุวันที่'}</small>
-                                    </div>
-                                    <p class="card-text">${item.content || 'เนื้อหาข่าว'}</p>
+                    newsHTML = news.map((item, index) => `
+                        <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="${index * 100}">
+                            <div class="news-card">
+                                <div class="news-date">
+                                    <span class="day">${new Date(item.date || Date.now()).getDate()}</span>
+                                    <span class="month">${new Date(item.date || Date.now()).toLocaleDateString('th-TH', {month: 'short'})}</span>
                                 </div>
+                                <h5>${item.title || 'ข่าวสาร'}</h5>
+                                <p>${item.content || 'เนื้อหาข่าว'}</p>
+                                <a href="#" class="btn btn-sm btn-outline-primary">อ่านต่อ</a>
                             </div>
                         </div>
                     `).join('');
                 }
                 
                 const fullHTML = `
-                    <div class="container py-5">
-                        <div class="row text-center mb-5">
-                            <div class="col-12">
-                                <h1>ข่าวสาร</h1>
-                                <p class="lead">ข่าวสารและกิจกรรมต่างๆ ของห้วยตึงเฒ่า</p>
+                    <section class="news-list-section py-5">
+                        <div class="container">
+                            <div class="row text-center mb-5">
+                                <div class="col-12">
+                                    <h2 class="section-title">ข่าวสารทั้งหมด</h2>
+                                    <p class="section-subtitle">ติดตามข่าวสารและกิจกรรมต่างๆ ของเรา</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                ${newsHTML}
                             </div>
                         </div>
-                        <div class="row">
-                            ${newsHTML}
-                        </div>
-                    </div>
+                    </section>
                 `;
                 
                 $('#news-content').html(fullHTML);
@@ -283,52 +355,84 @@
 
         function renderFallbackNewsContent() {
             const fallbackHTML = `
-                <div class="container py-5">
-                    <div class="row text-center mb-5">
-                        <div class="col-12">
-                            <h1>ข่าวสาร</h1>
-                            <p class="lead">ข่าวสารและกิจกรรมต่างๆ ของห้วยตึงเฒ่า</p>
+                <section class="news-list-section py-5">
+                    <div class="container">
+                        <div class="row text-center mb-5">
+                            <div class="col-12">
+                                <h2 class="section-title">ข่าวสารทั้งหมด</h2>
+                                <p class="section-subtitle">ติดตามข่าวสารและกิจกรรมต่างๆ ของเรา</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up">
+                                <div class="news-card">
+                                    <div class="news-date">
+                                        <span class="day">15</span>
+                                        <span class="month">ม.ค.</span>
+                                    </div>
+                                    <h5>เปิดให้บริการแล้ว!</h5>
+                                    <p>ห้วยตึงเฒ่าเปิดให้บริการอย่างเป็นทางการแล้ว พร้อมกิจกรรมและสิ่งอำนวยความสะดวกครบครัน</p>
+                                    <a href="#" class="btn btn-sm btn-outline-primary">อ่านต่อ</a>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+                                <div class="news-card">
+                                    <div class="news-date">
+                                        <span class="day">18</span>
+                                        <span class="month">ม.ค.</span>
+                                    </div>
+                                    <h5>บริการและสิ่งอำนวยความสะดวก</h5>
+                                    <p>พร้อมให้บริการนักท่องเที่ยวด้วยสิ่งอำนวยความสะดวกครบครัน</p>
+                                    <a href="#" class="btn btn-sm btn-outline-primary">อ่านต่อ</a>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+                                <div class="news-card">
+                                    <div class="news-date">
+                                        <span class="day">22</span>
+                                        <span class="month">ม.ค.</span>
+                                    </div>
+                                    <h5>กิจกรรมป้อนอาหารแกะ</h5>
+                                    <p>กิจกรรมป้อนอาหารแกะที่เด็กๆ และผู้ใหญ่ชื่นชอบ</p>
+                                    <a href="#" class="btn btn-sm btn-outline-primary">อ่านต่อ</a>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="300">
+                                <div class="news-card">
+                                    <div class="news-date">
+                                        <span class="day">25</span>
+                                        <span class="month">ม.ค.</span>
+                                    </div>
+                                    <h5>ธรรมชาติสวยงาม</h5>
+                                    <p>สัมผัสธรรมชาติและอากาศบริสุทธิ์ท่ามกลางภูเขาและป่าไผ่</p>
+                                    <a href="#" class="btn btn-sm btn-outline-primary">อ่านต่อ</a>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="400">
+                                <div class="news-card">
+                                    <div class="news-date">
+                                        <span class="day">28</span>
+                                        <span class="month">ม.ค.</span>
+                                    </div>
+                                    <h5>โปรโมชั่นพิเศษ</h5>
+                                    <p>โปรโมชั่นสำหรับกลุ่มและครอบครัว ลดราคาพิเศษ</p>
+                                    <a href="#" class="btn btn-sm btn-outline-primary">อ่านต่อ</a>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="500">
+                                <div class="news-card">
+                                    <div class="news-date">
+                                        <span class="day">30</span>
+                                        <span class="month">ม.ค.</span>
+                                    </div>
+                                    <h5>กิจกรรมใหม่</h5>
+                                    <p>เพิ่มกิจกรรมใหม่สำหรับนักท่องเที่ยว สนุกสนานมากขึ้น</p>
+                                    <a href="#" class="btn btn-sm btn-outline-primary">อ่านต่อ</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-lg-6 mb-4">
-                            <div class="card h-100">
-                                <div class="card-body">
-                                    <h5 class="card-title">ยินดีต้อนรับสู่ห้วยตึงเฒ่า</h5>
-                                    <p class="card-text">สถานที่ท่องเที่ยวเชิงนิเวศที่สวยงามในจังหวัดเชียงใหม่</p>
-                                    <small class="text-muted">วันนี้</small>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 mb-4">
-                            <div class="card h-100">
-                                <div class="card-body">
-                                    <h5 class="card-title">บริการและสิ่งอำนวยความสะดวก</h5>
-                                    <p class="card-text">พร้อมให้บริการนักท่องเที่ยวด้วยสิ่งอำนวยความสะดวกครบครัน</p>
-                                    <small class="text-muted">วันนี้</small>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 mb-4">
-                            <div class="card h-100">
-                                <div class="card-body">
-                                    <h5 class="card-title">กิจกรรมป้อนอาหารแกะ</h5>
-                                    <p class="card-text">กิจกรรมป้อนอาหารแกะที่เด็กๆ และผู้ใหญ่ชื่นชอบ</p>
-                                    <small class="text-muted">วันนี้</small>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 mb-4">
-                            <div class="card h-100">
-                                <div class="card-body">
-                                    <h5 class="card-title">ธรรมชาติสวยงาม</h5>
-                                    <p class="card-text">สัมผัสธรรมชาติและอากาศบริสุทธิ์ท่ามกลางภูเขาและป่าไผ่</p>
-                                    <small class="text-muted">วันนี้</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                </section>
             `;
             $('#news-content').html(fallbackHTML);
         }
@@ -338,6 +442,14 @@
             console.log('✅ News page ready - initializing...');
             
             try {
+                // Initialize AOS animations
+                AOS.init({
+                    duration: 800,
+                    easing: 'ease-in-out',
+                    once: true,
+                    offset: 100
+                });
+                
                 loadNavigation();
                 loadFooter();
                 loadNewsContent();
