@@ -1,0 +1,47 @@
+{
+  "buildDate": "2025-08-04T03:42:35.812Z",
+  "buildResults": [
+    {
+      "step": "Directory Setup",
+      "message": "Build directory created and cleaned",
+      "timestamp": "2025-08-04T03:42:33.792Z"
+    },
+    {
+      "step": "HTML Processing",
+      "message": "7 HTML files processed and optimized",
+      "timestamp": "2025-08-04T03:42:33.797Z"
+    },
+    {
+      "step": "CSS Minification",
+      "message": "2 CSS files minified, 31.31 KB total savings",
+      "timestamp": "2025-08-04T03:42:33.814Z"
+    },
+    {
+      "step": "JavaScript Minification",
+      "message": "12 JavaScript files minified, 177.89 KB total savings",
+      "timestamp": "2025-08-04T03:42:33.835Z"
+    },
+    {
+      "step": "Image Processing",
+      "message": "Images copied to build directory",
+      "timestamp": "2025-08-04T03:42:33.836Z"
+    },
+    {
+      "step": "Data Files",
+      "message": "JSON data files copied to build directory",
+      "timestamp": "2025-08-04T03:42:33.841Z"
+    },
+    {
+      "step": "Admin Files",
+      "message": "Admin files copied and optimized",
+      "timestamp": "2025-08-04T03:42:33.846Z"
+    },
+    {
+      "step": "API Files",
+      "message": "API files copied to build directory",
+      "timestamp": "2025-08-04T03:42:35.762Z"
+    }
+  ],
+  "sourceDirectory": "/Users/thanaphonsarnsamuth/Desktop/www/test/final-project-frontend",
+  "buildDirectory": "/Users/thanaphonsarnsamuth/Desktop/www/test/final-project-frontend/dist"
+}

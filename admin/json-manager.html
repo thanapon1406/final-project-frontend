@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>จัดการไฟล์ JSON - ห้วยตึงเฒ่า Admin</title>
+    <!-- Bootstrap 5.1.3 CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome 5.10.0 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css">
+    <!-- Itim Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">
+    <!-- Prism.js for syntax highlighting -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../css/admin.css">
+    <style>
+        .json-editor {
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.5;
+            border: 1px solid #dee2e6;
+            border-radius: 0.375rem;
+            background-color: #f8f9fa;
+        }
+        
+        .json-file-item {
+            transition: all 0.3s ease;
+        }
+        
+        .json-file-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .file-size {
+            font-size: 0.8rem;
+            color: #6c757d;
+        }
+        
+        .backup-item {
+            border-left: 4px solid #28a745;
+        }
+        
+        .backup-item.old {
+            border-left-color: #ffc107;
+        }
+        
+        .json-preview {
+            max-height: 300px;
+            overflow-y: auto;
+            background: #2d3748;
+            color: #e2e8f0;
+            border-radius: 0.375rem;
+            padding: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <nav class="col-md-3 col-lg-2 d-md-block admin-sidebar collapse">
+                <div class="position-sticky pt-3">
+                    <div class="text-center mb-4">
+                        <img src="../images/logo.png" alt="Logo" class="img-fluid mb-2" style="max-width: 80px;" onerror="this.style.display='none'">
+                        <h5 class="text-white">ห้วยตึงเฒ่า</h5>
+                        <small class="text-white-50">ระบบจัดการเนื้อหา</small>
+                    </div>
+                    
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="dashboard.html">
+                                <i class="fas fa-tachometer-alt me-2"></i>
+                                แดชบอร์ด
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="homepage-content.html">
+                                <i class="fas fa-home me-2"></i>
+                                จัดการหน้าหลัก
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="page-content.html">
+                                <i class="fas fa-file-alt me-2"></i>
+                                จัดการเนื้อหาหน้า
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="json-manager.html">
+                                <i class="fas fa-code me-2"></i>
+                                จัดการไฟล์ JSON
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="media-manager.html">
+                                <i class="fas fa-images me-2"></i>
+                                จัดการสื่อ
+                            </a>
+                        </li>
+                        <li class="nav-item mt-3">
+                            <a class="nav-link text-danger" href="#" onclick="logout()">
+                                <i class="fas fa-sign-out-alt me-2"></i>
+                                ออกจากระบบ
+                            </a>
+                        </li>
+                    </ul>
+                    
+                    <div class="mt-4 pt-3 border-top border-secondary">
+                        <div class="text-white-50 small">
+                            <div id="currentUser"></div>
+                            <div id="sessionInfo"></div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Main content -->
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 admin-content">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <h1 class="h2">
+                        <i class="fas fa-code me-2"></i>จัดการไฟล์ JSON
+                    </h1>
+                    <div class="btn-toolbar mb-2 mb-md-0">
+                        <div class="btn-group me-2">
+                            <button type="button" class="btn btn-sm btn-outline-secondary" onclick="refreshJsonFiles()">
+                                <i class="fas fa-sync-alt me-1"></i>รีเฟรช
+                            </button>
+                            <button type="button" class="btn btn-sm btn-outline-info" onclick="validateAllFiles()">
+                                <i class="fas fa-check-circle me-1"></i>ตรวจสอบทั้งหมด
+                            </button>
+                            <button type="button" class="btn btn-sm btn-outline-success" onclick="backupAllFiles()">
+                                <i class="fas fa-download me-1"></i>สำรองทั้งหมด
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Alert area -->
+                <div id="alertArea"></div>
+
+                <!-- Navigation tabs -->
+                <ul class="nav nav-tabs mb-4" id="jsonTabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="files-tab" data-bs-toggle="tab" data-bs-target="#files" type="button" role="tab">
+                            <i class="fas fa-file-code me-2"></i>ไฟล์ JSON
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="editor-tab" data-bs-toggle="tab" data-bs-target="#editor" type="button" role="tab">
+                            <i class="fas fa-edit me-2"></i>แก้ไขไฟล์
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="backups-tab" data-bs-toggle="tab" data-bs-target="#backups" type="button" role="tab">
+                            <i class="fas fa-history me-2"></i>สำรองข้อมูล
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="import-export-tab" data-bs-toggle="tab" data-bs-target="#import-export" type="button" role="tab">
+                            <i class="fas fa-exchange-alt me-2"></i>นำเข้า/ส่งออก
+                        </button>
+                    </li>
+                </ul>
+
+                <!-- Tab content -->
+                <div class="tab-content" id="jsonTabsContent">
+                    <!-- Files Tab -->
+                    <div class="tab-pane fade show active" id="files" role="tabpanel">
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <div class="card shadow">
+                                    <div class="card-header">
+                                        <h5 class="mb-0">
+                                            <i class="fas fa-folder-open me-2"></i>รายการไฟล์ JSON
+                                        </h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div id="jsonFilesList">
+                                            <!-- JSON files list will be loaded here -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="card shadow">
+                                    <div class="card-header">
+                                        <h5 class="mb-0">
+                                            <i class="fas fa-info-circle me-2"></i>ข้อมูลไฟล์
+                                        </h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div id="fileInfo">
+                                            <div class="text-center text-muted py-4">
+                                                <i class="fas fa-file-code fa-3x mb-3"></i>
+                                                <p>เลือกไฟล์เพื่อดูข้อมูล</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="card shadow mt-3">
+                                    <div class="card-header">
+                                        <h5 class="mb-0">
+                                            <i class="fas fa-eye me-2"></i>ตัวอย่างเนื้อหา
+                                        </h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div id="filePreview">
+                                            <div class="text-center text-muted py-4">
+                                                <i class="fas fa-code fa-3x mb-3"></i>
+                                                <p>เลือกไฟล์เพื่อดูตัวอย่าง</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Editor Tab -->
+                    <div class="tab-pane fade" id="editor" role="tabpanel">
+                        <div class="card shadow">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <h5 class="mb-0">
+                                    <i class="fas fa-edit me-2"></i>แก้ไขไฟล์ JSON
+                                </h5>
+                                <div class="btn-group btn-group-sm">
+                                    <select class="form-select form-select-sm" id="editorFileSelect" onchange="loadFileInEditor()">
+                                        <option value="">เลือกไฟล์...</option>
+                                    </select>
+                                    <button type="button" class="btn btn-outline-info" onclick="formatJson()">
+                                        <i class="fas fa-indent me-1"></i>จัดรูปแบบ
+                                    </button>
+                                    <button type="button" class="btn btn-outline-warning" onclick="validateJson()">
+                                        <i class="fas fa-check me-1"></i>ตรวจสอบ
+                                    </button>
+                                    <button type="button" class="btn btn-admin-primary" onclick="saveJsonFile()">
+                                        <i class="fas fa-save me-1"></i>บันทึก
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body p-0">
+                                <div class="row g-0">
+                                    <div class="col-lg-8">
+                                        <div class="p-3">
+                                            <div class="mb-2">
+                                                <small class="text-muted">
+                                                    <i class="fas fa-file me-1"></i>
+                                                    <span id="currentEditingFile">ไม่ได้เลือกไฟล์</span>
+                                                </small>
+                                            </div>
+                                            <textarea id="jsonEditor" class="form-control json-editor" rows="20" 
+                                                      placeholder="เลือกไฟล์เพื่อเริ่มแก้ไข..."></textarea>
+                                            <div class="mt-2">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <small class="text-muted">
+                                                            <i class="fas fa-info-circle me-1"></i>
+                                                            <span id="editorStatus">พร้อมใช้งาน</span>
+                                                        </small>
+                                                    </div>
+                                                    <div class="col-6 text-end">
+                                                        <small class="text-muted">
+                                                            <span id="editorStats">0 บรรทัด, 0 ตัวอักษร</span>
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 border-start">
+                                        <div class="p-3">
+                                            <h6>
+                                                <i class="fas fa-lightbulb me-2"></i>เคล็ดลับการแก้ไข
+                                            </h6>
+                                            <ul class="list-unstyled small">
+                                                <li class="mb-2">
+                                                    <i class="fas fa-check text-success me-2"></i>
+                                                    ใช้ Ctrl+A เพื่อเลือกทั้งหมด
+                                                </li>
+                                                <li class="mb-2">
+                                                    <i class="fas fa-check text-success me-2"></i>
+                                                    ใช้ Tab เพื่อเพิ่มการเยื้อง
+                                                </li>
+                                                <li class="mb-2">
+                                                    <i class="fas fa-check text-success me-2"></i>
+                                                    คลิก "จัดรูปแบบ" เพื่อจัดเรียง JSON
+                                                </li>
+                                                <li class="mb-2">
+                                                    <i class="fas fa-check text-success me-2"></i>
+                                                    คลิก "ตรวจสอบ" ก่อนบันทึก
+                                                </li>
+                                            </ul>
+                                            
+                                            <h6 class="mt-4">
+                                                <i class="fas fa-exclamation-triangle me-2"></i>ข้อควรระวัง
+                                            </h6>
+                                            <ul class="list-unstyled small text-warning">
+                                                <li class="mb-2">
+                                                    <i class="fas fa-times me-2"></i>
+                                                    อย่าลืมใส่เครื่องหมาย , หลัง }
+                                                </li>
+                                                <li class="mb-2">
+                                                    <i class="fas fa-times me-2"></i>
+                                                    ใช้เครื่องหมาย " สำหรับ string
+                                                </li>
+                                                <li class="mb-2">
+                                                    <i class="fas fa-times me-2"></i>
+                                                    ตรวจสอบ { } และ [ ] ให้ครบ
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Backups Tab -->
+                    <div class="tab-pane fade" id="backups" role="tabpanel">
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <div class="card shadow">
+                                    <div class="card-header">
+                                        <h5 class="mb-0">
+                                            <i class="fas fa-history me-2"></i>ประวัติการสำรองข้อมูล
+                                        </h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="mb-3">
+                                            <select class="form-select" id="backupFileFilter" onchange="filterBackups()">
+                                                <option value="">ไฟล์ทั้งหมด</option>
+                                            </select>
+                                        </div>
+                                        <div id="backupsList">
+                                            <!-- Backups list will be loaded here -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="card shadow">
+                                    <div class="card-header">
+                                        <h5 class="mb-0">
+                                            <i class="fas fa-tools me-2"></i>เครื่องมือสำรองข้อมูล
+                                        </h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="d-grid gap-2">
+                                            <button type="button" class="btn btn-admin-primary" onclick="createManualBackup()">
+                                                <i class="fas fa-save me-2"></i>สำรองข้อมูลด้วยตนเอง
+                                            </button>
+                                            <button type="button" class="btn btn-outline-info" onclick="scheduleAutoBackup()">
+                                                <i class="fas fa-clock me-2"></i>ตั้งเวลาสำรองอัตโนมัติ
+                                            </button>
+                                            <button type="button" class="btn btn-outline-warning" onclick="cleanOldBackups()">
+                                                <i class="fas fa-trash-alt me-2"></i>ลบสำรองข้อมูลเก่า
+                                            </button>
+                                        </div>
+                                        
+                                        <hr>
+                                        
+                                        <h6>สถิติการสำรองข้อมูล</h6>
+                                        <div class="row text-center">
+                                            <div class="col-6">
+                                                <div class="border rounded p-2">
+                                                    <div class="h5 mb-0" id="totalBackups">-</div>
+                                                    <small class="text-muted">ทั้งหมด</small>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="border rounded p-2">
+                                                    <div class="h5 mb-0" id="todayBackups">-</div>
+                                                    <small class="text-muted">วันนี้</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Import/Export Tab -->
+                    <div class="tab-pane fade" id="import-export" role="tabpanel">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="card shadow">
+                                    <div class="card-header">
+                                        <h5 class="mb-0">
+                                            <i class="fas fa-upload me-2"></i>นำเข้าข้อมูล
+                                        </h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="mb-3">
+                                            <label class="form-label">เลือกไฟล์ JSON</label>
+                                            <input type="file" class="form-control" id="importFileInput" accept=".json" multiple>
+                                            <small class="form-text text-muted">
+                                                รองรับไฟล์ .json เท่านั้น สามารถเลือกหลายไฟล์ได้
+                                            </small>
+                                        </div>
+                                        
+                                        <div class="mb-3">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="overwriteExisting">
+                                                <label class="form-check-label" for="overwriteExisting">
+                                                    เขียนทับไฟล์ที่มีอยู่แล้ว
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="createBackupBeforeImport" checked>
+                                                <label class="form-check-label" for="createBackupBeforeImport">
+                                                    สำรองข้อมูลก่อนนำเข้า
+                                                </label>
+                                            </div>
+                                        </div>
+                                        
+                                        <div id="importPreview" class="mb-3" style="display: none;">
+                                            <label class="form-label">ตัวอย่างไฟล์ที่จะนำเข้า</label>
+                                            <div id="importFilesList" class="border rounded p-2 bg-light">
+                                                <!-- Import files preview -->
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="d-grid">
+                                            <button type="button" class="btn btn-admin-primary" onclick="importJsonFiles()" disabled id="importBtn">
+                                                <i class="fas fa-upload me-2"></i>นำเข้าไฟล์
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-lg-6">
+                                <div class="card shadow">
+                                    <div class="card-header">
+                                        <h5 class="mb-0">
+                                            <i class="fas fa-download me-2"></i>ส่งออกข้อมูล
+                                        </h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="mb-3">
+                                            <label class="form-label">เลือกไฟล์ที่ต้องการส่งออก</label>
+                                            <div id="exportFilesList">
+                                                <!-- Export files checkboxes -->
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="mb-3">
+                                            <label class="form-label">รูปแบบการส่งออก</label>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="exportFormat" id="exportZip" value="zip" checked>
+                                                <label class="form-check-label" for="exportZip">
+                                                    ไฟล์ ZIP (แนะนำ)
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="exportFormat" id="exportIndividual" value="individual">
+                                                <label class="form-check-label" for="exportIndividual">
+                                                    ไฟล์แยกต่างหาก
+                                                </label>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="mb-3">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="includeBackups">
+                                                <label class="form-check-label" for="includeBackups">
+                                                    รวมไฟล์สำรองข้อมูล
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="formatJsonExport" checked>
+                                                <label class="form-check-label" for="formatJsonExport">
+                                                    จัดรูปแบบ JSON ให้อ่านง่าย
+                                                </label>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="d-grid gap-2">
+                                            <button type="button" class="btn btn-admin-primary" onclick="exportSelectedFiles()">
+                                                <i class="fas fa-download me-2"></i>ส่งออกไฟล์ที่เลือก
+                                            </button>
+                                            <button type="button" class="btn btn-outline-secondary" onclick="exportAllFiles()">
+                                                <i class="fas fa-download me-2"></i>ส่งออกทั้งหมด
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Restore Confirmation Modal -->
+    <div class="modal fade" id="restoreModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="fas fa-undo me-2"></i>คืนค่าจากสำรองข้อมูล
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-warning">
+                        <i class="fas fa-exclamation-triangle me-2"></i>
+                        การคืนค่าจะเขียนทับไฟล์ปัจจุบัน คุณแน่ใจหรือไม่?
+                    </div>
+                    <div id="restoreInfo">
+                        <!-- Restore information will be shown here -->
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
+                    <button type="button" class="btn btn-warning" id="confirmRestoreBtn">
+                        <i class="fas fa-undo me-1"></i>คืนค่า
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Prism.js for syntax highlighting -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js"></script>
+    <!-- Admin JS -->
+    <script src="../js/admin.js"></script>
+    <script src="../js/json-manager.js"></script>
+    <script>
+        // Initialize JSON manager
+        $(document).ready(function() {
+            initializeJsonManager();
+            displayUserInfo();
+        });
+    </script>
+</body>
+</html>

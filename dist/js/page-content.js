@@ -1,0 +1,1306 @@
+// Page Content Management JavaScript
+
+// Global variables
+let historyData = {};
+let servicesData = {};
+let aboutData = {};
+let contactData = {};
+let navigationData = {};
+
+// Initialize page content management
+function initializePageContent() {
+    loadAllPageContent();
+    initializeImageUpload();
+    initializeTabNavigation();
+}
+
+// Load all page content
+function loadAllPageContent() {
+    loadHistoryContent();
+    loadServicesContent();
+    loadAboutContent();
+    loadContactContent();
+    loadNavigationContent();
+}
+
+// Load history content
+function loadHistoryContent() {
+    $.ajax({
+        url: '/api/content/history',
+        method: 'GET',
+        success: function(response) {
+            if (response.success) {
+                historyData = response.data;
+                renderHistoryContent();
+            }
+        },
+        error: function() {
+            // Load from local data file as fallback
+            $.getJSON('../data/history-content.json', function(data) {
+                historyData = data;
+                renderHistoryContent();
+            });
+        }
+    });
+}
+
+// Render history content
+function renderHistoryContent() {
+    $('#historyTitle').val(historyData.title || '');
+    $('#historyContent').val(historyData.content || '');
+    
+    renderHistoryTimeline();
+    renderHistoryImages();
+}
+
+// Render history timeline
+function renderHistoryTimeline() {
+    const container = $('#historyTimeline');
+    const timeline = historyData.timeline || [];
+    
+    container.empty();
+    
+    if (timeline.length === 0) {
+        container.html(`
+            <div class="text-center text-muted py-3">
+                <i class="fas fa-clock fa-2x mb-2"></i>
+                <p>ยังไม่มีเหตุการณ์ในไทม์ไลน์</p>
+            </div>
+        `);
+        return;
+    }
+    
+    timeline.forEach((item, index) => {
+        const timelineHTML = `
+            <div class="card mb-2 timeline-item" data-index="${index}">
+                <div class="card-body py-2">
+                    <div class="row align-items-center">
+                        <div class="col-md-2">
+                            <strong>${item.year || 'ไม่ระบุปี'}</strong>
+                        </div>
+                        <div class="col-md-8">
+                            <span>${item.event || 'ไม่มีรายละเอียด'}</span>
+                        </div>
+                        <div class="col-md-2 text-end">
+                            <div class="btn-group btn-group-sm">
+                                <button class="btn btn-outline-primary" onclick="editTimelineItem(${index})">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn btn-outline-danger" onclick="deleteTimelineItem(${index})">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+        container.append(timelineHTML);
+    });
+}
+
+// Add timeline item
+function addTimelineItem() {
+    if (!historyData.timeline) historyData.timeline = [];
+    
+    const newItem = {
+        year: new Date().getFullYear(),
+        event: 'เหตุการณ์ใหม่'
+    };
+    
+    historyData.timeline.push(newItem);
+    renderHistoryTimeline();
+    editTimelineItem(historyData.timeline.length - 1);
+}
+
+// Edit timeline item
+function editTimelineItem(index) {
+    const item = historyData.timeline[index];
+    if (!item) return;
+    
+    const modalHTML = `
+        <div class="modal fade" id="editTimelineModal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">
+                            <i class="fas fa-edit me-2"></i>แก้ไขเหตุการณ์ในไทม์ไลน์
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="editTimelineForm">
+                            <div class="mb-3">
+                                <label class="form-label">ปี</label>
+                                <input type="number" class="form-control" id="timelineYear" value="${item.year}" min="1900" max="2100">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">เหตุการณ์</label>
+                                <textarea class="form-control" id="timelineEvent" rows="3">${item.event}</textarea>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
+                        <button type="button" class="btn btn-admin-primary" onclick="saveTimelineItem(${index})">
+                            <i class="fas fa-save me-1"></i>บันทึก
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    $('body').append(modalHTML);
+    $('#editTimelineModal').modal('show');
+    
+    // Remove modal after hiding
+    $('#editTimelineModal').on('hidden.bs.modal', function() {
+        $(this).remove();
+    });
+}
+
+// Save timeline item
+function saveTimelineItem(index) {
+    const item = historyData.timeline[index];
+    if (!item) return;
+    
+    item.year = parseInt($('#timelineYear').val());
+    item.event = $('#timelineEvent').val();
+    
+    renderHistoryTimeline();
+    $('#editTimelineModal').modal('hide');
+    showSuccessMessage('บันทึกเหตุการณ์ในไทม์ไลน์เรียบร้อยแล้ว');
+}
+
+// Delete timeline item
+function deleteTimelineItem(index) {
+    if (confirm('คุณต้องการลบเหตุการณ์นี้หรือไม่?')) {
+        historyData.timeline.splice(index, 1);
+        renderHistoryTimeline();
+        showSuccessMessage('ลบเหตุการณ์เรียบร้อยแล้ว');
+    }
+}
+
+// Render history images
+function renderHistoryImages() {
+    const container = $('#historyImages');
+    const images = historyData.images || [];
+    
+    container.empty();
+    
+    if (images.length === 0) {
+        container.html(`
+            <div class="text-center text-muted py-3">
+                <i class="fas fa-images fa-2x mb-2"></i>
+                <p>ยังไม่มีรูปภาพ</p>
+            </div>
+        `);
+        return;
+    }
+    
+    images.forEach((image, index) => {
+        const imageHTML = `
+            <div class="card mb-2 history-image-item" data-index="${index}">
+                <div class="row g-0">
+                    <div class="col-4">
+                        <img src="${image.src || '../images/placeholder.jpg'}" 
+                             class="img-fluid rounded-start" style="height: 80px; object-fit: cover;"
+                             onerror="this.src='../images/placeholder.jpg'">
+                    </div>
+                    <div class="col-8">
+                        <div class="card-body p-2">
+                            <h6 class="card-title small mb-1">${image.title || 'ไม่มีหัวข้อ'}</h6>
+                            <div class="btn-group btn-group-sm">
+                                <button class="btn btn-outline-primary" onclick="editHistoryImage(${index})">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn btn-outline-danger" onclick="deleteHistoryImage(${index})">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+        container.append(imageHTML);
+    });
+}
+
+// Add history image
+function addHistoryImage() {
+    $('#imageUploadModal').modal('show');
+    
+    window.imageUploadCallback = function(imagePath) {
+        if (!historyData.images) historyData.images = [];
+        
+        const newImage = {
+            src: imagePath,
+            title: 'รูปภาพใหม่',
+            alt: 'รูปภาพประวัติ'
+        };
+        
+        historyData.images.push(newImage);
+        renderHistoryImages();
+        showSuccessMessage('เพิ่มรูปภาพเรียบร้อยแล้ว');
+    };
+}
+
+// Edit history image
+function editHistoryImage(index) {
+    const image = historyData.images[index];
+    if (!image) return;
+    
+    const modalHTML = `
+        <div class="modal fade" id="editHistoryImageModal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">
+                            <i class="fas fa-edit me-2"></i>แก้ไขรูปภาพ
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="text-center mb-3">
+                            <img src="${image.src}" class="img-fluid rounded" style="max-height: 200px;"
+                                 onerror="this.src='../images/placeholder.jpg'">
+                        </div>
+                        <form id="editHistoryImageForm">
+                            <div class="mb-3">
+                                <label class="form-label">หัวข้อ</label>
+                                <input type="text" class="form-control" id="historyImageTitle" value="${image.title}">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">ข้อความ Alt</label>
+                                <input type="text" class="form-control" id="historyImageAlt" value="${image.alt}">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
+                        <button type="button" class="btn btn-admin-primary" onclick="saveHistoryImage(${index})">
+                            <i class="fas fa-save me-1"></i>บันทึก
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    $('body').append(modalHTML);
+    $('#editHistoryImageModal').modal('show');
+    
+    // Remove modal after hiding
+    $('#editHistoryImageModal').on('hidden.bs.modal', function() {
+        $(this).remove();
+    });
+}
+
+// Save history image
+function saveHistoryImage(index) {
+    const image = historyData.images[index];
+    if (!image) return;
+    
+    image.title = $('#historyImageTitle').val();
+    image.alt = $('#historyImageAlt').val();
+    
+    renderHistoryImages();
+    $('#editHistoryImageModal').modal('hide');
+    showSuccessMessage('บันทึกการเปลี่ยนแปลงรูปภาพเรียบร้อยแล้ว');
+}
+
+// Delete history image
+function deleteHistoryImage(index) {
+    if (confirm('คุณต้องการลบรูปภาพนี้หรือไม่?')) {
+        historyData.images.splice(index, 1);
+        renderHistoryImages();
+        showSuccessMessage('ลบรูปภาพเรียบร้อยแล้ว');
+    }
+}
+
+// Save history content
+async function saveHistoryContent() {
+    historyData.title = $('#historyTitle').val();
+    historyData.content = $('#historyContent').val();
+    
+    try {
+        await saveContentToServer('history', historyData, 'เนื้อหาประวัติ');
+        showSuccessMessage('บันทึกเนื้อหาประวัติเรียบร้อยแล้ว - อัปเดตทันทีบนหน้าเว็บ');
+    } catch (error) {
+        showErrorMessage('ไม่สามารถบันทึกเนื้อหาประวัติได้');
+    }
+}
+
+// Load services content
+function loadServicesContent() {
+    $.ajax({
+        url: '/api/content/services',
+        method: 'GET',
+        success: function(response) {
+            if (response.success) {
+                servicesData = response.data;
+                renderServicesContent();
+            }
+        },
+        error: function() {
+            $.getJSON('../data/services-content.json', function(data) {
+                servicesData = data;
+                renderServicesContent();
+            });
+        }
+    });
+}
+
+// Render services content
+function renderServicesContent() {
+    $('#servicesTitle').val(servicesData.title || '');
+    $('#servicesDescription').val(servicesData.description || '');
+    $('#servicesHours').val(servicesData.hours || '');
+    
+    renderServicesImages();
+    renderServicesList();
+}
+
+// Render services images
+function renderServicesImages() {
+    const container = $('#servicesImages');
+    const images = servicesData.images || [];
+    
+    container.empty();
+    
+    if (images.length === 0) {
+        container.html(`
+            <div class="text-center text-muted py-3">
+                <i class="fas fa-images fa-2x mb-2"></i>
+                <p>ยังไม่มีรูปภาพ</p>
+            </div>
+        `);
+        return;
+    }
+    
+    images.forEach((image, index) => {
+        const imageHTML = `
+            <div class="card mb-2 services-image-item" data-index="${index}">
+                <div class="row g-0">
+                    <div class="col-4">
+                        <img src="${image.src || '../images/placeholder.jpg'}" 
+                             class="img-fluid rounded-start" style="height: 80px; object-fit: cover;"
+                             onerror="this.src='../images/placeholder.jpg'">
+                    </div>
+                    <div class="col-8">
+                        <div class="card-body p-2">
+                            <h6 class="card-title small mb-1">${image.title || 'ไม่มีหัวข้อ'}</h6>
+                            <div class="btn-group btn-group-sm">
+                                <button class="btn btn-outline-primary" onclick="editServicesImage(${index})">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn btn-outline-danger" onclick="deleteServicesImage(${index})">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+        container.append(imageHTML);
+    });
+}
+
+// Add services image
+function addServicesImage() {
+    $('#imageUploadModal').modal('show');
+    
+    window.imageUploadCallback = function(imagePath) {
+        if (!servicesData.images) servicesData.images = [];
+        
+        const newImage = {
+            src: imagePath,
+            title: 'รูปภาพบริการใหม่',
+            alt: 'รูปภาพบริการ'
+        };
+        
+        servicesData.images.push(newImage);
+        renderServicesImages();
+        showSuccessMessage('เพิ่มรูปภาพบริการเรียบร้อยแล้ว');
+    };
+}
+
+// Edit services image
+function editServicesImage(index) {
+    const image = servicesData.images[index];
+    if (!image) return;
+    
+    const modalHTML = `
+        <div class="modal fade" id="editServicesImageModal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">
+                            <i class="fas fa-edit me-2"></i>แก้ไขรูปภาพบริการ
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="text-center mb-3">
+                            <img src="${image.src}" class="img-fluid rounded" style="max-height: 200px;"
+                                 onerror="this.src='../images/placeholder.jpg'">
+                        </div>
+                        <form id="editServicesImageForm">
+                            <div class="mb-3">
+                                <label class="form-label">หัวข้อ</label>
+                                <input type="text" class="form-control" id="servicesImageTitle" value="${image.title}">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">ข้อความ Alt</label>
+                                <input type="text" class="form-control" id="servicesImageAlt" value="${image.alt}">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
+                        <button type="button" class="btn btn-admin-primary" onclick="saveServicesImage(${index})">
+                            <i class="fas fa-save me-1"></i>บันทึก
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    $('body').append(modalHTML);
+    $('#editServicesImageModal').modal('show');
+    
+    // Remove modal after hiding
+    $('#editServicesImageModal').on('hidden.bs.modal', function() {
+        $(this).remove();
+    });
+}
+
+// Save services image
+function saveServicesImage(index) {
+    const image = servicesData.images[index];
+    if (!image) return;
+    
+    image.title = $('#servicesImageTitle').val();
+    image.alt = $('#servicesImageAlt').val();
+    
+    renderServicesImages();
+    $('#editServicesImageModal').modal('hide');
+    showSuccessMessage('บันทึกการเปลี่ยนแปลงรูปภาพเรียบร้อยแล้ว');
+}
+
+// Delete services image
+function deleteServicesImage(index) {
+    if (confirm('คุณต้องการลบรูปภาพนี้หรือไม่?')) {
+        servicesData.images.splice(index, 1);
+        renderServicesImages();
+        showSuccessMessage('ลบรูปภาพเรียบร้อยแล้ว');
+    }
+}
+
+// Render services list
+function renderServicesList() {
+    const container = $('#servicesList');
+    const services = servicesData.activities || [];
+    
+    container.empty();
+    
+    if (services.length === 0) {
+        container.html(`
+            <div class="text-center text-muted py-3">
+                <i class="fas fa-concierge-bell fa-2x mb-2"></i>
+                <p>ยังไม่มีรายการกิจกรรม</p>
+            </div>
+        `);
+        return;
+    }
+    
+    services.forEach((service, index) => {
+        const serviceHTML = `
+            <div class="card mb-2 service-activity-item" data-index="${index}">
+                <div class="card-body py-2">
+                    <div class="row align-items-center">
+                        <div class="col-md-1 text-center">
+                            <i class="${service.icon || 'fas fa-cog'} fa-lg text-primary"></i>
+                        </div>
+                        <div class="col-md-3">
+                            <strong>${service.name || 'ไม่มีชื่อ'}</strong>
+                        </div>
+                        <div class="col-md-6">
+                            <span class="text-muted">${service.description || 'ไม่มีคำอธิบาย'}</span>
+                        </div>
+                        <div class="col-md-2 text-end">
+                            <div class="btn-group btn-group-sm">
+                                <button class="btn btn-outline-primary" onclick="editServiceActivity(${index})">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn btn-outline-danger" onclick="deleteServiceActivity(${index})">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+        container.append(serviceHTML);
+    });
+}
+
+// Add service activity
+function addServiceActivity() {
+    if (!servicesData.activities) servicesData.activities = [];
+    
+    const newActivity = {
+        name: 'กิจกรรมใหม่',
+        description: 'คำอธิบายกิจกรรม',
+        icon: 'fas fa-cog'
+    };
+    
+    servicesData.activities.push(newActivity);
+    renderServicesList();
+    editServiceActivity(servicesData.activities.length - 1);
+}
+
+// Edit service activity
+function editServiceActivity(index) {
+    const activity = servicesData.activities[index];
+    if (!activity) return;
+    
+    const modalHTML = `
+        <div class="modal fade" id="editServiceActivityModal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">
+                            <i class="fas fa-edit me-2"></i>แก้ไขกิจกรรม/สิ่งอำนวยความสะดวก
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="editServiceActivityForm">
+                            <div class="mb-3">
+                                <label class="form-label">ไอคอน (Font Awesome Class)</label>
+                                <div class="input-group">
+                                    <span class="input-group-text">
+                                        <i class="${activity.icon}" id="activityIconPreview"></i>
+                                    </span>
+                                    <input type="text" class="form-control" id="activityIcon" value="${activity.icon}" 
+                                           onchange="updateActivityIconPreview()">
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">ชื่อกิจกรรม/สิ่งอำนวยความสะดวก</label>
+                                <input type="text" class="form-control" id="activityName" value="${activity.name}">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">คำอธิบาย</label>
+                                <textarea class="form-control" id="activityDescription" rows="3">${activity.description}</textarea>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
+                        <button type="button" class="btn btn-admin-primary" onclick="saveServiceActivity(${index})">
+                            <i class="fas fa-save me-1"></i>บันทึก
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    $('body').append(modalHTML);
+    $('#editServiceActivityModal').modal('show');
+    
+    // Remove modal after hiding
+    $('#editServiceActivityModal').on('hidden.bs.modal', function() {
+        $(this).remove();
+    });
+}
+
+// Update activity icon preview
+function updateActivityIconPreview() {
+    const iconClass = $('#activityIcon').val();
+    $('#activityIconPreview').attr('class', iconClass);
+}
+
+// Save service activity
+function saveServiceActivity(index) {
+    const activity = servicesData.activities[index];
+    if (!activity) return;
+    
+    activity.icon = $('#activityIcon').val();
+    activity.name = $('#activityName').val();
+    activity.description = $('#activityDescription').val();
+    
+    renderServicesList();
+    $('#editServiceActivityModal').modal('hide');
+    showSuccessMessage('บันทึกกิจกรรม/สิ่งอำนวยความสะดวกเรียบร้อยแล้ว');
+}
+
+// Delete service activity
+function deleteServiceActivity(index) {
+    if (confirm('คุณต้องการลบรายการนี้หรือไม่?')) {
+        servicesData.activities.splice(index, 1);
+        renderServicesList();
+        showSuccessMessage('ลบรายการเรียบร้อยแล้ว');
+    }
+}
+
+// Save services content
+async function saveServicesContent() {
+    servicesData.title = $('#servicesTitle').val();
+    servicesData.description = $('#servicesDescription').val();
+    servicesData.hours = $('#servicesHours').val();
+    
+    try {
+        await saveContentToServer('services', servicesData, 'เนื้อหาบริการ');
+        showSuccessMessage('บันทึกเนื้อหาบริการเรียบร้อยแล้ว - อัปเดตทันทีบนหน้าเว็บ');
+    } catch (error) {
+        showErrorMessage('ไม่สามารถบันทึกเนื้อหาบริการได้');
+    }
+}
+
+// Load about content
+function loadAboutContent() {
+    $.ajax({
+        url: '/api/content/about',
+        method: 'GET',
+        success: function(response) {
+            if (response.success) {
+                aboutData = response.data;
+                renderAboutContent();
+            }
+        },
+        error: function() {
+            $.getJSON('../data/about-content.json', function(data) {
+                aboutData = data;
+                renderAboutContent();
+            });
+        }
+    });
+}
+
+// Render about content
+function renderAboutContent() {
+    $('#aboutOrganization').val(aboutData.organization || '');
+    $('#aboutVision').val(aboutData.vision || '');
+    $('#aboutMission').val(aboutData.mission || '');
+    $('#aboutDescription').val(aboutData.description || '');
+    
+    renderAboutImages();
+}
+
+// Render about images
+function renderAboutImages() {
+    const container = $('#aboutImages');
+    const images = aboutData.images || [];
+    
+    container.empty();
+    
+    if (images.length === 0) {
+        container.html(`
+            <div class="text-center text-muted py-3">
+                <i class="fas fa-images fa-2x mb-2"></i>
+                <p>ยังไม่มีรูปภาพ</p>
+            </div>
+        `);
+        return;
+    }
+    
+    images.forEach((image, index) => {
+        const imageHTML = `
+            <div class="card mb-2 about-image-item" data-index="${index}">
+                <div class="row g-0">
+                    <div class="col-4">
+                        <img src="${image.src || '../images/placeholder.jpg'}" 
+                             class="img-fluid rounded-start" style="height: 80px; object-fit: cover;"
+                             onerror="this.src='../images/placeholder.jpg'">
+                    </div>
+                    <div class="col-8">
+                        <div class="card-body p-2">
+                            <h6 class="card-title small mb-1">${image.title || 'ไม่มีหัวข้อ'}</h6>
+                            <div class="btn-group btn-group-sm">
+                                <button class="btn btn-outline-primary" onclick="editAboutImage(${index})">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn btn-outline-danger" onclick="deleteAboutImage(${index})">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+        container.append(imageHTML);
+    });
+}
+
+// Add about image
+function addAboutImage() {
+    $('#imageUploadModal').modal('show');
+    
+    window.imageUploadCallback = function(imagePath) {
+        if (!aboutData.images) aboutData.images = [];
+        
+        const newImage = {
+            src: imagePath,
+            title: 'รูปภาพองค์กรใหม่',
+            alt: 'รูปภาพองค์กร'
+        };
+        
+        aboutData.images.push(newImage);
+        renderAboutImages();
+        showSuccessMessage('เพิ่มรูปภาพองค์กรเรียบร้อยแล้ว');
+    };
+}
+
+// Edit about image
+function editAboutImage(index) {
+    const image = aboutData.images[index];
+    if (!image) return;
+    
+    const modalHTML = `
+        <div class="modal fade" id="editAboutImageModal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">
+                            <i class="fas fa-edit me-2"></i>แก้ไขรูปภาพองค์กร
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="text-center mb-3">
+                            <img src="${image.src}" class="img-fluid rounded" style="max-height: 200px;"
+                                 onerror="this.src='../images/placeholder.jpg'">
+                        </div>
+                        <form id="editAboutImageForm">
+                            <div class="mb-3">
+                                <label class="form-label">หัวข้อ</label>
+                                <input type="text" class="form-control" id="aboutImageTitle" value="${image.title}">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">ข้อความ Alt</label>
+                                <input type="text" class="form-control" id="aboutImageAlt" value="${image.alt}">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
+                        <button type="button" class="btn btn-admin-primary" onclick="saveAboutImage(${index})">
+                            <i class="fas fa-save me-1"></i>บันทึก
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    $('body').append(modalHTML);
+    $('#editAboutImageModal').modal('show');
+    
+    // Remove modal after hiding
+    $('#editAboutImageModal').on('hidden.bs.modal', function() {
+        $(this).remove();
+    });
+}
+
+// Save about image
+function saveAboutImage(index) {
+    const image = aboutData.images[index];
+    if (!image) return;
+    
+    image.title = $('#aboutImageTitle').val();
+    image.alt = $('#aboutImageAlt').val();
+    
+    renderAboutImages();
+    $('#editAboutImageModal').modal('hide');
+    showSuccessMessage('บันทึกการเปลี่ยนแปลงรูปภาพเรียบร้อยแล้ว');
+}
+
+// Delete about image
+function deleteAboutImage(index) {
+    if (confirm('คุณต้องการลบรูปภาพนี้หรือไม่?')) {
+        aboutData.images.splice(index, 1);
+        renderAboutImages();
+        showSuccessMessage('ลบรูปภาพเรียบร้อยแล้ว');
+    }
+}
+
+// Save about content
+function saveAboutContent() {
+    aboutData.organization = $('#aboutOrganization').val();
+    aboutData.vision = $('#aboutVision').val();
+    aboutData.mission = $('#aboutMission').val();
+    aboutData.description = $('#aboutDescription').val();
+    
+    showSuccessMessage('บันทึกเนื้อหาเกี่ยวกับเราเรียบร้อยแล้ว');
+}
+
+// Load contact content
+function loadContactContent() {
+    $.ajax({
+        url: '/api/content/contact',
+        method: 'GET',
+        success: function(response) {
+            if (response.success) {
+                contactData = response.data;
+                renderContactContent();
+            }
+        },
+        error: function() {
+            $.getJSON('../data/contact-content.json', function(data) {
+                contactData = data;
+                renderContactContent();
+            });
+        }
+    });
+}
+
+// Render contact content
+function renderContactContent() {
+    $('#contactOrganization').val(contactData.organization || '');
+    $('#contactAddress').val(contactData.address || '');
+    $('#contactPhone').val(contactData.phone || '');
+    $('#contactEmail').val(contactData.email || '');
+    $('#contactWebsite').val(contactData.website || '');
+    
+    // Social media
+    const social = contactData.socialMedia || {};
+    $('#contactFacebook').val(social.facebook || '');
+    $('#contactFanpage').val(social.fanpage || '');
+    $('#contactLine').val(social.line || '');
+    $('#contactInstagram').val(social.instagram || '');
+    
+    // Map settings
+    $('#contactMapEmbed').val(contactData.mapEmbed || '');
+    $('#contactLatitude').val(contactData.coordinates?.latitude || '');
+    $('#contactLongitude').val(contactData.coordinates?.longitude || '');
+}
+
+// Save contact info
+function saveContactInfo() {
+    contactData.organization = $('#contactOrganization').val();
+    contactData.address = $('#contactAddress').val();
+    contactData.phone = $('#contactPhone').val();
+    contactData.email = $('#contactEmail').val();
+    contactData.website = $('#contactWebsite').val();
+    
+    showSuccessMessage('บันทึกข้อมูลติดต่อเรียบร้อยแล้ว');
+}
+
+// Save social media
+function saveSocialMedia() {
+    if (!contactData.socialMedia) contactData.socialMedia = {};
+    
+    contactData.socialMedia.facebook = $('#contactFacebook').val();
+    contactData.socialMedia.fanpage = $('#contactFanpage').val();
+    contactData.socialMedia.line = $('#contactLine').val();
+    contactData.socialMedia.instagram = $('#contactInstagram').val();
+    
+    showSuccessMessage('บันทึกข้อมูลโซเชียลมีเดียเรียบร้อยแล้ว');
+}
+
+// Preview map
+function previewMap() {
+    const mapEmbed = $('#contactMapEmbed').val();
+    
+    if (!mapEmbed) {
+        showErrorMessage('กรุณากรอก URL Embed Google Maps');
+        return;
+    }
+    
+    $('#mapIframe').attr('src', mapEmbed);
+    $('#mapPreview').show();
+}
+
+// Save map settings
+function saveMapSettings() {
+    contactData.mapEmbed = $('#contactMapEmbed').val();
+    
+    if (!contactData.coordinates) contactData.coordinates = {};
+    contactData.coordinates.latitude = $('#contactLatitude').val();
+    contactData.coordinates.longitude = $('#contactLongitude').val();
+    
+    showSuccessMessage('บันทึกการตั้งค่าแผนที่เรียบร้อยแล้ว');
+}
+
+// Load navigation content
+function loadNavigationContent() {
+    $.ajax({
+        url: '/api/content/navigation',
+        method: 'GET',
+        success: function(response) {
+            if (response.success) {
+                navigationData = response.data;
+                renderNavigationContent();
+            }
+        },
+        error: function() {
+            $.getJSON('../data/navigation.json', function(data) {
+                navigationData = data;
+                renderNavigationContent();
+            });
+        }
+    });
+}
+
+// Render navigation content
+function renderNavigationContent() {
+    $('#navSiteName').val(navigationData.siteName || '');
+    $('#navLogoPath').val(navigationData.logo || '');
+    $('#navLogoPreview').attr('src', navigationData.logo || '../images/placeholder.jpg');
+    
+    renderNavigationItems();
+}
+
+// Render navigation items
+function renderNavigationItems() {
+    const container = $('#navigationItems');
+    const items = navigationData.menuItems || [];
+    
+    container.empty();
+    
+    if (items.length === 0) {
+        container.html(`
+            <div class="text-center text-muted py-3">
+                <i class="fas fa-bars fa-2x mb-2"></i>
+                <p>ยังไม่มีรายการเมนู</p>
+            </div>
+        `);
+        return;
+    }
+    
+    items.forEach((item, index) => {
+        const itemHTML = `
+            <div class="card mb-2 nav-item" data-index="${index}">
+                <div class="card-body py-2">
+                    <div class="row align-items-center">
+                        <div class="col-md-4">
+                            <strong>${item.text || 'ไม่มีข้อความ'}</strong>
+                        </div>
+                        <div class="col-md-4">
+                            <small class="text-muted">${item.href || '#'}</small>
+                        </div>
+                        <div class="col-md-4 text-end">
+                            <div class="btn-group btn-group-sm">
+                                <button class="btn btn-outline-primary" onclick="editNavigationItem(${index})">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn btn-outline-danger" onclick="deleteNavigationItem(${index})">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+        container.append(itemHTML);
+    });
+}
+
+// Add navigation item
+function addNavigationItem() {
+    if (!navigationData.menuItems) navigationData.menuItems = [];
+    
+    const newItem = {
+        text: 'เมนูใหม่',
+        href: '#'
+    };
+    
+    navigationData.menuItems.push(newItem);
+    renderNavigationItems();
+    editNavigationItem(navigationData.menuItems.length - 1);
+}
+
+// Edit navigation item
+function editNavigationItem(index) {
+    const item = navigationData.menuItems[index];
+    if (!item) return;
+    
+    const modalHTML = `
+        <div class="modal fade" id="editNavItemModal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">
+                            <i class="fas fa-edit me-2"></i>แก้ไขรายการเมนู
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="editNavItemForm">
+                            <div class="mb-3">
+                                <label class="form-label">ข้อความเมนู</label>
+                                <input type="text" class="form-control" id="navItemText" value="${item.text}">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">ลิงก์</label>
+                                <input type="text" class="form-control" id="navItemHref" value="${item.href}">
+                                <small class="form-text text-muted">เช่น index.html, page-history.html, #</small>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
+                        <button type="button" class="btn btn-admin-primary" onclick="saveNavigationItem(${index})">
+                            <i class="fas fa-save me-1"></i>บันทึก
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    $('body').append(modalHTML);
+    $('#editNavItemModal').modal('show');
+    
+    // Remove modal after hiding
+    $('#editNavItemModal').on('hidden.bs.modal', function() {
+        $(this).remove();
+    });
+}
+
+// Save navigation item
+function saveNavigationItem(index) {
+    const item = navigationData.menuItems[index];
+    if (!item) return;
+    
+    item.text = $('#navItemText').val();
+    item.href = $('#navItemHref').val();
+    
+    renderNavigationItems();
+    $('#editNavItemModal').modal('hide');
+    showSuccessMessage('บันทึกรายการเมนูเรียบร้อยแล้ว');
+}
+
+// Delete navigation item
+function deleteNavigationItem(index) {
+    if (confirm('คุณต้องการลบรายการเมนูนี้หรือไม่?')) {
+        navigationData.menuItems.splice(index, 1);
+        renderNavigationItems();
+        showSuccessMessage('ลบรายการเมนูเรียบร้อยแล้ว');
+    }
+}
+
+// Select navigation logo
+function selectNavLogo() {
+    $('#imageUploadModal').modal('show');
+    
+    window.imageUploadCallback = function(imagePath) {
+        $('#navLogoPath').val(imagePath);
+        $('#navLogoPreview').attr('src', imagePath);
+        showSuccessMessage('เลือกโลโก้เรียบร้อยแล้ว');
+    };
+}
+
+// Save navigation settings
+function saveNavigationSettings() {
+    navigationData.siteName = $('#navSiteName').val();
+    navigationData.logo = $('#navLogoPath').val();
+    
+    showSuccessMessage('บันทึกการตั้งค่าเมนูนำทางเรียบร้อยแล้ว');
+}
+
+// Initialize image upload (reuse from homepage-content.js)
+function initializeImageUpload() {
+    const dropZone = $('#imageDropZone');
+    const fileInput = $('#imageFileInput');
+    
+    // Handle file input change
+    fileInput.on('change', function(e) {
+        const file = e.target.files[0];
+        if (file) {
+            handleImageFile(file);
+        }
+    });
+    
+    // Handle drag and drop
+    dropZone.on('dragover', function(e) {
+        e.preventDefault();
+        $(this).addClass('dragover');
+    });
+    
+    dropZone.on('dragleave', function(e) {
+        e.preventDefault();
+        $(this).removeClass('dragover');
+    });
+    
+    dropZone.on('drop', function(e) {
+        e.preventDefault();
+        $(this).removeClass('dragover');
+        
+        const files = e.originalEvent.dataTransfer.files;
+        if (files.length > 0) {
+            handleImageFile(files[0]);
+        }
+    });
+    
+    // Handle upload button
+    $('#uploadImageBtn').on('click', function() {
+        uploadImage();
+    });
+}
+
+// Handle image file (reuse from homepage-content.js)
+function handleImageFile(file) {
+    if (!file.type.startsWith('image/')) {
+        showErrorMessage('กรุณาเลือกไฟล์รูปภาพเท่านั้น');
+        return;
+    }
+    
+    if (file.size > 5 * 1024 * 1024) { // 5MB
+        showErrorMessage('ขนาดไฟล์ต้องไม่เกิน 5MB');
+        return;
+    }
+    
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        $('#previewImage').attr('src', e.target.result);
+        $('#imageInfo').text(`${file.name} (${(file.size / 1024).toFixed(1)} KB)`);
+        $('#imagePreview').show();
+        $('#uploadImageBtn').prop('disabled', false);
+    };
+    reader.readAsDataURL(file);
+    
+    // Store file for upload
+    window.selectedImageFile = file;
+}
+
+// Upload image (reuse from homepage-content.js)
+function uploadImage() {
+    if (!window.selectedImageFile) return;
+    
+    const formData = new FormData();
+    formData.append('image', window.selectedImageFile);
+    
+    $('#uploadImageBtn').prop('disabled', true).html('<i class="fas fa-spinner fa-spin me-1"></i>กำลังอัปโหลด...');
+    
+    $.ajax({
+        url: '/api/admin/upload',
+        method: 'POST',
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function(response) {
+            if (response.success) {
+                $('#imageUploadModal').modal('hide');
+                
+                // Call callback if exists
+                if (window.imageUploadCallback) {
+                    window.imageUploadCallback(response.data.uploadPath);
+                    window.imageUploadCallback = null;
+                }
+                
+                showSuccessMessage('อัปโหลดรูปภาพเรียบร้อยแล้ว');
+            } else {
+                showErrorMessage('อัปโหลดรูปภาพล้มเหลว: ' + response.message);
+            }
+        },
+        error: function() {
+            showErrorMessage('เกิดข้อผิดพลาดในการอัปโหลดรูปภาพ');
+        },
+        complete: function() {
+            $('#uploadImageBtn').prop('disabled', false).html('<i class="fas fa-upload me-1"></i>อัปโหลด');
+        }
+    });
+}
+
+// Initialize tab navigation
+function initializeTabNavigation() {
+    // Handle tab changes
+    $('button[data-bs-toggle="tab"]').on('shown.bs.tab', function(e) {
+        const target = $(e.target).attr('data-bs-target');
+        
+        // Update URL hash
+        window.location.hash = target.substring(1);
+    });
+    
+    // Load tab from URL hash
+    if (window.location.hash) {
+        const hash = window.location.hash;
+        const tabButton = $(`button[data-bs-target="${hash}"]`);
+        if (tabButton.length) {
+            tabButton.tab('show');
+        }
+    }
+}
+
+// Preview all pages
+function previewAllPages() {
+    const pages = [
+        { name: 'หน้าหลัก', url: '../index.html' },
+        { name: 'ประวัติ', url: '../page-history.html' },
+        { name: 'บริการ', url: '../page-services.html' },
+        { name: 'ติดต่อเรา', url: '../page-contact.html' }
+    ];
+    
+    pages.forEach(page => {
+        window.open(page.url, '_blank');
+    });
+}
+
+// Save all page changes
+function saveAllPageChanges() {
+    if (confirm('คุณต้องการบันทึกการเปลี่ยนแปลงทั้งหมดหรือไม่?')) {
+        // In a real application, this would save all data to the server
+        showSuccessMessage('บันทึกการเปลี่ยนแปลงทั้งหมดเรียบร้อยแล้ว');
+    }
+}
+// Save content to server with real-time update
+async function saveContentToServer(contentType, data, displayName) {
+    try {
+        const session = getSession();
+        if (!session) {
+            showErrorMessage('กรุณาเข้าสู่ระบบใหม่');
+            return;
+        }
+
+        // Show loading state
+        showLoadingMessage(`กำลังบันทึก${displayName}...`);
+
+        const response = await fetch(`/api/admin/content/${contentType}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${session.token || 'dummy-token'}`
+            },
+            body: JSON.stringify(data)
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+            console.log(`Content saved and cache invalidated for: ${contentType}`);
+            return true;
+        } else {
+            throw new Error(result.message || 'Unknown error');
+        }
+    } catch (error) {
+        console.error('Error saving content:', error);
+        throw error;
+    }
+}
+
+// Show loading message
+function showLoadingMessage(message) {
+    const alertHTML = `
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+            <i class="fas fa-spinner fa-spin me-2"></i>${message}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    `;
+    
+    if ($('#alertArea').length) {
+        $('#alertArea').html(alertHTML);
+    } else {
+        $('.admin-content').prepend(alertHTML);
+    }
+}

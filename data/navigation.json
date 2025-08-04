@@ -1,0 +1,55 @@
+{
+  "brand": {
+    "logo": "image/LOGO_.png",
+    "logoAlt": "logo",
+    "logoWidth": 50,
+    "logoHeight": 50,
+    "text": "สำนักงานโครงการจัดหมู่บ้านตัวอย่างห้วยตึงเฒ่า อันเนื่องมาจากพระราชดำริ",
+    "href": "index.html"
+  },
+  "brandName": "ห้วยตึงเฒ่า",
+  "menuItems": [
+    {
+      "id": "home",
+      "title": "หน้าหลัก",
+      "url": "index.html",
+      "active": true
+    },
+    {
+      "id": "history",
+      "title": "ประวัติ",
+      "url": "page-history.html",
+      "active": false
+    },
+    {
+      "id": "service",
+      "title": "บริการ",
+      "url": "page-services.html",
+      "active": false
+    },
+    {
+      "id": "news",
+      "title": "ข่าวสาร",
+      "url": "page-news.html",
+      "active": false
+    },
+    {
+      "id": "about",
+      "title": "เกี่ยวกับเรา",
+      "url": "#about",
+      "active": false
+    },
+    {
+      "id": "contact",
+      "title": "ติดต่อเรา",
+      "url": "page-contact.html",
+      "active": false
+    },
+    {
+      "id": "login",
+      "title": "เข้าสู่ระบบ",
+      "url": "admin/login.html",
+      "active": false
+    }
+  ]
+}

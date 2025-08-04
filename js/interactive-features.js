@@ -1,0 +1,596 @@
+// Advanced Interactive Features for Huay Tueng Thao Website
+// This file contains smooth page transitions, lightbox functionality, 
+// enhanced form interactions, and scroll-based animations
+
+class InteractiveFeatures {
+    constructor() {
+        this.lightbox = null;
+        this.pageTransition = null;
+        this.notifications = [];
+        this.scrollElements = [];
+        this.init();
+    }
+
+    init() {
+        this.createPageTransition();
+        this.createLightbox();
+        this.initializeScrollAnimations();
+        this.initializeFormEnhancements();
+        this.initializeParallaxEffects();
+        this.initializeNotificationSystem();
+        this.bindEvents();
+    }
+
+    // Page Transition System
+    createPageTransition() {
+        const transitionHTML = `
+            <div class="page-transition" id="pageTransition">
+                <div class="transition-content">
+                    <div class="transition-logo">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <div class="transition-text">กำลังโหลด...</div>
+                    <div class="transition-spinner"></div>
+                </div>
+            </div>
+        `;
+        
+        if (!document.getElementById('pageTransition')) {
+            document.body.insertAdjacentHTML('beforeend', transitionHTML);
+            this.pageTransition = document.getElementById('pageTransition');
+        }
+    }
+
+    showPageTransition() {
+        if (this.pageTransition) {
+            this.pageTransition.classList.add('active');
+        }
+    }
+
+    hidePageTransition() {
+        if (this.pageTransition) {
+            setTimeout(() => {
+                this.pageTransition.classList.remove('active');
+            }, 500);
+        }
+    }
+
+    // Enhanced Page Navigation with Transitions
+    navigateWithTransition(url) {
+        this.showPageTransition();
+        
+        setTimeout(() => {
+            window.location.href = url;
+        }, 300);
+    }
+
+    // Image Lightbox System
+    createLightbox() {
+        const lightboxHTML = `
+            <div class="lightbox" id="lightbox">
+                <div class="lightbox-content">
+                    <button class="lightbox-close" id="lightboxClose">
+                        <i class="fas fa-times"></i>
+                    </button>
+                    <button class="lightbox-nav lightbox-prev" id="lightboxPrev">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="lightbox-nav lightbox-next" id="lightboxNext">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                    <img class="lightbox-image" id="lightboxImage" src="" alt="">
+                    <div class="lightbox-caption" id="lightboxCaption"></div>
+                </div>
+            </div>
+        `;
+        
+        if (!document.getElementById('lightbox')) {
+            document.body.insertAdjacentHTML('beforeend', lightboxHTML);
+            this.lightbox = document.getElementById('lightbox');
+            this.initializeLightboxEvents();
+        }
+    }
+
+    initializeLightboxEvents() {
+        const lightbox = this.lightbox;
+        const lightboxImage = document.getElementById('lightboxImage');
+        const lightboxCaption = document.getElementById('lightboxCaption');
+        const lightboxClose = document.getElementById('lightboxClose');
+        const lightboxPrev = document.getElementById('lightboxPrev');
+        const lightboxNext = document.getElementById('lightboxNext');
+
+        let currentImageIndex = 0;
+        let imageGallery = [];
+
+        // Close lightbox
+        const closeLightbox = () => {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        };
+
+        lightboxClose.addEventListener('click', closeLightbox);
+        
+        // Close on background click
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                closeLightbox();
+            }
+        });
+
+        // Close on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+                closeLightbox();
+            }
+        });
+
+        // Navigation
+        const showImage = (index) => {
+            if (imageGallery.length === 0) return;
+            
+            currentImageIndex = index;
+            const image = imageGallery[currentImageIndex];
+            
+            lightboxImage.src = image.src;
+            lightboxImage.alt = image.alt;
+            lightboxCaption.textContent = image.caption || image.alt;
+            
+            // Show/hide navigation buttons
+            lightboxPrev.style.display = imageGallery.length > 1 ? 'flex' : 'none';
+            lightboxNext.style.display = imageGallery.length > 1 ? 'flex' : 'none';
+        };
+
+        lightboxPrev.addEventListener('click', () => {
+            currentImageIndex = currentImageIndex > 0 ? currentImageIndex - 1 : imageGallery.length - 1;
+            showImage(currentImageIndex);
+        });
+
+        lightboxNext.addEventListener('click', () => {
+            currentImageIndex = currentImageIndex < imageGallery.length - 1 ? currentImageIndex + 1 : 0;
+            showImage(currentImageIndex);
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('active')) return;
+            
+            if (e.key === 'ArrowLeft') {
+                lightboxPrev.click();
+            } else if (e.key === 'ArrowRight') {
+                lightboxNext.click();
+            }
+        });
+
+        // Open lightbox function
+        this.openLightbox = (imageSrc, imageAlt, imageCaption, gallery = []) => {
+            imageGallery = gallery.length > 0 ? gallery : [{ src: imageSrc, alt: imageAlt, caption: imageCaption }];
+            currentImageIndex = gallery.length > 0 ? gallery.findIndex(img => img.src === imageSrc) : 0;
+            
+            showImage(currentImageIndex);
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        };
+    }
+
+    // Initialize gallery images for lightbox
+    initializeGalleryLightbox() {
+        const galleryImages = document.querySelectorAll('.gallery-item img, .history-image, [data-lightbox]');
+        
+        galleryImages.forEach((img, index) => {
+            img.style.cursor = 'pointer';
+            img.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                // Create gallery array from all images in the same container
+                const container = img.closest('.gallery-grid, .history-timeline, [data-gallery]');
+                let gallery = [];
+                
+                if (container) {
+                    const containerImages = container.querySelectorAll('img');
+                    gallery = Array.from(containerImages).map(image => ({
+                        src: image.src,
+                        alt: image.alt,
+                        caption: image.getAttribute('data-caption') || image.alt
+                    }));
+                }
+                
+                this.openLightbox(
+                    img.src, 
+                    img.alt, 
+                    img.getAttribute('data-caption') || img.alt,
+                    gallery
+                );
+            });
+        });
+    }
+
+    // Scroll-based Animations
+    initializeScrollAnimations() {
+        // Create intersection observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements with scroll animation classes
+        const scrollElements = document.querySelectorAll(
+            '.scroll-reveal, .scroll-reveal-left, .scroll-reveal-right, .scroll-reveal-scale'
+        );
+        
+        scrollElements.forEach(element => {
+            observer.observe(element);
+        });
+
+        // Add scroll animations to existing elements
+        this.addScrollAnimationsToElements();
+    }
+
+    addScrollAnimationsToElements() {
+        // Add scroll animations to service cards
+        const serviceCards = document.querySelectorAll('.service-card');
+        serviceCards.forEach((card, index) => {
+            card.classList.add('scroll-reveal');
+            card.style.transitionDelay = `${index * 0.1}s`;
+        });
+
+        // Add scroll animations to timeline items
+        const timelineItems = document.querySelectorAll('.timeline-item');
+        timelineItems.forEach((item, index) => {
+            const isLeft = index % 2 === 0;
+            item.classList.add(isLeft ? 'scroll-reveal-left' : 'scroll-reveal-right');
+            item.style.transitionDelay = `${index * 0.2}s`;
+        });
+
+        // Add scroll animations to gallery items
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        galleryItems.forEach((item, index) => {
+            item.classList.add('scroll-reveal-scale');
+            item.style.transitionDelay = `${index * 0.1}s`;
+        });
+    }
+
+    // Enhanced Form Interactions
+    initializeFormEnhancements() {
+        const forms = document.querySelectorAll('form');
+        
+        forms.forEach(form => {
+            this.enhanceForm(form);
+        });
+    }
+
+    enhanceForm(form) {
+        const inputs = form.querySelectorAll('input, textarea, select');
+        
+        inputs.forEach(input => {
+            this.enhanceFormField(input);
+        });
+
+        // Add form submission enhancement
+        form.addEventListener('submit', (e) => {
+            this.handleFormSubmission(e, form);
+        });
+    }
+
+    enhanceFormField(field) {
+        const fieldContainer = field.closest('.form-group') || field.parentElement;
+        
+        // Add validation icons
+        if (!fieldContainer.querySelector('.form-validation-icon')) {
+            const validationHTML = `
+                <i class="fas fa-check form-validation-icon success"></i>
+                <i class="fas fa-times form-validation-icon error"></i>
+            `;
+            fieldContainer.insertAdjacentHTML('beforeend', validationHTML);
+        }
+
+        // Add real-time validation
+        field.addEventListener('input', () => {
+            this.validateField(field);
+        });
+
+        field.addEventListener('blur', () => {
+            this.validateField(field);
+        });
+
+        // Add floating label effect
+        if (field.type !== 'checkbox' && field.type !== 'radio') {
+            this.addFloatingLabel(field);
+        }
+    }
+
+    addFloatingLabel(field) {
+        const fieldContainer = field.closest('.form-group');
+        if (!fieldContainer) return;
+
+        const existingLabel = fieldContainer.querySelector('label');
+        if (!existingLabel) return;
+
+        // Convert to floating label
+        fieldContainer.classList.add('form-floating-label');
+        field.placeholder = ' '; // Required for CSS selector
+        
+        // Move label after input for CSS styling
+        field.parentNode.insertBefore(existingLabel, field.nextSibling);
+    }
+
+    validateField(field) {
+        const fieldContainer = field.closest('.form-group');
+        if (!fieldContainer) return;
+
+        let isValid = true;
+        let message = '';
+
+        // Basic validation rules
+        if (field.hasAttribute('required') && !field.value.trim()) {
+            isValid = false;
+            message = 'กรุณากรอกข้อมูลในช่องนี้';
+        } else if (field.type === 'email' && field.value) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(field.value)) {
+                isValid = false;
+                message = 'กรุณากรอกอีเมลที่ถูกต้อง';
+            }
+        } else if (field.type === 'tel' && field.value) {
+            const phoneRegex = /^[0-9-+\s()]+$/;
+            if (!phoneRegex.test(field.value)) {
+                isValid = false;
+                message = 'กรุณากรอกหมายเลขโทรศัพท์ที่ถูกต้อง';
+            }
+        }
+
+        // Update field state
+        fieldContainer.classList.remove('valid', 'invalid');
+        fieldContainer.classList.add(isValid ? 'valid' : 'invalid');
+
+        // Update feedback message
+        let feedback = fieldContainer.querySelector('.form-feedback');
+        if (!feedback) {
+            feedback = document.createElement('div');
+            feedback.className = 'form-feedback';
+            fieldContainer.appendChild(feedback);
+        }
+
+        feedback.className = `form-feedback ${isValid ? 'valid-feedback' : 'invalid-feedback'}`;
+        feedback.textContent = isValid ? 'ถูกต้อง' : message;
+
+        return isValid;
+    }
+
+    handleFormSubmission(e, form) {
+        e.preventDefault();
+        
+        // Validate all fields
+        const fields = form.querySelectorAll('input, textarea, select');
+        let isFormValid = true;
+        
+        fields.forEach(field => {
+            if (!this.validateField(field)) {
+                isFormValid = false;
+            }
+        });
+
+        if (isFormValid) {
+            this.showNotification('success', 'สำเร็จ', 'ส่งข้อมูลเรียบร้อยแล้ว');
+            // Here you would typically send the form data to your server
+        } else {
+            this.showNotification('error', 'ข้อผิดพลาด', 'กรุณาตรวจสอบข้อมูลที่กรอกให้ถูกต้อง');
+        }
+    }
+
+    // Parallax Effects
+    initializeParallaxEffects() {
+        const parallaxElements = document.querySelectorAll('.parallax-element');
+        
+        if (parallaxElements.length === 0) return;
+
+        let ticking = false;
+
+        const updateParallax = () => {
+            const scrollTop = window.pageYOffset;
+            
+            parallaxElements.forEach(element => {
+                const speed = element.getAttribute('data-speed') || 0.5;
+                const yPos = -(scrollTop * speed);
+                element.style.transform = `translateY(${yPos}px)`;
+            });
+            
+            ticking = false;
+        };
+
+        const requestParallaxUpdate = () => {
+            if (!ticking) {
+                requestAnimationFrame(updateParallax);
+                ticking = true;
+            }
+        };
+
+        window.addEventListener('scroll', requestParallaxUpdate);
+    }
+
+    // Notification System
+    initializeNotificationSystem() {
+        // Create notification container if it doesn't exist
+        if (!document.getElementById('notificationContainer')) {
+            const container = document.createElement('div');
+            container.id = 'notificationContainer';
+            container.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                z-index: 10000;
+                pointer-events: none;
+            `;
+            document.body.appendChild(container);
+        }
+    }
+
+    showNotification(type = 'info', title = '', message = '', duration = 5000) {
+        const container = document.getElementById('notificationContainer');
+        if (!container) return;
+
+        const notificationId = 'notification_' + Date.now();
+        const icons = {
+            success: 'fas fa-check-circle',
+            error: 'fas fa-exclamation-circle',
+            warning: 'fas fa-exclamation-triangle',
+            info: 'fas fa-info-circle'
+        };
+
+        const notificationHTML = `
+            <div class="notification ${type}" id="${notificationId}">
+                <div class="notification-header">
+                    <i class="${icons[type]} notification-icon"></i>
+                    <h4 class="notification-title">${title}</h4>
+                    <button class="notification-close" onclick="interactiveFeatures.closeNotification('${notificationId}')">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <p class="notification-message">${message}</p>
+                <div class="notification-progress"></div>
+            </div>
+        `;
+
+        container.insertAdjacentHTML('beforeend', notificationHTML);
+        const notification = document.getElementById(notificationId);
+        
+        // Enable pointer events for this notification
+        notification.style.pointerEvents = 'auto';
+
+        // Show notification
+        setTimeout(() => {
+            notification.classList.add('show');
+        }, 100);
+
+        // Auto-hide notification
+        if (duration > 0) {
+            const progressBar = notification.querySelector('.notification-progress');
+            let progress = 100;
+            const interval = 50;
+            const decrement = (interval / duration) * 100;
+
+            const progressInterval = setInterval(() => {
+                progress -= decrement;
+                if (progressBar) {
+                    progressBar.style.width = progress + '%';
+                }
+                
+                if (progress <= 0) {
+                    clearInterval(progressInterval);
+                    this.closeNotification(notificationId);
+                }
+            }, interval);
+
+            // Store interval ID for cleanup
+            notification.dataset.progressInterval = progressInterval;
+        }
+
+        // Add to notifications array
+        this.notifications.push(notificationId);
+    }
+
+    closeNotification(notificationId) {
+        const notification = document.getElementById(notificationId);
+        if (!notification) return;
+
+        // Clear progress interval if exists
+        if (notification.dataset.progressInterval) {
+            clearInterval(parseInt(notification.dataset.progressInterval));
+        }
+
+        // Hide notification
+        notification.classList.remove('show');
+        
+        // Remove from DOM after animation
+        setTimeout(() => {
+            notification.remove();
+            this.notifications = this.notifications.filter(id => id !== notificationId);
+        }, 400);
+    }
+
+    // Bind Events
+    bindEvents() {
+        // Initialize gallery lightbox when DOM is ready
+        document.addEventListener('DOMContentLoaded', () => {
+            this.initializeGalleryLightbox();
+        });
+
+        // Re-initialize features when content is dynamically loaded
+        document.addEventListener('contentLoaded', () => {
+            this.initializeGalleryLightbox();
+            this.addScrollAnimationsToElements();
+        });
+
+        // Handle page visibility change
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                // Pause animations when page is not visible
+                document.body.classList.add('page-hidden');
+            } else {
+                // Resume animations when page becomes visible
+                document.body.classList.remove('page-hidden');
+            }
+        });
+
+        // Smooth scroll for anchor links
+        document.addEventListener('click', (e) => {
+            const link = e.target.closest('a[href^="#"]');
+            if (link) {
+                e.preventDefault();
+                const targetId = link.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            }
+        });
+    }
+
+    // Utility Methods
+    debounce(func, wait) {
+        let timeout;
+        return function executedFunction(...args) {
+            const later = () => {
+                clearTimeout(timeout);
+                func(...args);
+            };
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+        };
+    }
+
+    throttle(func, limit) {
+        let inThrottle;
+        return function() {
+            const args = arguments;
+            const context = this;
+            if (!inThrottle) {
+                func.apply(context, args);
+                inThrottle = true;
+                setTimeout(() => inThrottle = false, limit);
+            }
+        };
+    }
+}
+
+// Initialize Interactive Features
+const interactiveFeatures = new InteractiveFeatures();
+
+// Make it globally available
+window.interactiveFeatures = interactiveFeatures;
+
+// Export for module systems
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = InteractiveFeatures;
+}

@@ -1,0 +1,51 @@
+{
+  "slides": [
+    {
+      "id": 1,
+      "title": "พ่อ แม่ ลูก",
+      "description": "พ่อตึงเฒ่า แม่ขวัญข้าว น้องแรมเพจ ครบทีม พ่อแม่ลูกแห่งห้วยตึงเฒ่า",
+      "image": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+      "backgroundClass": "carousel-image-1",
+      "active": true,
+      "slideIndex": 0
+    },
+    {
+      "id": 2,
+      "title": "จุดเช็คอิน",
+      "description": "เรามีบริการให้ลูกค้ามากมาย อาทิเช่น จุดถ่ายรูปกับคิงคอง กังหันลม ร้านอาหารต่างๆและวิวสายๆอีกมากมาย",
+      "image": "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+      "backgroundClass": "carousel-image-2",
+      "active": false,
+      "slideIndex": 1
+    },
+    {
+      "id": 3,
+      "title": "ป้อนอาหารแกะ",
+      "description": "ทางเรามีบริการให้อาหารแกะ โดยสามารถป้อนอาหารน้องแกะได้ และมีเจ้าหน้าที่คอยให้บริการและดูแลความเรียบร้อยอีกด้วย",
+      "image": "https://images.unsplash.com/photo-1500595046743-cd271d694d30?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+      "backgroundClass": "carousel-image-3",
+      "active": false,
+      "slideIndex": 2
+    },
+    {
+      "id": 4,
+      "title": "ต้อนรับนักท่องเที่ยว",
+      "description": "ไปเที่ยวกัน! ทุ่งคอสมอสห้วยตึงเฒ่าบานสะพรั่งอวดโฉมงาม ต้อนรับนักท่องเที่ยว แถมกลางอากาศเย็นสบายตลอดทั้งวัน มีดอยสูงของอุทยานแห่งชาติดอยสุเทพ-ปุย เป็นฉากหลัง เรียกว่าเป็นจุดถ่ายภาพที่สวยงามที่สุดอีกจุดหนึ่งในจังหวัดเชียงใหม่",
+      "image": "https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+      "backgroundClass": "carousel-image-4",
+      "active": false,
+      "slideIndex": 3,
+      "link": {
+        "url": "https://www.facebook.com/huaytuengthao",
+        "target": "_blank"
+      }
+    }
+  ],
+  "controls": {
+    "prevButton": true,
+    "nextButton": true,
+    "indicators": true,
+    "autoplay": true,
+    "interval": 5000
+  }
+}
