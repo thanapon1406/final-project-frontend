@@ -658,10 +658,87 @@
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Custom JS -->
+    <!-- Load Homepage Data from JSON -->
     <script>
+      let carouselData = null;
+      let newsData = null;
+      let featuredData = null;
+      let galleryData = null;
+
+      // Load all JSON data
+      async function loadAllData() {
+        try {
+          const [carousel, news, featured, gallery] = await Promise.all([
+            fetch('data/homepage-carousel.json').then(r => r.json()),
+            fetch('data/homepage-news.json').then(r => r.json()),
+            fetch('data/homepage-featured.json').then(r => r.json()),
+            fetch('data/homepage-gallery.json').then(r => r.json())
+          ]);
+
+          carouselData = carousel;
+          newsData = news;
+          featuredData = featured;
+          galleryData = gallery;
+
+          console.log('All homepage data loaded');
+        } catch (error) {
+          console.error('Error loading homepage data:', error);
+        }
+      }
+
+      // Update news marquee
+      function updateNewsMarquee() {
+        if (!newsData) return;
+
+        const marquee = document.querySelector('.news-marquee marquee');
+        if (marquee) {
+          let content = '';
+          newsData.announcements.forEach((announcement, index) => {
+            if (index > 0) content += ' &nbsp;&nbsp;&nbsp;&nbsp; ';
+            content += `<strong>ประกาศ:</strong> ${announcement.text}`;
+          });
+          marquee.innerHTML = content;
+        }
+      }
+
+      // Update hero section
+      function updateHeroSection() {
+        if (!featuredData) return;
+
+        const heroSection = featuredData.heroSection;
+        const heroContent = document.querySelector('.hero-content h1');
+        const heroDesc = document.querySelector('.hero-content p');
+        const heroImage = document.querySelector('.hero-image img');
+
+        if (heroContent) heroContent.innerHTML = `${heroSection.title}<br /><small class="text-muted">${heroSection.subtitle}</small>`;
+        if (heroDesc) heroDesc.textContent = heroSection.description;
+        if (heroImage) heroImage.src = heroSection.image;
+      }
+
+      // Update gallery
+      function updateGallery() {
+        if (!galleryData) return;
+
+        const galleryContainer = document.querySelector('#gallery .row');
+        if (galleryContainer) {
+          galleryContainer.innerHTML = '';
+
+          galleryData.gallery.images.forEach(image => {
+            galleryContainer.innerHTML += `
+              <div class="col-lg-4 col-md-6">
+                <div class="gallery-item">
+                  <img src="${image.src}" alt="${image.alt}" class="img-fluid"
+                       width="400" height="250"
+                       onerror="this.onerror=null;this.src='data:image/svg+xml;charset=UTF-8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22250%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23cccccc%22/><text x=%2250%25%22 y=%2250%25%22 font-size=%2224%22 text-anchor=%22middle%22 fill=%22%23666%22 dy=%22.3em%22>400x250</text></svg>'">
+                </div>
+              </div>
+            `;
+          });
+        }
+      }
+
       // Simple fade-in animation
-      document.addEventListener("DOMContentLoaded", function () {
+      function initAnimations() {
         const elements = document.querySelectorAll(
           ".feature-card, .card, .gallery-item"
         );
@@ -676,6 +753,27 @@
         });
 
         elements.forEach((el) => {
+          el.style.opacity = "0";
+          el.style.transform = "translateY(20px)";
+          el.style.transition = "opacity 0.6s ease, transform 0.6s ease";
+          observer.observe(el);
+        });
+      }
+
+      // Initialize everything when DOM loads
+      document.addEventListener("DOMContentLoaded", async function () {
+        await loadAllData();
+        
+        if (newsData) updateNewsMarquee();
+        if (featuredData) updateHeroSection();
+        if (galleryData) updateGallery();
+        
+        initAnimations();
+        console.log('Homepage updated with JSON data');
+      });
+    </script>
+  </body>
+</html>
           el.style.opacity = "0";
           el.style.transform = "translateY(20px)";
           el.style.transition = "all 0.6s ease";

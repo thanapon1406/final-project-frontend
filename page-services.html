@@ -86,7 +86,7 @@
       <section class="hero-section">
         <div class="container">
           <div class="row justify-content-center text-center">
-            <div class="col-lg-8">
+            <div class="col-lg-8" id="hero-content">
               <h1>บริการต่างๆ</h1>
               <p>
                 เรามีบริการต่างๆมากมาย อาทิเช่น ป้อนอาหารแกะ
@@ -101,71 +101,8 @@
       <!-- Main Services -->
       <section class="py-5">
         <div class="container">
-          <div class="row g-4">
-            <div class="col-lg-4 col-md-6">
-              <div class="card h-100">
-                <img
-                  src="https://images.unsplash.com/photo-1463491544371-2e8e8b8e07c7?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
-                  class="card-img-top"
-                  alt="หุ่นฟาง"
-                  style="height: 200px; object-fit: cover"
-                  width="400"
-                  height="200"
-                  onerror="this.onerror=null;this.src='data:image/svg+xml;charset=UTF-8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22200%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23cccccc%22/><text x=%2250%25%22 y=%2250%25%22 font-size=%2224%22 text-anchor=%22middle%22 fill=%22%23666%22 dy=%22.3em%22>400x200</text></svg>'"
-                />
-                <div class="card-body">
-                  <h5 class="card-title">หุ่นฟางใหม่พฤศจิกายน 2565</h5>
-                  <p class="card-text">
-                    เปิดรับต้อนรับนักท่องเที่ยวเข้าถ่ายภาพกับครอบครัวคิงคอง
-                    พ่อตึงเฒ่า, แม่ขวัญข้าว และน้องแรมเพจ ครบทีม ได้แล้วจ้า
-                    เราปรับปรุงรูปแบบใหม่ไฉไลกว่าเดิม
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6">
-              <div class="card h-100">
-                <img
-                  src="https://images.unsplash.com/photo-1504851149312-7a075b496cc7?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
-                  class="card-img-top"
-                  alt="เต็นท์"
-                  style="height: 200px; object-fit: cover"
-                  width="400"
-                  height="200"
-                  onerror="this.onerror=null;this.src='data:image/svg+xml;charset=UTF-8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22200%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23cccccc%22/><text x=%2250%25%22 y=%2250%25%22 font-size=%2224%22 text-anchor=%22middle%22 fill=%22%23666%22 dy=%22.3em%22>400x200</text></svg>'"
-                />
-                <div class="card-body">
-                  <h5 class="card-title">สถานที่กางเต็นท์</h5>
-                  <p class="card-text">
-                    บริเวณสำหรับกางเต็นท์พักแรมท่ามกลางธรรมชาติที่สวยงาม
-                    พร้อมสิ่งอำนวยความสะดวกครบครัน
-                    เหมาะสำหรับครอบครัวและกลุ่มเพื่อน
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6">
-              <div class="card h-100">
-                <img
-                  src="https://images.unsplash.com/photo-1520637736862-4d197d17c93a?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
-                  class="card-img-top"
-                  alt="บ้านพัก"
-                  style="height: 200px; object-fit: cover"
-                  width="400"
-                  height="200"
-                  onerror="this.onerror=null;this.src='data:image/svg+xml;charset=UTF-8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22200%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23cccccc%22/><text x=%2250%25%22 y=%2250%25%22 font-size=%2224%22 text-anchor=%22middle%22 fill=%22%23666%22 dy=%22.3em%22>400x200</text></svg>'"
-                />
-                <div class="card-body">
-                  <h5 class="card-title">บ้านพัก</h5>
-                  <p class="card-text">
-                    บ้านพักสำหรับนักท่องเที่ยวที่ต้องการความสะดวกสบายและความเป็นส่วนตัว
-                    พร้อมสิ่งอำนวยความสะดวกครบครัน
-                  </p>
-                </div>
-              </div>
-            </div>
+          <div class="row g-4" id="main-services">
+            <!-- Services will be loaded from JSON -->
           </div>
         </div>
       </section>
@@ -178,86 +115,8 @@
               <h3 class="text-center mb-5">กิจกรรมและอุปกรณ์</h3>
             </div>
           </div>
-          <div class="row g-4">
-            <div class="col-lg-3 col-md-6">
-              <div class="feature-card">
-                <div class="feature-icon">
-                  <i class="fas fa-bed"></i>
-                </div>
-                <h5>พักผ่อนผ่อนคลาย</h5>
-                <p>บริเวณสำหรับพักผ่อนท่ามกลางธรรมชาติอันสงบเงียบ</p>
-              </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6">
-              <div class="feature-card">
-                <div class="feature-icon">
-                  <i class="fas fa-motorcycle"></i>
-                </div>
-                <h5>รถเอทีวี</h5>
-                <p>ขับรถเอทีวีสำรวจธรรมชาติรอบๆ อ่างเก็บน้ำ</p>
-              </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6">
-              <div class="feature-card">
-                <div class="feature-icon">
-                  <i class="fas fa-route"></i>
-                </div>
-                <h5>ซิปไลน์</h5>
-                <p>ลื่นไถลผ่านอากาศชมวิวทิวทัศน์อันงดงาม</p>
-              </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6">
-              <div class="feature-card">
-                <div class="feature-icon">
-                  <i class="fas fa-ship"></i>
-                </div>
-                <h5>เรือแคนู</h5>
-                <p>พายเรือแคนูในอ่างเก็บน้ำอันเงียบสงบ</p>
-              </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6">
-              <div class="feature-card">
-                <div class="feature-icon">
-                  <i class="fas fa-fish"></i>
-                </div>
-                <h5>ให้อาหารปลา</h5>
-                <p>กิจกรรมให้อาหารปลาที่สนุกสำหรับทุกวัย</p>
-              </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6">
-              <div class="feature-card">
-                <div class="feature-icon">
-                  <i class="fas fa-biking"></i>
-                </div>
-                <h5>จักรยานน้ำ</h5>
-                <p>ปั่นจักรยานน้ำเพลินๆ ในอ่างเก็บน้ำ</p>
-              </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6">
-              <div class="feature-card">
-                <div class="feature-icon">
-                  <i class="fas fa-hiking"></i>
-                </div>
-                <h5>เดินทางไกล</h5>
-                <p>เดินเท้าสำรวจธรรมชาติและป่าไผ่</p>
-              </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6">
-              <div class="feature-card">
-                <div class="feature-icon">
-                  <i class="fas fa-water"></i>
-                </div>
-                <h5>นั่งแพ</h5>
-                <p>นั่งแพผ่อนคลายชมธรรมชาติรอบอ่างเก็บน้ำ</p>
-              </div>
-            </div>
+          <div class="row g-4" id="activities">
+            <!-- Activities will be loaded from JSON -->
           </div>
         </div>
       </section>
@@ -268,56 +127,8 @@
           <div class="row">
             <div class="col-lg-8 mx-auto">
               <div class="card">
-                <div class="card-body">
-                  <h3 class="text-center mb-4">ข้อมูลการให้บริการ</h3>
-
-                  <div class="row">
-                    <div class="col-md-6">
-                      <h5>
-                        <i class="fas fa-clock text-primary me-2"></i
-                        >เวลาเปิด-ปิด
-                      </h5>
-                      <p>
-                        เปิดให้บริการทุกวันไม่มีวันหยุด<br />
-                        ตั้งแต่เวลา <strong>06:30 - 18:00 น.</strong>
-                      </p>
-
-                      <h5>
-                        <i class="fas fa-phone text-primary me-2"></i
-                        >ติดต่อสอบถาม
-                      </h5>
-                      <p>โทรศัพท์: 053-298-034, 053-298-035</p>
-                    </div>
-
-                    <div class="col-md-6">
-                      <h5>
-                        <i class="fas fa-car text-primary me-2"></i>ที่จอดรถ
-                      </h5>
-                      <p>
-                        มีบริการที่จอดรถได้มากมาย<br />
-                        พร้อมคอยบริการนักท่องเที่ยว
-                      </p>
-
-                      <h5>
-                        <i class="fas fa-utensils text-primary me-2"></i
-                        >บริการอาหาร
-                      </h5>
-                      <p>
-                        ร้านอาหารและเครื่องดื่ม<br />
-                        อาหารท้องถิ่นรสชาติดี
-                      </p>
-                    </div>
-                  </div>
-
-                  <hr class="my-4" />
-
-                  <div class="text-center">
-                    <h5 class="text-primary">หมายเหตุ</h5>
-                    <p class="mb-0">
-                      กรุณาติดต่อสอบถามข้อมูลเพิ่มเติมก่อนเดินทาง<br />
-                      เพื่อความสะดวกในการให้บริการ
-                    </p>
-                  </div>
+                <div class="card-body" id="service-info">
+                  <!-- Service info will be loaded from JSON -->
                 </div>
               </div>
             </div>
@@ -340,7 +151,9 @@
           <div class="col-lg-4 text-end">
             <!-- <p>จำนวนผู้เข้าชม: <strong>123,456</strong> คน</p> -->
             <div class="social-links">
-              <a href="https://www.facebook.com/huaytuengthao/"><i class="fab fa-facebook-f"></i></a>
+              <a href="https://www.facebook.com/huaytuengthao/"
+                ><i class="fab fa-facebook-f"></i
+              ></a>
               <!-- <a href="#"><i class="fab fa-instagram"></i></a>
               <a href="#"><i class="fab fa-line"></i></a> -->
             </div>
@@ -351,5 +164,152 @@
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Load Services Data from JSON -->
+    <script>
+      // Simple function to load JSON data
+      let servicesData = null;
+
+      // Load JSON data
+      async function loadServicesData() {
+        try {
+          const response = await fetch("data/page-services.json");
+          servicesData = await response.json();
+          console.log("Services data loaded:", servicesData);
+          return servicesData;
+        } catch (error) {
+          console.error("Error loading services data:", error);
+          return null;
+        }
+      }
+
+      // Get title from JSON
+      function getTitle() {
+        if (servicesData) {
+          return servicesData.services.title;
+        }
+        return "บริการต่างๆ";
+      }
+
+      // Get subtitle from JSON
+      function getSubtitle() {
+        if (servicesData) {
+          return servicesData.services.subtitle;
+        }
+        return "เรามีบริการต่างๆมากมาย";
+      }
+
+      // Update hero section with JSON data
+      function updateHeroSection() {
+        const title = getTitle();
+        const subtitle = getSubtitle();
+
+        document.getElementById("hero-content").innerHTML = `
+                <h1>${title}</h1>
+                <p>${subtitle}</p>
+            `;
+      }
+
+      // Update main services with JSON data
+      function updateMainServices() {
+        if (!servicesData) return;
+
+        const container = document.getElementById("main-services");
+        container.innerHTML = "";
+
+        servicesData.services.mainServices.forEach((service) => {
+          container.innerHTML += `
+                    <div class="col-lg-4 col-md-6">
+                        <div class="card h-100">
+                            <img src="${service.image}" class="card-img-top" alt="${service.title}" 
+                                 style="height: 200px; object-fit: cover" width="400" height="200"
+                                 onerror="this.onerror=null;this.src='data:image/svg+xml;charset=UTF-8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22200%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23cccccc%22/><text x=%2250%25%22 y=%2250%25%22 font-size=%2224%22 text-anchor=%22middle%22 fill=%22%23666%22 dy=%22.3em%22>400x200</text></svg>'">
+                            <div class="card-body">
+                                <h5 class="card-title">${service.title}</h5>
+                                <p class="card-text">${service.description}</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+        });
+      }
+
+      // Update activities with JSON data
+      function updateActivities() {
+        if (!servicesData) return;
+
+        const container = document.getElementById("activities");
+        container.innerHTML = "";
+
+        servicesData.services.activities.forEach((activity) => {
+          container.innerHTML += `
+                    <div class="col-lg-3 col-md-6">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="${activity.icon}"></i>
+                            </div>
+                            <h5>${activity.title}</h5>
+                            <p>${activity.description}</p>
+                        </div>
+                    </div>
+                `;
+        });
+      }
+
+      // Update service info with JSON data
+      function updateServiceInfo() {
+        if (!servicesData) return;
+
+        const info = servicesData.services.serviceInfo;
+        document.getElementById("service-info").innerHTML = `
+                <h3 class="text-center mb-4">ข้อมูลการให้บริการ</h3>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h5><i class="fas fa-clock text-primary me-2"></i>เวลาเปิด-ปิด</h5>
+                        <p>${info.operatingHours}</p>
+                        <h5><i class="fas fa-phone text-primary me-2"></i>ติดต่อสอบถาม</h5>
+                        <p>โทรศัพท์: ${info.phone}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <h5><i class="fas fa-car text-primary me-2"></i>ที่จอดรถ</h5>
+                        <p>${info.parking}</p>
+                        <h5><i class="fas fa-utensils text-primary me-2"></i>บริการอาหาร</h5>
+                        <p>${info.restaurant}</p>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <h5><i class="fab fa-facebook text-primary me-2"></i>ติดตามเรา</h5>
+                        <div class="social-links">
+                            <a href="${info.socialMedia.facebook.account}" class="btn btn-outline-primary btn-sm me-2" target="_blank">
+                                <i class="fab fa-facebook-f"></i> Facebook Account
+                            </a>
+                            <a href="${info.socialMedia.facebook.fanpage}" class="btn btn-outline-primary btn-sm" target="_blank">
+                                <i class="fab fa-facebook-f"></i> Facebook Fanpage
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <hr class="my-4" />
+                <div class="text-center">
+                    <h5 class="text-primary">หมายเหตุ</h5>
+                    <p class="mb-0">${info.note}</p>
+                </div>
+            `;
+      }
+
+      // Load all data when page loads
+      document.addEventListener("DOMContentLoaded", async () => {
+        await loadServicesData();
+
+        if (servicesData) {
+          updateHeroSection();
+          updateMainServices();
+          updateActivities();
+          updateServiceInfo();
+          console.log("Page updated with JSON data");
+        }
+      });
+    </script>
   </body>
 </html>
