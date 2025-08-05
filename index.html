@@ -641,14 +641,10 @@
             </h5>
             <p>Copyright © 2021 by ห้วยตึงเฒ่า All rights reserved.</p>
           </div>
-          <div class="col-lg-4 text-end">
+          <div class="col-lg-4 text-end" id="footer-social">
             <!-- <p>จำนวนผู้เข้าชม: <strong>123,456</strong> คน</p> -->
             <div class="social-links">
-              <a href="https://www.facebook.com/huaytuengthao/"
-                ><i class="fab fa-facebook-f"></i
-              ></a>
-              <!-- <a href="#"><i class="fab fa-instagram"></i></a>
-              <a href="#"><i class="fab fa-line"></i></a> -->
+              <!-- Facebook link will be loaded from JSON -->
             </div>
           </div>
         </div>
@@ -669,10 +665,10 @@
       async function loadAllData() {
         try {
           const [carousel, news, featured, gallery] = await Promise.all([
-            fetch('data/homepage-carousel.json').then(r => r.json()),
-            fetch('data/homepage-news.json').then(r => r.json()),
-            fetch('data/homepage-featured.json').then(r => r.json()),
-            fetch('data/homepage-gallery.json').then(r => r.json())
+            fetch("data/homepage-carousel.json").then((r) => r.json()),
+            fetch("data/homepage-news.json").then((r) => r.json()),
+            fetch("data/homepage-featured.json").then((r) => r.json()),
+            fetch("data/homepage-gallery.json").then((r) => r.json()),
           ]);
 
           carouselData = carousel;
@@ -680,9 +676,9 @@
           featuredData = featured;
           galleryData = gallery;
 
-          console.log('All homepage data loaded');
+          console.log("All homepage data loaded");
         } catch (error) {
-          console.error('Error loading homepage data:', error);
+          console.error("Error loading homepage data:", error);
         }
       }
 
@@ -690,11 +686,11 @@
       function updateNewsMarquee() {
         if (!newsData) return;
 
-        const marquee = document.querySelector('.news-marquee marquee');
+        const marquee = document.querySelector(".news-marquee marquee");
         if (marquee) {
-          let content = '';
+          let content = "";
           newsData.announcements.forEach((announcement, index) => {
-            if (index > 0) content += ' &nbsp;&nbsp;&nbsp;&nbsp; ';
+            if (index > 0) content += " &nbsp;&nbsp;&nbsp;&nbsp; ";
             content += `<strong>ประกาศ:</strong> ${announcement.text}`;
           });
           marquee.innerHTML = content;
@@ -706,11 +702,12 @@
         if (!featuredData) return;
 
         const heroSection = featuredData.heroSection;
-        const heroContent = document.querySelector('.hero-content h1');
-        const heroDesc = document.querySelector('.hero-content p');
-        const heroImage = document.querySelector('.hero-image img');
+        const heroContent = document.querySelector(".hero-content h1");
+        const heroDesc = document.querySelector(".hero-content p");
+        const heroImage = document.querySelector(".hero-image img");
 
-        if (heroContent) heroContent.innerHTML = `${heroSection.title}<br /><small class="text-muted">${heroSection.subtitle}</small>`;
+        if (heroContent)
+          heroContent.innerHTML = `${heroSection.title}<br /><small class="text-muted">${heroSection.subtitle}</small>`;
         if (heroDesc) heroDesc.textContent = heroSection.description;
         if (heroImage) heroImage.src = heroSection.image;
       }
@@ -719,11 +716,11 @@
       function updateGallery() {
         if (!galleryData) return;
 
-        const galleryContainer = document.querySelector('#gallery .row');
+        const galleryContainer = document.querySelector("#gallery .row");
         if (galleryContainer) {
-          galleryContainer.innerHTML = '';
+          galleryContainer.innerHTML = "";
 
-          galleryData.gallery.images.forEach(image => {
+          galleryData.gallery.images.forEach((image) => {
             galleryContainer.innerHTML += `
               <div class="col-lg-4 col-md-6">
                 <div class="gallery-item">
@@ -734,6 +731,22 @@
               </div>
             `;
           });
+        }
+      }
+
+      // Update footer social links
+      function updateFooterSocial() {
+        if (!featuredData || !featuredData.socialMedia) return;
+
+        const footerSocial = document.getElementById("footer-social");
+        if (footerSocial) {
+          footerSocial.innerHTML = `
+            <div class="social-links">
+              <a href="${featuredData.socialMedia.facebook.account}" target="_blank">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+            </div>
+          `;
         }
       }
 
@@ -763,22 +776,14 @@
       // Initialize everything when DOM loads
       document.addEventListener("DOMContentLoaded", async function () {
         await loadAllData();
-        
+
         if (newsData) updateNewsMarquee();
         if (featuredData) updateHeroSection();
         if (galleryData) updateGallery();
-        
+        if (featuredData) updateFooterSocial();
+
         initAnimations();
-        console.log('Homepage updated with JSON data');
-      });
-    </script>
-  </body>
-</html>
-          el.style.opacity = "0";
-          el.style.transform = "translateY(20px)";
-          el.style.transition = "all 0.6s ease";
-          observer.observe(el);
-        });
+        console.log("Homepage updated with JSON data");
       });
     </script>
   </body>

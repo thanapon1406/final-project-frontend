@@ -94,5 +94,11 @@
     "showCaption": true,
     "autoPlay": false,
     "transitionDuration": 300
+  },
+  "socialMedia": {
+    "facebook": {
+      "account": "https://www.facebook.com/huaytuengthao/",
+      "fanpage": "https://www.facebook.com/huaytuengthaocm"
+    }
   }
 }

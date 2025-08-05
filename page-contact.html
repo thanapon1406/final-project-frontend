@@ -119,12 +119,10 @@
                     <h5>สำนักงานโครงการจัดหมู่บ้านตัวอย่างห้วยตึงเฒ่า อันเนื่องมาจากพระราชดำริ</h5>
                     <p>Copyright © 2021 by ห้วยตึงเฒ่า All rights reserved.</p>
                 </div>
-                <div class="col-lg-4 text-end">
+                <div class="col-lg-4 text-end" id="footer-social">
                     <!-- <p>จำนวนผู้เข้าชม: <strong>123,456</strong> คน</p> -->
                     <div class="social-links">
-                        <a href="https://www.facebook.com/huaytuengthao/"><i class="fab fa-facebook-f"></i></a>
-                        <!-- <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-line"></i></a> -->
+                        <!-- Facebook link will be loaded from JSON -->
                     </div>
                 </div>
             </div>
@@ -205,6 +203,22 @@
             `;
         }
 
+        // Update footer social links
+        function updateFooterSocial() {
+            if (!contactData || !contactData.contact.socialMedia) return;
+            
+            const footerSocial = document.getElementById('footer-social');
+            if (footerSocial) {
+                footerSocial.innerHTML = `
+                    <div class="social-links">
+                        <a href="${contactData.contact.socialMedia.facebook.account}" target="_blank">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                    </div>
+                `;
+            }
+        }
+
         // Load all data when page loads
         document.addEventListener('DOMContentLoaded', async () => {
             await loadContactData();
@@ -212,6 +226,7 @@
             if (contactData) {
                 updateContactInfo();
                 updateMap();
+                updateFooterSocial();
                 console.log('Contact page updated with JSON data');
             }
         });

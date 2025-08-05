@@ -52,6 +52,12 @@
         "title": "พัฒนาเป็นแหล่งท่องเที่ยว",
         "description": "ได้รับงบประมาณจากการท่องเที่ยวแห่งประเทศไทย"
       }
-    ]
+    ],
+    "socialMedia": {
+      "facebook": {
+        "account": "https://www.facebook.com/huaytuengthao/",
+        "fanpage": "https://www.facebook.com/huaytuengthaocm"
+      }
+    }
   }
 }

@@ -148,14 +148,10 @@
             </h5>
             <p>Copyright © 2021 by ห้วยตึงเฒ่า All rights reserved.</p>
           </div>
-          <div class="col-lg-4 text-end">
+          <div class="col-lg-4 text-end" id="footer-social">
             <!-- <p>จำนวนผู้เข้าชม: <strong>123,456</strong> คน</p> -->
             <div class="social-links">
-              <a href="https://www.facebook.com/huaytuengthao/"
-                ><i class="fab fa-facebook-f"></i
-              ></a>
-              <!-- <a href="#"><i class="fab fa-instagram"></i></a>
-              <a href="#"><i class="fab fa-line"></i></a> -->
+              <!-- Facebook link will be loaded from JSON -->
             </div>
           </div>
         </div>
@@ -298,6 +294,23 @@
             `;
       }
 
+      // Update footer social links
+      function updateFooterSocial() {
+        if (!servicesData || !servicesData.services.serviceInfo.socialMedia)
+          return;
+
+        const footerSocial = document.getElementById("footer-social");
+        if (footerSocial) {
+          footerSocial.innerHTML = `
+            <div class="social-links">
+              <a href="${servicesData.services.serviceInfo.socialMedia.facebook.account}" target="_blank">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+            </div>
+          `;
+        }
+      }
+
       // Load all data when page loads
       document.addEventListener("DOMContentLoaded", async () => {
         await loadServicesData();
@@ -307,6 +320,7 @@
           updateMainServices();
           updateActivities();
           updateServiceInfo();
+          updateFooterSocial();
           console.log("Page updated with JSON data");
         }
       });

@@ -87,5 +87,11 @@
       "image": "https://huaytuengthao.com/image/icon-zip.jpg",
       "description": "ซิปไลน์ข้ามผืนน้ำ"
     }
-  ]
+  ],
+  "socialMedia": {
+    "facebook": {
+      "account": "https://www.facebook.com/huaytuengthao/",
+      "fanpage": "https://www.facebook.com/huaytuengthaocm"
+    }
+  }
 }

@@ -139,14 +139,10 @@
             </h5>
             <p>Copyright © 2021 by ห้วยตึงเฒ่า All rights reserved.</p>
           </div>
-          <div class="col-lg-4 text-end">
+          <div class="col-lg-4 text-end" id="footer-social">
             <!-- <p>จำนวนผู้เข้าชม: <strong>123,456</strong> คน</p> -->
             <div class="social-links">
-              <a href="https://www.facebook.com/huaytuengthao/"
-                ><i class="fab fa-facebook-f"></i
-              ></a>
-              <!-- <a href="#"><i class="fab fa-instagram"></i></a>
-              <a href="#"><i class="fab fa-line"></i></a> -->
+              <!-- Facebook link will be loaded from JSON -->
             </div>
           </div>
         </div>
@@ -215,6 +211,41 @@
                     </div>
                 `;
         });
+
+        // Add social media section after timeline
+        if (historyData.history.socialMedia) {
+          container.innerHTML += `
+                <div class="card">
+                    <div class="card-body text-center">
+                        <h5><i class="fab fa-facebook text-primary me-2"></i>ติดตามเรา</h5>
+                        <div class="social-links">
+                            <a href="${historyData.history.socialMedia.facebook.account}" class="btn btn-outline-primary btn-sm me-2" target="_blank">
+                                <i class="fab fa-facebook-f"></i> Facebook Account
+                            </a>
+                            <a href="${historyData.history.socialMedia.facebook.fanpage}" class="btn btn-outline-primary btn-sm" target="_blank">
+                                <i class="fab fa-facebook-f"></i> Facebook Fanpage
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+      }
+
+      // Update footer social links
+      function updateFooterSocial() {
+        if (!historyData || !historyData.history.socialMedia) return;
+
+        const footerSocial = document.getElementById("footer-social");
+        if (footerSocial) {
+          footerSocial.innerHTML = `
+            <div class="social-links">
+              <a href="${historyData.history.socialMedia.facebook.account}" target="_blank">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+            </div>
+          `;
+        }
       }
 
       // Load all data when page loads
@@ -224,6 +255,7 @@
         if (historyData) {
           updateHistoryContent();
           updateTimeline();
+          updateFooterSocial();
           console.log("History page updated with JSON data");
         }
       });
