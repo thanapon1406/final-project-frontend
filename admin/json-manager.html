@@ -1,547 +1,614 @@
 <!DOCTYPE html>
 <html lang="th">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>จัดการไฟล์ JSON - ห้วยตึงเฒ่า Admin</title>
-    <!-- Bootstrap 5.1.3 CDN -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome 5.10.0 -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css">
-    <!-- Itim Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">
-    <!-- Prism.js for syntax highlighting -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="../css/admin.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>จัดการไฟล์ JSON - ห้วยตึงเฒ่า</title>
+    <!-- Bootstrap 5.3.0 -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <!-- Thai Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Itim:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
     <style>
-        .json-editor {
-            font-family: 'Courier New', monospace;
-            font-size: 14px;
-            line-height: 1.5;
-            border: 1px solid #dee2e6;
-            border-radius: 0.375rem;
-            background-color: #f8f9fa;
-        }
-        
-        .json-file-item {
-            transition: all 0.3s ease;
-        }
-        
-        .json-file-item:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-        
-        .file-size {
-            font-size: 0.8rem;
-            color: #6c757d;
-        }
-        
-        .backup-item {
-            border-left: 4px solid #28a745;
-        }
-        
-        .backup-item.old {
-            border-left-color: #ffc107;
-        }
-        
-        .json-preview {
-            max-height: 300px;
-            overflow-y: auto;
-            background: #2d3748;
-            color: #e2e8f0;
-            border-radius: 0.375rem;
-            padding: 1rem;
-        }
+      body {
+        font-family: "Itim", cursive;
+        background-color: #f8f9fa;
+      }
+      .json-card {
+        transition: transform 0.2s, box-shadow 0.2s;
+        cursor: pointer;
+        border: 2px solid transparent;
+      }
+      .json-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        border-color: #007bff;
+      }
+      .btn-save {
+        background: linear-gradient(45deg, #28a745, #20c997);
+        border: none;
+        color: white;
+        font-weight: 500;
+      }
+      .btn-save:hover {
+        background: linear-gradient(45deg, #218838, #1ea080);
+        color: white;
+      }
+      .form-control,
+      .form-select,
+      .btn {
+        font-family: "Itim", cursive;
+      }
+      .navbar-brand {
+        font-weight: 600;
+      }
+      .alert {
+        font-family: "Itim", cursive;
+      }
     </style>
-</head>
-<body>
-    <div class="container-fluid">
-        <div class="row">
-            <!-- Sidebar -->
-            <nav class="col-md-3 col-lg-2 d-md-block admin-sidebar collapse">
-                <div class="position-sticky pt-3">
-                    <div class="text-center mb-4">
-                        <img src="../images/logo.png" alt="Logo" class="img-fluid mb-2" style="max-width: 80px;" onerror="this.style.display='none'">
-                        <h5 class="text-white">ห้วยตึงเฒ่า</h5>
-                        <small class="text-white-50">ระบบจัดการเนื้อหา</small>
-                    </div>
-                    
-                    <ul class="nav flex-column">
-                        <li class="nav-item">
-                            <a class="nav-link" href="dashboard.html">
-                                <i class="fas fa-tachometer-alt me-2"></i>
-                                แดชบอร์ด
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="homepage-content.html">
-                                <i class="fas fa-home me-2"></i>
-                                จัดการหน้าหลัก
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="page-content.html">
-                                <i class="fas fa-file-alt me-2"></i>
-                                จัดการเนื้อหาหน้า
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" href="json-manager.html">
-                                <i class="fas fa-code me-2"></i>
-                                จัดการไฟล์ JSON
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="media-manager.html">
-                                <i class="fas fa-images me-2"></i>
-                                จัดการสื่อ
-                            </a>
-                        </li>
-                        <li class="nav-item mt-3">
-                            <a class="nav-link text-danger" href="#" onclick="logout()">
-                                <i class="fas fa-sign-out-alt me-2"></i>
-                                ออกจากระบบ
-                            </a>
-                        </li>
-                    </ul>
-                    
-                    <div class="mt-4 pt-3 border-top border-secondary">
-                        <div class="text-white-50 small">
-                            <div id="currentUser"></div>
-                            <div id="sessionInfo"></div>
-                        </div>
-                    </div>
-                </div>
-            </nav>
-
-            <!-- Main content -->
-            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 admin-content">
-                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <h1 class="h2">
-                        <i class="fas fa-code me-2"></i>จัดการไฟล์ JSON
-                    </h1>
-                    <div class="btn-toolbar mb-2 mb-md-0">
-                        <div class="btn-group me-2">
-                            <button type="button" class="btn btn-sm btn-outline-secondary" onclick="refreshJsonFiles()">
-                                <i class="fas fa-sync-alt me-1"></i>รีเฟรช
-                            </button>
-                            <button type="button" class="btn btn-sm btn-outline-info" onclick="validateAllFiles()">
-                                <i class="fas fa-check-circle me-1"></i>ตรวจสอบทั้งหมด
-                            </button>
-                            <button type="button" class="btn btn-sm btn-outline-success" onclick="backupAllFiles()">
-                                <i class="fas fa-download me-1"></i>สำรองทั้งหมด
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Alert area -->
-                <div id="alertArea"></div>
-
-                <!-- Navigation tabs -->
-                <ul class="nav nav-tabs mb-4" id="jsonTabs" role="tablist">
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link active" id="files-tab" data-bs-toggle="tab" data-bs-target="#files" type="button" role="tab">
-                            <i class="fas fa-file-code me-2"></i>ไฟล์ JSON
-                        </button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="editor-tab" data-bs-toggle="tab" data-bs-target="#editor" type="button" role="tab">
-                            <i class="fas fa-edit me-2"></i>แก้ไขไฟล์
-                        </button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="backups-tab" data-bs-toggle="tab" data-bs-target="#backups" type="button" role="tab">
-                            <i class="fas fa-history me-2"></i>สำรองข้อมูล
-                        </button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="import-export-tab" data-bs-toggle="tab" data-bs-target="#import-export" type="button" role="tab">
-                            <i class="fas fa-exchange-alt me-2"></i>นำเข้า/ส่งออก
-                        </button>
-                    </li>
-                </ul>
-
-                <!-- Tab content -->
-                <div class="tab-content" id="jsonTabsContent">
-                    <!-- Files Tab -->
-                    <div class="tab-pane fade show active" id="files" role="tabpanel">
-                        <div class="row">
-                            <div class="col-lg-8">
-                                <div class="card shadow">
-                                    <div class="card-header">
-                                        <h5 class="mb-0">
-                                            <i class="fas fa-folder-open me-2"></i>รายการไฟล์ JSON
-                                        </h5>
-                                    </div>
-                                    <div class="card-body">
-                                        <div id="jsonFilesList">
-                                            <!-- JSON files list will be loaded here -->
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4">
-                                <div class="card shadow">
-                                    <div class="card-header">
-                                        <h5 class="mb-0">
-                                            <i class="fas fa-info-circle me-2"></i>ข้อมูลไฟล์
-                                        </h5>
-                                    </div>
-                                    <div class="card-body">
-                                        <div id="fileInfo">
-                                            <div class="text-center text-muted py-4">
-                                                <i class="fas fa-file-code fa-3x mb-3"></i>
-                                                <p>เลือกไฟล์เพื่อดูข้อมูล</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="card shadow mt-3">
-                                    <div class="card-header">
-                                        <h5 class="mb-0">
-                                            <i class="fas fa-eye me-2"></i>ตัวอย่างเนื้อหา
-                                        </h5>
-                                    </div>
-                                    <div class="card-body">
-                                        <div id="filePreview">
-                                            <div class="text-center text-muted py-4">
-                                                <i class="fas fa-code fa-3x mb-3"></i>
-                                                <p>เลือกไฟล์เพื่อดูตัวอย่าง</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Editor Tab -->
-                    <div class="tab-pane fade" id="editor" role="tabpanel">
-                        <div class="card shadow">
-                            <div class="card-header d-flex justify-content-between align-items-center">
-                                <h5 class="mb-0">
-                                    <i class="fas fa-edit me-2"></i>แก้ไขไฟล์ JSON
-                                </h5>
-                                <div class="btn-group btn-group-sm">
-                                    <select class="form-select form-select-sm" id="editorFileSelect" onchange="loadFileInEditor()">
-                                        <option value="">เลือกไฟล์...</option>
-                                    </select>
-                                    <button type="button" class="btn btn-outline-info" onclick="formatJson()">
-                                        <i class="fas fa-indent me-1"></i>จัดรูปแบบ
-                                    </button>
-                                    <button type="button" class="btn btn-outline-warning" onclick="validateJson()">
-                                        <i class="fas fa-check me-1"></i>ตรวจสอบ
-                                    </button>
-                                    <button type="button" class="btn btn-admin-primary" onclick="saveJsonFile()">
-                                        <i class="fas fa-save me-1"></i>บันทึก
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="card-body p-0">
-                                <div class="row g-0">
-                                    <div class="col-lg-8">
-                                        <div class="p-3">
-                                            <div class="mb-2">
-                                                <small class="text-muted">
-                                                    <i class="fas fa-file me-1"></i>
-                                                    <span id="currentEditingFile">ไม่ได้เลือกไฟล์</span>
-                                                </small>
-                                            </div>
-                                            <textarea id="jsonEditor" class="form-control json-editor" rows="20" 
-                                                      placeholder="เลือกไฟล์เพื่อเริ่มแก้ไข..."></textarea>
-                                            <div class="mt-2">
-                                                <div class="row">
-                                                    <div class="col-6">
-                                                        <small class="text-muted">
-                                                            <i class="fas fa-info-circle me-1"></i>
-                                                            <span id="editorStatus">พร้อมใช้งาน</span>
-                                                        </small>
-                                                    </div>
-                                                    <div class="col-6 text-end">
-                                                        <small class="text-muted">
-                                                            <span id="editorStats">0 บรรทัด, 0 ตัวอักษร</span>
-                                                        </small>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 border-start">
-                                        <div class="p-3">
-                                            <h6>
-                                                <i class="fas fa-lightbulb me-2"></i>เคล็ดลับการแก้ไข
-                                            </h6>
-                                            <ul class="list-unstyled small">
-                                                <li class="mb-2">
-                                                    <i class="fas fa-check text-success me-2"></i>
-                                                    ใช้ Ctrl+A เพื่อเลือกทั้งหมด
-                                                </li>
-                                                <li class="mb-2">
-                                                    <i class="fas fa-check text-success me-2"></i>
-                                                    ใช้ Tab เพื่อเพิ่มการเยื้อง
-                                                </li>
-                                                <li class="mb-2">
-                                                    <i class="fas fa-check text-success me-2"></i>
-                                                    คลิก "จัดรูปแบบ" เพื่อจัดเรียง JSON
-                                                </li>
-                                                <li class="mb-2">
-                                                    <i class="fas fa-check text-success me-2"></i>
-                                                    คลิก "ตรวจสอบ" ก่อนบันทึก
-                                                </li>
-                                            </ul>
-                                            
-                                            <h6 class="mt-4">
-                                                <i class="fas fa-exclamation-triangle me-2"></i>ข้อควรระวัง
-                                            </h6>
-                                            <ul class="list-unstyled small text-warning">
-                                                <li class="mb-2">
-                                                    <i class="fas fa-times me-2"></i>
-                                                    อย่าลืมใส่เครื่องหมาย , หลัง }
-                                                </li>
-                                                <li class="mb-2">
-                                                    <i class="fas fa-times me-2"></i>
-                                                    ใช้เครื่องหมาย " สำหรับ string
-                                                </li>
-                                                <li class="mb-2">
-                                                    <i class="fas fa-times me-2"></i>
-                                                    ตรวจสอบ { } และ [ ] ให้ครบ
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Backups Tab -->
-                    <div class="tab-pane fade" id="backups" role="tabpanel">
-                        <div class="row">
-                            <div class="col-lg-8">
-                                <div class="card shadow">
-                                    <div class="card-header">
-                                        <h5 class="mb-0">
-                                            <i class="fas fa-history me-2"></i>ประวัติการสำรองข้อมูล
-                                        </h5>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="mb-3">
-                                            <select class="form-select" id="backupFileFilter" onchange="filterBackups()">
-                                                <option value="">ไฟล์ทั้งหมด</option>
-                                            </select>
-                                        </div>
-                                        <div id="backupsList">
-                                            <!-- Backups list will be loaded here -->
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4">
-                                <div class="card shadow">
-                                    <div class="card-header">
-                                        <h5 class="mb-0">
-                                            <i class="fas fa-tools me-2"></i>เครื่องมือสำรองข้อมูล
-                                        </h5>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="d-grid gap-2">
-                                            <button type="button" class="btn btn-admin-primary" onclick="createManualBackup()">
-                                                <i class="fas fa-save me-2"></i>สำรองข้อมูลด้วยตนเอง
-                                            </button>
-                                            <button type="button" class="btn btn-outline-info" onclick="scheduleAutoBackup()">
-                                                <i class="fas fa-clock me-2"></i>ตั้งเวลาสำรองอัตโนมัติ
-                                            </button>
-                                            <button type="button" class="btn btn-outline-warning" onclick="cleanOldBackups()">
-                                                <i class="fas fa-trash-alt me-2"></i>ลบสำรองข้อมูลเก่า
-                                            </button>
-                                        </div>
-                                        
-                                        <hr>
-                                        
-                                        <h6>สถิติการสำรองข้อมูล</h6>
-                                        <div class="row text-center">
-                                            <div class="col-6">
-                                                <div class="border rounded p-2">
-                                                    <div class="h5 mb-0" id="totalBackups">-</div>
-                                                    <small class="text-muted">ทั้งหมด</small>
-                                                </div>
-                                            </div>
-                                            <div class="col-6">
-                                                <div class="border rounded p-2">
-                                                    <div class="h5 mb-0" id="todayBackups">-</div>
-                                                    <small class="text-muted">วันนี้</small>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Import/Export Tab -->
-                    <div class="tab-pane fade" id="import-export" role="tabpanel">
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="card shadow">
-                                    <div class="card-header">
-                                        <h5 class="mb-0">
-                                            <i class="fas fa-upload me-2"></i>นำเข้าข้อมูล
-                                        </h5>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="mb-3">
-                                            <label class="form-label">เลือกไฟล์ JSON</label>
-                                            <input type="file" class="form-control" id="importFileInput" accept=".json" multiple>
-                                            <small class="form-text text-muted">
-                                                รองรับไฟล์ .json เท่านั้น สามารถเลือกหลายไฟล์ได้
-                                            </small>
-                                        </div>
-                                        
-                                        <div class="mb-3">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" id="overwriteExisting">
-                                                <label class="form-check-label" for="overwriteExisting">
-                                                    เขียนทับไฟล์ที่มีอยู่แล้ว
-                                                </label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" id="createBackupBeforeImport" checked>
-                                                <label class="form-check-label" for="createBackupBeforeImport">
-                                                    สำรองข้อมูลก่อนนำเข้า
-                                                </label>
-                                            </div>
-                                        </div>
-                                        
-                                        <div id="importPreview" class="mb-3" style="display: none;">
-                                            <label class="form-label">ตัวอย่างไฟล์ที่จะนำเข้า</label>
-                                            <div id="importFilesList" class="border rounded p-2 bg-light">
-                                                <!-- Import files preview -->
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="d-grid">
-                                            <button type="button" class="btn btn-admin-primary" onclick="importJsonFiles()" disabled id="importBtn">
-                                                <i class="fas fa-upload me-2"></i>นำเข้าไฟล์
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="col-lg-6">
-                                <div class="card shadow">
-                                    <div class="card-header">
-                                        <h5 class="mb-0">
-                                            <i class="fas fa-download me-2"></i>ส่งออกข้อมูล
-                                        </h5>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="mb-3">
-                                            <label class="form-label">เลือกไฟล์ที่ต้องการส่งออก</label>
-                                            <div id="exportFilesList">
-                                                <!-- Export files checkboxes -->
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="mb-3">
-                                            <label class="form-label">รูปแบบการส่งออก</label>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="exportFormat" id="exportZip" value="zip" checked>
-                                                <label class="form-check-label" for="exportZip">
-                                                    ไฟล์ ZIP (แนะนำ)
-                                                </label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="exportFormat" id="exportIndividual" value="individual">
-                                                <label class="form-check-label" for="exportIndividual">
-                                                    ไฟล์แยกต่างหาก
-                                                </label>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="mb-3">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" id="includeBackups">
-                                                <label class="form-check-label" for="includeBackups">
-                                                    รวมไฟล์สำรองข้อมูล
-                                                </label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" id="formatJsonExport" checked>
-                                                <label class="form-check-label" for="formatJsonExport">
-                                                    จัดรูปแบบ JSON ให้อ่านง่าย
-                                                </label>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="d-grid gap-2">
-                                            <button type="button" class="btn btn-admin-primary" onclick="exportSelectedFiles()">
-                                                <i class="fas fa-download me-2"></i>ส่งออกไฟล์ที่เลือก
-                                            </button>
-                                            <button type="button" class="btn btn-outline-secondary" onclick="exportAllFiles()">
-                                                <i class="fas fa-download me-2"></i>ส่งออกทั้งหมด
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </main>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <div class="container">
+        <a class="navbar-brand" href="../index.html">
+          <i class="fas fa-home me-2"></i>ห้วยตึงเฒ่า - จัดการ JSON
+        </a>
+        <div class="navbar-nav ms-auto">
+          <a class="nav-link" href="../index.html">
+            <i class="fas fa-arrow-left me-1"></i>กลับหน้าหลัก
+          </a>
         </div>
+      </div>
+    </nav>
+
+    <div class="container mt-4">
+      <!-- Alert Area -->
+      <div id="alertArea"></div>
+
+      <!-- File Selection -->
+      <div id="fileSelection">
+        <div class="row mb-4">
+          <div class="col-12">
+            <h2>
+              <i class="fas fa-code me-2"></i>เลือกไฟล์ JSON ที่ต้องการแก้ไข
+            </h2>
+            <p class="text-muted">คลิกที่ไฟล์เพื่อเริ่มแก้ไข</p>
+          </div>
+        </div>
+
+        <div class="row g-4" id="jsonFileList">
+          <!-- JSON Files will be loaded here -->
+        </div>
+      </div>
+
+      <!-- Editor Form -->
+      <div id="editorForm" style="display: none">
+        <div class="card shadow">
+          <div class="card-header bg-primary text-white">
+            <div class="d-flex justify-content-between align-items-center">
+              <h4 class="mb-0">
+                <i class="fas fa-edit me-2"></i>แก้ไขไฟล์:
+                <span id="currentFile"></span>
+              </h4>
+              <button
+                class="btn btn-outline-light btn-sm"
+                onclick="backToList()"
+              >
+                <i class="fas fa-arrow-left me-1"></i>กลับ
+              </button>
+            </div>
+          </div>
+          <div class="card-body">
+            <div id="formFields">
+              <!-- Dynamic form fields will be generated here -->
+            </div>
+
+            <div class="text-center mt-4">
+              <button class="btn btn-save btn-lg me-2" onclick="saveFile()">
+                <i class="fas fa-save me-2"></i>บันทึก
+              </button>
+              <button
+                class="btn btn-outline-warning btn-lg me-2"
+                onclick="resetForm()"
+              >
+                <i class="fas fa-undo me-2"></i>รีเซ็ต
+              </button>
+              <button
+                class="btn btn-outline-info btn-lg"
+                onclick="previewData()"
+              >
+                <i class="fas fa-eye me-2"></i>ดูตัวอย่าง
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <!-- Restore Confirmation Modal -->
-    <div class="modal fade" id="restoreModal" tabindex="-1">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">
-                        <i class="fas fa-undo me-2"></i>คืนค่าจากสำรองข้อมูล
-                    </h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="alert alert-warning">
-                        <i class="fas fa-exclamation-triangle me-2"></i>
-                        การคืนค่าจะเขียนทับไฟล์ปัจจุบัน คุณแน่ใจหรือไม่?
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+      // Global variables
+      let currentData = null;
+      let currentFileName = "";
+
+      // JSON file configurations
+      const jsonFiles = [
+        {
+          name: "homepage-carousel",
+          title: "สไลด์หน้าหลัก",
+          icon: "fas fa-images",
+          color: "primary",
+          description: "จัดการสไลด์รูปภาพหน้าหลัก",
+        },
+        {
+          name: "homepage-news",
+          title: "ข่าวสารหน้าหลัก",
+          icon: "fas fa-newspaper",
+          color: "success",
+          description: "จัดการประกาศและข่าวสาร",
+        },
+        {
+          name: "homepage-featured",
+          title: "เนื้อหาเด่น",
+          icon: "fas fa-star",
+          color: "warning",
+          description: "จัดการเนื้อหาที่น่าสนใจ",
+        },
+        {
+          name: "homepage-gallery",
+          title: "แกลเลอรี่",
+          icon: "fas fa-photo-video",
+          color: "info",
+          description: "จัดการรูปภาพในแกลเลอรี่",
+        },
+        {
+          name: "page-services",
+          title: "หน้าบริการ",
+          icon: "fas fa-tools",
+          color: "primary",
+          description: "จัดการเนื้อหาหน้าบริการ",
+        },
+        {
+          name: "page-history",
+          title: "หน้าประวัติ",
+          icon: "fas fa-history",
+          color: "success",
+          description: "จัดการเนื้อหาประวัติ",
+        },
+        {
+          name: "contact-content",
+          title: "หน้าติดต่อ",
+          icon: "fas fa-address-book",
+          color: "warning",
+          description: "จัดการข้อมูลติดต่อ",
+        },
+        {
+          name: "navigation",
+          title: "เมนูนำทาง",
+          icon: "fas fa-bars",
+          color: "info",
+          description: "จัดการเมนูและลิงก์",
+        },
+      ];
+
+      // Initialize page
+      document.addEventListener("DOMContentLoaded", function () {
+        loadFileList();
+      });
+
+      // Load file list
+      function loadFileList() {
+        const container = document.getElementById("jsonFileList");
+        container.innerHTML = "";
+
+        jsonFiles.forEach((file) => {
+          const card = document.createElement("div");
+          card.className = "col-lg-3 col-md-4 col-sm-6";
+          card.innerHTML = `
+                    <div class="card json-card h-100" onclick="loadJsonFile('${file.name}')">
+                        <div class="card-body text-center">
+                            <i class="${file.icon} fa-3x text-${file.color} mb-3"></i>
+                            <h5 class="card-title">${file.title}</h5>
+                            <p class="card-text text-muted small">${file.description}</p>
+                            <small class="text-info">${file.name}.json</small>
+                        </div>
                     </div>
-                    <div id="restoreInfo">
-                        <!-- Restore information will be shown here -->
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
-                    <button type="button" class="btn btn-warning" id="confirmRestoreBtn">
-                        <i class="fas fa-undo me-1"></i>คืนค่า
+                `;
+          container.appendChild(card);
+        });
+      }
+
+      // Load JSON file
+      async function loadJsonFile(fileName) {
+        try {
+          showAlert("กำลังโหลดข้อมูล...", "info");
+
+          // Try different paths
+          const paths = [
+            `../data/${fileName}.json`,
+            `data/${fileName}.json`,
+            `./${fileName}.json`,
+          ];
+
+          let data = null;
+          let loadedFrom = "";
+
+          for (const path of paths) {
+            try {
+              console.log(`Trying to load from: ${path}`);
+              const response = await fetch(path);
+              console.log(`Response status: ${response.status}`);
+
+              if (response.ok) {
+                const text = await response.text();
+                console.log(`Raw response: ${text.substring(0, 200)}...`);
+                data = JSON.parse(text);
+                loadedFrom = path;
+                break;
+              }
+            } catch (e) {
+              console.log(`Failed to load from ${path}:`, e);
+              continue;
+            }
+          }
+
+          if (!data) {
+            // Use sample data
+            data = getSampleData(fileName);
+            loadedFrom = "sample data";
+          }
+
+          currentData = data;
+          currentFileName = fileName;
+
+          document.getElementById(
+            "currentFile"
+          ).textContent = `${fileName}.json`;
+          document.getElementById("fileSelection").style.display = "none";
+          document.getElementById("editorForm").style.display = "block";
+
+          generateForm(data);
+          showAlert(`โหลดข้อมูลสำเร็จจาก ${loadedFrom}`, "success");
+        } catch (error) {
+          console.error("Error loading file:", error);
+          showAlert("เกิดข้อผิดพลาด: " + error.message, "danger");
+        }
+      }
+
+      // Generate form based on JSON data
+      function generateForm(data) {
+        const container = document.getElementById("formFields");
+        container.innerHTML = "";
+
+        generateFormFields(data, "", container);
+      }
+
+      // Generate form fields recursively
+      function generateFormFields(obj, prefix, container) {
+        Object.keys(obj).forEach((key) => {
+          const value = obj[key];
+          const fieldName = prefix ? `${prefix}.${key}` : key;
+
+          if (
+            typeof value === "object" &&
+            value !== null &&
+            !Array.isArray(value)
+          ) {
+            // Object - create collapsible section
+            const section = document.createElement("div");
+            section.className = "mb-4";
+            section.innerHTML = `
+                        <h5 class="text-primary">
+                            <i class="fas fa-folder me-2"></i>${key}
+                        </h5>
+                        <div class="border-start border-primary ps-3 ms-3">
+                            <div id="section-${fieldName.replace(
+                              /\./g,
+                              "-"
+                            )}"></div>
+                        </div>
+                    `;
+            container.appendChild(section);
+
+            const subContainer = section.querySelector(
+              `#section-${fieldName.replace(/\./g, "-")}`
+            );
+            generateFormFields(value, fieldName, subContainer);
+          } else if (Array.isArray(value)) {
+            // Array - create array editor
+            const arraySection = document.createElement("div");
+            arraySection.className = "mb-4";
+            arraySection.innerHTML = `
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <h5 class="text-success mb-0">
+                                <i class="fas fa-list me-2"></i>${key} (${
+              value.length
+            } รายการ)
+                            </h5>
+                            <button class="btn btn-sm btn-outline-success" onclick="addArrayItem('${fieldName}')">
+                                <i class="fas fa-plus me-1"></i>เพิ่ม
+                            </button>
+                        </div>
+                        <div id="array-${fieldName.replace(
+                          /\./g,
+                          "-"
+                        )}" class="border rounded p-3"></div>
+                    `;
+            container.appendChild(arraySection);
+
+            const arrayContainer = arraySection.querySelector(
+              `#array-${fieldName.replace(/\./g, "-")}`
+            );
+            value.forEach((item, index) => {
+              createArrayItem(arrayContainer, item, fieldName, index);
+            });
+          } else {
+            // Simple value - create input field
+            const field = document.createElement("div");
+            field.className = "mb-3";
+
+            let inputHtml = "";
+            if (typeof value === "boolean") {
+              inputHtml = `
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" data-field="${fieldName}" ${
+                value ? "checked" : ""
+              }>
+                                <label class="form-check-label">${key}</label>
+                            </div>
+                        `;
+            } else if (typeof value === "number") {
+              inputHtml = `
+                            <label class="form-label">${key}</label>
+                            <input type="number" class="form-control" data-field="${fieldName}" value="${value}">
+                        `;
+            } else if (typeof value === "string" && value.length > 100) {
+              inputHtml = `
+                            <label class="form-label">${key}</label>
+                            <textarea class="form-control" rows="3" data-field="${fieldName}">${value}</textarea>
+                        `;
+            } else {
+              inputHtml = `
+                            <label class="form-label">${key}</label>
+                            <input type="text" class="form-control" data-field="${fieldName}" value="${
+                value || ""
+              }">
+                        `;
+            }
+
+            field.innerHTML = inputHtml;
+            container.appendChild(field);
+          }
+        });
+      }
+
+      // Create array item
+      function createArrayItem(container, item, fieldName, index) {
+        const itemDiv = document.createElement("div");
+        itemDiv.className = "card mb-2";
+        itemDiv.innerHTML = `
+                <div class="card-header d-flex justify-content-between align-items-center py-2">
+                    <small class="text-muted">รายการที่ ${index + 1}</small>
+                    <button class="btn btn-sm btn-outline-danger" onclick="removeArrayItem('${fieldName}', ${index})">
+                        <i class="fas fa-trash"></i>
                     </button>
                 </div>
-            </div>
-        </div>
-    </div>
+                <div class="card-body py-2">
+                    <div id="item-${fieldName.replace(
+                      /\./g,
+                      "-"
+                    )}-${index}"></div>
+                </div>
+            `;
+        container.appendChild(itemDiv);
 
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Prism.js for syntax highlighting -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js"></script>
-    <!-- Admin JS -->
-    <script src="../js/admin.js"></script>
-    <script src="../js/json-manager.js"></script>
-    <script>
-        // Initialize JSON manager
-        $(document).ready(function() {
-            initializeJsonManager();
-            displayUserInfo();
+        const itemContainer = itemDiv.querySelector(
+          `#item-${fieldName.replace(/\./g, "-")}-${index}`
+        );
+        generateFormFields(item, `${fieldName}[${index}]`, itemContainer);
+      }
+
+      // Get sample data
+      function getSampleData(fileName) {
+        const samples = {
+          "homepage-carousel": {
+            slides: [
+              {
+                id: 1,
+                title: "ยินดีต้อนรับสู่ห้วยตึงเฒ่า",
+                description: "สถานที่ท่องเที่ยวเชิงนิเวศที่สวยงาม",
+                image: "https://example.com/image1.jpg",
+                active: true,
+              },
+            ],
+          },
+          "homepage-news": {
+            announcements: [
+              {
+                id: 1,
+                text: "ห้วยตึงเฒ่า เปิดให้บริการทุกวัน 06:30 - 18:00 น.",
+                priority: "high",
+                active: true,
+              },
+            ],
+          },
+        };
+
+        return samples[fileName] || { message: "ไม่พบข้อมูลตัวอย่าง" };
+      }
+
+      // Collect form data
+      function collectFormData() {
+        const result = JSON.parse(JSON.stringify(currentData)); // Deep copy
+
+        // Collect simple fields
+        document.querySelectorAll("[data-field]").forEach((element) => {
+          const fieldPath = element.getAttribute("data-field");
+          let value = element.value;
+
+          if (element.type === "checkbox") {
+            value = element.checked;
+          } else if (element.type === "number") {
+            value = parseFloat(value) || 0;
+          }
+
+          setNestedValue(result, fieldPath, value);
         });
+
+        return result;
+      }
+
+      // Set nested value
+      function setNestedValue(obj, path, value) {
+        const keys = path.split(".");
+        let current = obj;
+
+        for (let i = 0; i < keys.length - 1; i++) {
+          const key = keys[i];
+          if (key.includes("[") && key.includes("]")) {
+            const arrayKey = key.split("[")[0];
+            const index = parseInt(key.split("[")[1].split("]")[0]);
+            if (!current[arrayKey]) current[arrayKey] = [];
+            if (!current[arrayKey][index]) current[arrayKey][index] = {};
+            current = current[arrayKey][index];
+          } else {
+            if (!current[key]) current[key] = {};
+            current = current[key];
+          }
+        }
+
+        const lastKey = keys[keys.length - 1];
+        if (lastKey.includes("[") && lastKey.includes("]")) {
+          const arrayKey = lastKey.split("[")[0];
+          const index = parseInt(lastKey.split("[")[1].split("]")[0]);
+          if (!current[arrayKey]) current[arrayKey] = [];
+          current[arrayKey][index] = value;
+        } else {
+          current[lastKey] = value;
+        }
+      }
+
+      // Save file
+      function saveFile() {
+        try {
+          const data = collectFormData();
+          const jsonString = JSON.stringify(data, null, 2);
+
+          // Download file
+          const blob = new Blob([jsonString], { type: "application/json" });
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement("a");
+          a.href = url;
+          a.download = `${currentFileName}.json`;
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          URL.revokeObjectURL(url);
+
+          // Save to localStorage
+          localStorage.setItem(`json_${currentFileName}`, jsonString);
+
+          showAlert("บันทึกสำเร็จ! ไฟล์ถูกดาวน์โหลดแล้ว", "success");
+        } catch (error) {
+          console.error("Save error:", error);
+          showAlert("เกิดข้อผิดพลาดในการบันทึก: " + error.message, "danger");
+        }
+      }
+
+      // Reset form
+      function resetForm() {
+        if (confirm("ต้องการรีเซ็ตฟอร์มหรือไม่?")) {
+          generateForm(currentData);
+          showAlert("รีเซ็ตฟอร์มแล้ว", "info");
+        }
+      }
+
+      // Preview data
+      function previewData() {
+        const data = collectFormData();
+        const jsonString = JSON.stringify(data, null, 2);
+
+        const modal = document.createElement("div");
+        modal.className = "modal fade";
+        modal.innerHTML = `
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">ตัวอย่าง JSON: ${currentFileName}.json</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            <pre style="background: #f8f9fa; padding: 15px; border-radius: 5px; max-height: 400px; overflow-y: auto;"><code>${jsonString}</code></pre>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+        document.body.appendChild(modal);
+        const bsModal = new bootstrap.Modal(modal);
+        bsModal.show();
+
+        modal.addEventListener("hidden.bs.modal", () => {
+          document.body.removeChild(modal);
+        });
+      }
+
+      // Back to list
+      function backToList() {
+        document.getElementById("editorForm").style.display = "none";
+        document.getElementById("fileSelection").style.display = "block";
+        currentData = null;
+        currentFileName = "";
+      }
+
+      // Add array item
+      function addArrayItem(fieldPath) {
+        showAlert("ฟีเจอร์นี้จะพัฒนาในเวอร์ชันถัดไป", "info");
+      }
+
+      // Remove array item
+      function removeArrayItem(fieldPath, index) {
+        showAlert("ฟีเจอร์นี้จะพัฒนาในเวอร์ชันถัดไป", "info");
+      }
+
+      // Show alert
+      function showAlert(message, type = "info") {
+        const alertArea = document.getElementById("alertArea");
+        const alertClass = `alert-${type}`;
+
+        alertArea.innerHTML = `
+                <div class="alert ${alertClass} alert-dismissible fade show" role="alert">
+                    ${message}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            `;
+
+        if (type === "success" || type === "info") {
+          setTimeout(() => {
+            const alert = alertArea.querySelector(".alert");
+            if (alert) {
+              const bsAlert = new bootstrap.Alert(alert);
+              bsAlert.close();
+            }
+          }, 3000);
+        }
+      }
     </script>
-</body>
+  </body>
 </html>
