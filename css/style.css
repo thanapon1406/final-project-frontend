@@ -29,7 +29,7 @@
 }
 
 body {
-  font-family: "Itim", cursive;
+  font-family: "Noto Sans Thai", sans-serif;
   line-height: 1.6;
   color: var(--text-primary);
   background: var(--bg-primary);
@@ -43,7 +43,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Itim", cursive;
+  font-family: "Noto Sans Thai", sans-serif;
   color: var(--primary-color);
   margin-bottom: 1rem;
 }

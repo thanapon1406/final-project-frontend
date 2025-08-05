@@ -1,5 +1,25 @@
 /* Admin Panel Styles - Match Main Website Theme */
 
+/* Base Font */
+body {
+  font-family: "Noto Sans Thai", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Noto Sans Thai", sans-serif;
+}
+
+.form-control,
+.form-select,
+.btn {
+  font-family: "Noto Sans Thai", sans-serif;
+}
+
 /* Import Color Scheme - Match main website */
 :root {
   /* Primary Colors - Match main website */
