@@ -493,21 +493,6 @@
 
       // Load homepage data when page loads
       document.addEventListener("DOMContentLoaded", loadHomepageData);
-
-      // Add refresh button (for development)
-      if (
-        window.location.hostname === "localhost" ||
-        window.location.hostname === "127.0.0.1"
-      ) {
-        document.addEventListener("DOMContentLoaded", () => {
-          const refreshBtn = document.createElement("button");
-          refreshBtn.innerHTML = '<i class="fas fa-sync-alt"></i> รีเฟรชข้อมูล';
-          refreshBtn.className = "btn btn-sm btn-outline-info position-fixed";
-          refreshBtn.style.cssText = "top: 10px; right: 10px; z-index: 9999;";
-          refreshBtn.onclick = refreshData;
-          document.body.appendChild(refreshBtn);
-        });
-      }
     </script>
   </body>
 </html>
