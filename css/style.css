@@ -264,6 +264,41 @@ h6 {
   border-radius: 10px;
   box-shadow: var(--shadow-sm);
   transition: all 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.feature-card .feature-icon {
+  margin-bottom: 1.5rem;
+  flex-shrink: 0;
+}
+
+.feature-card h3,
+.feature-card h4,
+.feature-card h5 {
+  margin-bottom: 1rem;
+  flex-shrink: 0;
+}
+
+.feature-card p {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  margin-bottom: 0;
+  text-align: center;
+  line-height: 1.6;
+}
+
+/* Ensure consistent spacing */
+.feature-card > *:last-child {
+  margin-bottom: 0;
+}
+
+.feature-card > *:first-child {
+  margin-top: 0;
 }
 
 .feature-card:hover {
@@ -282,6 +317,25 @@ h6 {
   margin: 0 auto 1.5rem;
   font-size: 2rem;
   color: white;
+  flex-shrink: 0;
+}
+
+/* Services section specific styles */
+#services .feature-card {
+  min-height: 280px;
+}
+
+#services .feature-card h3,
+#services .feature-card h4 {
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#services .feature-card p {
+  text-align: center;
+  line-height: 1.6;
 }
 
 /* Gallery */
@@ -448,7 +502,113 @@ h6 {
   padding: 3rem;
 }
 
-/* Responsive Design */
+/* Equal height columns */
+.row.g-4 > [class*="col-"] {
+  display: flex;
+  flex-direction: column;
+}
+
+.row.g-4 > [class*="col-"] > .feature-card {
+  flex: 1;
+}
+
+/* Force equal height for all feature cards */
+.equal-height {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.equal-height > [class*="col-"] {
+  display: flex;
+  flex-direction: column;
+}
+
+.equal-height .feature-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Equal height for activities section */
+#activities {
+  padding: 2rem 0;
+}
+
+#activities .col-lg-3,
+#activities .col-md-6 {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.5rem;
+}
+
+#activities .feature-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 260px;
+  padding: 2rem 1rem;
+  margin: 0.5rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#activities .feature-card:hover {
+  transform: translateY(-5px);
+}
+
+#activities .feature-card img {
+  width: 140px;
+  height: 140px;
+  max-width: 140px;
+  max-height: 140px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 8px;
+  margin: 0 auto 1.5rem auto;
+  flex-shrink: 0;
+  display: block;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 3px solid #fff;
+}
+
+#activities .feature-card:hover img {
+  transform: scale(1.02);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+#activities .feature-card h5 {
+  margin: 0;
+  padding: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.4;
+  text-align: center;
+  color: var(--text-primary);
+  flex-shrink: 0;
+  min-height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Tablet Design */
+@media (max-width: 992px) and (min-width: 769px) {
+  #activities .feature-card img {
+    width: 120px;
+    height: 120px;
+    max-width: 120px;
+    max-height: 120px;
+  }
+
+  #activities .feature-card {
+    min-height: 240px;
+    padding: 1.5rem 0.8rem;
+  }
+}
+
+/* Mobile Design */
 @media (max-width: 768px) {
   .hero-content h1 {
     font-size: 2rem;
@@ -474,6 +634,34 @@ h6 {
 
   .feature-card {
     padding: 1.5rem;
+    min-height: auto;
+  }
+
+  #activities .feature-card {
+    min-height: 200px;
+    padding: 1rem 0.5rem;
+    margin: 0.25rem;
+  }
+
+  #activities .feature-card img {
+    width: 100px;
+    height: 100px;
+    max-width: 100px;
+    max-height: 100px;
+    margin-bottom: 1rem;
+  }
+
+  #services .feature-card {
+    min-height: auto;
+  }
+
+  #services .feature-card h3,
+  #services .feature-card h4 {
+    min-height: auto;
+  }
+
+  .equal-height > [class*="col-"] {
+    margin-bottom: 1.5rem;
   }
 
   .btn {
