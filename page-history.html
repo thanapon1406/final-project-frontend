@@ -30,19 +30,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark">
       <div class="container">
         <a class="navbar-brand d-flex align-items-center" href="index.html">
-          <img
-            src="https://huaytuengthao.com/image/LOGO_.png"
-            alt="logo"
-            width="40"
-            height="40"
-            class="me-2"
-            onerror="this.onerror=null;this.src='data:image/svg+xml;charset=UTF-8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2240%22 height=%2240%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%232c3e50%22 rx=%225%22/><text x=%2250%25%22 y=%2250%25%22 font-size=%2214%22 text-anchor=%22middle%22 fill=%22white%22 dy=%22.3em%22>LOGO</text></svg>'"
-          />
-          <span class="d-none d-lg-inline"
-            >สำนักงานโครงการจัดหมู่บ้านตัวอย่างห้วยตึงเฒ่า
-            อันเนื่องมาจากพระราชดำริ</span
-          >
-          <span class="d-lg-none">ห้วยตึงเฒ่า</span>
+          <!-- Will be loaded from JSON -->
         </a>
         <button
           class="navbar-toggler"
@@ -54,27 +42,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="index.html">หน้าหลัก</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="index.html#about">เกี่ยวกับเรา</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="index.html#news">ข่าวสาร</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" href="page-history.html">ประวัติ</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="page-services.html">บริการ</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="page-contact.html">ติดต่อเรา</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="admin/login.html">เข้าสู่ระบบ</a>
-            </li>
+            <!-- Will be loaded from JSON -->
           </ul>
         </div>
       </div>
@@ -86,9 +54,8 @@
       <section class="hero-section">
         <div class="container">
           <div class="row justify-content-center text-center">
-            <div class="col-lg-8">
-              <h1>ประวัติความเป็นมา</h1>
-              <p>ห้วยตึงเฒ่า อันเนื่องมาจากพระราชดำริ</p>
+            <div class="col-lg-8" id="hero-content">
+              <!-- Will be loaded from JSON -->
             </div>
           </div>
         </div>
@@ -133,11 +100,7 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-8">
-            <h5>
-              สำนักงานโครงการจัดหมู่บ้านตัวอย่างห้วยตึงเฒ่า
-              อันเนื่องมาจากพระราชดำริ
-            </h5>
-            <p>Copyright © 2021 by ห้วยตึงเฒ่า All rights reserved.</p>
+            <!-- Will be loaded from JSON -->
           </div>
           <div class="col-lg-4 text-end" id="footer-social">
             <!-- <p>จำนวนผู้เข้าชม: <strong>123,456</strong> คน</p> -->
@@ -152,16 +115,35 @@
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
+    <!-- Shared JS -->
+    <script src="js/shared.js"></script>
+
     <!-- Load History Data from JSON -->
     <script>
       let historyData = null;
 
-      // Load JSON data
+      // Load JSON data (try localStorage first, then file)
       async function loadHistoryData() {
         try {
+          // Try localStorage first (edited data)
+          const savedData = localStorage.getItem("json_page-history");
+          if (savedData) {
+            try {
+              historyData = JSON.parse(savedData);
+              console.log(
+                "History data loaded from localStorage:",
+                historyData
+              );
+              return historyData;
+            } catch (e) {
+              console.warn("Invalid saved data, loading from file");
+            }
+          }
+
+          // Load from file
           const response = await fetch("data/page-history.json");
           historyData = await response.json();
-          console.log("History data loaded:", historyData);
+          console.log("History data loaded from file:", historyData);
           return historyData;
         } catch (error) {
           console.error("Error loading history data:", error);
@@ -169,12 +151,23 @@
         }
       }
 
+      // Update hero section
+      function updateHeroSection() {
+        if (!historyData) return;
+
+        const history = historyData.history;
+        document.getElementById("hero-content").innerHTML = `
+          <h1>${history.title}</h1>
+          <p>${history.subtitle}</p>
+        `;
+      }
+
       // Update history content
       function updateHistoryContent() {
         if (!historyData) return;
 
         const container = document.getElementById("history-content");
-        let content = `<h3 class="text-center mb-4">${historyData.history.title}</h3>`;
+        let content = "";
 
         historyData.history.sections.forEach((section) => {
           content += `<p><strong>${section.title}</strong></p>`;
@@ -232,30 +225,14 @@
         }
       }
 
-      // Update footer social links
-      function updateFooterSocial() {
-        if (!historyData || !historyData.history.socialMedia) return;
-
-        const footerSocial = document.getElementById("footer-social");
-        if (footerSocial) {
-          footerSocial.innerHTML = `
-            <div class="social-links">
-              <a href="${historyData.history.socialMedia.facebook.account}" target="_blank">
-                <i class="fab fa-facebook-f"></i>
-              </a>
-            </div>
-          `;
-        }
-      }
-
       // Load all data when page loads
       document.addEventListener("DOMContentLoaded", async () => {
         await loadHistoryData();
 
         if (historyData) {
+          updateHeroSection();
           updateHistoryContent();
           updateTimeline();
-          updateFooterSocial();
           console.log("History page updated with JSON data");
         }
       });

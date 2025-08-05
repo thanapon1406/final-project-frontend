@@ -7,85 +7,41 @@
     "buttons": [
       {
         "text": "ประมวลภาพ",
+        "href": "#gallery",
         "icon": "fas fa-images",
-        "link": "#gallery",
         "class": "btn btn-outline-primary"
       }
     ],
     "overlay": {
-      "icon": "fas fa-users fa-3x",
+      "icon": "fas fa-users fa-3x mb-3",
       "title": "ครอบครัวคิงคอง",
       "description": "พ่อตึงเฒ่า แม่ขวัญข้าว น้องแรมเพจ"
     }
   },
-  "section": {
-    "title": "สิ่งที่น่าสนใจ",
-    "subtitle": "ค้นพบสิ่งใหม่ๆ และกิจกรรมที่น่าตื่นเต้นที่ห้วยตึงเฒ่า"
-  },
-  "featuredContent": [
+  "activities": [
     {
       "id": 1,
-      "title": "หุ่นฟางคิงคอง",
-      "description": "ครอบครัวคิงคองยักษ์ พ่อตึงเฒ่า แม่ขวัญข้าว น้องแรมเพจ จุดถ่ายภาพยอดนิยม",
-      "image": "https://roijang.com/wp-content/uploads/2023/11/%E0%B8%AB%E0%B9%89%E0%B8%A7%E0%B8%A2%E0%B8%95%E0%B8%B6%E0%B8%87%E0%B9%80%E0%B8%92%E0%B9%88%E0%B8%B2.jpg",
-      "link": "#",
-      "category": "สถานที่ท่องเที่ยว",
-      "featured": true,
-      "tags": ["ถ่ายภาพ", "ครอบครัว", "จุดเช็คอิน"]
+      "title": "หุ่นฟางใหม่พฤศจิกายน 2565",
+      "image": "https://huaytuengthao.com/image/new0.jpg",
+      "alt": "หุ่นฟางใหม่"
     },
     {
       "id": 2,
       "title": "สถานที่กางเต็นท์",
-      "description": "พื้นที่กางเต็นท์ท่ามกลางธรรมชาติ สำหรับผู้ที่ต้องการพักค้างคืนและสัมผัสบรรยากาศยามค่ำคืน",
       "image": "https://huaytuengthao.com/image/new1.jpg",
-      "link": "#",
-      "category": "ที่พัก",
-      "featured": true,
-      "tags": ["แคมป์ปิ้ง", "ธรรมชาติ", "พักค้างคืน"]
+      "alt": "สถานที่กางเต็นท์"
     },
     {
       "id": 3,
-      "title": "บ้านพักริมน้ำ",
-      "description": "บ้านพักสำหรับครอบครัวและกลุ่มใหญ่ พร้อมสิ่งอำนวยความสะดวกครบครัน",
-      "image": "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-      "link": "#",
-      "category": "ที่พัก",
-      "featured": true,
-      "tags": ["บ้านพัก", "ครอบครัว", "สะดวกสบาย"]
+      "title": "ขับรถ ATV",
+      "image": "https://huaytuengthao.com/image/icon-atv.jpg",
+      "alt": "ขับรถ ATV"
     },
     {
       "id": 4,
-      "title": "วิดีโอแนะนำ",
-      "description": "ชมวิดีโอแนะนำสถานที่และกิจกรรมต่างๆ ที่ห้วยตึงเฒ่า",
-      "type": "video",
-      "videoSrc": "https://www.w3schools.com/html/mov_bbb.mp4",
-      "image": "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-      "category": "สื่อ",
-      "featured": true,
-      "tags": ["วิดีโอ", "แนะนำ", "ทัวร์เสมือน"]
-    }
-  ],
-  "additionalActivities": [
-    {
-      "id": 5,
-      "title": "พักผ่อนริมน้ำ",
-      "icon": "fas fa-umbrella-beach",
-      "image": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-      "description": "พื้นที่พักผ่อนริมอ่างเก็บน้ำ"
-    },
-    {
-      "id": 6,
-      "title": "รถเอทีวี",
-      "icon": "fas fa-motorcycle",
-      "image": "https://huaytuengthao.com/image/icon-atv.jpg",
-      "description": "ขับรถเอทีวีสำรวจธรรมชาติ"
-    },
-    {
-      "id": 7,
-      "title": "ซิปไลน์",
-      "icon": "fas fa-mountain",
+      "title": "ZIP LINE",
       "image": "https://huaytuengthao.com/image/icon-zip.jpg",
-      "description": "ซิปไลน์ข้ามผืนน้ำ"
+      "alt": "ZIP LINE"
     }
   ],
   "socialMedia": {

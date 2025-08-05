@@ -9,7 +9,7 @@
     {
       "id": 2,
       "text": "ขณะนี้มีกิจกรรมใหม่ ถ่ายภาพกับครอบครัวคิงคอง พ่อตึงเฒ่า แม่ขวัญข้าว และน้องแรมเพจ",
-      "priority": "high",
+      "priority": "normal",
       "active": true
     }
   ],
@@ -50,17 +50,5 @@
       "date": "1 มกราคม 2564",
       "content": "ห้วยตึงเฒ่า ตรวจวัดไข้พนักงาน และลูกจ้างของร้านอาหารภายในอ่างเก็บน้ำห้วยตึงเฒ่า เพื่อความมั่นใจของลูกค้า"
     }
-  ],
-  "marquee": {
-    "title": "ประกาศ",
-    "behavior": "scroll",
-    "direction": "left",
-    "speed": "30s",
-    "pauseOnHover": true
-  },
-  "styling": {
-    "containerClass": "news-marquee",
-    "titleClass": "marquee-title",
-    "messageClass": "marquee-content"
-  }
+  ]
 }

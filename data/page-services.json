@@ -5,79 +5,73 @@
     "mainServices": [
       {
         "id": 1,
-        "title": "หุ่นฟางใหม่พฤศจิกายน 2565",
-        "image": "https://images.unsplash.com/photo-1463491544371-2e8e8b8e07c7?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-        "description": "เปิดรับต้อนรับนักท่องเที่ยวเข้าถ่ายภาพกับครอบครัวคิงคอง พ่อตึงเฒ่า, แม่ขวัญข้าว และน้องแรมเพจ ครบทีม ได้แล้วจ้า เราปรับปรุงรูปแบบใหม่ไฉไลกว่าเดิม"
+        "title": "ป้อนอาหารแกะ",
+        "description": "กิจกรรมป้อนอาหารแกะที่เป็นที่นิยมของนักท่องเที่ยว สามารถสัมผัสใกล้ชิดกับแกะน่ารักได้",
+        "image": "https://huaytuengthao.com/image/sheep/1.jpg"
       },
       {
         "id": 2,
-        "title": "สถานที่กางเต็นท์",
-        "image": "https://images.unsplash.com/photo-1504851149312-7a075b496cc7?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-        "description": "บริเวณสำหรับกางเต็นท์พักแรมท่ามกลางธรรมชาติที่สวยงาม พร้อมสิ่งอำนวยความสะดวกครบครัน เหมาะสำหรับครอบครัวและกลุ่มเพื่อน"
+        "title": "เรือแคนู",
+        "description": "นั่งเรือแคนูชมวิวธรรมชาติรอบอ่างเก็บน้ำ และขึ้นไปถ่ายรูปกับครอบครัวคิงคอง",
+        "image": "https://huaytuengthao.com/image/canoe.jpg"
       },
       {
         "id": 3,
-        "title": "บ้านพัก",
-        "image": "https://images.unsplash.com/photo-1520637736862-4d197d17c93a?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-        "description": "บ้านพักสำหรับนักท่องเที่ยวที่ต้องการความสะดวกสบายและความเป็นส่วนตัว พร้อมสิ่งอำนวยความสะดวกครบครัน"
+        "title": "ZIP LINE",
+        "description": "กิจกรรมซิปไลน์ที่ท้าทายและสนุกสนาน ชมวิวจากมุมสูงท่ามกลางธรรมชาติ",
+        "image": "https://huaytuengthao.com/image/icon-zip.jpg"
+      },
+      {
+        "id": 4,
+        "title": "รถ ATV",
+        "description": "ขับรถ ATV สำรวจเส้นทางผจญภัยรอบๆ อ่างเก็บน้ำห้วยตึงเฒ่า",
+        "image": "https://huaytuengthao.com/image/icon-atv.jpg"
+      },
+      {
+        "id": 5,
+        "title": "จักรยานน้ำ",
+        "description": "กิจกรรมจักรยานน้ำสำหรับครอบครัว เหมาะสำหรับผู้ที่ต้องการผ่อนคลาย",
+        "image": "https://huaytuengthao.com/image/water-bike.jpg"
+      },
+      {
+        "id": 6,
+        "title": "ให้อาหารปลา",
+        "description": "กิจกรรมให้อาหารปลาในอ่างเก็บน้ำ เหมาะสำหรับเด็กๆ และครอบครัว",
+        "image": "https://huaytuengthao.com/image/fish-feeding.jpg"
       }
     ],
     "activities": [
       {
         "id": 1,
-        "icon": "fas fa-bed",
-        "title": "พักผ่อนผ่อนคลาย",
-        "description": "บริเวณสำหรับพักผ่อนท่ามกลางธรรมชาติอันสงบเงียบ"
+        "title": "กางเต็นท์",
+        "description": "บริเวณสำหรับกางเต็นท์พักค้างคืน",
+        "icon": "fas fa-campground"
       },
       {
         "id": 2,
-        "icon": "fas fa-motorcycle",
-        "title": "รถเอทีวี",
-        "description": "ขับรถเอทีวีสำรวจธรรมชาติรอบๆ อ่างเก็บน้ำ"
+        "title": "ตกปลา",
+        "description": "กิจกรรมตกปลาในอ่างเก็บน้ำ",
+        "icon": "fas fa-fish"
       },
       {
         "id": 3,
-        "icon": "fas fa-route",
-        "title": "ซิปไลน์",
-        "description": "ลื่นไถลผ่านอากาศชมวิวทิวทัศน์อันงดงาม"
+        "title": "เดินป่า",
+        "description": "เส้นทางเดินป่าศึกษาธรรมชาติ",
+        "icon": "fas fa-hiking"
       },
       {
         "id": 4,
-        "icon": "fas fa-ship",
-        "title": "เรือแคนู",
-        "description": "พายเรือแคนูในอ่างเก็บน้ำอันเงียบสงบ"
-      },
-      {
-        "id": 5,
-        "icon": "fas fa-fish",
-        "title": "ให้อาหารปลา",
-        "description": "กิจกรรมให้อาหารปลาที่สนุกสำหรับทุกวัย"
-      },
-      {
-        "id": 6,
-        "icon": "fas fa-biking",
-        "title": "จักรยานน้ำ",
-        "description": "ปั่นจักรยานน้ำเพลินๆ ในอ่างเก็บน้ำ"
-      },
-      {
-        "id": 7,
-        "icon": "fas fa-hiking",
-        "title": "เดินทางไกล",
-        "description": "เดินเท้าสำรวจธรรมชาติและป่าไผ่"
-      },
-      {
-        "id": 8,
-        "icon": "fas fa-water",
-        "title": "นั่งแพ",
-        "description": "นั่งแพผ่อนคลายชมธรรมชาติรอบอ่างเก็บน้ำ"
+        "title": "ถ่ายภาพ",
+        "description": "จุดถ่ายภาพวิวสวยๆ มากมาย",
+        "icon": "fas fa-camera"
       }
     ],
     "serviceInfo": {
-      "operatingHours": "เปิดให้บริการทุกวันไม่มีวันหยุด ตั้งแต่เวลา 06:30 - 18:00 น.",
+      "operatingHours": "เปิดให้บริการทุกวัน 06:30 - 18:00 น.",
       "phone": "053-298-034, 053-298-035",
-      "parking": "มีบริการที่จอดรถได้มากมาย พร้อมคอยบริการนักท่องเที่ยว",
-      "restaurant": "ร้านอาหารและเครื่องดื่ม อาหารท้องถิ่นรสชาติดี",
-      "note": "กรุณาติดต่อสอบถามข้อมูลเพิ่มเติมก่อนเดินทาง เพื่อความสะดวกในการให้บริการ",
+      "parking": "มีที่จอดรถกว้างขวาง รองรับรถยนต์และรถบัสนักท่องเที่ยว",
+      "restaurant": "มีร้านอาหารและเครื่องดื่มภายในบริเวณ",
+      "note": "ราคาบริการอาจมีการเปลี่ยนแปลงตามฤดูกาล กรุณาสอบถามล่วงหน้า",
       "socialMedia": {
         "facebook": {
           "account": "https://www.facebook.com/huaytuengthao/",

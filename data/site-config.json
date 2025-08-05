@@ -1,0 +1,62 @@
+{
+  "site": {
+    "title": "ห้วยตึงเฒ่า - สำนักงานโครงการจัดหมู่บ้านตัวอย่างห้วยตึงเฒ่า อันเนื่องมาจากพระราชดำริ",
+    "shortTitle": "ห้วยตึงเฒ่า",
+    "logo": {
+      "url": "https://huaytuengthao.com/image/LOGO_.png",
+      "alt": "logo",
+      "width": 40,
+      "height": 40
+    },
+    "organization": {
+      "fullName": "สำนักงานโครงการจัดหมู่บ้านตัวอย่างห้วยตึงเฒ่า อันเนื่องมาจากพระราชดำริ",
+      "shortName": "ห้วยตึงเฒ่า"
+    },
+    "favicon": "/favicon.ico"
+  },
+  "navigation": {
+    "brand": {
+      "text": "สำนักงานโครงการจัดหมู่บ้านตัวอย่างห้วยตึงเฒ่า อันเนื่องมาจากพระราชดำริ",
+      "shortText": "ห้วยตึงเฒ่า",
+      "href": "index.html"
+    },
+    "menu": [
+      {
+        "id": "home",
+        "text": "หน้าหลัก",
+        "href": "index.html",
+        "active": true
+      },
+      {
+        "id": "about",
+        "text": "เกี่ยวกับเรา",
+        "href": "index.html#about"
+      },
+      {
+        "id": "news",
+        "text": "ข่าวสาร",
+        "href": "index.html#news"
+      },
+      {
+        "id": "history",
+        "text": "ประวัติ",
+        "href": "page-history.html"
+      },
+      {
+        "id": "services",
+        "text": "บริการ",
+        "href": "page-services.html"
+      },
+      {
+        "id": "contact",
+        "text": "ติดต่อเรา",
+        "href": "page-contact.html"
+      },
+      {
+        "id": "login",
+        "text": "เข้าสู่ระบบ",
+        "href": "admin/login.html"
+      }
+    ]
+  }
+}

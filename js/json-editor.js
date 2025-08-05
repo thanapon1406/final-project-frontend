@@ -51,6 +51,46 @@ const jsonConfigs = {
       },
     ],
   },
+  "site-config": {
+    title: "การตั้งค่าเว็บไซต์",
+    fields: [
+      { key: "site.title", type: "text", label: "ชื่อเว็บไซต์" },
+      { key: "site.shortTitle", type: "text", label: "ชื่อสั้น" },
+      { key: "site.logo.url", type: "url", label: "URL โลโก้" },
+      { key: "site.logo.alt", type: "text", label: "Alt Text โลโก้" },
+      {
+        key: "site.organization.fullName",
+        type: "textarea",
+        label: "ชื่อองค์กรเต็ม",
+      },
+      {
+        key: "site.organization.shortName",
+        type: "text",
+        label: "ชื่อองค์กรสั้น",
+      },
+      {
+        key: "navigation.brand.text",
+        type: "textarea",
+        label: "ข้อความ Brand",
+      },
+      {
+        key: "navigation.brand.shortText",
+        type: "text",
+        label: "ข้อความ Brand สั้น",
+      },
+      {
+        key: "navigation.menu",
+        type: "array",
+        label: "เมนูนำทาง",
+        subfields: [
+          { key: "id", type: "text", label: "ID" },
+          { key: "text", type: "text", label: "ข้อความ" },
+          { key: "href", type: "text", label: "ลิงก์" },
+          { key: "active", type: "checkbox", label: "เปิดใช้งาน" },
+        ],
+      },
+    ],
+  },
   "homepage-featured": {
     title: "เนื้อหาเด่นหน้าหลัก",
     fields: [
@@ -58,6 +98,39 @@ const jsonConfigs = {
       { key: "heroSection.subtitle", type: "text", label: "หัวข้อรอง" },
       { key: "heroSection.description", type: "textarea", label: "คำอธิบาย" },
       { key: "heroSection.image", type: "url", label: "URL รูปภาพ" },
+      {
+        key: "heroSection.buttons",
+        type: "array",
+        label: "ปุ่ม",
+        subfields: [
+          { key: "text", type: "text", label: "ข้อความ" },
+          { key: "href", type: "text", label: "ลิงก์" },
+          { key: "icon", type: "text", label: "ไอคอน" },
+          { key: "class", type: "text", label: "CSS Class" },
+        ],
+      },
+      { key: "heroSection.overlay.icon", type: "text", label: "ไอคอน Overlay" },
+      {
+        key: "heroSection.overlay.title",
+        type: "text",
+        label: "หัวข้อ Overlay",
+      },
+      {
+        key: "heroSection.overlay.description",
+        type: "text",
+        label: "คำอธิบาย Overlay",
+      },
+      {
+        key: "activities",
+        type: "array",
+        label: "กิจกรรม",
+        subfields: [
+          { key: "id", type: "number", label: "ID" },
+          { key: "title", type: "text", label: "หัวข้อ" },
+          { key: "image", type: "url", label: "URL รูปภาพ" },
+          { key: "alt", type: "text", label: "Alt Text" },
+        ],
+      },
       {
         key: "socialMedia.facebook.account",
         type: "url",
@@ -219,6 +292,32 @@ const jsonConfigs = {
         key: "contact.googleMaps.embedUrl",
         type: "url",
         label: "Google Maps Embed URL",
+      },
+    ],
+  },
+  footer: {
+    title: "Footer",
+    fields: [
+      {
+        key: "footer.organization.name",
+        type: "textarea",
+        label: "ชื่อองค์กร",
+      },
+      { key: "footer.copyright.year", type: "text", label: "ปี Copyright" },
+      {
+        key: "footer.copyright.text",
+        type: "textarea",
+        label: "ข้อความ Copyright",
+      },
+      {
+        key: "footer.socialMedia.facebook.account",
+        type: "url",
+        label: "Facebook Account",
+      },
+      {
+        key: "footer.socialMedia.facebook.fanpage",
+        type: "url",
+        label: "Facebook Fanpage",
       },
     ],
   },
@@ -600,7 +699,7 @@ function setNestedValue(obj, path, value) {
 }
 
 // Save JSON file
-function saveJsonFile() {
+async function saveJsonFile() {
   try {
     showAlert("กำลังบันทึกข้อมูล...", "info");
 
@@ -613,26 +712,52 @@ function saveJsonFile() {
       return;
     }
 
-    // Save to localStorage (simulate file saving)
     const jsonString = JSON.stringify(formData, null, 2);
-    localStorage.setItem(`json_${currentFileName}`, jsonString);
 
-    // Update current data
-    currentJsonData = formData;
+    // Try to save to actual file using a simple approach
+    try {
+      // Create a download link to save the file
+      const blob = new Blob([jsonString], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `${currentFileName}.json`;
+      a.style.display = "none";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
 
-    // Log activity
-    logActivity("save", currentFileName);
+      // Also save to localStorage as backup
+      localStorage.setItem(`json_${currentFileName}`, jsonString);
 
-    // Show success modal instead of auto-download
-    showSuccessModal(currentFileName, jsonString);
+      // Update current data
+      currentJsonData = formData;
+
+      // Log activity
+      logActivity("save", currentFileName);
+
+      // Show success message with instructions
+      showSaveInstructions(currentFileName, jsonString);
+    } catch (error) {
+      console.error("Error saving file:", error);
+      // Fallback to localStorage only
+      localStorage.setItem(`json_${currentFileName}`, jsonString);
+      currentJsonData = formData;
+      logActivity("save", currentFileName);
+      showAlert(
+        "บันทึกลง localStorage แล้ว (กรุณาดาวน์โหลดไฟล์และอัพโหลดไปยัง data/ folder)",
+        "warning"
+      );
+    }
   } catch (error) {
     console.error("Error saving JSON file:", error);
     showAlert("เกิดข้อผิดพลาดในการบันทึก: " + error.message, "danger");
   }
 }
 
-// Show success modal after saving
-function showSuccessModal(fileName, jsonString) {
+// Show save instructions
+function showSaveInstructions(fileName, jsonString) {
   const modal = document.createElement("div");
   modal.className = "modal fade";
   modal.innerHTML = `
@@ -640,26 +765,35 @@ function showSuccessModal(fileName, jsonString) {
       <div class="modal-content">
         <div class="modal-header bg-success text-white">
           <h5 class="modal-title">
-            <i class="fas fa-check-circle me-2"></i>บันทึกสำเร็จ!
+            <i class="fas fa-download me-2"></i>ไฟล์ถูกดาวน์โหลดแล้ว!
           </h5>
           <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
         </div>
-        <div class="modal-body text-center">
-          <div class="mb-3">
-            <i class="fas fa-check-circle fa-4x text-success"></i>
+        <div class="modal-body">
+          <div class="alert alert-info">
+            <h6><i class="fas fa-info-circle me-2"></i>วิธีการอัพเดทไฟล์:</h6>
+            <ol class="mb-0">
+              <li>ไฟล์ <strong>${fileName}.json</strong> ได้ถูกดาวน์โหลดไปยังโฟลเดอร์ Downloads แล้ว</li>
+              <li>นำไฟล์ที่ดาวน์โหลดไปแทนที่ไฟล์เดิมในโฟลเดอร์ <code>data/</code></li>
+              <li>รีเฟรชหน้าเว็บเพื่อดูการเปลี่ยนแปลง</li>
+            </ol>
           </div>
-          <h4>บันทึกข้อมูลสำเร็จ!</h4>
-          <p class="text-muted">ไฟล์ <strong>${fileName}.json</strong> ได้รับการอัพเดทแล้ว</p>
           
-          <div class="d-grid gap-2 d-md-flex justify-content-md-center mt-4">
-            <button class="btn btn-outline-primary" onclick="downloadBackup('${fileName}', \`${jsonString.replace(
+          <div class="text-center mt-3">
+            <button class="btn btn-outline-primary me-2" onclick="downloadBackup('${fileName}', \`${jsonString.replace(
     /`/g,
     "\\`"
   )}\`)">
-              <i class="fas fa-download me-2"></i>ดาวน์โหลดสำรอง
+              <i class="fas fa-download me-2"></i>ดาวน์โหลดอีกครั้ง
+            </button>
+            <button class="btn btn-outline-info me-2" onclick="copyJsonToClipboard(\`${jsonString.replace(
+              /`/g,
+              "\\`"
+            )}\`)">
+              <i class="fas fa-copy me-2"></i>คัดลอก JSON
             </button>
             <button class="btn btn-success" data-bs-dismiss="modal">
-              <i class="fas fa-check me-2"></i>เสร็จสิ้น
+              <i class="fas fa-check me-2"></i>เข้าใจแล้ว
             </button>
           </div>
         </div>
@@ -917,10 +1051,11 @@ function previewJson() {
 }
 
 // Copy JSON to clipboard
-function copyJsonToClipboard() {
-  if (window.currentPreviewJson) {
+function copyJsonToClipboard(jsonString = null) {
+  const textToCopy = jsonString || window.currentPreviewJson;
+  if (textToCopy) {
     navigator.clipboard
-      .writeText(window.currentPreviewJson)
+      .writeText(textToCopy)
       .then(() => {
         showAlert("คัดลอกไปยังคลิปบอร์ดแล้ว", "success");
       })

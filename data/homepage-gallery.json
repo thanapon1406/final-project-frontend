@@ -1,99 +1,81 @@
 {
   "gallery": {
     "title": "ประมวลภาพ",
-    "subtitle": "ภาพบรรยากاศและกิจกรรมต่างๆ ที่ห้วยตึงเฒ่า",
-    "description": "คลังภาพความทรงจำจากนักท่องเที่ยวและกิจกรรมต่างๆ ที่จัดขึ้นที่ห้วยตึงเฒ่า",
-    "viewAllLink": "#gallery",
+    "subtitle": "ภาพบรรยากาศและกิจกรรมต่างๆ ที่ห้วยตึงเฒ่า",
     "images": [
       {
         "id": 1,
         "src": "https://huaytuengthao.com/image/sheep/1.jpg",
-        "thumbnail": "https://huaytuengthao.com/image/sheep/1.jpg",
         "alt": "แกะ 1",
         "title": "ป้อนอาหารแกะ",
-        "description": "กิจกรรมป้อนอาหารแกะที่เด็กๆ และผู้ใหญ่ชื่นชอบ",
-        "category": "กิจกรรม"
+        "description": "กิจกรรมป้อนอาหารแกะที่เป็นที่นิยม",
+        "category": "animals"
       },
       {
         "id": 2,
         "src": "https://huaytuengthao.com/image/sheep/2.jpg",
-        "thumbnail": "https://huaytuengthao.com/image/sheep/2.jpg",
         "alt": "แกะ 2",
         "title": "แกะน่ารัก",
-        "description": "แกะน่ารักที่ห้วยตึงเฒ่า",
-        "category": "กิจกรรม"
+        "description": "แกะที่เลี้ยงไว้ในฟาร์ม",
+        "category": "animals"
       },
       {
         "id": 3,
         "src": "https://huaytuengthao.com/image/sheep/3.jpg",
-        "thumbnail": "https://huaytuengthao.com/image/sheep/3.jpg",
         "alt": "แกะ 3",
-        "title": "สัตว์เลี้ยง",
-        "description": "สัตว์เลี้ยงที่เป็นมิตรกับนักท่องเที่ยว",
-        "category": "กิจกรรม"
+        "title": "ฟาร์มแกะ",
+        "description": "บรรยากาศในฟาร์มแกะ",
+        "category": "animals"
       },
       {
         "id": 4,
         "src": "https://huaytuengthao.com/image/sheep/4.jpg",
-        "thumbnail": "https://huaytuengthao.com/image/sheep/4.jpg",
         "alt": "ธรรมชาติ 1",
         "title": "ธรรมชาติสวยงาม",
-        "description": "วิวธรรมชาติที่สวยงามของห้วยตึงเฒ่า",
-        "category": "ธรรมชาติ"
+        "description": "ทิวทัศน์ธรรมชาติที่สวยงาม",
+        "category": "nature"
       },
       {
         "id": 5,
         "src": "https://huaytuengthao.com/image/sheep/5.jpg",
-        "thumbnail": "https://huaytuengthao.com/image/sheep/5.jpg",
         "alt": "ธรรมชาติ 2",
-        "title": "อ่างเก็บน้ำ",
-        "description": "อ่างเก็บน้ำห้วยตึงเฒ่าที่สวยงามและเงียบสงบ",
-        "category": "ธรรมชาติ"
+        "title": "วิวภูเขา",
+        "description": "วิวภูเขาที่สวยงาม",
+        "category": "nature"
       },
       {
         "id": 6,
         "src": "https://huaytuengthao.com/image/sheep/6.jpg",
-        "thumbnail": "https://huaytuengthao.com/image/sheep/6.jpg",
         "alt": "ธรรมชาติ 3",
-        "title": "ป่าไผ่",
-        "description": "ป่าไผ่และธรรมชาติรอบอ่างเก็บน้ำ",
-        "category": "ธรรมชาติ"
+        "title": "บรรยากาศธรรมชาติ",
+        "description": "บรรยากาศธรรมชาติที่เงียบสงบ",
+        "category": "nature"
       },
       {
         "id": 7,
         "src": "https://huaytuengthao.com/image/sheep/7.jpg",
-        "thumbnail": "https://huaytuengthao.com/image/sheep/7.jpg",
-        "alt": "ธรรมชาติ 4",
-        "title": "ทิวทัศน์",
-        "description": "ทิวทัศน์สวยงามของห้วยตึงเฒ่า",
-        "category": "ธรรมชาติ"
+        "alt": "กิจกรรม 1",
+        "title": "กิจกรรมต่างๆ",
+        "description": "กิจกรรมสนุกสนานมากมาย",
+        "category": "activities"
       },
       {
         "id": 8,
         "src": "https://huaytuengthao.com/image/sheep/8.jpg",
-        "thumbnail": "https://huaytuengthao.com/image/sheep/8.jpg",
-        "alt": "ธรรมชาติ 5",
-        "title": "บรรยากาศ",
-        "description": "บรรยากาศเงียบสงบท่ามกลางธรรมชาติ",
-        "category": "ธรรมชาติ"
+        "alt": "กิจกรรม 2",
+        "title": "กิจกรรมครอบครัว",
+        "description": "กิจกรรมที่เหมาะสำหรับครอบครัว",
+        "category": "activities"
       },
       {
         "id": 9,
         "src": "https://huaytuengthao.com/image/sheep/9.jpg",
-        "thumbnail": "https://huaytuengthao.com/image/sheep/9.jpg",
-        "alt": "ธรรมชาติ 6",
-        "title": "ความสงบ",
-        "description": "ความสงบและความสวยงามของธรรมชาติ",
-        "category": "ธรรมชาติ"
+        "alt": "กิจกรรม 3",
+        "title": "ความสนุกสนาน",
+        "description": "ความสนุกสนานที่ไม่มีวันจบ",
+        "category": "activities"
       }
     ]
-  },
-  "lightbox": {
-    "enabled": true,
-    "showThumbnails": true,
-    "showCaption": true,
-    "autoPlay": false,
-    "transitionDuration": 300
   },
   "socialMedia": {
     "facebook": {
