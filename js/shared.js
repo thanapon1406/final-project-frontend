@@ -2,9 +2,22 @@
 let siteConfigData = null;
 let footerData = null;
 
-// Load JSON data (try localStorage first, then file)
+// Load JSON data (try API first, then localStorage, then file)
 async function loadJsonData(fileName) {
-  // Try localStorage first (edited data)
+  // Try API first
+  try {
+    const response = await fetch(`/api/json/${fileName}`);
+    if (response.ok) {
+      const result = await response.json();
+      if (result.success) {
+        return result.data;
+      }
+    }
+  } catch (apiError) {
+    console.warn(`API load failed for ${fileName}, trying fallback:`, apiError);
+  }
+
+  // Fallback to localStorage (edited data)
   const savedData = localStorage.getItem(`json_${fileName}`);
   if (savedData) {
     try {
@@ -14,7 +27,7 @@ async function loadJsonData(fileName) {
     }
   }
 
-  // Load from file
+  // Final fallback to direct file load
   const response = await fetch(`data/${fileName}.json`);
   return response.json();
 }

@@ -15,6 +15,5 @@
   },
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode" // Set Prettier as formatter for JavaScript
-  },
-  "liveServer.settings.port": 5501
+  }
 }

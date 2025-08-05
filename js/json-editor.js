@@ -331,32 +331,34 @@ async function loadJsonFile(fileName) {
     // Reset current data
     currentJsonData = null;
 
-    // First try to load from localStorage (edited version)
-    const savedData = localStorage.getItem(`json_${fileName}`);
-    if (savedData) {
-      try {
-        currentJsonData = JSON.parse(savedData);
-        console.log("Loaded from localStorage:", currentJsonData);
-      } catch (e) {
-        console.warn("Invalid saved data in localStorage, loading from file");
-        currentJsonData = null;
-      }
-    }
+    // Try to load from API first
+    try {
+      const response = await fetch(`/api/json/${fileName}`);
+      const result = await response.json();
 
-    // If no saved data, load from original file
-    if (!currentJsonData) {
-      try {
-        const response = await fetch(`../data/${fileName}.json`);
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
+      if (result.success) {
+        currentJsonData = result.data;
+        console.log("Loaded from API:", currentJsonData);
+      } else {
+        throw new Error(result.message || "API Error");
+      }
+    } catch (apiError) {
+      console.warn("API load failed, trying localStorage:", apiError);
+
+      // Fallback to localStorage
+      const savedData = localStorage.getItem(`json_${fileName}`);
+      if (savedData) {
+        try {
+          currentJsonData = JSON.parse(savedData);
+          console.log("Loaded from localStorage:", currentJsonData);
+        } catch (e) {
+          console.warn("Invalid saved data in localStorage");
+          currentJsonData = null;
         }
-        const text = await response.text();
-        console.log("Raw JSON response:", text);
-        currentJsonData = JSON.parse(text);
-        console.log("Parsed JSON data:", currentJsonData);
-      } catch (fetchError) {
-        console.error("Error fetching file:", fetchError);
-        // Try to load sample data if file doesn't exist
+      }
+
+      // Final fallback to sample data
+      if (!currentJsonData) {
         currentJsonData = getSampleData(fileName);
         if (!currentJsonData) {
           throw new Error(`ไม่สามารถโหลดไฟล์ ${fileName}.json ได้`);
@@ -372,9 +374,7 @@ async function loadJsonFile(fileName) {
 
     generateForm(fileName);
 
-    // Show load source info
-    const source = savedData ? "ข้อมูลที่แก้ไขแล้ว" : "ไฟล์ต้นฉบับ";
-    showAlert(`โหลดข้อมูลสำเร็จจาก ${source}`, "success");
+    showAlert(`โหลดข้อมูลสำเร็จ`, "success");
   } catch (error) {
     console.error("Error loading JSON file:", error);
     showAlert("เกิดข้อผิดพลาดในการโหลดไฟล์: " + error.message, "danger");
@@ -703,20 +703,56 @@ async function saveJsonFile() {
   try {
     showAlert("กำลังบันทึกข้อมูล...", "info");
 
+    // Set loading state
+    if (typeof setSaveButtonLoading === "function") {
+      setSaveButtonLoading(true);
+    }
+
     // Collect form data
     const formData = collectFormData();
 
     // Validate data
     if (!validateFormData(formData)) {
       showAlert("กรุณาตรวจสอบข้อมูลที่กรอก", "warning");
+      if (typeof setSaveButtonLoading === "function") {
+        setSaveButtonLoading(false);
+      }
       return;
     }
 
     const jsonString = JSON.stringify(formData, null, 2);
 
-    // Try to save to actual file using a simple approach
+    // Try to save via API first
     try {
-      // Create a download link to save the file
+      const response = await fetch(`/api/json/${currentFileName}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        // Update current data
+        currentJsonData = formData;
+
+        // Also save to localStorage as backup
+        localStorage.setItem(`json_${currentFileName}`, jsonString);
+
+        // Log activity
+        logActivity("save", currentFileName);
+
+        // Show success message
+        showApiSaveSuccess(currentFileName, result);
+      } else {
+        throw new Error(result.message || "API Save Error");
+      }
+    } catch (apiError) {
+      console.warn("API save failed, using fallback:", apiError);
+
+      // Fallback to download method
       const blob = new Blob([jsonString], { type: "application/json" });
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
@@ -728,7 +764,7 @@ async function saveJsonFile() {
       document.body.removeChild(a);
       URL.revokeObjectURL(url);
 
-      // Also save to localStorage as backup
+      // Save to localStorage as backup
       localStorage.setItem(`json_${currentFileName}`, jsonString);
 
       // Update current data
@@ -737,23 +773,74 @@ async function saveJsonFile() {
       // Log activity
       logActivity("save", currentFileName);
 
-      // Show success message with instructions
+      // Show fallback instructions
       showSaveInstructions(currentFileName, jsonString);
-    } catch (error) {
-      console.error("Error saving file:", error);
-      // Fallback to localStorage only
-      localStorage.setItem(`json_${currentFileName}`, jsonString);
-      currentJsonData = formData;
-      logActivity("save", currentFileName);
-      showAlert(
-        "บันทึกลง localStorage แล้ว (กรุณาดาวน์โหลดไฟล์และอัพโหลดไปยัง data/ folder)",
-        "warning"
-      );
     }
   } catch (error) {
     console.error("Error saving JSON file:", error);
     showAlert("เกิดข้อผิดพลาดในการบันทึก: " + error.message, "danger");
+  } finally {
+    // Reset loading state
+    if (typeof setSaveButtonLoading === "function") {
+      setSaveButtonLoading(false);
+    }
   }
+}
+
+// Show API save success
+function showApiSaveSuccess(fileName, result) {
+  const modal = document.createElement("div");
+  modal.className = "modal fade";
+  modal.innerHTML = `
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header bg-success text-white">
+          <h5 class="modal-title">
+            <i class="fas fa-check-circle me-2"></i>บันทึกสำเร็จ!
+          </h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body text-center">
+          <div class="mb-3">
+            <i class="fas fa-check-circle fa-4x text-success"></i>
+          </div>
+          <h4>บันทึกไฟล์สำเร็จ!</h4>
+          <p class="text-muted">ไฟล์ <strong>${fileName}.json</strong> ได้รับการอัพเดทแล้ว</p>
+          <p class="text-info"><small>เวลา: ${new Date(
+            result.timestamp
+          ).toLocaleString("th-TH")}</small></p>
+          
+          <div class="alert alert-success">
+            <i class="fas fa-info-circle me-2"></i>
+            ไฟล์ถูกบันทึกโดยตรงแล้ว ไม่จำเป็นต้องดาวน์โหลดหรือแทนที่ไฟล์
+          </div>
+          
+          <div class="d-grid gap-2 d-md-flex justify-content-md-center mt-4">
+            <button class="btn btn-outline-primary me-2" onclick="refreshPage()">
+              <i class="fas fa-sync-alt me-2"></i>รีเฟรชหน้าเว็บ
+            </button>
+            <button class="btn btn-success" data-bs-dismiss="modal">
+              <i class="fas fa-check me-2"></i>เสร็จสิ้น
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+
+  document.body.appendChild(modal);
+  const bsModal = new bootstrap.Modal(modal);
+  bsModal.show();
+
+  // Remove modal after hide
+  modal.addEventListener("hidden.bs.modal", () => {
+    document.body.removeChild(modal);
+  });
+}
+
+// Refresh page function
+function refreshPage() {
+  window.location.reload();
 }
 
 // Show save instructions
@@ -1067,8 +1154,25 @@ function copyJsonToClipboard(jsonString = null) {
 }
 
 // Refresh JSON list
-function refreshJsonList() {
-  showAlert("รีเฟรชรายการไฟล์แล้ว", "success");
+async function refreshJsonList() {
+  try {
+    showAlert("กำลังรีเฟรชรายการไฟล์...", "info");
+
+    const response = await fetch("/api/json");
+    const result = await response.json();
+
+    if (result.success) {
+      showAlert(`รีเฟรชสำเร็จ - พบ ${result.files.length} ไฟล์`, "success");
+
+      // Update file list display if needed
+      console.log("Available files:", result.files);
+    } else {
+      throw new Error(result.message || "API Error");
+    }
+  } catch (error) {
+    console.warn("API refresh failed:", error);
+    showAlert("รีเฟรชรายการไฟล์แล้ว (โหมด Fallback)", "warning");
+  }
 }
 
 // Test JSON loading
@@ -1077,35 +1181,78 @@ async function testJsonLoad() {
 
   const testFiles = ["homepage-carousel", "homepage-news", "page-services"];
   let results = [];
+  let apiResults = [];
 
+  // Test API endpoints
+  results.push("=== ทดสอบ API ===");
+  for (const fileName of testFiles) {
+    try {
+      const response = await fetch(`/api/json/${fileName}`);
+      const result = await response.json();
+
+      if (result.success) {
+        apiResults.push(`✅ API ${fileName}.json - โหลดสำเร็จ`);
+        results.push(
+          `✅ API ${fileName}.json - โหลดสำเร็จ (${
+            Object.keys(result.data).length
+          } keys)`
+        );
+      } else {
+        results.push(`❌ API ${fileName}.json - ${result.message}`);
+      }
+    } catch (error) {
+      results.push(`❌ API ${fileName}.json - Error: ${error.message}`);
+    }
+  }
+
+  results.push("\n=== ทดสอบไฟล์โดยตรง ===");
+  // Test direct file loading
   for (const fileName of testFiles) {
     try {
       const response = await fetch(`../data/${fileName}.json`);
       if (response.ok) {
         const data = await response.json();
         results.push(
-          `✅ ${fileName}.json - โหลดสำเร็จ (${Object.keys(data).length} keys)`
+          `✅ File ${fileName}.json - โหลดสำเร็จ (${
+            Object.keys(data).length
+          } keys)`
         );
       } else {
-        results.push(`❌ ${fileName}.json - HTTP ${response.status}`);
+        results.push(`❌ File ${fileName}.json - HTTP ${response.status}`);
       }
     } catch (error) {
-      results.push(`❌ ${fileName}.json - Error: ${error.message}`);
+      results.push(`❌ File ${fileName}.json - Error: ${error.message}`);
     }
+  }
+
+  // Test API status
+  results.push("\n=== สถานะ API Server ===");
+  try {
+    const response = await fetch("/api/json");
+    const result = await response.json();
+    if (result.success) {
+      results.push(
+        `✅ API Server - เชื่อมต่อสำเร็จ (${result.files.length} ไฟล์)`
+      );
+    } else {
+      results.push(`❌ API Server - ${result.message}`);
+    }
+  } catch (error) {
+    results.push(`❌ API Server - ไม่สามารถเชื่อมต่อได้: ${error.message}`);
   }
 
   // Show results in modal
   const modal = document.createElement("div");
   modal.className = "modal fade";
   modal.innerHTML = `
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">ผลการทดสอบโหลด JSON</h5>
+          <h5 class="modal-title">ผลการทดสอบระบบ</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
         </div>
         <div class="modal-body">
-          <pre style="background: #f8f9fa; padding: 15px; border-radius: 5px;">${results.join(
+          <pre style="background: #f8f9fa; padding: 15px; border-radius: 5px; max-height: 400px; overflow-y: auto;">${results.join(
             "\n"
           )}</pre>
         </div>
