@@ -20,54 +20,103 @@
       rel="stylesheet"
     />
     <style>
+      :root {
+        --primary-color: #2c3e50;
+        --secondary-color: #34495e;
+        --accent-color: #3498db;
+        --success-color: #27ae60;
+        --text-light: #ffffff;
+        --bg-light: #ecf0f1;
+        --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.15);
+      }
+
       body {
         font-family: "Itim", cursive;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(
+          135deg,
+          var(--primary-color) 0%,
+          var(--secondary-color) 100%
+        );
         min-height: 100vh;
         display: flex;
         align-items: center;
         justify-content: center;
       }
+
       .login-card {
         background: white;
         border-radius: 15px;
-        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        box-shadow: var(--shadow-md);
         overflow: hidden;
         max-width: 400px;
         width: 100%;
       }
+
       .login-header {
-        background: linear-gradient(45deg, #007bff, #0056b3);
-        color: white;
+        background: linear-gradient(
+          45deg,
+          var(--primary-color),
+          var(--secondary-color)
+        );
+        color: var(--text-light);
         padding: 2rem;
         text-align: center;
       }
+
       .login-body {
         padding: 2rem;
       }
+
       .btn-login {
-        background: linear-gradient(45deg, #28a745, #20c997);
+        background: linear-gradient(
+          45deg,
+          var(--success-color),
+          var(--accent-color)
+        );
         border: none;
-        color: white;
+        color: var(--text-light);
         font-weight: 500;
         padding: 12px 30px;
         border-radius: 25px;
         width: 100%;
+        transition: all 0.3s ease;
       }
+
       .btn-login:hover {
-        background: linear-gradient(45deg, #218838, #1ea080);
-        color: white;
+        background: linear-gradient(45deg, #229954, #2980b9);
+        color: var(--text-light);
         transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
       }
+
       .form-control {
         border-radius: 10px;
         border: 2px solid #e9ecef;
         padding: 12px 15px;
         font-family: "Itim", cursive;
+        transition: border-color 0.3s ease;
       }
+
       .form-control:focus {
-        border-color: #007bff;
-        box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+        border-color: var(--accent-color);
+        box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.25);
+      }
+
+      .input-group-text {
+        background-color: var(--bg-light);
+        border-color: #e9ecef;
+        color: var(--primary-color);
+      }
+
+      .btn-outline-secondary {
+        border-color: #e9ecef;
+        color: var(--primary-color);
+      }
+
+      .btn-outline-secondary:hover {
+        background-color: var(--bg-light);
+        border-color: var(--accent-color);
+        color: var(--primary-color);
       }
     </style>
   </head>

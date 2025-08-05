@@ -22,26 +22,195 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../css/admin.css" />
     <style>
+      :root {
+        --primary-color: #2c3e50;
+        --secondary-color: #34495e;
+        --accent-color: #3498db;
+        --success-color: #27ae60;
+        --warning-color: #f39c12;
+        --text-primary: #2c3e50;
+        --text-light: #ffffff;
+        --bg-primary: #ffffff;
+        --bg-secondary: #f8f9fa;
+        --bg-light: #ecf0f1;
+        --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+        --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.15);
+      }
+
+      body {
+        background-color: var(--bg-secondary);
+      }
+
       .json-file-card {
-        transition: transform 0.2s;
+        transition: all 0.3s ease;
         cursor: pointer;
+        border: none;
+        box-shadow: var(--shadow-sm);
       }
+
       .json-file-card:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transform: translateY(-3px);
+        box-shadow: var(--shadow-md);
       }
+
+      .json-file-card .card-body {
+        padding: 1.5rem;
+      }
+
+      .json-file-card .fa-3x {
+        margin-bottom: 1rem;
+      }
+
+      .json-file-card .text-primary {
+        color: var(--primary-color) !important;
+      }
+      .json-file-card .text-success {
+        color: var(--success-color) !important;
+      }
+      .json-file-card .text-warning {
+        color: var(--warning-color) !important;
+      }
+      .json-file-card .text-info {
+        color: var(--accent-color) !important;
+      }
+      .json-file-card .text-secondary {
+        color: var(--secondary-color) !important;
+      }
+
       .form-control,
       .form-select {
         font-family: "Itim", cursive;
+        border-color: #dee2e6;
+        transition: border-color 0.3s ease;
       }
+
+      .form-control:focus,
+      .form-select:focus {
+        border-color: var(--accent-color);
+        box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.25);
+      }
+
       .btn-save {
-        background: linear-gradient(45deg, #28a745, #20c997);
+        background: linear-gradient(
+          45deg,
+          var(--success-color),
+          var(--accent-color)
+        );
         border: none;
-        color: white;
+        color: var(--text-light);
+        transition: all 0.3s ease;
       }
+
       .btn-save:hover {
-        background: linear-gradient(45deg, #218838, #1ea080);
-        color: white;
+        background: linear-gradient(45deg, #229954, #2980b9);
+        color: var(--text-light);
+        transform: translateY(-1px);
+        box-shadow: var(--shadow-md);
+      }
+
+      .admin-sidebar {
+        background: var(--primary-color) !important;
+        min-height: 100vh;
+      }
+
+      .admin-sidebar .nav-link {
+        color: rgba(255, 255, 255, 0.8) !important;
+        transition: all 0.3s ease;
+        border-radius: 5px;
+        margin: 0.2rem 0;
+      }
+
+      .admin-sidebar .nav-link:hover {
+        color: var(--text-light) !important;
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+
+      .admin-sidebar .nav-link.active {
+        color: var(--text-light) !important;
+        background-color: var(--accent-color);
+      }
+
+      .admin-sidebar .text-danger {
+        color: #e74c3c !important;
+      }
+
+      .admin-sidebar .text-danger:hover {
+        color: #c0392b !important;
+        background-color: rgba(231, 76, 60, 0.1);
+      }
+
+      .admin-content {
+        background-color: var(--bg-secondary);
+        min-height: 100vh;
+      }
+
+      .border-bottom {
+        border-color: var(--accent-color) !important;
+      }
+
+      .card {
+        border: none;
+        box-shadow: var(--shadow-sm);
+      }
+
+      .card-header {
+        background-color: var(--bg-light);
+        border-bottom: 1px solid var(--accent-color);
+        color: var(--text-primary);
+      }
+
+      .btn-outline-secondary {
+        border-color: var(--secondary-color);
+        color: var(--secondary-color);
+      }
+
+      .btn-outline-secondary:hover {
+        background-color: var(--secondary-color);
+        border-color: var(--secondary-color);
+      }
+
+      .btn-outline-warning {
+        border-color: var(--warning-color);
+        color: var(--warning-color);
+      }
+
+      .btn-outline-warning:hover {
+        background-color: var(--warning-color);
+        border-color: var(--warning-color);
+      }
+
+      .btn-outline-info {
+        border-color: var(--accent-color);
+        color: var(--accent-color);
+      }
+
+      .btn-outline-info:hover {
+        background-color: var(--accent-color);
+        border-color: var(--accent-color);
+      }
+
+      .alert-success {
+        background-color: rgba(39, 174, 96, 0.1);
+        border-color: var(--success-color);
+        color: var(--success-color);
+      }
+
+      .alert-info {
+        background-color: rgba(52, 152, 219, 0.1);
+        border-color: var(--accent-color);
+        color: var(--accent-color);
+      }
+
+      .alert-warning {
+        background-color: rgba(243, 156, 18, 0.1);
+        border-color: var(--warning-color);
+        color: var(--warning-color);
+      }
+
+      .alert-danger {
+        background-color: rgba(231, 76, 60, 0.1);
+        border-color: #e74c3c;
+        color: #e74c3c;
       }
     </style>
   </head>
