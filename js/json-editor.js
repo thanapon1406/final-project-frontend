@@ -694,6 +694,94 @@ function generateSubFieldHtml(subfield, value, parentKey, index) {
         }
         arrayHtml += `</div>`;
         return arrayHtml;
+      } else if (subfield.subfields) {
+        // Handle nested arrays with subfields (like images)
+        let nestedArrayHtml = `
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <label class="form-label fw-bold">${
+                              subfield.label
+                            }</label>
+                            <button type="button" class="btn btn-sm btn-outline-success" 
+                                    onclick="addNestedArrayItem('${dataKey}', '${
+          subfield.key
+        }')">
+                                <i class="fas fa-plus me-1"></i>เพิ่ม${
+                                  subfield.label
+                                }
+                            </button>
+                        </div>
+                        <div class="nested-array-container border rounded p-2" id="nested-${dataKey
+                          .replace(/\./g, "-")
+                          .replace(/\[/g, "-")
+                          .replace(/\]/g, "-")}">
+                `;
+
+        if (Array.isArray(value)) {
+          value.forEach((nestedItem, nestedIndex) => {
+            nestedArrayHtml += `
+                            <div class="card mb-2 nested-array-item" data-nested-index="${nestedIndex}">
+                                <div class="card-header py-2 d-flex justify-content-between align-items-center">
+                                    <small class="text-muted">${
+                                      subfield.label
+                                    } ${nestedIndex + 1}</small>
+                                    <button type="button" class="btn btn-sm btn-outline-danger" 
+                                            onclick="removeNestedArrayItem('${dataKey}', ${nestedIndex})">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                                <div class="card-body py-2">
+                            `;
+
+            subfield.subfields.forEach((nestedSubfield) => {
+              const nestedValue = nestedItem[nestedSubfield.key] || "";
+              const nestedDataKey = `${dataKey}[${nestedIndex}].${nestedSubfield.key}`;
+
+              if (nestedSubfield.type === "select") {
+                nestedArrayHtml += `
+                                        <div class="mb-2">
+                                            <label class="form-label small">${
+                                              nestedSubfield.label
+                                            }</label>
+                                            <select class="form-select form-select-sm" data-key="${nestedDataKey}">
+                                                ${nestedSubfield.options
+                                                  .map(
+                                                    (option) =>
+                                                      `<option value="${option}" ${
+                                                        nestedValue === option
+                                                          ? "selected"
+                                                          : ""
+                                                      }>${option}</option>`
+                                                  )
+                                                  .join("")}
+                                            </select>
+                                        </div>
+                                `;
+              } else {
+                nestedArrayHtml += generateSubFieldHtml(
+                  {
+                    ...nestedSubfield,
+                    key: nestedSubfield.key,
+                  },
+                  nestedValue,
+                  `${dataKey}[${nestedIndex}]`,
+                  0
+                ).replace("mb-2", "mb-1");
+              }
+            });
+
+            nestedArrayHtml += `
+                                </div>
+                            </div>
+                            `;
+          });
+        }
+
+        nestedArrayHtml += `
+                        </div>
+                    </div>
+                `;
+        return nestedArrayHtml;
       }
       break;
 
@@ -957,52 +1045,48 @@ function logActivity(action, fileName) {
 function collectFormData() {
   const formData = JSON.parse(JSON.stringify(currentJsonData)); // Deep copy
 
-  // Collect simple fields
-  document
-    .querySelectorAll('[data-key]:not([data-key*="["])')
-    .forEach((element) => {
-      const key = element.getAttribute("data-key");
-      let value = element.value;
+  // Collect all fields with data-key attribute
+  document.querySelectorAll("[data-key]").forEach((element) => {
+    const key = element.getAttribute("data-key");
+    let value = element.value;
 
-      if (element.type === "checkbox") {
-        value = element.checked;
-      } else if (element.type === "number") {
-        value = parseFloat(value) || 0;
-      }
+    if (element.type === "checkbox") {
+      value = element.checked;
+    } else if (element.type === "number") {
+      value = parseFloat(value) || 0;
+    }
 
-      setNestedValue(formData, key, value);
-    });
-
-  // Collect array fields
-  document.querySelectorAll("[data-array-item]").forEach((arrayItem) => {
-    const arrayKey = arrayItem.getAttribute("data-array-item");
-    const index = parseInt(arrayItem.getAttribute("data-index"));
-
-    const arrayPath = arrayKey.split(".");
-    let targetArray = formData;
-    arrayPath.forEach((key) => {
-      if (!targetArray[key]) targetArray[key] = [];
-      targetArray = targetArray[key];
-    });
-
-    if (!targetArray[index]) targetArray[index] = {};
-
-    arrayItem.querySelectorAll("[data-key]").forEach((field) => {
-      const fullKey = field.getAttribute("data-key");
-      const fieldKey = fullKey.split(".").pop();
-      let value = field.value;
-
-      if (field.type === "checkbox") {
-        value = field.checked;
-      } else if (field.type === "number") {
-        value = parseFloat(value) || 0;
-      }
-
-      targetArray[index][fieldKey] = value;
-    });
+    // Handle nested keys with array notation like "history.sections[0].images[1].url"
+    setNestedValueWithArrays(formData, key, value);
   });
 
   return formData;
+}
+
+// Enhanced function to handle nested values with array notation
+function setNestedValueWithArrays(obj, path, value) {
+  const keys = path.split(/[\.\[\]]+/).filter((key) => key !== "");
+  let current = obj;
+
+  for (let i = 0; i < keys.length - 1; i++) {
+    const key = keys[i];
+    const nextKey = keys[i + 1];
+
+    // Check if next key is a number (array index)
+    if (!isNaN(nextKey)) {
+      if (!current[key]) current[key] = [];
+      if (!current[key][parseInt(nextKey)])
+        current[key][parseInt(nextKey)] = {};
+      current = current[key][parseInt(nextKey)];
+      i++; // Skip the index key
+    } else {
+      if (!current[key]) current[key] = {};
+      current = current[key];
+    }
+  }
+
+  const lastKey = keys[keys.length - 1];
+  current[lastKey] = value;
 }
 
 // Validate form data
@@ -1062,6 +1146,85 @@ function removeArrayItem(arrayKey, index) {
     // Remove item at index
     arrayData.splice(index, 1);
     setNestedValue(currentJsonData, arrayKey, arrayData);
+
+    // Regenerate form
+    generateForm(currentFileName);
+    showAlert("ลบรายการแล้ว", "success");
+  }
+}
+
+// Add nested array item (for images in sections)
+function addNestedArrayItem(parentKey, fieldKey) {
+  const config = jsonConfigs[currentFileName];
+
+  // Find the parent field configuration
+  let parentField = null;
+  for (const field of config.fields) {
+    if (field.key === parentKey.split("[")[0]) {
+      parentField = field;
+      break;
+    }
+  }
+
+  if (!parentField) {
+    showAlert("ไม่พบการกำหนดค่าสำหรับฟิลด์นี้", "warning");
+    return;
+  }
+
+  // Find the nested array field configuration
+  let nestedField = null;
+  if (parentField.subfields) {
+    nestedField = parentField.subfields.find((sf) => sf.key === fieldKey);
+  }
+
+  if (!nestedField || nestedField.type !== "array") {
+    showAlert("ไม่พบการกำหนดค่าสำหรับฟิลด์ nested array", "warning");
+    return;
+  }
+
+  // Get current nested array data
+  const nestedArrayData = getNestedValue(currentJsonData, parentKey) || [];
+
+  // Create new nested item with default values
+  const newNestedItem = {};
+  if (nestedField.subfields) {
+    nestedField.subfields.forEach((subfield) => {
+      switch (subfield.type) {
+        case "number":
+          newNestedItem[subfield.key] = 0;
+          break;
+        case "checkbox":
+          newNestedItem[subfield.key] = false;
+          break;
+        case "select":
+          newNestedItem[subfield.key] = subfield.options
+            ? subfield.options[0]
+            : "";
+          break;
+        default:
+          newNestedItem[subfield.key] = "";
+      }
+    });
+  }
+
+  // Add new nested item to array
+  nestedArrayData.push(newNestedItem);
+  setNestedValue(currentJsonData, parentKey, nestedArrayData);
+
+  // Regenerate form
+  generateForm(currentFileName);
+  showAlert("เพิ่มรายการใหม่แล้ว", "success");
+}
+
+// Remove nested array item
+function removeNestedArrayItem(parentKey, index) {
+  if (confirm("คุณต้องการลบรายการนี้หรือไม่?")) {
+    // Get current nested array data
+    const nestedArrayData = getNestedValue(currentJsonData, parentKey) || [];
+
+    // Remove item at index
+    nestedArrayData.splice(index, 1);
+    setNestedValue(currentJsonData, parentKey, nestedArrayData);
 
     // Regenerate form
     generateForm(currentFileName);
