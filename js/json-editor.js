@@ -258,7 +258,7 @@ const jsonConfigs = {
                 key: "position",
                 type: "select",
                 label: "ตำแหน่ง",
-                options: ["left", "right", "center", "full"],
+                options: ["side", "full"],
               },
             ],
           },
@@ -757,16 +757,31 @@ function generateSubFieldHtml(subfield, value, parentKey, index) {
                                             </select>
                                         </div>
                                 `;
-              } else {
-                nestedArrayHtml += generateSubFieldHtml(
-                  {
-                    ...nestedSubfield,
-                    key: nestedSubfield.key,
-                  },
-                  nestedValue,
-                  `${dataKey}[${nestedIndex}]`,
-                  0
-                ).replace("mb-2", "mb-1");
+              } else if (nestedSubfield.type === "text") {
+                nestedArrayHtml += `
+                                        <div class="mb-2">
+                                            <label class="form-label small">${nestedSubfield.label}</label>
+                                            <input type="text" class="form-control form-control-sm" 
+                                                   data-key="${nestedDataKey}" value="${nestedValue}" />
+                                        </div>
+                                `;
+              } else if (nestedSubfield.type === "url") {
+                nestedArrayHtml += `
+                                        <div class="mb-2">
+                                            <label class="form-label small">${nestedSubfield.label}</label>
+                                            <input type="url" class="form-control form-control-sm" 
+                                                   data-key="${nestedDataKey}" value="${nestedValue}" 
+                                                   placeholder="https://example.com" />
+                                        </div>
+                                `;
+              } else if (nestedSubfield.type === "textarea") {
+                nestedArrayHtml += `
+                                        <div class="mb-2">
+                                            <label class="form-label small">${nestedSubfield.label}</label>
+                                            <textarea class="form-control form-control-sm" rows="2" 
+                                                      data-key="${nestedDataKey}">${nestedValue}</textarea>
+                                        </div>
+                                `;
               }
             });
 
@@ -790,22 +805,68 @@ function generateSubFieldHtml(subfield, value, parentKey, index) {
   }
 }
 
-// Get nested value from object using dot notation
+// Get nested value from object using dot notation with array support
 function getNestedValue(obj, path) {
-  return path.split(".").reduce((current, key) => {
-    return current && current[key] !== undefined ? current[key] : "";
-  }, obj);
+  const keys = path.split(/[\.\[\]]+/).filter((key) => key !== "");
+  let current = obj;
+
+  for (const key of keys) {
+    if (current === null || current === undefined) {
+      return null;
+    }
+
+    if (!isNaN(key)) {
+      // It's an array index
+      const index = parseInt(key);
+      if (Array.isArray(current) && index < current.length) {
+        current = current[index];
+      } else {
+        return null;
+      }
+    } else {
+      // It's an object key
+      if (current.hasOwnProperty(key)) {
+        current = current[key];
+      } else {
+        return null;
+      }
+    }
+  }
+
+  return current;
 }
 
-// Set nested value in object using dot notation
+// Set nested value in object using dot notation with array support
 function setNestedValue(obj, path, value) {
-  const keys = path.split(".");
-  const lastKey = keys.pop();
-  const target = keys.reduce((current, key) => {
-    if (!current[key]) current[key] = {};
-    return current[key];
-  }, obj);
-  target[lastKey] = value;
+  const keys = path.split(/[\.\[\]]+/).filter((key) => key !== "");
+  let current = obj;
+
+  for (let i = 0; i < keys.length - 1; i++) {
+    const key = keys[i];
+    const nextKey = keys[i + 1];
+
+    if (!isNaN(key)) {
+      // Current key is an array index
+      const index = parseInt(key);
+      if (!current[index]) {
+        current[index] = !isNaN(nextKey) ? [] : {};
+      }
+      current = current[index];
+    } else {
+      // Current key is an object key
+      if (!current[key]) {
+        current[key] = !isNaN(nextKey) ? [] : {};
+      }
+      current = current[key];
+    }
+  }
+
+  const lastKey = keys[keys.length - 1];
+  if (!isNaN(lastKey)) {
+    current[parseInt(lastKey)] = value;
+  } else {
+    current[lastKey] = value;
+  }
 }
 
 // Save JSON file
@@ -1046,7 +1107,9 @@ function collectFormData() {
   const formData = JSON.parse(JSON.stringify(currentJsonData)); // Deep copy
 
   // Collect all fields with data-key attribute
-  document.querySelectorAll("[data-key]").forEach((element) => {
+  const elements = document.querySelectorAll("[data-key]");
+
+  elements.forEach((element) => {
     const key = element.getAttribute("data-key");
     let value = element.value;
 
@@ -1154,40 +1217,44 @@ function removeArrayItem(arrayKey, index) {
 }
 
 // Add nested array item (for images in sections)
-function addNestedArrayItem(parentKey, fieldKey) {
-  const config = jsonConfigs[currentFileName];
+function addNestedArrayItem(parentPath, fieldKey) {
+  console.log("Adding nested array item:", parentPath, fieldKey);
 
-  // Find the parent field configuration
-  let parentField = null;
+  // Get current nested array data using the parent path
+  let nestedArrayData = getNestedValue(currentJsonData, parentPath);
+  console.log("Current nested array data:", nestedArrayData);
+
+  // Initialize as empty array if null or undefined
+  if (!nestedArrayData) {
+    nestedArrayData = [];
+    setNestedValue(currentJsonData, parentPath, nestedArrayData);
+  }
+
+  // Ensure it's an array
+  if (!Array.isArray(nestedArrayData)) {
+    console.error("Data is not an array:", nestedArrayData);
+    showAlert("ข้อมูลไม่ใช่ array", "error");
+    return;
+  }
+
+  // Find field configuration for default values
+  const config = jsonConfigs[currentFileName];
+  let nestedField = null;
+
+  // Find the nested field configuration by traversing the config
   for (const field of config.fields) {
-    if (field.key === parentKey.split("[")[0]) {
-      parentField = field;
-      break;
+    if (field.key === "history.sections" && field.subfields) {
+      const imagesField = field.subfields.find((sf) => sf.key === fieldKey);
+      if (imagesField && imagesField.type === "array") {
+        nestedField = imagesField;
+        break;
+      }
     }
   }
 
-  if (!parentField) {
-    showAlert("ไม่พบการกำหนดค่าสำหรับฟิลด์นี้", "warning");
-    return;
-  }
-
-  // Find the nested array field configuration
-  let nestedField = null;
-  if (parentField.subfields) {
-    nestedField = parentField.subfields.find((sf) => sf.key === fieldKey);
-  }
-
-  if (!nestedField || nestedField.type !== "array") {
-    showAlert("ไม่พบการกำหนดค่าสำหรับฟิลด์ nested array", "warning");
-    return;
-  }
-
-  // Get current nested array data
-  const nestedArrayData = getNestedValue(currentJsonData, parentKey) || [];
-
   // Create new nested item with default values
   const newNestedItem = {};
-  if (nestedField.subfields) {
+  if (nestedField && nestedField.subfields) {
     nestedField.subfields.forEach((subfield) => {
       switch (subfield.type) {
         case "number":
@@ -1205,11 +1272,21 @@ function addNestedArrayItem(parentKey, fieldKey) {
           newNestedItem[subfield.key] = "";
       }
     });
+  } else {
+    // Default structure for images
+    newNestedItem.url = "";
+    newNestedItem.alt = "";
+    newNestedItem.caption = "";
+    newNestedItem.position = "left";
   }
+
+  console.log("New nested item:", newNestedItem);
 
   // Add new nested item to array
   nestedArrayData.push(newNestedItem);
-  setNestedValue(currentJsonData, parentKey, nestedArrayData);
+  setNestedValue(currentJsonData, parentPath, nestedArrayData);
+
+  console.log("Updated nested array data:", nestedArrayData);
 
   // Regenerate form
   generateForm(currentFileName);
@@ -1217,18 +1294,38 @@ function addNestedArrayItem(parentKey, fieldKey) {
 }
 
 // Remove nested array item
-function removeNestedArrayItem(parentKey, index) {
+function removeNestedArrayItem(parentPath, index) {
   if (confirm("คุณต้องการลบรายการนี้หรือไม่?")) {
-    // Get current nested array data
-    const nestedArrayData = getNestedValue(currentJsonData, parentKey) || [];
+    console.log("Removing nested array item:", parentPath, index);
+
+    // Get current nested array data using the parent path
+    const nestedArrayData = getNestedValue(currentJsonData, parentPath);
+    console.log("Current nested array data:", nestedArrayData);
+
+    // Ensure it's an array and has valid index
+    if (!Array.isArray(nestedArrayData)) {
+      console.error("Data is not an array:", nestedArrayData);
+      showAlert("ข้อมูลไม่ใช่ array หรือไม่พบข้อมูล", "error");
+      return;
+    }
 
     // Remove item at index
-    nestedArrayData.splice(index, 1);
-    setNestedValue(currentJsonData, parentKey, nestedArrayData);
+    if (nestedArrayData.length > index && index >= 0) {
+      nestedArrayData.splice(index, 1);
+      setNestedValue(currentJsonData, parentPath, nestedArrayData);
+      console.log("After removal:", nestedArrayData);
 
-    // Regenerate form
-    generateForm(currentFileName);
-    showAlert("ลบรายการแล้ว", "success");
+      // Regenerate form
+      generateForm(currentFileName);
+      showAlert("ลบรายการแล้ว", "success");
+    } else {
+      console.error(
+        "Invalid index or empty array:",
+        index,
+        nestedArrayData.length
+      );
+      showAlert("ไม่พบรายการที่ต้องการลบ", "warning");
+    }
   }
 }
 

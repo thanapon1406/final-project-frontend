@@ -20,13 +20,13 @@
             "url": "https://huaytuengthao.com/image/history/image1.jpg",
             "alt": "พระบาทสมเด็จพระเจ้าอยู่หัวทรงเยี่ยม",
             "caption": "พระบาทสมเด็จพระเจ้าอยู่หัวทรงเยี่ยมศูนย์เกษตรกรรมทหาร",
-            "position": "left"
+            "position": "side"
           },
           {
             "url": "https://huaytuengthao.com/image/history/image2.jpg",
             "alt": "การกำหนดแนวเขต",
             "caption": "พระองค์ทรงกำหนดแนวเขตสร้างสันเขื่อน",
-            "position": "right"
+            "position": "side"
           }
         ]
       },
@@ -42,19 +42,7 @@
             "url": "https://huaytuengthao.com/image/history/image4.jpg",
             "alt": "การจัดแบ่งพื้นที่",
             "caption": "การจัดแบ่งพื้นที่ให้ราษฎร ๖๑ ครอบครัว",
-            "position": "left"
-          },
-          {
-            "url": "https://huaytuengthao.com/image/history/image5.jpg",
-            "alt": "หมู่บ้านตัวอย่าง",
-            "caption": "โครงการจัดหมู่บ้านตัวอย่างห้วยตึงเฒ่า",
-            "position": "right"
-          },
-          {
-            "url": "https://huaytuengthao.com/image/history/image6.jpg",
-            "alt": "การพัฒนาอาชีพ",
-            "caption": "การพัฒนาส่งเสริมอาชีพของราษฎร",
-            "position": "center"
+            "position": "side"
           }
         ]
       },
@@ -70,7 +58,7 @@
             "url": "https://huaytuengthao.com/image/history/image7.jpg",
             "alt": "ความสำเร็จของโครงการ",
             "caption": "ราษฎรดำรงชีพอย่างพอเพียงด้วยอาชีพเกษตรกรรม",
-            "position": "center"
+            "position": "side"
           },
           {
             "url": "https://huaytuengthao.com/image/history/image8.jpg",
@@ -92,7 +80,7 @@
             "url": "https://huaytuengthao.com/image/history/image9.jpg",
             "alt": "การพัฒนาเป็นแหล่งท่องเที่ยว",
             "caption": "การพัฒนาเป็นแหล่งท่องเที่ยวเชิงธรรมชาติ",
-            "position": "left"
+            "position": "side"
           }
         ]
       },
