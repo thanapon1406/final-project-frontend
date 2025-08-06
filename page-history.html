@@ -64,14 +64,8 @@
       <!-- History Content -->
       <section class="py-5">
         <div class="container">
-          <div class="row">
-            <div class="col-lg-8 mx-auto">
-              <div class="card">
-                <div class="card-body" id="history-content">
-                  <!-- History content will be loaded from JSON -->
-                </div>
-              </div>
-            </div>
+          <div id="history-content">
+            <!-- History content will be loaded from JSON -->
           </div>
         </div>
       </section>
@@ -169,12 +163,93 @@
         const container = document.getElementById("history-content");
         let content = "";
 
-        historyData.history.sections.forEach((section) => {
-          content += `<p><strong>${section.title}</strong></p>`;
-          section.content.forEach((paragraph) => {
-            content += `<p>${paragraph}</p>`;
-          });
-          content += `<hr class="my-4" />`;
+        historyData.history.sections.forEach((section, index) => {
+          content += `
+            <div class="history-section mb-5">
+              <div class="row align-items-start">
+                <div class="col-12">
+                  <h3 class="section-title text-primary mb-4">${
+                    section.title
+                  }</h3>
+                </div>
+              </div>
+              
+              <div class="row">
+                <div class="col-lg-8">
+                  <div class="content-text">
+                    ${section.content
+                      .map((paragraph) => `<p class="mb-3">${paragraph}</p>`)
+                      .join("")}
+                  </div>
+                </div>
+                
+                ${
+                  section.images
+                    ? `
+                <div class="col-lg-4">
+                  <div class="images-container">
+                    ${section.images
+                      .map(
+                        (image) => `
+                      <div class="history-image mb-3 ${
+                        image.position === "center" ? "text-center" : ""
+                      }">
+                        <img src="${image.url}" 
+                             alt="${image.alt}" 
+                             class="img-fluid rounded shadow-sm"
+                             style="max-height: 200px; object-fit: cover; width: 100%;">
+                        ${
+                          image.caption
+                            ? `<small class="text-muted d-block mt-2">${image.caption}</small>`
+                            : ""
+                        }
+                      </div>
+                    `
+                      )
+                      .join("")}
+                  </div>
+                </div>
+                `
+                    : ""
+                }
+              </div>
+              
+              ${
+                section.images &&
+                section.images.some((img) => img.position === "full")
+                  ? `
+                <div class="row mt-4">
+                  <div class="col-12">
+                    ${section.images
+                      .filter((img) => img.position === "full")
+                      .map(
+                        (image) => `
+                      <div class="history-image-full text-center mb-3">
+                        <img src="${image.url}" 
+                             alt="${image.alt}" 
+                             class="img-fluid rounded shadow">
+                        ${
+                          image.caption
+                            ? `<small class="text-muted d-block mt-2">${image.caption}</small>`
+                            : ""
+                        }
+                      </div>
+                    `
+                      )
+                      .join("")}
+                  </div>
+                </div>
+              `
+                  : ""
+              }
+              
+              ${
+                index < historyData.history.sections.length - 1
+                  ? '<hr class="my-5">'
+                  : ""
+              }
+            </div>
+          `;
         });
 
         container.innerHTML = content;
@@ -187,41 +262,48 @@
         const container = document.getElementById("timeline-content");
         container.innerHTML = "";
 
-        historyData.history.timeline.forEach((item) => {
+        historyData.history.timeline.forEach((item, index) => {
           container.innerHTML += `
-                    <div class="card mb-4">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <h5 class="text-primary">${item.year}</h5>
-                                </div>
-                                <div class="col-md-9">
-                                    <h6>${item.title}</h6>
-                                    <p>${item.description}</p>
-                                </div>
-                            </div>
-                        </div>
+            <div class="card mb-4 timeline-item">
+              <div class="card-body">
+                <div class="row align-items-center">
+                  <div class="col-md-3">
+                    <div class="timeline-year">
+                      <h4 class="text-primary fw-bold mb-0">${item.year}</h4>
                     </div>
-                `;
+                  </div>
+                  <div class="col-md-9">
+                    <h5 class="timeline-title mb-2">${item.title}</h5>
+                    <p class="timeline-description mb-0">${item.description}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          `;
         });
 
         // Add social media section after timeline
         if (historyData.history.socialMedia) {
           container.innerHTML += `
-                <div class="card">
-                    <div class="card-body text-center">
-                        <h5><i class="fab fa-facebook text-primary me-2"></i>ติดตามเรา</h5>
-                        <div class="social-links">
-                            <a href="${historyData.history.socialMedia.facebook.account}" class="btn btn-outline-primary btn-sm me-2" target="_blank">
-                                <i class="fab fa-facebook-f"></i> Facebook Account
-                            </a>
-                            <a href="${historyData.history.socialMedia.facebook.fanpage}" class="btn btn-outline-primary btn-sm" target="_blank">
-                                <i class="fab fa-facebook-f"></i> Facebook Fanpage
-                            </a>
-                        </div>
-                    </div>
+            <div class="card mt-5 social-card">
+              <div class="card-body text-center py-4">
+                <h5 class="mb-3">
+                  <i class="fab fa-facebook text-primary me-2"></i>ติดตามข่าวสารของเรา
+                </h5>
+                <p class="text-muted mb-4">ติดตามข้อมูลข่าวสารและกิจกรรมต่างๆ ของห้วยตึงเฒ่า</p>
+                <div class="social-links">
+                  <a href="${historyData.history.socialMedia.facebook.account}" 
+                     class="btn btn-primary me-3 mb-2" target="_blank">
+                    <i class="fab fa-facebook-f me-2"></i>Facebook Account
+                  </a>
+                  <a href="${historyData.history.socialMedia.facebook.fanpage}" 
+                     class="btn btn-outline-primary mb-2" target="_blank">
+                    <i class="fab fa-facebook-f me-2"></i>Facebook Fanpage
+                  </a>
                 </div>
-            `;
+              </div>
+            </div>
+          `;
         }
       }
 

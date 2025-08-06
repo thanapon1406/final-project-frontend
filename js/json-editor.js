@@ -227,6 +227,12 @@ const jsonConfigs = {
     fields: [
       { key: "history.title", type: "text", label: "หัวข้อหน้า" },
       { key: "history.subtitle", type: "text", label: "หัวข้อรอง" },
+      { key: "history.headerImage.url", type: "url", label: "รูปภาพหัวข้อ" },
+      {
+        key: "history.headerImage.alt",
+        type: "text",
+        label: "Alt Text รูปหัวข้อ",
+      },
       {
         key: "history.sections",
         type: "array",
@@ -239,6 +245,22 @@ const jsonConfigs = {
             type: "array",
             label: "เนื้อหา",
             subtype: "textarea",
+          },
+          {
+            key: "images",
+            type: "array",
+            label: "รูปภาพ",
+            subfields: [
+              { key: "url", type: "url", label: "URL รูปภาพ" },
+              { key: "alt", type: "text", label: "Alt Text" },
+              { key: "caption", type: "text", label: "คำบรรยาย" },
+              {
+                key: "position",
+                type: "select",
+                label: "ตำแหน่ง",
+                options: ["left", "right", "center", "full"],
+              },
+            ],
           },
         ],
       },
