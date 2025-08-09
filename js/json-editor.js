@@ -173,6 +173,22 @@ const jsonConfigs = {
       },
     ],
   },
+  "homepage-services": {
+    title: "บริการหน้าหลัก",
+    fields: [
+      {
+        key: "services",
+        type: "array",
+        label: "บริการ",
+        subfields: [
+          { key: "id", type: "number", label: "ID" },
+          { key: "title", type: "text", label: "หัวข้อ" },
+          { key: "description", type: "textarea", label: "คำอธิบาย" },
+          { key: "icon", type: "text", label: "ไอคอน (Font Awesome class)" },
+        ],
+      },
+    ],
+  },
   "page-services": {
     title: "หน้าบริการ",
     fields: [
@@ -314,6 +330,26 @@ const jsonConfigs = {
         key: "contact.googleMaps.embedUrl",
         type: "url",
         label: "Google Maps Embed URL",
+      },
+    ],
+  },
+  "about-content": {
+    title: "เกี่ยวกับเรา",
+    fields: [
+      {
+        key: "about.sections",
+        type: "array",
+        label: "หัวข้อเนื้อหา",
+        subfields: [
+          { key: "id", type: "number", label: "ID" },
+          { key: "title", type: "text", label: "หัวข้อ" },
+          {
+            key: "content",
+            type: "array",
+            label: "เนื้อหา",
+            subtype: "textarea",
+          },
+        ],
       },
     ],
   },

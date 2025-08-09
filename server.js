@@ -4,7 +4,7 @@ const path = require("path");
 const cors = require("cors");
 
 const app = express();
-const PORT = 3000;
+const PORT = 3000; // ใช้แต่พอร์ต 3000 สำหรับเซิร์ฟเวอร์
 
 // Middleware
 app.use(cors());
