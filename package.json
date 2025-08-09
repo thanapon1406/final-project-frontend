@@ -2,6 +2,7 @@
   "name": "huaytuengthao-website",
   "version": "1.0.0",
   "description": "เว็บไซต์ท่องเที่ยวห้วยตึงเฒ่า พร้อมระบบจัดการเนื้อหาผ่าน JSON",
+  "type": "module",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
