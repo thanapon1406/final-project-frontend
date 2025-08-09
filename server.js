@@ -4,6 +4,7 @@ import cors from "cors";
 // Import routes
 import jsonRoutes from "./routes/routes.js";
 import backupRoutes from "./routes/backup-routes.js";
+import authRoutes from "./routes/auth-routes.js";
 
 const app = express();
 const PORT = 3000;
@@ -16,6 +17,7 @@ app.use(express.static(".")); // Serve static files from current directory
 // API Routes
 app.use("/api/json", jsonRoutes);
 app.use("/api/backups", backupRoutes);
+app.use("/api/auth", authRoutes);
 
 // Error handling middleware
 app.use((err, req, res, next) => {

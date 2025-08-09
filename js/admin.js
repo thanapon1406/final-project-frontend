@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // Handle login
-function handleLogin() {
+async function handleLogin() {
   const username = document.getElementById("username").value;
   const password = document.getElementById("password").value;
   const rememberMe = document.getElementById("rememberMe").checked;
@@ -43,12 +43,24 @@ function handleLogin() {
     '<i class="fas fa-spinner fa-spin me-2"></i>กำลังเข้าสู่ระบบ...';
   loginBtn.disabled = true;
 
-  // Simple authentication (in real app, use proper authentication)
-  setTimeout(() => {
-    if (username === "admin" && password === "password") {
+  try {
+    // Call login API
+    const response = await fetch("/api/auth/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ username, password }),
+    });
+
+    const result = await response.json();
+
+    if (result.success) {
       // Set login session
       localStorage.setItem("adminLoggedIn", "true");
       localStorage.setItem("adminLoginTime", new Date().toISOString());
+      localStorage.setItem("adminUser", JSON.stringify(result.user));
+      localStorage.setItem("adminToken", result.token);
 
       if (rememberMe) {
         localStorage.setItem("adminRememberMe", "true");
@@ -66,7 +78,10 @@ function handleLogin() {
       }, 1000);
     } else {
       // Show error
-      showLoginAlert("ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง", "danger");
+      showLoginAlert(
+        result.message || "ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง",
+        "danger"
+      );
 
       // Reset button
       loginBtn.innerHTML = '<i class="fas fa-sign-in-alt me-2"></i>เข้าสู่ระบบ';
@@ -76,7 +91,14 @@ function handleLogin() {
       document.getElementById("password").value = "";
       document.getElementById("password").focus();
     }
-  }, 1000); // Simulate network delay
+  } catch (error) {
+    console.error("Login error:", error);
+    showLoginAlert("เกิดข้อผิดพลาดในการเข้าสู่ระบบ", "danger");
+
+    // Reset button
+    loginBtn.innerHTML = '<i class="fas fa-sign-in-alt me-2"></i>เข้าสู่ระบบ';
+    loginBtn.disabled = false;
+  }
 }
 
 // Check existing login
@@ -155,14 +177,28 @@ function logActivity(action, fileName) {
 }
 
 // Logout function (can be called from other pages)
-function logout() {
+async function logout() {
   if (confirm("ต้องการออกจากระบบหรือไม่?")) {
+    try {
+      // Call logout API
+      await fetch("/api/auth/logout", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+    } catch (error) {
+      console.warn("Logout API error:", error);
+    }
+
     // Log logout activity
     logActivity("logout", "system");
 
     // Clear session data
     localStorage.removeItem("adminLoggedIn");
     localStorage.removeItem("adminLoginTime");
+    localStorage.removeItem("adminUser");
+    localStorage.removeItem("adminToken");
 
     // Redirect to login
     window.location.href = "login.html";
