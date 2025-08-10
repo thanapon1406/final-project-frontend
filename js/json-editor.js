@@ -16,7 +16,6 @@ const jsonConfigs = {
           { key: "title", type: "text", label: "หัวข้อ" },
           { key: "description", type: "textarea", label: "คำอธิบาย" },
           { key: "image", type: "url", label: "URL รูปภาพ" },
-          { key: "active", type: "checkbox", label: "เปิดใช้งาน" },
         ],
       },
     ],
@@ -37,7 +36,6 @@ const jsonConfigs = {
             label: "ความสำคัญ",
             options: ["high", "normal", "low"],
           },
-          { key: "active", type: "checkbox", label: "เปิดใช้งาน" },
         ],
       },
       {
@@ -86,7 +84,6 @@ const jsonConfigs = {
           { key: "id", type: "text", label: "ID" },
           { key: "text", type: "text", label: "ข้อความ" },
           { key: "href", type: "text", label: "ลิงก์" },
-          { key: "active", type: "checkbox", label: "เปิดใช้งาน" },
         ],
       },
     ],
