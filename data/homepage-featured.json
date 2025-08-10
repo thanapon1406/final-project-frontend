@@ -18,32 +18,7 @@
       "description": "พ่อตึงเฒ่า แม่ขวัญข้าว น้องแรมเพจ"
     }
   },
-  "activities": [
-    {
-      "id": 1,
-      "title": "หุ่นฟางใหม่พฤศจิกายน 2565",
-      "image": "https://huaytuengthao.com/image/new0.jpg",
-      "alt": "หุ่นฟางใหม่"
-    },
-    {
-      "id": 2,
-      "title": "สถานที่กางเต็นท์",
-      "image": "https://huaytuengthao.com/image/new1.jpg",
-      "alt": "สถานที่กางเต็นท์"
-    },
-    {
-      "id": 3,
-      "title": "ขับรถ ATV",
-      "image": "https://huaytuengthao.com/image/icon-atv.jpg",
-      "alt": "ขับรถ ATV"
-    },
-    {
-      "id": 4,
-      "title": "ZIP LINE",
-      "image": "https://huaytuengthao.com/image/icon-zip.jpg",
-      "alt": "ZIP LINE"
-    }
-  ],
+
   "socialMedia": {
     "facebook": {
       "account": "https://www.facebook.com/huaytuengthao/",

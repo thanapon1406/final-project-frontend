@@ -113,14 +113,7 @@
         </div>
       </section>
 
-      <!-- Activity Icons Section -->
-      <section class="section-bg-gray py-5">
-        <div class="container">
-          <div class="row text-center equal-height" id="activities"></div>
-            <!-- Will be loaded from JSON -->
-          </div>
-        </div>
-      </section>
+
 
       <!-- News Section -->
       <section class="py-5">
@@ -238,7 +231,6 @@
           updateFeatured();
           updateGallery();
           updateServices();
-          updateActivities();
           updateAbout();
 
           console.log("Homepage data loaded successfully");
@@ -441,29 +433,7 @@
         });
       }
 
-      // Update activities
-      function updateActivities() {
-        if (!featuredData || !featuredData.activities) return;
 
-        const activitiesContainer = document.querySelector("#activities");
-        if (!activitiesContainer) return;
-
-        activitiesContainer.innerHTML = "";
-        featuredData.activities.forEach((activity) => {
-          const col = document.createElement("div");
-          col.className = "col-lg-3 col-md-6 mb-4";
-          col.innerHTML = `
-            <div class="feature-card">
-              <img src="${activity.image}" alt="${activity.alt}" 
-                   style="border-radius: 5%" class="img-fluid mb-3" 
-                   width="240" height="240"
-                   onerror="this.onerror=null;this.src='data:image/svg+xml;charset=UTF-8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2280%22 height=%2280%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23cccccc%22 rx=%2240%22/><text x=%2250%25%22 y=%2250%25%22 font-size=%2212%22 text-anchor=%22middle%22 fill=%22%23666%22 dy=%22.3em%22>80x80</text></svg>'">
-              <h5>${activity.title}</h5>
-            </div>
-          `;
-          activitiesContainer.appendChild(col);
-        });
-      }
 
       // Update about section
       function updateAbout() {

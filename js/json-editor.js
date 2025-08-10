@@ -117,17 +117,7 @@ const jsonConfigs = {
         type: "text",
         label: "คำอธิบาย Overlay",
       },
-      {
-        key: "activities",
-        type: "array",
-        label: "กิจกรรม",
-        subfields: [
-          { key: "id", type: "number", label: "ID" },
-          { key: "title", type: "text", label: "หัวข้อ" },
-          { key: "image", type: "url", label: "URL รูปภาพ" },
-          { key: "alt", type: "text", label: "Alt Text" },
-        ],
-      },
+
       {
         key: "socialMedia.facebook.account",
         type: "url",
