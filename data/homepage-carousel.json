@@ -4,7 +4,7 @@
       "id": 1,
       "title": "ยินดีต้อนรับสู่ห้วยตึงเฒ่า",
       "description": "สถานที่ท่องเที่ยวเชิงนิเวศที่สวยงามในจังหวัดเชียงใหม่",
-      "image": "",
+      "image": "https://roijang.com/wp-content/uploads/2023/11/shutterstock_2238522473.jpg",
       "active": true,
       "link": {
         "url": "#about",
@@ -15,7 +15,7 @@
       "id": 2,
       "title": "ธรรมชาติบริสุทธิ์",
       "description": "สัมผัสอากาศบริสุทธิ์และความเงียบสงบท่ามกลางธรรมชาติ",
-      "image": "",
+      "image": "https://roijang.com/wp-content/uploads/2023/11/shutterstock_2238693665.jpg",
       "active": true,
       "link": {
         "url": "#gallery",
@@ -26,7 +26,7 @@
       "id": 3,
       "title": "กิจกรรมหลากหลาย",
       "description": "เรือแคนู ป้อนอาหารแกะ ซิปไลน์ และกิจกรรมสนุกสนานอีกมากมาย",
-      "image": "",
+      "image": "https://roijang.com/wp-content/uploads/2023/11/shutterstock_2303338189.jpg",
       "active": true,
       "link": {
         "url": "page-services.html",
@@ -37,7 +37,7 @@
       "id": 4,
       "title": "เหมาะสำหรับครอบครัว",
       "description": "สถานที่พักผ่อนที่เหมาะสำหรับทุกเพศทุกวัย",
-      "image": "",
+      "image": "https://roijang.com/wp-content/uploads/2023/11/shutterstock_2340216403.jpg",
       "active": true,
       "link": {
         "url": "#services",

@@ -45,25 +45,25 @@
         "id": 1,
         "title": "กางเต็นท์",
         "description": "บริเวณสำหรับกางเต็นท์พักค้างคืน",
-        "icon": "fas fa-campground"
+        "icon": "bi bi-house"
       },
       {
         "id": 2,
         "title": "ตกปลา",
         "description": "กิจกรรมตกปลาในอ่างเก็บน้ำ",
-        "icon": "fas fa-fish"
+        "icon": "bi bi-water"
       },
       {
         "id": 3,
         "title": "เดินป่า",
         "description": "เส้นทางเดินป่าศึกษาธรรมชาติ",
-        "icon": "fas fa-hiking"
+        "icon": "bi bi-tree"
       },
       {
         "id": 4,
         "title": "ถ่ายภาพ",
         "description": "จุดถ่ายภาพวิวสวยๆ มากมาย",
-        "icon": "fas fa-camera"
+        "icon": "bi bi-camera"
       }
     ],
     "serviceInfo": {

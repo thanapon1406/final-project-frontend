@@ -151,7 +151,7 @@ h6 {
 /* Carousel */
 .carousel-item img {
   height: 600px;
-  object-fit: cover;
+  /* object-fit: cover; */
 }
 
 .carousel-caption {
