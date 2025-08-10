@@ -556,10 +556,10 @@ h6 {
 
 #activities .feature-card img {
   width: 140px;
-  height: 140px;
+  height: 100px;
   max-width: 140px;
-  max-height: 140px;
-  object-fit: cover;
+  max-height: 100px;
+  object-fit: contain;
   object-position: center;
   border-radius: 8px;
   margin: 0 auto 1.5rem auto;
