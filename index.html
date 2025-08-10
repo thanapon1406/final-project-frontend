@@ -12,11 +12,8 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
-    <!-- Font Awesome -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
+    <!-- Custom Icons -->
+    <link rel="stylesheet" href="css/icons.css" />
     <!-- Thai Fonts -->
     <link
       href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700&display=swap"
@@ -434,7 +431,7 @@
           col.innerHTML = `
             <div class="feature-card">
               <div class="feature-icon">
-                <i class="${service.icon}"></i>
+                <span class="${service.icon}"></span>
               </div>
               <h4>${service.title}</h4>
               <p>${service.description}</p>

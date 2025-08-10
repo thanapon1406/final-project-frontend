@@ -14,8 +14,8 @@ document.addEventListener("DOMContentLoaded", function () {
       passwordField.setAttribute("type", type);
 
       const icon = this.querySelector("i");
-      icon.classList.toggle("fa-eye");
-      icon.classList.toggle("fa-eye-slash");
+      icon.classList.toggle("bi-eye");
+      icon.classList.toggle("bi-eye-slash");
     });
   }
 
@@ -40,7 +40,7 @@ async function handleLogin() {
 
   // Show loading state
   loginBtn.innerHTML =
-    '<i class="fas fa-spinner fa-spin me-2"></i>กำลังเข้าสู่ระบบ...';
+    '<i class="bi bi-arrow-clockwise me-2"></i>กำลังเข้าสู่ระบบ...';
   loginBtn.disabled = true;
 
   try {
@@ -84,7 +84,8 @@ async function handleLogin() {
       );
 
       // Reset button
-      loginBtn.innerHTML = '<i class="fas fa-sign-in-alt me-2"></i>เข้าสู่ระบบ';
+      loginBtn.innerHTML =
+        '<i class="bi bi-box-arrow-in-right me-2"></i>เข้าสู่ระบบ';
       loginBtn.disabled = false;
 
       // Clear password field

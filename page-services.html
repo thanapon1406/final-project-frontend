@@ -11,10 +11,8 @@
       rel="stylesheet"
     />
     <!-- Font Awesome -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
+    <!-- Custom Icons -->
+    <link rel="stylesheet" href="css/icons.css" />
     <!-- Thai Fonts -->
     <link
       href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700&display=swap"
@@ -243,27 +241,27 @@
                 <h3 class="text-center mb-4">ข้อมูลการให้บริการ</h3>
                 <div class="row">
                     <div class="col-md-6">
-                        <h5><i class="fas fa-clock text-primary me-2"></i>เวลาเปิด-ปิด</h5>
+                        <h5><i class="bi bi-clock text-primary me-2"></i>เวลาเปิด-ปิด</h5>
                         <p>${info.operatingHours}</p>
-                        <h5><i class="fas fa-phone text-primary me-2"></i>ติดต่อสอบถาม</h5>
+                        <h5><i class="bi bi-telephone text-primary me-2"></i>ติดต่อสอบถาม</h5>
                         <p>โทรศัพท์: ${info.phone}</p>
                     </div>
                     <div class="col-md-6">
-                        <h5><i class="fas fa-car text-primary me-2"></i>ที่จอดรถ</h5>
+                        <h5><i class="bi bi-car-front text-primary me-2"></i>ที่จอดรถ</h5>
                         <p>${info.parking}</p>
-                        <h5><i class="fas fa-utensils text-primary me-2"></i>บริการอาหาร</h5>
+                        <h5><i class="bi bi-cup-straw text-primary me-2"></i>บริการอาหาร</h5>
                         <p>${info.restaurant}</p>
                     </div>
                 </div>
                 <div class="row mt-3">
                     <div class="col-12">
-                        <h5><i class="fab fa-facebook text-primary me-2"></i>ติดตามเรา</h5>
+                        <h5><i class="bi bi-facebook text-primary me-2"></i>ติดตามเรา</h5>
                         <div class="social-links">
                             <a href="${info.socialMedia.facebook.account}" class="btn btn-outline-primary btn-sm me-2" target="_blank">
-                                <i class="fab fa-facebook-f"></i> Facebook Account
+                                <i class="bi bi-facebook"></i> Facebook Account
                             </a>
                             <a href="${info.socialMedia.facebook.fanpage}" class="btn btn-outline-primary btn-sm" target="_blank">
-                                <i class="fab fa-facebook-f"></i> Facebook Fanpage
+                                <i class="bi bi-facebook"></i> Facebook Fanpage
                             </a>
                         </div>
                     </div>

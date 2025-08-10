@@ -7,8 +7,8 @@
     
     <!-- Bootstrap 5.3.0 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom Icons -->
+    <link rel="stylesheet" href="css/icons.css">
     <!-- Thai Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- Custom CSS -->
@@ -151,7 +151,7 @@
             const contact = contactData.contact;
             document.getElementById('contact-info').innerHTML = `
                 <h3 class="card-title">
-                    <i class="fas fa-map-marker-alt text-primary me-2"></i>ที่อยู่
+                    <i class="bi bi-geo-alt text-primary me-2"></i>ที่อยู่
                 </h3>
                 <p class="card-text">
                     ${contact.organization}<br>
@@ -159,24 +159,24 @@
                 </p>
                 
                 <h5 class="mt-4">
-                    <i class="fas fa-phone text-primary me-2"></i>โทรศัพท์
+                    <i class="bi bi-telephone text-primary me-2"></i>โทรศัพท์
                 </h5>
                 <p>${contact.phone}</p>
                 
                 <h5 class="mt-4">
-                    <i class="fas fa-clock text-primary me-2"></i>เวลาทำการ
+                    <i class="bi bi-clock text-primary me-2"></i>เวลาทำการ
                 </h5>
                 <p>${contact.operatingHours}</p>
                 
                 <h5 class="mt-4">
-                    <i class="fas fa-envelope text-primary me-2"></i>ติดตามเรา
+                    <i class="bi bi-envelope text-primary me-2"></i>ติดตามเรา
                 </h5>
                 <div class="social-links">
                     <a href="${contact.socialMedia.facebook.account}" class="btn btn-outline-primary btn-sm me-2" target="_blank">
-                        <i class="fab fa-facebook-f"></i> Facebook Account
+                        <i class="bi bi-facebook"></i> Facebook Account
                     </a>
                     <a href="${contact.socialMedia.facebook.fanpage}" class="btn btn-outline-primary btn-sm me-2" target="_blank">
-                        <i class="fab fa-facebook-f"></i> Facebook Fanpage
+                        <i class="bi bi-facebook"></i> Facebook Fanpage
                     </a>
                 </div>
             `;

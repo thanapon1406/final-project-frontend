@@ -155,7 +155,7 @@ function updateFooter() {
     footerSocial.innerHTML = `
       <div class="social-links">
         <a href="${footerData.footer.socialMedia.facebook.account}" target="_blank">
-          <i class="fab fa-facebook-f"></i>
+          <i class="bi bi-facebook"></i>
         </a>
       </div>
     `;
@@ -178,7 +178,7 @@ document.addEventListener("DOMContentLoaded", () => {
     window.location.hostname === "127.0.0.1"
   ) {
     const refreshBtn = document.createElement("button");
-    refreshBtn.innerHTML = '<i class="fas fa-sync-alt"></i> รีเฟรช';
+    refreshBtn.innerHTML = '<i class="bi bi-arrow-clockwise"></i> รีเฟรช';
     refreshBtn.className = "btn btn-sm btn-outline-secondary position-fixed";
     refreshBtn.style.cssText = "top: 10px; left: 10px; z-index: 9999;";
     refreshBtn.onclick = refreshSharedData;
