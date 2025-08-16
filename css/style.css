@@ -1025,3 +1025,422 @@ img[src*="data:image/svg+xml"] {
   border-color: #28a745;
   color: white;
 }
+
+/* Interactive Elements */
+.floating-btn-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+.floating-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: none;
+  opacity: 0;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border: none;
+  font-size: 1.2rem;
+}
+
+.floating-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+
+/* Typing animation styles */
+.typed-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+  min-height: 120px;
+}
+
+/* Stats counter styles */
+.stat-item {
+  padding: 2rem 1rem;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.3s ease;
+  margin-top: 2rem; /* Added top margin to compensate for removed title */
+}
+
+.stat-item:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+}
+
+.stat-number {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--accent-color);
+  margin-bottom: 0.5rem;
+}
+
+/* Services section without title */
+#services {
+  padding-top: 3rem !important; /* Reduced padding since no title */
+}
+
+/* Adjust stats container spacing */
+#services .row.mb-5 {
+  margin-bottom: 3rem !important;
+  margin-top: 1rem;
+}
+
+/* Enhanced feature cards */
+.feature-card {
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.feature-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* Hero section with particles */
+.hero-section {
+  position: relative;
+  overflow: hidden;
+}
+
+#particles-js {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+/* Image modal for gallery */
+.image-modal {
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Enhanced table styles */
+.table-hover tbody tr:hover {
+  background-color: rgba(52, 152, 219, 0.1);
+  transform: scale(1.01);
+  transition: all 0.2s ease;
+}
+
+/* Smooth transitions for all interactive elements */
+* {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Loading animation */
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.loading {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+/* Enhanced shadow effects */
+.shadow-lg {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Responsive adjustments for mobile */
+@media (max-width: 768px) {
+  .typed-title {
+    font-size: 1.8rem;
+    min-height: 90px;
+  }
+
+  .stat-number {
+    font-size: 2rem;
+  }
+
+  .floating-btn {
+    width: 45px;
+    height: 45px;
+    font-size: 1rem;
+  }
+}
+
+/* Page-specific interactive elements */
+
+/* Contact Page */
+.hover-card {
+  transition: all 0.3s ease;
+}
+
+.hover-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+.contact-icon i {
+  transition: transform 0.3s ease;
+}
+
+.contact-icon:hover i {
+  transform: scale(1.2);
+}
+
+/* History Page */
+.timeline-card {
+  transition: all 0.3s ease;
+  border-left: 4px solid var(--accent-color);
+}
+
+.hover-timeline-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+.year-circle {
+  background: linear-gradient(
+    135deg,
+    var(--accent-color),
+    var(--primary-color)
+  );
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.progress-bar-custom {
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent-color), var(--primary-color));
+  border-radius: 2px;
+  transition: width 1s ease;
+}
+
+.timeline-progress {
+  background: #e9ecef;
+  height: 4px;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.clickable-image {
+  cursor: pointer;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.clickable-image:hover {
+  filter: brightness(1.1);
+}
+
+/* Services Page */
+.service-card {
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.service-card .image-container {
+  overflow: hidden;
+}
+
+.service-card .image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.service-card:hover .image-overlay {
+  opacity: 1;
+}
+
+.activity-card {
+  background: white;
+  border-radius: 10px;
+  padding: 2rem;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.activity-card:hover {
+  border-color: var(--accent-color);
+}
+
+.activity-icon {
+  background: linear-gradient(
+    135deg,
+    var(--accent-color),
+    var(--primary-color)
+  );
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem;
+  color: white;
+  font-size: 2rem;
+}
+
+.activity-progress {
+  margin-top: 1rem;
+  background: #e9ecef;
+  height: 3px;
+  border-radius: 1.5px;
+  overflow: hidden;
+}
+
+.activity-progress .progress-line {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent-color), var(--primary-color));
+  width: 0;
+  transition: width 1.5s ease;
+}
+
+.filter-buttons button {
+  margin: 0.25rem;
+  transition: all 0.3s ease;
+}
+
+.filter-buttons button.active {
+  background: var(--accent-color);
+  border-color: var(--accent-color);
+  color: white;
+}
+
+.filter-buttons button:hover {
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+  color: white;
+}
+
+/* Modal animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* Button hover effects */
+.btn-hover {
+  transition: all 0.3s ease;
+}
+
+.btn-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Enhanced social links */
+.social-links a {
+  transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Image loading effects */
+img {
+  transition: opacity 0.3s ease;
+}
+
+img[src=""] {
+  opacity: 0;
+}
+
+/* Custom scrollbar for modals */
+.modal-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.modal-content::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+  background: var(--accent-color);
+  border-radius: 4px;
+}
+
+.modal-content::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-color);
+}

@@ -86,14 +86,18 @@
     <main id="main-content">
       <!-- Hero Section -->
       <section class="hero-section">
-        <div class="container">
+        <!-- Particles background -->
+        <div id="particles-js" style="position: absolute; width: 100%; height: 100%; z-index: 1;"></div>
+        <div class="container" style="position: relative; z-index: 2;">
           <div class="row align-items-center">
-            <div class="col-lg-6">
+            <div class="col-lg-6" data-aos="fade-right" data-aos-duration="1000">
               <div class="hero-content">
                 <!-- Will be loaded from JSON -->
+                <!-- Typing animation will be added here -->
+                <div id="typed-title" class="typed-title"></div>
               </div>
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-6" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="300">
               <div class="hero-image">
                 <div class="image-container position-relative">
                   <!-- Will be loaded from JSON -->
@@ -119,9 +123,10 @@
       <section class="py-5">
         <div class="container" id="news">
           <div class="row">
-            <div class="col-12">
+            <div class="col-12" data-aos="fade-up">
+              <h2 class="section-title text-center mb-4">ข่าวสาร</h2>
               <div class="table-responsive">
-                <table class="table table-striped">
+                <table class="table table-striped table-hover">
                   <thead>
                     <tr>
                       <th width="20%">วันที่</th>
@@ -142,13 +147,13 @@
       <section id="about" class="section-bg-gray py-5">
         <div class="container">
           <div class="row">
-            <div class="col-12">
+            <div class="col-12" data-aos="fade-up">
               <h2 class="section-title">เกี่ยวกับเรา</h2>
             </div>
           </div>
           <div class="row">
-            <div class="col-lg-8 mx-auto">
-              <div class="card">
+            <div class="col-lg-8 mx-auto" data-aos="fade-up" data-aos-delay="200">
+              <div class="card shadow-lg">
                 <div class="card-body">
                   <!-- Will be loaded from JSON -->
                 </div>
@@ -162,19 +167,26 @@
       <section id="gallery" class="py-5">
         <div class="container">
           <div class="row">
-            <div class="col-12">
+            <div class="col-12" data-aos="fade-up">
               <h2 class="section-title">ประมวลภาพ</h2>
               <p class="section-subtitle">
                 ภาพบรรยากาศและกิจกรรมต่างๆ ที่ห้วยตึงเฒ่า
               </p>
             </div>
           </div>
-          <div class="row g-3">
+          <div class="row g-3" id="gallery-container">
             <!-- Will be loaded from JSON -->
           </div>
         </div>
       </section>
     </main>
+
+    <!-- Floating Action Button -->
+    <div class="floating-btn-container">
+      <button id="scrollToTop" class="btn btn-primary floating-btn" title="กลับไปด้านบน">
+        <i class="bi bi-arrow-up"></i>
+      </button>
+    </div>
 
     <!-- Footer -->
     <footer class="footer">
@@ -192,6 +204,23 @@
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- AOS (Animate On Scroll) -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Typed.js for typing animation -->
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    
+    <!-- Swiper for advanced carousels -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    
+    <!-- CountUp.js for number animations -->
+    <script src="https://cdn.jsdelivr.net/npm/countup.js@2.6.2/dist/countUp.umd.js"></script>
+    
+    <!-- Particles.js for background effects -->
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 
     <!-- Shared JS -->
     <script src="js/shared.js"></script>
@@ -395,13 +424,18 @@
         if (!galleryContainer) return;
 
         galleryContainer.innerHTML = "";
-        galleryData.gallery.images.forEach((image) => {
+        galleryData.gallery.images.forEach((image, index) => {
           const col = document.createElement("div");
           col.className = "col-lg-4 col-md-6";
+          col.setAttribute('data-aos', 'zoom-in');
+          col.setAttribute('data-aos-delay', (index * 100).toString());
           col.innerHTML = `
             <div class="gallery-item">
               <img src="${image.src}" alt="${image.alt}" class="img-fluid" 
                    width="400" height="250"
+                   style="cursor: pointer; transition: transform 0.3s ease;"
+                   onmouseover="this.style.transform='scale(1.05)'"
+                   onmouseout="this.style.transform='scale(1)'"
                    onerror="this.onerror=null;this.src='data:image/svg+xml;charset=UTF-8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22250%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23cccccc%22/><text x=%2250%25%22 y=%2250%25%22 font-size=%2224%22 text-anchor=%22middle%22 fill=%22%23666%22 dy=%22.3em%22>400x250</text></svg>'">
             </div>
           `;
@@ -417,9 +451,11 @@
         if (!servicesContainer) return;
 
         servicesContainer.innerHTML = "";
-        servicesData.services.forEach((service) => {
+        servicesData.services.forEach((service, index) => {
           const col = document.createElement("div");
           col.className = "col-lg-4 col-md-6";
+          col.setAttribute('data-aos', 'fade-up');
+          col.setAttribute('data-aos-delay', (index * 100).toString());
           col.innerHTML = `
             <div class="feature-card">
               <div class="feature-icon">
@@ -430,6 +466,18 @@
             </div>
           `;
           servicesContainer.appendChild(col);
+        });
+
+        // Re-apply hover effects to new cards
+        document.querySelectorAll('.feature-card').forEach(card => {
+          card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-10px)';
+            this.style.transition = 'transform 0.3s ease';
+          });
+          
+          card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+          });
         });
       }
 
@@ -459,7 +507,186 @@
       }
 
       // Load homepage data when page loads
-      document.addEventListener("DOMContentLoaded", loadHomepageData);
+      document.addEventListener("DOMContentLoaded", function() {
+        loadHomepageData();
+        initializeInteractiveFeatures();
+      });
+
+      // Initialize all interactive features
+      function initializeInteractiveFeatures() {
+        // Initialize AOS (Animate On Scroll)
+        AOS.init({
+          duration: 1000,
+          once: true,
+          offset: 100
+        });
+
+        // Initialize particles.js background
+        particlesJS('particles-js', {
+          particles: {
+            number: { value: 50 },
+            color: { value: '#ffffff' },
+            shape: { type: 'circle' },
+            opacity: { value: 0.3 },
+            size: { value: 3 },
+            move: {
+              enable: true,
+              speed: 1,
+              direction: 'none',
+              out_mode: 'out'
+            }
+          }
+        });
+
+        // Initialize typing animation
+        const typedTitle = document.getElementById('typed-title');
+        if (typedTitle) {
+          new Typed('#typed-title', {
+            strings: [
+              'ยินดีต้อนรับสู่ห้วยตึงเฒ่า', 
+              'โครงการอันเนื่องมาจากพระราชดำริ',
+              'พัฒนาชุมชนอย่างยั่งยืน'
+            ],
+            typeSpeed: 50,
+            backSpeed: 30,
+            backDelay: 2000,
+            loop: true,
+            showCursor: true,
+            cursorChar: '|'
+          });
+        }
+
+        // Initialize scroll to top button
+        const scrollToTopBtn = document.getElementById('scrollToTop');
+        if (scrollToTopBtn) {
+          window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) {
+              scrollToTopBtn.style.display = 'block';
+              scrollToTopBtn.style.opacity = '1';
+            } else {
+              scrollToTopBtn.style.opacity = '0';
+              setTimeout(() => {
+                if (window.pageYOffset <= 300) {
+                  scrollToTopBtn.style.display = 'none';
+                }
+              }, 300);
+            }
+          });
+
+          scrollToTopBtn.addEventListener('click', function() {
+            window.scrollTo({
+              top: 0,
+              behavior: 'smooth'
+            });
+          });
+        }
+
+        // Initialize counter animations
+        const observerOptions = {
+          threshold: 0.5,
+          rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const counter = entry.target;
+              const target = parseInt(counter.getAttribute('data-count'));
+              const countUp = new CountUp(counter, target, {
+                duration: 2,
+                useEasing: true,
+                separator: ','
+              });
+              countUp.start();
+              observer.unobserve(counter);
+            }
+          });
+        }, observerOptions);
+
+        // Observe all counter elements
+        document.querySelectorAll('.stat-number').forEach(counter => {
+          observer.observe(counter);
+        });
+
+        // Add hover effects to service cards
+        document.querySelectorAll('.feature-card').forEach(card => {
+          card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-10px)';
+            this.style.transition = 'transform 0.3s ease';
+          });
+          
+          card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+          });
+        });
+
+        // Add interactive gallery with lightbox effect
+        document.addEventListener('click', function(e) {
+          if (e.target.closest('.gallery-item img')) {
+            const img = e.target;
+            const modal = document.createElement('div');
+            modal.className = 'image-modal';
+            modal.style.cssText = `
+              position: fixed;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              background: rgba(0,0,0,0.9);
+              z-index: 10000;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              cursor: pointer;
+            `;
+            
+            const modalImg = document.createElement('img');
+            modalImg.src = img.src;
+            modalImg.style.cssText = `
+              max-width: 90%;
+              max-height: 90%;
+              object-fit: contain;
+            `;
+            
+            modal.appendChild(modalImg);
+            document.body.appendChild(modal);
+            
+            modal.addEventListener('click', function() {
+              document.body.removeChild(modal);
+            });
+          }
+        });
+
+        // Add smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+          anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+              target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+              });
+            }
+          });
+        });
+
+        // Add loading animation for tables
+        const tables = document.querySelectorAll('table tbody');
+        tables.forEach(tbody => {
+          if (tbody.children.length === 0) {
+            tbody.innerHTML = `
+              <tr>
+                <td colspan="2" class="text-center">
+                  <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">กำลังโหลด...</span>
+                  </div>
+                </td>
+              </tr>
+            `;
+          }
+        });
+      }
     </script>
   </body>
 </html>

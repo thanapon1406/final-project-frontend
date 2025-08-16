@@ -40,7 +40,7 @@
         <section class="hero-section">
             <div class="container">
                 <div class="row justify-content-center text-center">
-                    <div class="col-lg-8" id="hero-content">
+                    <div class="col-lg-8" id="hero-content" data-aos="fade-up" data-aos-duration="1000">
                         <!-- Will be loaded from JSON -->
                     </div>
                 </div>
@@ -51,27 +51,35 @@
         <section class="py-5">
             <div class="container">
                 <div class="row g-4">
-                    <div class="col-lg-6 offset-lg-3">
-                        <div class="card h-100">
+                    <div class="col-lg-6 offset-lg-3" data-aos="fade-up" data-aos-delay="200">
+                        <div class="card h-100 shadow-lg hover-card">
                             <div class="card-body" id="contact-info">
                                 <!-- Contact info will be loaded from JSON -->
                             </div>
                         </div>
                     </div>
                 </div>
+                
+                <!-- Contact Cards Grid -->
+                <div class="row g-4 mt-4" id="contact-cards">
+                    <!-- Will be populated by JavaScript -->
+                </div>
             </div>
         </section>
         
-        <!-- Map Section -->
+        <!-- Interactive Map Section -->
         <section class="section-bg-gray py-5">
             <div class="container">
                 <div class="row">
-                    <div class="col-12">
-                        <h3 class="text-center mb-4">แผนที่ตำแหน่ง</h3>
-                        <div class="card">
+                    <div class="col-12" data-aos="fade-up">
+                        <h3 class="text-center mb-4">
+                            <i class="bi bi-geo-alt-fill text-primary me-2"></i>
+                            แผนที่ตำแหน่ง
+                        </h3>
+                        <div class="card shadow-lg">
                             <div class="card-body p-0">
-                                <div id="map-container">
-                                    <!-- Map will be loaded from JSON -->
+                                <div id="map-container" style="height: 400px; border-radius: 0.375rem;">
+                                    <!-- Interactive map will be loaded here -->
                                 </div>
                             </div>
                         </div>
@@ -79,6 +87,13 @@
                 </div>
             </div>
         </section>
+
+        <!-- Floating Action Button -->
+        <div class="floating-btn-container">
+            <button id="scrollToTop" class="btn btn-primary floating-btn" title="กลับไปด้านบน">
+                <i class="bi bi-arrow-up"></i>
+            </button>
+        </div>
     </main>
     
     <!-- Footer -->
@@ -99,6 +114,14 @@
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- AOS (Animate On Scroll) -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Leaflet for interactive maps -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     
     <!-- Shared JS -->
     <script src="js/shared.js"></script>
@@ -207,9 +230,142 @@
                 updateHeroSection();
                 updateContactInfo();
                 updateMap();
+                createContactCards();
+                initializeInteractiveFeatures();
                 console.log('Contact page updated with JSON data');
             }
         });
+
+        // Initialize interactive features
+        function initializeInteractiveFeatures() {
+            // Initialize AOS
+            AOS.init({
+                duration: 1000,
+                once: true,
+                offset: 100
+            });
+
+            // Initialize scroll to top button
+            const scrollToTopBtn = document.getElementById('scrollToTop');
+            if (scrollToTopBtn) {
+                window.addEventListener('scroll', function() {
+                    if (window.pageYOffset > 300) {
+                        scrollToTopBtn.style.display = 'block';
+                        scrollToTopBtn.style.opacity = '1';
+                    } else {
+                        scrollToTopBtn.style.opacity = '0';
+                        setTimeout(() => {
+                            if (window.pageYOffset <= 300) {
+                                scrollToTopBtn.style.display = 'none';
+                            }
+                        }, 300);
+                    }
+                });
+
+                scrollToTopBtn.addEventListener('click', function() {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                });
+            }
+
+            // Add hover effects to cards
+            document.querySelectorAll('.hover-card').forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px)';
+                    this.style.transition = 'transform 0.3s ease';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+        }
+
+        // Create contact cards
+        function createContactCards() {
+            if (!contactData) return;
+            
+            const contact = contactData.contact;
+            const cardsContainer = document.getElementById('contact-cards');
+            
+            const cards = [
+                {
+                    icon: 'bi-telephone-fill',
+                    title: 'โทรศัพท์',
+                    content: contact.phone,
+                    action: `tel:${contact.phone}`,
+                    actionText: 'โทรหา',
+                    delay: 100
+                },
+                {
+                    icon: 'bi-clock-fill',
+                    title: 'เวลาทำการ',
+                    content: contact.operatingHours,
+                    action: '#',
+                    actionText: 'ดูเพิ่มเติม',
+                    delay: 200
+                },
+                {
+                    icon: 'bi-facebook',
+                    title: 'Facebook',
+                    content: 'ติดตามข่าวสารและกิจกรรม',
+                    action: contact.socialMedia.facebook.fanpage,
+                    actionText: 'ไปที่ Facebook',
+                    delay: 300
+                }
+            ];
+
+            cardsContainer.innerHTML = cards.map(card => `
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="${card.delay}">
+                    <div class="card text-center hover-card h-100">
+                        <div class="card-body">
+                            <div class="contact-icon mb-3">
+                                <i class="${card.icon} text-primary" style="font-size: 2.5rem;"></i>
+                            </div>
+                            <h5 class="card-title">${card.title}</h5>
+                            <p class="card-text">${card.content}</p>
+                            <a href="${card.action}" class="btn btn-outline-primary btn-sm" ${card.action.startsWith('http') ? 'target="_blank"' : ''}>
+                                ${card.actionText}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Update map with interactive Leaflet map
+        function updateMap() {
+            if (!contactData) return;
+            
+            const mapContainer = document.getElementById('map-container');
+            
+            // Create map
+            const map = L.map(mapContainer).setView([18.8040, 98.9610], 13);
+            
+            // Add tile layer
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors'
+            }).addTo(map);
+            
+            // Add marker
+            const marker = L.marker([18.8040, 98.9610]).addTo(map);
+            marker.bindPopup(`
+                <div class="text-center">
+                    <strong>${contactData.contact.organization}</strong><br>
+                    ${contactData.contact.address.fullAddress}<br>
+                    <small>โทร: ${contactData.contact.phone}</small>
+                </div>
+            `).openPopup();
+            
+            // Add click event to map
+            map.on('click', function(e) {
+                const lat = e.latlng.lat.toFixed(6);
+                const lng = e.latlng.lng.toFixed(6);
+                console.log(`Clicked at: ${lat}, ${lng}`);
+            });
+        }
     </script>
 </body>
 </html>
