@@ -57,6 +57,39 @@ h6,
   animation: slideInUp 0.6s ease-out;
 }
 
+.login-header {
+  background: linear-gradient(
+    45deg,
+    var(--primary-color),
+    var(--secondary-color)
+  );
+  color: var(--text-light);
+  padding: 2rem;
+  text-align: center;
+}
+
+.login-body {
+  padding: 2rem;
+}
+
+.btn-login {
+  background: linear-gradient(45deg, var(--success-color), var(--accent-color));
+  border: none;
+  color: var(--text-light);
+  font-weight: 500;
+  padding: 12px 30px;
+  border-radius: 25px;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+.btn-login:hover {
+  background: linear-gradient(45deg, #229954, #2980b9);
+  color: var(--text-light);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
 .admin-card .card-header {
   background: linear-gradient(
     135deg,
@@ -369,6 +402,30 @@ h6,
     padding: 0.5rem 0.2rem;
     font-size: 0.75rem;
     min-height: 40px;
+  }
+
+  /* Login Mobile */
+  .admin-login {
+    padding: 1rem;
+  }
+  .login-header,
+  .login-body {
+    padding: 1.5rem;
+  }
+  .form-control {
+    font-size: 16px;
+    min-height: 44px;
+  }
+  .btn-login {
+    min-height: 48px;
+    font-size: 1rem;
+  }
+  .input-group-text {
+    min-width: 44px;
+    justify-content: center;
+  }
+  h3 {
+    font-size: 1.5rem;
   }
 
   body {
