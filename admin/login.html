@@ -18,29 +18,9 @@
       rel="stylesheet"
     />
     <style>
-      :root {
-        --primary-color: #2c3e50;
-        --secondary-color: #34495e;
-        --accent-color: #3498db;
-        --success-color: #27ae60;
-        --text-light: #ffffff;
-        --bg-light: #ecf0f1;
-        --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.15);
-      }
+      /* Login Page Specific Styles - Lean Version */
 
-      body {
-        font-family: "Noto Sans Thai", sans-serif;
-        background: linear-gradient(
-          135deg,
-          var(--primary-color) 0%,
-          var(--secondary-color) 100%
-        );
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
+      /* Login Card */
       .login-card {
         background: white;
         border-radius: 15px;
@@ -48,6 +28,7 @@
         overflow: hidden;
         max-width: 400px;
         width: 100%;
+        margin: 1rem;
       }
 
       .login-header {
@@ -65,6 +46,7 @@
         padding: 2rem;
       }
 
+      /* Login Button */
       .btn-login {
         background: linear-gradient(
           45deg,
@@ -87,11 +69,11 @@
         box-shadow: var(--shadow-md);
       }
 
+      /* Form Controls */
       .form-control {
         border-radius: 10px;
         border: 2px solid #e9ecef;
         padding: 12px 15px;
-        font-family: "Noto Sans Thai", sans-serif;
         transition: border-color 0.3s ease;
       }
 
@@ -115,6 +97,36 @@
         background-color: var(--bg-light);
         border-color: var(--accent-color);
         color: var(--primary-color);
+      }
+
+      /* Mobile Optimizations */
+      @media (max-width: 576px) {
+        body {
+          padding: 1rem;
+        }
+        .login-card {
+          max-width: 100%;
+          margin: 0;
+        }
+        .login-header,
+        .login-body {
+          padding: 1.5rem;
+        }
+        .form-control {
+          font-size: 16px;
+          min-height: 44px;
+        }
+        .btn-login {
+          min-height: 48px;
+          font-size: 1rem;
+        }
+        .input-group-text {
+          min-width: 44px;
+          justify-content: center;
+        }
+        h3 {
+          font-size: 1.5rem;
+        }
       }
     </style>
   </head>

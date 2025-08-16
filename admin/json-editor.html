@@ -22,25 +22,9 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../css/admin.css" />
     <style>
-      :root {
-        --primary-color: #2c3e50;
-        --secondary-color: #34495e;
-        --accent-color: #3498db;
-        --success-color: #27ae60;
-        --warning-color: #f39c12;
-        --text-primary: #2c3e50;
-        --text-light: #ffffff;
-        --bg-primary: #ffffff;
-        --bg-secondary: #f8f9fa;
-        --bg-light: #ecf0f1;
-        --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
-        --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.15);
-      }
+      /* JSON Editor Specific Styles - Lean Version */
 
-      body {
-        background-color: var(--bg-secondary);
-      }
-
+      /* JSON File Cards */
       .json-file-card {
         transition: all 0.3s ease;
         cursor: pointer;
@@ -56,40 +40,11 @@
       .json-file-card .card-body {
         padding: 1.5rem;
       }
-
       .json-file-card .fa-3x {
         margin-bottom: 1rem;
       }
 
-      .json-file-card .text-primary {
-        color: var(--primary-color) !important;
-      }
-      .json-file-card .text-success {
-        color: var(--success-color) !important;
-      }
-      .json-file-card .text-warning {
-        color: var(--warning-color) !important;
-      }
-      .json-file-card .text-info {
-        color: var(--accent-color) !important;
-      }
-      .json-file-card .text-secondary {
-        color: var(--secondary-color) !important;
-      }
-
-      .form-control,
-      .form-select {
-        font-family: "Noto Sans Thai", sans-serif;
-        border-color: #dee2e6;
-        transition: border-color 0.3s ease;
-      }
-
-      .form-control:focus,
-      .form-select:focus {
-        border-color: var(--accent-color);
-        box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.25);
-      }
-
+      /* Save Button */
       .btn-save {
         background: linear-gradient(
           45deg,
@@ -108,117 +63,84 @@
         box-shadow: var(--shadow-md);
       }
 
-      .admin-sidebar {
-        background: var(--primary-color) !important;
-        min-height: 100vh;
+      /* Mobile Optimizations */
+      @media (max-width: 768px) {
+        .json-file-card {
+          min-height: 140px;
+        }
+        .json-file-card .fa-3x {
+          font-size: 2rem !important;
+        }
+        .json-file-card h5 {
+          font-size: 0.95rem;
+          margin-bottom: 0.5rem;
+        }
+        .json-file-card .card-text {
+          font-size: 0.8rem;
+          margin-bottom: 0.5rem;
+        }
+        .json-file-card small {
+          font-size: 0.75rem;
+        }
+
+        /* Form Layout */
+        .card-header .d-flex {
+          flex-direction: column;
+          align-items: stretch;
+          gap: 0.5rem;
+        }
+
+        /* Alert Layout */
+        .alert .d-flex {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .alert .d-flex .fas {
+          margin-bottom: 0.5rem;
+          margin-right: 0 !important;
+        }
       }
 
-      .admin-sidebar .nav-link {
-        color: rgba(255, 255, 255, 0.8) !important;
-        transition: all 0.3s ease;
-        border-radius: 5px;
-        margin: 0.2rem 0;
-      }
+      @media (max-width: 576px) {
+        .row.mb-4 > .col-lg-4 {
+          padding-left: 0.5rem;
+          padding-right: 0.5rem;
+        }
 
-      .admin-sidebar .nav-link:hover {
-        color: var(--text-light) !important;
-        background-color: rgba(255, 255, 255, 0.1);
-      }
+        .json-file-card {
+          margin-bottom: 0.75rem;
+        }
 
-      .admin-sidebar .nav-link.active {
-        color: var(--text-light) !important;
-        background-color: var(--accent-color);
-      }
+        /* Stack action buttons */
+        .mt-4.text-center .btn {
+          display: block;
+          width: 100%;
+          margin: 0.25rem 0;
+        }
 
-      .admin-sidebar .text-danger {
-        color: #e74c3c !important;
-      }
-
-      .admin-sidebar .text-danger:hover {
-        color: #c0392b !important;
-        background-color: rgba(231, 76, 60, 0.1);
-      }
-
-      .admin-content {
-        background-color: var(--bg-secondary);
-        min-height: 100vh;
-      }
-
-      .border-bottom {
-        border-color: var(--accent-color) !important;
-      }
-
-      .card {
-        border: none;
-        box-shadow: var(--shadow-sm);
-      }
-
-      .card-header {
-        background-color: var(--bg-light);
-        border-bottom: 1px solid var(--accent-color);
-        color: var(--text-primary);
-      }
-
-      .btn-outline-secondary {
-        border-color: var(--secondary-color);
-        color: var(--secondary-color);
-      }
-
-      .btn-outline-secondary:hover {
-        background-color: var(--secondary-color);
-        border-color: var(--secondary-color);
-      }
-
-      .btn-outline-warning {
-        border-color: var(--warning-color);
-        color: var(--warning-color);
-      }
-
-      .btn-outline-warning:hover {
-        background-color: var(--warning-color);
-        border-color: var(--warning-color);
-      }
-
-      .btn-outline-info {
-        border-color: var(--accent-color);
-        color: var(--accent-color);
-      }
-
-      .btn-outline-info:hover {
-        background-color: var(--accent-color);
-        border-color: var(--accent-color);
-      }
-
-      .alert-success {
-        background-color: rgba(39, 174, 96, 0.1);
-        border-color: var(--success-color);
-        color: var(--success-color);
-      }
-
-      .alert-info {
-        background-color: rgba(52, 152, 219, 0.1);
-        border-color: var(--accent-color);
-        color: var(--accent-color);
-      }
-
-      .alert-warning {
-        background-color: rgba(243, 156, 18, 0.1);
-        border-color: var(--warning-color);
-        color: var(--warning-color);
-      }
-
-      .alert-danger {
-        background-color: rgba(231, 76, 60, 0.1);
-        border-color: #e74c3c;
-        color: #e74c3c;
+        .mt-4.text-center .btn:first-child {
+          margin-top: 0;
+        }
       }
     </style>
   </head>
   <body>
+    <!-- Mobile Navigation Toggle -->
+    <button class="mobile-nav-toggle d-md-none" onclick="toggleMobileNav()">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Mobile Navigation Overlay -->
+    <div class="mobile-nav-overlay" onclick="closeMobileNav()"></div>
+
     <div class="container-fluid">
       <div class="row">
         <!-- Sidebar -->
-        <nav class="col-md-3 col-lg-2 d-md-block admin-sidebar collapse">
+        <nav
+          class="col-md-3 col-lg-2 d-md-block admin-sidebar collapse"
+          id="adminSidebar"
+        >
           <div class="position-sticky pt-3">
             <div class="text-center mb-4">
               <img
@@ -257,7 +179,11 @@
         </nav>
 
         <!-- Main content -->
-        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 admin-content">
+        <main
+          class="col-md-9 ms-sm-auto col-lg-10 px-md-4 admin-content"
+          style="padding-top: 4rem"
+        >
+          <!-- Mobile header spacer -->
           <div
             class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
           >
@@ -774,6 +700,30 @@
           saveStatus.style.display = "none";
         }
       }
+
+      // Mobile navigation functions
+      function toggleMobileNav() {
+        const sidebar = document.getElementById("adminSidebar");
+        const overlay = document.querySelector(".mobile-nav-overlay");
+
+        sidebar.classList.toggle("show");
+        overlay.classList.toggle("show");
+      }
+
+      function closeMobileNav() {
+        const sidebar = document.getElementById("adminSidebar");
+        const overlay = document.querySelector(".mobile-nav-overlay");
+
+        sidebar.classList.remove("show");
+        overlay.classList.remove("show");
+      }
+
+      // Close mobile nav when clicking on nav links
+      document.addEventListener("click", function (e) {
+        if (e.target.closest(".admin-sidebar .nav-link")) {
+          closeMobileNav();
+        }
+      });
 
       // Check authentication on page load
       document.addEventListener("DOMContentLoaded", function () {
