@@ -171,17 +171,4 @@ function refreshSharedData() {
 // Initialize shared data when DOM loads
 document.addEventListener("DOMContentLoaded", () => {
   loadSharedData();
-
-  // Add refresh button for development
-  if (
-    window.location.hostname === "localhost" ||
-    window.location.hostname === "127.0.0.1"
-  ) {
-    const refreshBtn = document.createElement("button");
-    refreshBtn.innerHTML = '<i class="bi bi-arrow-clockwise"></i> รีเฟรช';
-    refreshBtn.className = "btn btn-sm btn-outline-secondary position-fixed";
-    refreshBtn.style.cssText = "top: 10px; left: 10px; z-index: 9999;";
-    refreshBtn.onclick = refreshSharedData;
-    document.body.appendChild(refreshBtn);
-  }
 });
