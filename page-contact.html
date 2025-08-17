@@ -1,132 +1,371 @@
 <!DOCTYPE html>
 <html lang="th">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ติดต่อเรา - ห้วยตึงเฒ่า</title>
-
+    
     <!-- Bootstrap 5.3.0 -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <!-- Font Awesome -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom Icons -->
+    <link rel="stylesheet" href="css/icons.css">
     <!-- Thai Fonts -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <!-- AOS Animation -->
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"
-      rel="stylesheet"
-    />
-    <!-- Leaflet CSS -->
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/style.css" />
-
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-  </head>
-  <body>
-    <!-- Preloader -->
-    <div class="preloader">
-      <div class="spinner-border text-primary" role="status">
-        <span class="visually-hidden">กำลังโหลด...</span>
-      </div>
-    </div>
-
+    <link rel="stylesheet" href="css/style.css">
+    
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+</head>
+<body>
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark">
-      <div class="container">
-        <a class="navbar-brand d-flex align-items-center" href="index.html">
-          <!-- Will be loaded from JSON -->
-        </a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto">
-            <!-- Will be loaded from JSON -->
-          </ul>
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="index.html">
+                <!-- Will be loaded from JSON -->
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <!-- Will be loaded from JSON -->
+                </ul>
+            </div>
         </div>
-      </div>
     </nav>
 
     <!-- Main content -->
     <main id="main-content">
-      <!-- Hero Section -->
-      <section class="hero-section">
-        <div class="container">
-          <div class="row justify-content-center text-center">
-            <div class="col-lg-8" data-aos="fade-up">
-              <h1 class="display-4 text-white mb-4">ติดต่อเรา</h1>
-              <p class="lead text-white">
-                ติดต่อสำนักงานโครงการห้วยตึงเฒ่า อันเนื่องมาจากพระราชดำริ
-              </p>
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="container">
+                <div class="row justify-content-center text-center">
+                    <div class="col-lg-8" id="hero-content" data-aos="fade-up" data-aos-duration="1000">
+                        <!-- Will be loaded from JSON -->
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-      </section>
+        </section>
 
-      <!-- Contact Information -->
-      <section class="py-5">
-        <div class="container">
-          <div class="row" id="contact-cards">
-            <!-- Will be loaded from JSON -->
-          </div>
-        </div>
-      </section>
-
-      <!-- Map Section -->
-      <section class="py-5 bg-light">
-        <div class="container">
-          <div class="row">
-            <div class="col-12" data-aos="fade-up">
-              <h2 class="section-title text-center mb-4">แผนที่</h2>
-              <div class="map-container">
-                <div
-                  id="contact-map"
-                  style="height: 400px; border-radius: 10px"
-                ></div>
-              </div>
+        <!-- Contact Information -->
+        <section class="py-5">
+            <div class="container">
+                <div class="row g-4">
+                    <div class="col-lg-6 offset-lg-3" data-aos="fade-up" data-aos-delay="200">
+                        <div class="card h-100 shadow-lg hover-card">
+                            <div class="card-body" id="contact-info">
+                                <!-- Contact info will be loaded from JSON -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Contact Cards Grid -->
+                <div class="row g-4 mt-4" id="contact-cards">
+                    <!-- Will be populated by JavaScript -->
+                </div>
             </div>
-          </div>
+        </section>
+        
+        <!-- Interactive Map Section -->
+        <section class="section-bg-gray py-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12" data-aos="fade-up">
+                        <h3 class="text-center mb-4">
+                            <i class="bi bi-geo-alt-fill text-primary me-2"></i>
+                            แผนที่ตำแหน่ง
+                        </h3>
+                        <div class="card shadow-lg">
+                            <div class="card-body p-0">
+                                <div id="map-container" style="height: 400px; border-radius: 0.375rem;">
+                                    <!-- Interactive map will be loaded here -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Floating Action Button -->
+        <div class="floating-btn-container">
+            <button id="scrollToTop" class="btn btn-primary floating-btn" title="กลับไปด้านบน">
+                <i class="bi bi-arrow-up"></i>
+            </button>
         </div>
-      </section>
     </main>
-
+    
     <!-- Footer -->
     <footer class="footer">
-      <div class="container">
-        <div class="row">
-          <!-- Will be loaded from JSON -->
-        </div>
-      </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <!-- Will be loaded from JSON -->
+                </div>
+                <div class="col-lg-4 text-end" id="footer-social">
+                    <!-- <p>จำนวนผู้เข้าชม: <strong>123,456</strong> คน</p> -->
+                    <div class="social-links">
+                        <!-- Facebook link will be loaded from JSON -->
+                    </div>
+                </div>
+            </div>
     </footer>
 
-    <!-- Bootstrap JavaScript -->
+    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-    <!-- External Libraries -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    
+    <!-- AOS (Animate On Scroll) -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Leaflet for interactive maps -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-
-    <!-- Custom Scripts -->
+    
+    <!-- Shared JS -->
     <script src="js/shared.js"></script>
-    <script src="js/interactive.js"></script>
-    <script src="js/contact.js"></script>
-  </body>
+    
+    <!-- Load Contact Data from JSON -->
+    <script>
+        let contactData = null;
+
+        // Load JSON data (try localStorage first, then file)
+        async function loadContactData() {
+            try {
+                // Try localStorage first (edited data)
+                const savedData = localStorage.getItem('json_contact-content');
+                if (savedData) {
+                    try {
+                        contactData = JSON.parse(savedData);
+                        console.log('Contact data loaded from localStorage:', contactData);
+                        return contactData;
+                    } catch (e) {
+                        console.warn('Invalid saved data, loading from file');
+                    }
+                }
+                
+                // Load from file
+                const response = await fetch('data/contact-content.json');
+                contactData = await response.json();
+                console.log('Contact data loaded from file:', contactData);
+                return contactData;
+            } catch (error) {
+                console.error('Error loading contact data:', error);
+                return null;
+            }
+        }
+
+        // Update hero section
+        function updateHeroSection() {
+            if (!contactData) return;
+            
+            const contact = contactData.contact;
+            document.getElementById('hero-content').innerHTML = `
+                <h1>${contact.title}</h1>
+                <p>${contact.subtitle}</p>
+            `;
+        }
+
+        // Update contact info
+        function updateContactInfo() {
+            if (!contactData) return;
+            
+            const contact = contactData.contact;
+            document.getElementById('contact-info').innerHTML = `
+                <h3 class="card-title">
+                    <i class="bi bi-geo-alt text-primary me-2"></i>ที่อยู่
+                </h3>
+                <p class="card-text">
+                    ${contact.organization}<br>
+                    ${contact.address.fullAddress}
+                </p>
+                
+                <h5 class="mt-4">
+                    <i class="bi bi-telephone text-primary me-2"></i>โทรศัพท์
+                </h5>
+                <p>${contact.phone}</p>
+                
+                <h5 class="mt-4">
+                    <i class="bi bi-clock text-primary me-2"></i>เวลาทำการ
+                </h5>
+                <p>${contact.operatingHours}</p>
+                
+                <h5 class="mt-4">
+                    <i class="bi bi-envelope text-primary me-2"></i>ติดตามเรา
+                </h5>
+                <div class="social-links">
+                    <a href="${contact.socialMedia.facebook.account}" class="btn btn-outline-primary btn-sm me-2" target="_blank">
+                        <i class="bi bi-facebook"></i> Facebook Account
+                    </a>
+                    <a href="${contact.socialMedia.facebook.fanpage}" class="btn btn-outline-primary btn-sm me-2" target="_blank">
+                        <i class="bi bi-facebook"></i> Facebook Fanpage
+                    </a>
+                </div>
+            `;
+        }
+
+        // Update map
+        function updateMap() {
+            if (!contactData) return;
+            
+            const maps = contactData.contact.googleMaps;
+            document.getElementById('map-container').innerHTML = `
+                <iframe 
+                    src="${maps.embedUrl}" 
+                    width="${maps.width}" 
+                    height="${maps.height}" 
+                    style="${maps.style}" 
+                    allowfullscreen="${maps.allowfullscreen}" 
+                    loading="${maps.loading}">
+                </iframe>
+            `;
+        }
+
+        // Load contact data when page loads
+        document.addEventListener('DOMContentLoaded', async () => {
+            await loadContactData();
+            
+            if (contactData) {
+                updateHeroSection();
+                updateContactInfo();
+                updateMap();
+                createContactCards();
+                initializeInteractiveFeatures();
+                console.log('Contact page updated with JSON data');
+            }
+        });
+
+        // Initialize interactive features
+        function initializeInteractiveFeatures() {
+            // Initialize AOS
+            AOS.init({
+                duration: 1000,
+                once: true,
+                offset: 100
+            });
+
+            // Initialize scroll to top button
+            const scrollToTopBtn = document.getElementById('scrollToTop');
+            if (scrollToTopBtn) {
+                window.addEventListener('scroll', function() {
+                    if (window.pageYOffset > 300) {
+                        scrollToTopBtn.style.display = 'block';
+                        scrollToTopBtn.style.opacity = '1';
+                    } else {
+                        scrollToTopBtn.style.opacity = '0';
+                        setTimeout(() => {
+                            if (window.pageYOffset <= 300) {
+                                scrollToTopBtn.style.display = 'none';
+                            }
+                        }, 300);
+                    }
+                });
+
+                scrollToTopBtn.addEventListener('click', function() {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                });
+            }
+
+            // Add hover effects to cards
+            document.querySelectorAll('.hover-card').forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px)';
+                    this.style.transition = 'transform 0.3s ease';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+        }
+
+        // Create contact cards
+        function createContactCards() {
+            if (!contactData) return;
+            
+            const contact = contactData.contact;
+            const cardsContainer = document.getElementById('contact-cards');
+            
+            const cards = [
+                {
+                    icon: 'bi-telephone-fill',
+                    title: 'โทรศัพท์',
+                    content: contact.phone,
+                    action: `tel:${contact.phone}`,
+                    actionText: 'โทรหา',
+                    delay: 100
+                },
+                {
+                    icon: 'bi-clock-fill',
+                    title: 'เวลาทำการ',
+                    content: contact.operatingHours,
+                    action: '#',
+                    actionText: 'ดูเพิ่มเติม',
+                    delay: 200
+                },
+                {
+                    icon: 'bi-facebook',
+                    title: 'Facebook',
+                    content: 'ติดตามข่าวสารและกิจกรรม',
+                    action: contact.socialMedia.facebook.fanpage,
+                    actionText: 'ไปที่ Facebook',
+                    delay: 300
+                }
+            ];
+
+            cardsContainer.innerHTML = cards.map(card => `
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="${card.delay}">
+                    <div class="card text-center hover-card h-100">
+                        <div class="card-body">
+                            <div class="contact-icon mb-3">
+                                <i class="${card.icon} text-primary" style="font-size: 2.5rem;"></i>
+                            </div>
+                            <h5 class="card-title">${card.title}</h5>
+                            <p class="card-text">${card.content}</p>
+                            <a href="${card.action}" class="btn btn-outline-primary btn-sm" ${card.action.startsWith('http') ? 'target="_blank"' : ''}>
+                                ${card.actionText}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Update map with interactive Leaflet map
+        function updateMap() {
+            if (!contactData) return;
+            
+            const mapContainer = document.getElementById('map-container');
+            
+            // Create map
+            const map = L.map(mapContainer).setView([18.8040, 98.9610], 13);
+            
+            // Add tile layer
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors'
+            }).addTo(map);
+            
+            // Add marker
+            const marker = L.marker([18.8040, 98.9610]).addTo(map);
+            marker.bindPopup(`
+                <div class="text-center">
+                    <strong>${contactData.contact.organization}</strong><br>
+                    ${contactData.contact.address.fullAddress}<br>
+                    <small>โทร: ${contactData.contact.phone}</small>
+                </div>
+            `).openPopup();
+            
+            // Add click event to map
+            map.on('click', function(e) {
+                const lat = e.latlng.lat.toFixed(6);
+                const lng = e.latlng.lng.toFixed(6);
+                console.log(`Clicked at: ${lat}, ${lng}`);
+            });
+        }
+    </script>
+</body>
 </html>
