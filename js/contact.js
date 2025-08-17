@@ -156,7 +156,7 @@ function createContactCards() {
 function updateMap() {
   if (!contactData) return;
   
-  const mapContainer = document.getElementById('contact-map');
+  const mapContainer = document.getElementById('map-container');
   if (!mapContainer) return;
   
   try {
@@ -195,7 +195,7 @@ function updateMap() {
 function updateMapFallback() {
   if (!contactData) return;
   
-  const mapContainer = document.getElementById('contact-map');
+  const mapContainer = document.getElementById('map-container');
   if (!mapContainer) return;
   
   const maps = contactData.contact.googleMaps;
