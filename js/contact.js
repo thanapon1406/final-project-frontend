@@ -36,10 +36,10 @@ async function loadJsonData(fileName) {
 async function loadContactData() {
   try {
     contactData = await loadJsonData("contact-content");
-    console.log('Contact data loaded:', contactData);
+    console.log("Contact data loaded:", contactData);
     return contactData;
   } catch (error) {
-    console.error('Error loading contact data:', error);
+    console.error("Error loading contact data:", error);
     return null;
   }
 }
@@ -47,9 +47,9 @@ async function loadContactData() {
 // Update hero section
 function updateHeroSection() {
   if (!contactData) return;
-  
+
   const contact = contactData.contact;
-  const heroContent = document.getElementById('hero-content');
+  const heroContent = document.getElementById("hero-content");
   if (heroContent) {
     heroContent.innerHTML = `
       <h1>${contact.title}</h1>
@@ -61,9 +61,9 @@ function updateHeroSection() {
 // Update contact info
 function updateContactInfo() {
   if (!contactData) return;
-  
+
   const contact = contactData.contact;
-  const contactInfo = document.getElementById('contact-info');
+  const contactInfo = document.getElementById("contact-info");
   if (contactInfo) {
     contactInfo.innerHTML = `
       <h3 class="card-title">
@@ -102,39 +102,41 @@ function updateContactInfo() {
 // Create contact cards
 function createContactCards() {
   if (!contactData) return;
-  
+
   const contact = contactData.contact;
-  const cardsContainer = document.getElementById('contact-cards');
+  const cardsContainer = document.getElementById("contact-cards");
   if (!cardsContainer) return;
-  
+
   const cards = [
     {
-      icon: 'bi-telephone-fill',
-      title: 'โทรศัพท์',
+      icon: "bi-telephone-fill",
+      title: "โทรศัพท์",
       content: contact.phone,
       action: `tel:${contact.phone}`,
-      actionText: 'โทรหา',
-      delay: 100
+      actionText: "โทรหา",
+      delay: 100,
     },
     {
-      icon: 'bi-clock-fill',
-      title: 'เวลาทำการ',
+      icon: "bi-clock-fill",
+      title: "เวลาทำการ",
       content: contact.operatingHours,
-      action: '#',
-      actionText: 'ดูเพิ่มเติม',
-      delay: 200
+      action: "#",
+      actionText: "ดูเพิ่มเติม",
+      delay: 200,
     },
     {
-      icon: 'bi-facebook',
-      title: 'Facebook',
-      content: 'ติดตามข่าวสารและกิจกรรม',
+      icon: "bi-facebook",
+      title: "Facebook",
+      content: "ติดตามข่าวสารและกิจกรรม",
       action: contact.socialMedia.facebook.fanpage,
-      actionText: 'ไปที่ Facebook',
-      delay: 300
-    }
+      actionText: "ไปที่ Facebook",
+      delay: 300,
+    },
   ];
 
-  cardsContainer.innerHTML = cards.map(card => `
+  cardsContainer.innerHTML = cards
+    .map(
+      (card) => `
     <div class="col-md-4" data-aos="fade-up" data-aos-delay="${card.delay}">
       <div class="card text-center hover-card h-100">
         <div class="card-body">
@@ -143,49 +145,57 @@ function createContactCards() {
           </div>
           <h5 class="card-title">${card.title}</h5>
           <p class="card-text">${card.content}</p>
-          <a href="${card.action}" class="btn btn-outline-primary btn-sm" ${card.action.startsWith('http') ? 'target="_blank"' : ''}>
+          <a href="${card.action}" class="btn btn-outline-primary btn-sm" ${
+        card.action.startsWith("http") ? 'target="_blank"' : ""
+      }>
             ${card.actionText}
           </a>
         </div>
       </div>
     </div>
-  `).join('');
+  `
+    )
+    .join("");
 }
 
 // Update map with interactive Leaflet map
 function updateMap() {
   if (!contactData) return;
-  
-  const mapContainer = document.getElementById('map-container');
+
+  const mapContainer = document.getElementById("map-container");
   if (!mapContainer) return;
-  
+
   try {
     // Create map
-    const map = L.map(mapContainer).setView([18.8040, 98.9610], 13);
-    
+    const map = L.map(mapContainer).setView([18.804, 98.961], 13);
+
     // Add tile layer
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '© OpenStreetMap contributors'
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      attribution: "© OpenStreetMap contributors",
     }).addTo(map);
-    
+
     // Add marker
-    const marker = L.marker([18.8040, 98.9610]).addTo(map);
-    marker.bindPopup(`
+    const marker = L.marker([18.804, 98.961]).addTo(map);
+    marker
+      .bindPopup(
+        `
       <div class="text-center">
         <strong>${contactData.contact.organization}</strong><br>
         ${contactData.contact.address.fullAddress}<br>
         <small>โทร: ${contactData.contact.phone}</small>
       </div>
-    `).openPopup();
-    
+    `
+      )
+      .openPopup();
+
     // Add click event to map
-    map.on('click', function(e) {
+    map.on("click", function (e) {
       const lat = e.latlng.lat.toFixed(6);
       const lng = e.latlng.lng.toFixed(6);
       console.log(`Clicked at: ${lat}, ${lng}`);
     });
   } catch (error) {
-    console.error('Error initializing map:', error);
+    console.error("Error initializing map:", error);
     // Fallback to iframe map
     updateMapFallback();
   }
@@ -194,10 +204,10 @@ function updateMap() {
 // Fallback map using iframe
 function updateMapFallback() {
   if (!contactData) return;
-  
-  const mapContainer = document.getElementById('map-container');
+
+  const mapContainer = document.getElementById("map-container");
   if (!mapContainer) return;
-  
+
   const maps = contactData.contact.googleMaps;
   mapContainer.innerHTML = `
     <iframe 
@@ -214,63 +224,63 @@ function updateMapFallback() {
 // Initialize interactive features
 function initializeInteractiveFeatures() {
   // Initialize AOS
-  if (typeof AOS !== 'undefined') {
+  if (typeof AOS !== "undefined") {
     AOS.init({
       duration: 1000,
       once: true,
-      offset: 100
+      offset: 100,
     });
   }
 
   // Initialize scroll to top button
-  const scrollToTopBtn = document.getElementById('scrollToTop');
+  const scrollToTopBtn = document.getElementById("scrollToTop");
   if (scrollToTopBtn) {
-    window.addEventListener('scroll', function() {
+    window.addEventListener("scroll", function () {
       if (window.pageYOffset > 300) {
-        scrollToTopBtn.style.display = 'block';
-        scrollToTopBtn.style.opacity = '1';
+        scrollToTopBtn.style.display = "block";
+        scrollToTopBtn.style.opacity = "1";
       } else {
-        scrollToTopBtn.style.opacity = '0';
+        scrollToTopBtn.style.opacity = "0";
         setTimeout(() => {
           if (window.pageYOffset <= 300) {
-            scrollToTopBtn.style.display = 'none';
+            scrollToTopBtn.style.display = "none";
           }
         }, 300);
       }
     });
 
-    scrollToTopBtn.addEventListener('click', function() {
+    scrollToTopBtn.addEventListener("click", function () {
       window.scrollTo({
         top: 0,
-        behavior: 'smooth'
+        behavior: "smooth",
       });
     });
   }
 
   // Add hover effects to cards
-  document.querySelectorAll('.hover-card').forEach(card => {
-    card.addEventListener('mouseenter', function() {
-      this.style.transform = 'translateY(-10px)';
-      this.style.transition = 'transform 0.3s ease';
+  document.querySelectorAll(".hover-card").forEach((card) => {
+    card.addEventListener("mouseenter", function () {
+      this.style.transform = "translateY(-10px)";
+      this.style.transition = "transform 0.3s ease";
     });
-    
-    card.addEventListener('mouseleave', function() {
-      this.style.transform = 'translateY(0)';
+
+    card.addEventListener("mouseleave", function () {
+      this.style.transform = "translateY(0)";
     });
   });
 }
 
 // Initialize page when DOM is loaded
-document.addEventListener('DOMContentLoaded', async () => {
+document.addEventListener("DOMContentLoaded", async () => {
   await loadContactData();
-  
+
   if (contactData) {
     updateHeroSection();
     updateContactInfo();
     updateMap();
     createContactCards();
     initializeInteractiveFeatures();
-    console.log('Contact page updated with JSON data');
+    console.log("Contact page updated with JSON data");
   }
 });
 

@@ -26,12 +26,16 @@ async function loadJsonData(fileName) {
 
       // Check if localStorage data has the latest structure
       // Look for section 3 with 2 images (image7.jpg and image8.jpg)
-      const section3 = localData.history?.sections?.find(s => s.id === 3);
-      const hasLatestImages = section3?.images?.length === 2 &&
-        section3.images.some(img => img.url.includes("image8.jpg"));
+      const section3 = localData.history?.sections?.find((s) => s.id === 3);
+      const hasLatestImages =
+        section3?.images?.length === 2 &&
+        section3.images.some((img) => img.url.includes("image8.jpg"));
 
       if (hasLatestImages) {
-        console.log("History data loaded from localStorage (up to date):", localData);
+        console.log(
+          "History data loaded from localStorage (up to date):",
+          localData
+        );
         return localData;
       } else {
         console.warn("localStorage data is outdated, loading from file");
@@ -263,16 +267,11 @@ function updateTimeline() {
                 </div>
               </div>
               <div class="col-md-9">
-                <h5 class="timeline-title mb-2 text-primary">${
-                  item.title
-                }</h5>
-                <p class="timeline-description mb-0">${
-                  item.description
-                }</p>
+                <h5 class="timeline-title mb-2 text-primary">${item.title}</h5>
+                <p class="timeline-description mb-0">${item.description}</p>
                 <div class="timeline-progress mt-3">
                   <div class="progress-bar-custom" style="width: ${
-                    (index + 1) *
-                    (100 / historyData.history.timeline.length)
+                    (index + 1) * (100 / historyData.history.timeline.length)
                   }%"></div>
                 </div>
               </div>
@@ -333,9 +332,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     // Add developer helper function to console
     window.clearHistoryCache = function () {
       localStorage.removeItem("json_page-history");
-      console.log(
-        "History cache cleared. Reload page to fetch fresh data."
-      );
+      console.log("History cache cleared. Reload page to fetch fresh data.");
     };
     console.log(
       "💡 Developer tip: Run clearHistoryCache() to clear localStorage cache"
