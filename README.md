@@ -1,53 +1,323 @@
-# ห้วยตึงเฒ่า - เว็บไซต์ท่องเที่ยว
+# 🏞️ ห้วยตึงเฒ่า - เว็บไซต์ท่องเที่ยว
 
-เว็บไซต์ท่องเที่ยวสำหรับสำนักงานโครงการจัดหมู่บ้านตัวอย่างห้วยตึงเฒ่า อันเนื่องมาจากพระราชดำริ
+> เว็บไซต์ท่องเที่ยวสำหรับสำนักงานโครงการจัดหมู่บ้านตัวอย่างห้วยตึงเฒ่า อันเนื่องมาจากพระราชดำริ
 
-## ✨ คุณสมบัติ
+[![Node.js](https://img.shields.io/badge/Node.js-18+-green.svg)](https://nodejs.org/)
+[![Bootstrap](https://img.shields.io/badge/Bootstrap-5.3.0-purple.svg)](https://getbootstrap.com/)
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-- 🎨 **ระบบจัดการเนื้อหาผ่าน JSON** - แก้ไขเนื้อหาได้ง่ายผ่าน JSON Editor
-- 📱 **Responsive Design** - รองรับทุกขนาดหน้าจอ
-- 🔄 **Real-time Updates** - อัพเดทเนื้อหาแบบ real-time
-- 🎯 **SEO Friendly** - เพิ่มประสิทธิภาพการค้นหา
-- 🚀 **Fast Loading** - โหลดเร็วด้วย Bootstrap และ CDN
-- 💾 **Auto Save** - บันทึกไฟล์อัตโนมัติผ่าน API
-- 🔒 **Auto Backup** - สร้าง backup อัตโนมัติก่อนแก้ไข
-- 🌐 **API-based** - ระบบ REST API สำหรับจัดการไฟล์
+## ✨ คุณสมบัติหลัก
 
-## 📁 โครงสร้างไฟล์
+### 🎨 **ระบบจัดการเนื้อหา (JSON-based CMS)**
+- แก้ไขเนื้อหาได้ง่ายผ่าน JSON Editor
+- บันทึกไฟล์อัตโนมัติผ่าน REST API
+- ระบบ backup อัตโนมัติก่อนแก้ไข
+- รองรับการแก้ไขหลายภาษา
+
+### 📱 **Frontend Technologies**
+- **Bootstrap 5.3.0** - UI Framework
+- **AOS (Animate On Scroll)** - Smooth animations
+- **GSAP + ScrollTrigger** - Advanced animations (History page)
+- **Leaflet** - Interactive maps (Contact page)
+- **Particles.js** - Background effects
+- **Typed.js** - Text typing animations
+
+### 🎯 **Performance & SEO**
+- Responsive Design รองรับทุกขนาดหน้าจอ
+- Fast Loading ด้วย CDN และ optimization
+- SEO Friendly structure
+- Progressive Enhancement
+
+### � **Architecture**
+- **Modular JavaScript** - แยก JS ตามหน้า
+- **API-first Design** - REST API backend
+- **Fallback System** - localStorage cache
+- **Error Handling** - Comprehensive error management
+
+## 📁 โครงสร้างโปรเจค
 
 ```
-├── index.html              # หน้าหลัก
-├── page-contact.html       # หน้าติดต่อเรา
-├── page-history.html       # หน้าประวัติ
-├── page-services.html      # หน้าบริการ
-├── admin/
-│   ├── login.html         # หน้าเข้าสู่ระบบ
-│   └── json-editor.html   # JSON Editor
-├── js/
-│   ├── shared.js          # ฟังก์ชันร่วม
-│   └── json-editor.js     # JSON Editor logic
-├── css/
-│   ├── style.css          # CSS หลัก
-│   └── admin.css          # CSS สำหรับ admin
-└── data/                  # ไฟล์ JSON
-    ├── site-config.json
-    ├── homepage-carousel.json
-    ├── homepage-news.json
-    ├── homepage-featured.json
-    ├── homepage-gallery.json
-    ├── homepage-services.json
-    ├── about-content.json
-    ├── page-history.json
-    ├── page-services.json
-    ├── contact-content.json
-    └── footer.json
+huaytuengthao-website/
+├── 📄 index.html              # หน้าหลัก (Homepage)
+├── 📄 page-contact.html       # หน้าติดต่อเรา (Contact)
+├── 📄 page-history.html       # หน้าประวัติ (History)
+├── 📄 page-services.html      # หน้าบริการ (Services)
+├── 📄 server.js               # Express.js Server
+├── 📄 package.json            # Node.js dependencies
+├── 📄 start.sh                # Start script (macOS/Linux)
+│
+├── 📁 admin/                  # ระบบจัดการ
+│   ├── login.html            # หน้าเข้าสู่ระบบ
+│   └── json-editor.html      # JSON Editor interface
+│
+├── 📁 js/                     # JavaScript modules
+│   ├── shared.js             # ฟังก์ชันร่วม (Navigation, Footer)
+│   ├── homepage.js           # หน้าหลัก
+│   ├── contact.js            # หน้าติดต่อเรา
+│   ├── history.js            # หน้าประวัติ
+│   ├── services.js           # หน้าบริการ
+│   ├── interactive.js        # Interactive features
+│   ├── admin.js              # Admin functions
+│   └── json-editor.js        # JSON Editor logic
+│
+├── 📁 css/                    # Stylesheets
+│   ├── style.css             # Main CSS
+│   ├── admin.css             # Admin interface CSS
+│   └── icons.css             # Custom icons
+│
+├── 📁 data/                   # JSON Content files
+│   ├── site-config.json      # การตั้งค่าเว็บไซต์
+│   ├── navigation.json       # เมนูนำทาง
+│   ├── footer.json           # ส่วนท้าย
+│   ├── homepage-carousel.json # สไลด์หน้าหลัก
+│   ├── homepage-news.json    # ข่าวสาร
+│   ├── homepage-featured.json # คอนเทนต์เด่น
+│   ├── homepage-gallery.json # แกลเลอรี่
+│   ├── homepage-services.json # บริการหน้าหลัก
+│   ├── about-content.json    # เกี่ยวกับเรา
+│   ├── page-history.json     # เนื้อหาประวัติ
+│   ├── page-services.json    # เนื้อหาบริการ
+│   ├── contact-content.json  # ข้อมูลติดต่อ
+│   └── users.json            # ผู้ใช้งานระบบ
+│
+├── 📁 controllers/            # Backend controllers
+│   ├── Controller.js         # Base controller
+│   └── AuthController.js     # Authentication
+│
+└── 📁 routes/                 # API routes
+    ├── routes.js             # Main routes
+    ├── auth-routes.js        # Authentication routes
+    └── backup-routes.js      # Backup management
 ```
 
 ## 🚀 การติดตั้งและใช้งาน
 
-### 1. ติดตั้งและเริ่มต้น Server
+### ✅ ความต้องการระบบ
 
-#### macOS/Linux:
+- **Node.js** 14.0.0 หรือสูงกว่า
+- **npm** (มาพร้อม Node.js)
+- **Modern Web Browser** (Chrome, Firefox, Safari, Edge)
+
+### 📦 การติดตั้ง
+
+#### 1. Clone Repository
+```bash
+git clone https://github.com/thanapon1406/final-project-frontend.git
+cd final-project-frontend
+```
+
+#### 2. ติดตั้ง Dependencies
+```bash
+npm install
+```
+
+#### 3. เริ่มต้น Server
+
+**macOS/Linux:**
+```bash
+chmod +x start.sh
+./start.sh
+```
+
+**Windows:**
+```bash
+npm start
+```
+
+### 🌐 การเข้าใช้งาน
+
+เมื่อ server ทำงานแล้ว เปิดเบราว์เซอร์และไปที่:
+
+- **🏠 เว็บไซต์หลัก:** [http://localhost:3000](http://localhost:3000)
+- **⚙️ JSON Editor:** [http://localhost:3000/admin/json-editor.html](http://localhost:3000/admin/json-editor.html)
+- **🔐 Login:** [http://localhost:3000/admin/login.html](http://localhost:3000/admin/login.html)
+
+### 📋 หน้าต่างๆ ในเว็บไซต์
+
+| หน้า | URL | คำอธิบาย |
+|------|-----|----------|
+| 🏠 หน้าหลัก | `/` | Carousel, ข่าวสาร, บริการ, เกี่ยวกับเรา, แกลเลอรี่ |
+| 📞 ติดต่อเรา | `/page-contact.html` | ข้อมูลติดต่อ, แผนที่ Leaflet |
+| 📜 ประวัติ | `/page-history.html` | ประวัติพัฒนา, Timeline, GSAP animations |
+| 🛎️ บริการ | `/page-services.html` | รายการบริการ, กิจกรรม |
+
+## 🎛️ ระบบจัดการเนื้อหา (JSON Editor)
+
+### 🔐 การเข้าสู่ระบบ
+
+**ข้อมูลเริ่มต้น:**
+- **Username:** `admin`
+- **Password:** `admin123`
+
+### 📝 การแก้ไขเนื้อหา
+
+1. เข้าสู่ระบบผ่าน `/admin/login.html`
+2. ไปที่ JSON Editor: `/admin/json-editor.html`
+3. เลือกไฟล์ที่ต้องการแก้ไข
+4. แก้ไขเนื้อหาในรูปแบบ JSON
+5. กด "Save" เพื่อบันทึก
+6. ระบบจะสร้าง backup อัตโนมัติ
+
+### 🔄 ระบบ Backup
+
+- Backup อัตโนมัติก่อนการแก้ไขทุกครั้ง
+- เก็บไฟล์ backup ใน `/data/backups/`
+- Format: `filename_YYYYMMDD_HHMMSS.json`
+
+## 🛠️ API Endpoints
+
+### 📊 JSON Data Management
+
+```http
+GET    /api/json/:filename     # ดึงข้อมูล JSON
+POST   /api/json/:filename     # บันทึกข้อมูล JSON
+GET    /api/backups            # ดูรายการ backup
+POST   /api/restore/:filename  # กู้คืนจาก backup
+```
+
+### 🔐 Authentication
+
+```http
+POST   /api/auth/login         # เข้าสู่ระบบ
+POST   /api/auth/logout        # ออกจากระบบ
+GET    /api/auth/check         # ตรวจสอบสถานะ
+```
+
+## 🎨 Features ของแต่ละหน้า
+
+### 🏠 หน้าหลัก (Homepage)
+- **Carousel** แบบ responsive พร้อม indicators
+- **News Marquee** แสดงข่าวสารแบบเลื่อน
+- **Services Grid** พร้อม hover effects
+- **About Section** แสดงข้อมูลเกี่ยวกับเรา
+- **Gallery** แสดงภาพแบบ grid
+- **Particles.js** background effects
+
+### 📞 หน้าติดต่อเรา (Contact)
+- **Interactive Leaflet Map** พร้อม marker และ popup
+- **Contact Cards** แสดงข้อมูลติดต่อแบบ card
+- **Responsive Design** รองรับทุกขนาดหน้าจอ
+- **Fallback Map** ใช้ Google Maps iframe หาก Leaflet ไม่ทำงาน
+
+### 📜 หน้าประวัติ (History)
+- **GSAP Animations** พร้อม ScrollTrigger
+- **Timeline Layout** แสดงประวัติการพัฒนา
+- **Image Lightbox** เปิดดูภาพแบบ modal
+- **Smooth Scrolling** เลื่อนหน้าจอแบบนุ่มนวล
+
+### 🛎️ หน้าบริการ (Services)
+- **Service Cards** แสดงบริการแบบ grid
+- **Activities Section** กิจกรรมและอุปกรณ์
+- **Hover Effects** เอฟเฟกต์เมื่อเลื่อนเมาส์
+- **AOS Animations** แอนิเมชันเมื่อเลื่อนหน้า
+
+## 💾 การทำงานของระบบ
+
+### 🔄 Data Loading Strategy
+
+1. **API First** - พยายามโหลดจาก API ก่อน
+2. **localStorage Cache** - ใช้ cache หากมีข้อมูลที่แก้ไขแล้ว
+3. **File Fallback** - โหลดจากไฟล์โดยตรงหากอื่นๆ ล้มเหลว
+
+### 🎯 JavaScript Architecture
+
+```javascript
+// Example: Data loading pattern
+async function loadJsonData(fileName) {
+  try {
+    // 1. Try API first
+    const response = await fetch(`/api/json/${fileName}`);
+    if (response.ok) return await response.json();
+  } catch (error) {
+    console.warn('API failed, trying localStorage...');
+  }
+  
+  // 2. Try localStorage
+  const cached = localStorage.getItem(`json_${fileName}`);
+  if (cached) return JSON.parse(cached);
+  
+  // 3. Fallback to direct file
+  const response = await fetch(`data/${fileName}.json`);
+  return await response.json();
+}
+```
+
+## 🔧 การพัฒนาและปรับแต่ง
+
+### 📁 การเพิ่มหน้าใหม่
+
+1. สร้างไฟล์ HTML ใหม่
+2. สร้างไฟล์ JavaScript สำหรับหน้านั้น
+3. เพิ่ม navigation ใน `data/navigation.json`
+4. สร้างไฟล์ JSON สำหรับเนื้อหา
+
+### 🎨 การปรับแต่ง Styling
+
+- แก้ไขใน `css/style.css`
+- ใช้ Bootstrap utility classes
+- เพิ่ม custom animations ใน JavaScript
+
+### 🔌 การเพิ่ม API Endpoint
+
+```javascript
+// ใน routes/routes.js
+app.get('/api/new-endpoint', (req, res) => {
+  // Logic here
+});
+```
+
+## 🐛 การแก้ไขปัญหา
+
+### ❌ ปัญหาที่พบบ่อย
+
+| ปัญหา | สาเหตุ | วิธีแก้ไข |
+|-------|--------|----------|
+| หน้าไม่โหลดเนื้อหา | ไฟล์ JSON ผิดรูปแบบ | ตรวจสอบ syntax ใน JSON Editor |
+| แผนที่ไม่แสดง | Leaflet library ไม่โหลด | ตรวจสอบ internet connection |
+| Animation ไม่ทำงาน | JavaScript error | เปิด Developer Tools ดู Console |
+| ไม่สามารถบันทึกได้ | ไม่มีสิทธิ์เขียนไฟล์ | ตรวจสอบ permissions |
+
+### 🔍 การ Debug
+
+```javascript
+// เปิด debug mode
+localStorage.setItem('debug', 'true');
+
+// ล้าง cache
+localStorage.clear();
+
+// ดู errors ใน Console
+console.log('Debug info:', data);
+```
+
+## 🤝 การสนับสนุนและการพัฒนา
+
+### 📞 ติดต่อ
+
+- **โปรเจค:** ห้วยตึงเฒ่า ท่องเที่ยว
+- **Email:** support@huaytuengthao.com
+- **GitHub:** [thanapon1406/final-project-frontend](https://github.com/thanapon1406/final-project-frontend)
+
+### 🔄 การ Contribute
+
+1. Fork repository
+2. สร้าง feature branch
+3. Commit changes
+4. Push และสร้าง Pull Request
+
+### 📝 License
+
+โปรเจคนี้อยู่ภายใต้ [MIT License](LICENSE)
+
+---
+
+<div align="center">
+
+**🏞️ สร้างโดยทีมพัฒนาห้วยตึงเฒ่า**
+
+[🌐 Website](http://localhost:3000) • [📝 Documentation](README.md) • [⚙️ Admin Panel](http://localhost:3000/admin)
+
+</div>
 
 ```bash
 # ใช้ script
