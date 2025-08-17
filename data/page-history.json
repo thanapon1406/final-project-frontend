@@ -114,6 +114,38 @@
         "description": "มทบ.๓๓ ดูแลพื้นที่และให้บริการท่องเที่ยวเชิงธรrrมชาติแก่ประชาชน"
       }
     ],
+    "galleryImages": [
+      {
+        "url": "https://huaytuengthao.com/image/gallery/gallery1.jpg",
+        "alt": "ภาพประวัติศาสตร์ 1",
+        "caption": "การเยี่ยมเยือนของพระบาทสมเด็จพระเจ้าอยู่หัว"
+      },
+      {
+        "url": "https://huaytuengthao.com/image/gallery/gallery2.jpg",
+        "alt": "ภาพประวัติศาสตร์ 2",
+        "caption": "การก่อสร้างอ่างเก็บน้ำห้วยตึงเฒ่า"
+      },
+      {
+        "url": "https://huaytuengthao.com/image/gallery/gallery3.jpg",
+        "alt": "ภาพประวัติศาสตร์ 3",
+        "caption": "การพัฒนาหมู่บ้านตัวอย่าง"
+      },
+      {
+        "url": "https://huaytuengthao.com/image/gallery/gallery4.jpg",
+        "alt": "ภาพประวัติศาสตร์ 4",
+        "caption": "การพัฒนาพื้นที่เป็นแหล่งท่องเที่ยว"
+      },
+      {
+        "url": "https://huaytuengthao.com/image/gallery/gallery5.jpg",
+        "alt": "ภาพประวัติศาสตร์ 5",
+        "caption": "ห้วยตึงเฒ่าในปัจจุบัน"
+      },
+      {
+        "url": "https://huaytuengthao.com/image/gallery/gallery6.jpg",
+        "alt": "ภาพประวัติศาสตร์ 6",
+        "caption": "กิจกรรมท่องเที่ยวและนันทนาการ"
+      }
+    ],
     "socialMedia": {
       "facebook": {
         "account": "https://www.facebook.com/huaytuengthao/",
