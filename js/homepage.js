@@ -233,6 +233,20 @@ function updateGallery() {
   });
 }
 
+// Initialize card hover effects
+function initializeCardHoverEffects() {
+  document.querySelectorAll(".feature-card").forEach((card) => {
+    card.addEventListener("mouseenter", function () {
+      this.style.transform = "translateY(-10px)";
+      this.style.transition = "transform 0.3s ease";
+    });
+
+    card.addEventListener("mouseleave", function () {
+      this.style.transform = "translateY(0)";
+    });
+  });
+}
+
 // Update services
 function updateServices() {
   if (!servicesData?.services) return;
@@ -265,28 +279,38 @@ function updateServices() {
 
 // Update about section
 function updateAbout() {
-  if (!aboutData?.about) return;
+  console.log("updateAbout called, aboutData:", aboutData);
 
-  const aboutContent = document.querySelector("#about-content");
-  if (!aboutContent) return;
+  if (!aboutData?.about) {
+    console.log("No aboutData.about found");
+    return;
+  }
+
+  const aboutContent = document.querySelector("#about .card-body");
+  if (!aboutContent) {
+    console.log("No #about .card-body element found");
+    return;
+  }
+
+  console.log("About sections:", aboutData.about.sections);
 
   aboutContent.innerHTML = "";
   aboutData.about.sections.forEach((section) => {
     const sectionDiv = document.createElement("div");
     sectionDiv.className = "about-section mb-4";
-    
+
     const title = document.createElement("h5");
     title.className = "text-primary mb-2";
     title.textContent = section.title;
     sectionDiv.appendChild(title);
-    
+
     section.content.forEach((paragraph) => {
       const p = document.createElement("p");
       p.className = "text-muted";
       p.textContent = paragraph;
       sectionDiv.appendChild(p);
     });
-    
+
     aboutContent.appendChild(sectionDiv);
   });
 }
@@ -397,17 +421,8 @@ function initializeInteractiveFeatures() {
     observer.observe(counter);
   });
 
-  // Add hover effects to service cards
-  document.querySelectorAll(".feature-card").forEach((card) => {
-    card.addEventListener("mouseenter", function () {
-      this.style.transform = "translateY(-10px)";
-      this.style.transition = "transform 0.3s ease";
-    });
-
-    card.addEventListener("mouseleave", function () {
-      this.style.transform = "translateY(0)";
-    });
-  });
+  // Initialize hover effects for service cards
+  initializeCardHoverEffects();
 
   // Add interactive gallery with lightbox effect
   document.addEventListener("click", function (e) {
