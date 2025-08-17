@@ -9,12 +9,14 @@
 ## ✨ คุณสมบัติหลัก
 
 ### 🎨 **ระบบจัดการเนื้อหา (JSON-based CMS)**
+
 - แก้ไขเนื้อหาได้ง่ายผ่าน JSON Editor
 - บันทึกไฟล์อัตโนมัติผ่าน REST API
 - ระบบ backup อัตโนมัติก่อนแก้ไข
 - รองรับการแก้ไขหลายภาษา
 
 ### 📱 **Frontend Technologies**
+
 - **Bootstrap 5.3.0** - UI Framework
 - **AOS (Animate On Scroll)** - Smooth animations
 - **GSAP + ScrollTrigger** - Advanced animations (History page)
@@ -23,12 +25,14 @@
 - **Typed.js** - Text typing animations
 
 ### 🎯 **Performance & SEO**
+
 - Responsive Design รองรับทุกขนาดหน้าจอ
 - Fast Loading ด้วย CDN และ optimization
 - SEO Friendly structure
 - Progressive Enhancement
 
 ### � **Architecture**
+
 - **Modular JavaScript** - แยก JS ตามหน้า
 - **API-first Design** - REST API backend
 - **Fallback System** - localStorage cache
@@ -101,12 +105,14 @@ huaytuengthao-website/
 ### 📦 การติดตั้ง
 
 #### 1. Clone Repository
+
 ```bash
 git clone https://github.com/thanapon1406/final-project-frontend.git
 cd final-project-frontend
 ```
 
 #### 2. ติดตั้ง Dependencies
+
 ```bash
 npm install
 ```
@@ -114,12 +120,14 @@ npm install
 #### 3. เริ่มต้น Server
 
 **macOS/Linux:**
+
 ```bash
 chmod +x start.sh
 ./start.sh
 ```
 
 **Windows:**
+
 ```bash
 npm start
 ```
@@ -134,18 +142,19 @@ npm start
 
 ### 📋 หน้าต่างๆ ในเว็บไซต์
 
-| หน้า | URL | คำอธิบาย |
-|------|-----|----------|
-| 🏠 หน้าหลัก | `/` | Carousel, ข่าวสาร, บริการ, เกี่ยวกับเรา, แกลเลอรี่ |
-| 📞 ติดต่อเรา | `/page-contact.html` | ข้อมูลติดต่อ, แผนที่ Leaflet |
-| 📜 ประวัติ | `/page-history.html` | ประวัติพัฒนา, Timeline, GSAP animations |
-| 🛎️ บริการ | `/page-services.html` | รายการบริการ, กิจกรรม |
+| หน้า         | URL                   | คำอธิบาย                                           |
+| ------------ | --------------------- | -------------------------------------------------- |
+| 🏠 หน้าหลัก  | `/`                   | Carousel, ข่าวสาร, บริการ, เกี่ยวกับเรา, แกลเลอรี่ |
+| 📞 ติดต่อเรา | `/page-contact.html`  | ข้อมูลติดต่อ, แผนที่ Leaflet                       |
+| 📜 ประวัติ   | `/page-history.html`  | ประวัติพัฒนา, Timeline, GSAP animations            |
+| 🛎️ บริการ    | `/page-services.html` | รายการบริการ, กิจกรรม                              |
 
 ## 🎛️ ระบบจัดการเนื้อหา (JSON Editor)
 
 ### 🔐 การเข้าสู่ระบบ
 
 **ข้อมูลเริ่มต้น:**
+
 - **Username:** `admin`
 - **Password:** `admin123`
 
@@ -186,6 +195,7 @@ GET    /api/auth/check         # ตรวจสอบสถานะ
 ## 🎨 Features ของแต่ละหน้า
 
 ### 🏠 หน้าหลัก (Homepage)
+
 - **Carousel** แบบ responsive พร้อม indicators
 - **News Marquee** แสดงข่าวสารแบบเลื่อน
 - **Services Grid** พร้อม hover effects
@@ -194,18 +204,21 @@ GET    /api/auth/check         # ตรวจสอบสถานะ
 - **Particles.js** background effects
 
 ### 📞 หน้าติดต่อเรา (Contact)
+
 - **Interactive Leaflet Map** พร้อม marker และ popup
 - **Contact Cards** แสดงข้อมูลติดต่อแบบ card
 - **Responsive Design** รองรับทุกขนาดหน้าจอ
 - **Fallback Map** ใช้ Google Maps iframe หาก Leaflet ไม่ทำงาน
 
 ### 📜 หน้าประวัติ (History)
+
 - **GSAP Animations** พร้อม ScrollTrigger
 - **Timeline Layout** แสดงประวัติการพัฒนา
 - **Image Lightbox** เปิดดูภาพแบบ modal
 - **Smooth Scrolling** เลื่อนหน้าจอแบบนุ่มนวล
 
 ### 🛎️ หน้าบริการ (Services)
+
 - **Service Cards** แสดงบริการแบบ grid
 - **Activities Section** กิจกรรมและอุปกรณ์
 - **Hover Effects** เอฟเฟกต์เมื่อเลื่อนเมาส์
@@ -229,13 +242,13 @@ async function loadJsonData(fileName) {
     const response = await fetch(`/api/json/${fileName}`);
     if (response.ok) return await response.json();
   } catch (error) {
-    console.warn('API failed, trying localStorage...');
+    console.warn("API failed, trying localStorage...");
   }
-  
+
   // 2. Try localStorage
   const cached = localStorage.getItem(`json_${fileName}`);
   if (cached) return JSON.parse(cached);
-  
+
   // 3. Fallback to direct file
   const response = await fetch(`data/${fileName}.json`);
   return await response.json();
@@ -261,7 +274,7 @@ async function loadJsonData(fileName) {
 
 ```javascript
 // ใน routes/routes.js
-app.get('/api/new-endpoint', (req, res) => {
+app.get("/api/new-endpoint", (req, res) => {
   // Logic here
 });
 ```
@@ -270,24 +283,24 @@ app.get('/api/new-endpoint', (req, res) => {
 
 ### ❌ ปัญหาที่พบบ่อย
 
-| ปัญหา | สาเหตุ | วิธีแก้ไข |
-|-------|--------|----------|
-| หน้าไม่โหลดเนื้อหา | ไฟล์ JSON ผิดรูปแบบ | ตรวจสอบ syntax ใน JSON Editor |
-| แผนที่ไม่แสดง | Leaflet library ไม่โหลด | ตรวจสอบ internet connection |
-| Animation ไม่ทำงาน | JavaScript error | เปิด Developer Tools ดู Console |
-| ไม่สามารถบันทึกได้ | ไม่มีสิทธิ์เขียนไฟล์ | ตรวจสอบ permissions |
+| ปัญหา              | สาเหตุ                  | วิธีแก้ไข                       |
+| ------------------ | ----------------------- | ------------------------------- |
+| หน้าไม่โหลดเนื้อหา | ไฟล์ JSON ผิดรูปแบบ     | ตรวจสอบ syntax ใน JSON Editor   |
+| แผนที่ไม่แสดง      | Leaflet library ไม่โหลด | ตรวจสอบ internet connection     |
+| Animation ไม่ทำงาน | JavaScript error        | เปิด Developer Tools ดู Console |
+| ไม่สามารถบันทึกได้ | ไม่มีสิทธิ์เขียนไฟล์    | ตรวจสอบ permissions             |
 
 ### 🔍 การ Debug
 
 ```javascript
 // เปิด debug mode
-localStorage.setItem('debug', 'true');
+localStorage.setItem("debug", "true");
 
 // ล้าง cache
 localStorage.clear();
 
 // ดู errors ใน Console
-console.log('Debug info:', data);
+console.log("Debug info:", data);
 ```
 
 ## 🤝 การสนับสนุนและการพัฒนา
