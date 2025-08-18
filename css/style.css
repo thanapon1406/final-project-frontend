@@ -1036,14 +1036,15 @@ img[src*="data:image/svg+xml"] {
 
 .floating-btn {
   width: 50px;
-  height: 50px;
   border-radius: 50%;
-  display: none;
+  display: flex !important; /* flex for centering */
   opacity: 0;
   transition: all 0.3s ease;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   border: none;
-  font-size: 1.2rem;
+  font-size: 1.4rem; /* a bit bigger icon */
+  justify-content: center;
+  align-items: center;
 }
 
 .floating-btn:hover {
