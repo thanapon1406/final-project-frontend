@@ -7,7 +7,7 @@
       "image": "https://roijang.com/wp-content/uploads/2023/11/shutterstock_2238522473.jpg",
       "active": true,
       "link": {
-        "url": "#about",
+        "url": "",
         "target": "_self"
       }
     },
@@ -18,7 +18,7 @@
       "image": "https://roijang.com/wp-content/uploads/2023/11/shutterstock_2238693665.jpg",
       "active": true,
       "link": {
-        "url": "#gallery",
+        "url": "",
         "target": "_self"
       }
     },
@@ -29,7 +29,7 @@
       "image": "https://roijang.com/wp-content/uploads/2023/11/shutterstock_2303338189.jpg",
       "active": true,
       "link": {
-        "url": "page-services.html",
+        "url": "",
         "target": "_self"
       }
     },
@@ -40,7 +40,7 @@
       "image": "https://roijang.com/wp-content/uploads/2023/11/shutterstock_2340216403.jpg",
       "active": true,
       "link": {
-        "url": "#services",
+        "url": "",
         "target": "_self"
       }
     }
