@@ -84,17 +84,6 @@ function updateContactInfo() {
       </h5>
       <p>${contact.operatingHours}</p>
       
-      <h5 class="mt-4">
-        <i class="bi bi-envelope text-primary me-2"></i>ติดตามเรา
-      </h5>
-      <div class="social-links">
-        <a href="${contact.socialMedia.facebook.account}" class="btn btn-outline-primary btn-sm me-2" target="_blank">
-          <i class="bi bi-facebook"></i> Facebook Account
-        </a>
-        <a href="${contact.socialMedia.facebook.fanpage}" class="btn btn-outline-primary btn-sm me-2" target="_blank">
-          <i class="bi bi-facebook"></i> Facebook Fanpage
-        </a>
-      </div>
     `;
   }
 }
